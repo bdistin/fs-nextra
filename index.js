@@ -16,6 +16,7 @@ const targets = [
 	'write', 'writeFile'
 ];
 const o777 = parseInt('0777', 8);
+const setTimeoutPromise = promisify(setTimeout);
 
 for (const target of targets) fs[`${target}Async`] = promisify(fs[target]);
 
@@ -83,7 +84,40 @@ fs.ensureSymlink = fs.createSymlink = async (srcpath, dstpath, type) => {
 };
 
 fs.move = async (source, dest, options) => {
-	// more later
+	const shouldMkdirp = 'mkdirp' in options ? options.mkdirp : true;
+	const overwrite = options.overwrite || options.clobber || false;
+
+	if (shouldMkdirp) await fs.mkdirs(path.dirname(dest)).catch(err => { throw err; });
+
+	if (path.resolve(source) === path.resolve(dest)) {
+		return fs.accessAsync(source);
+	} else if (overwrite) {
+		return fs.renameAsync(source, dest)
+			.catch(async(err) => {
+				if (err.code === 'ENOTEMPTY' || err.code === 'EEXIST') {
+					await fs.remove(dest).catch((er) => { throw er; });
+					options.overwrite = false;
+					return fs.move(source, dest, options);
+				}
+
+				// weird Windows shit
+				if (err.code === 'EPERM') {
+					await setTimeoutPromise(200);
+					await fs.remove(dest).catch((er) => { throw er; });
+					options.overwrite = false;
+					return fs.move(source, dest, options);
+				}
+
+				if (err.code !== 'EXDEV') throw err;
+				return moveAcrossDevice(source, dest, overwrite);
+			});
+	}
+	return fs.link(source, dest)
+		.then(() => fs.unlink(source))
+		.catch(err => {
+			if (err.code === 'EXDEV' || err.code === 'EISDIR' || err.code === 'EPERM' || err.code === 'ENOTSUP') return moveAcrossDevice(source, dest, overwrite);
+			throw err;
+		});
 };
 
 fs.outputFile = async (file, data, encoding) => {
@@ -143,6 +177,50 @@ const symlinkPaths = async (srcpath, dstpath) => {
 	if (await fs.pathExists(relativeToDst)) return { toCwd: relativeToDst, toDst: srcpath };
 	await fs.lstatAsync(srcpath).catch(err => { throw err.message.replace('lstat', 'ensureSymlink'); });
 	return { toCwd: srcpath, toDst: path.relative(dstdir, srcpath) };
+};
+
+const moveAcrossDevice = async (source, dest, overwrite) => {
+	const stat = await fs.stat(source).catch(err => { throw err; });
+	if (stat.isDirectory()) return moveDirAcrossDevice(source, dest, overwrite);
+	return moveFileAcrossDevice(source, dest, overwrite);
+};
+
+const moveFileAcrossDevice = (source, dest, overwrite) => new Promise((resolve, reject) => {
+	const flags = overwrite ? 'w' : 'wx';
+	const ins = fs.createReadStream(source);
+	const outs = fs.createWriteStream(dest, { flags });
+
+	ins.on('error', err => {
+		ins.destroy();
+		outs.destroy();
+		outs.removeListener('close', () => { resolve(fs.unlinkAsync(source)); });
+
+		// may want to create a directory but `out` line above
+		// creates an empty file for us: See #108
+		// don't care about error here
+		fs.unlinkAsync(dest).catch(() => {
+			// note: `err` here is from the input stream errror
+			if (err.code !== 'EISDIR' && err.code !== 'EPERM') reject(err);
+			resolve(moveDirAcrossDevice(source, dest, overwrite).catch(reject));
+		});
+	});
+
+	outs.on('error', err => {
+		ins.destroy();
+		outs.destroy();
+		outs.removeListener('close', () => { resolve(fs.unlinkAsync(source)); });
+		reject(err);
+	});
+
+	outs.once('close', () => { resolve(fs.unlinkAsync(source)); });
+	ins.pipe(outs);
+});
+
+const moveDirAcrossDevice = async (source, dest, overwrite) => {
+	const options = { overwrite: false };
+	if (overwrite) await fs.remove(dest).catch(err => { throw err; });
+	await ncp(source, dest, options).catch(err => { throw err; });
+	return fs.remove(source);
 };
 
 const ncp = async (src, dest, options = {}) => {
