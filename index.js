@@ -16,6 +16,7 @@ const targets = [
 	'write', 'writeFile'
 ];
 const o777 = parseInt('0777', 8);
+const isWindows = process.platform === 'win32';
 const setTimeoutPromise = promisify(setTimeout);
 
 const fsn = {};
@@ -45,7 +46,7 @@ fsn.emptyDir = async (dir) => {
 
 fsn.ensureDir = fsn.mkdirs = async(myPath, opts, made = null) => {
 	if (!opts || typeof opts !== 'object') opts = { mode: opts };
-	if (process.platform === 'win32' && invalidWin32Path(myPath)) {
+	if (isWindows && invalidWin32Path(myPath)) {
 		const errInval = new Error(`${myPath} contains invalid WIN32 path characters.`);
 		errInval.code = 'EINVAL';
 		throw errInval;
@@ -245,3 +246,66 @@ const ncp = async (src, dest, options = {}) => {
 };
 
 module.exports = fsn;
+
+
+fsn.remove = async (myPath, options = {}) => {
+	if (typeof myPath !== 'string') throw new Error('Path should be a string');
+	let busyTries = 0;
+
+	options.maxBusyTries = options.maxBusyTries || 3;
+
+	return rimraf_(myPath, options)
+		.catch(async(er) => {
+			if (isWindows && (er.code === 'EBUSY' || er.code === 'ENOTEMPTY' || er.code === 'EPERM') &&
+			busyTries < options.maxBusyTries) {
+				busyTries++;
+				const time = busyTries * 100;
+				await setTimeoutPromise(time);
+				return rimraf_(myPath, options);
+			}
+			if (er.code === 'ENOENT') return null;
+			throw er;
+		});
+};
+
+const rimraf_ = async (myPath, options) => {
+	const stat = await fsn.lstat(myPath).catch(er => {
+		if (er && er.code === 'ENOENT') return null;
+		// Windows can EPERM on stat.  Life is suffering.
+		if (er && er.code === 'EPERM' && isWindows) return fixWinEPERM(myPath, options, er);
+		throw er;
+	});
+
+	if (stat && stat.isDirectory()) return rmdir(myPath, options, null);
+
+	return fsn.unlink(myPath).catch(er => {
+		if (er.code === 'ENOENT') return null;
+		if (er.code === 'EPERM') return isWindows ? fixWinEPERM(myPath, options, er) : rmdir(myPath, options, er);
+		if (er.code === 'EISDIR') return rmdir(myPath, options, er);
+		throw er;
+	});
+};
+
+const fixWinEPERM = async (myPath, options, err) => {
+	await fsn.chmod(myPath, 666).catch(er => {
+		throw er.code === 'ENOENT' ? null : err;
+	});
+	const stats = await fsn.stat(myPath).catch(er => {
+		throw er.code === 'ENOENT' ? null : err;
+	});
+	if (stats.isDirectory()) return rmdir(myPath, options, err);
+	else return fsn.unlink(myPath);
+};
+
+const rmdir = async (myPath, options, originalEr) => fsn.rmdir(myPath).catch(er => {
+	if (er && (er.code === 'ENOTEMPTY' || er.code === 'EEXIST' || er.code === 'EPERM')) return rmkids(myPath, options);
+	else if (er && er.code === 'ENOTDIR') throw originalEr;
+	else throw er;
+});
+
+const rmkids = async(myPath, options) => {
+	const files = fsn.readdir(myPath).catch(er => { throw er; });
+	if (files.length === 0) return options.rmdir(myPath);
+	return Promise.all(files.map(file => fsn.remove(path.join(myPath, file), options)))
+		.then(() => fsn.rmdir(myPath));
+};
