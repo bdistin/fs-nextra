@@ -18,26 +18,32 @@ const targets = [
 const o777 = parseInt('0777', 8);
 const setTimeoutPromise = promisify(setTimeout);
 
-for (const target of targets) fs[`${target}Async`] = promisify(fs[target]);
+const fsn = {};
 
-fs.copy = async(src, dest, options = {}) => {
+for (const [key, value] of Object.entries(fs)) {
+	if (key.includes('Sync')) continue;
+	if (targets.includes(key)) fsn[key] = promisify(value);
+	else fsn[key] = value;
+}
+
+fsn.copy = async(src, dest, options = {}) => {
 	if (typeof options === 'function' || options instanceof RegExp) options = { filter: options };
 	const basePath = process.cwd();
 	const currentPath = path.resolve(basePath, src);
 	const targetPath = path.resolve(basePath, dest);
 	if (currentPath === targetPath) throw new Error('Source and destination must not be the same.');
-	const stats = await fs.lstat(src);
+	const stats = await fsn.lstat(src);
 	const dir = stats.isDirectory() ? dest.split(path.sep).slice(0, -1).join(path.sep) : path.dirname(dest);
-	if (!await fs.pathExists(dir)) await fs.mkdirs(dir);
+	if (!await fsn.pathExists(dir)) await fsn.mkdirs(dir);
 	return ncp(src, dest, options);
 };
 
-fs.emptyDir = async (dir) => {
-	const items = await fs.readdirAsync(dir).catch(() => fs.mkdirs(dir));
-	return Promise.all(items.map(item => fs.remove(path.join(dir, item))));
+fsn.emptyDir = async (dir) => {
+	const items = await fsn.readdir(dir).catch(() => fsn.mkdirs(dir));
+	return Promise.all(items.map(item => fsn.remove(path.join(dir, item))));
 };
 
-fs.ensureDir = fs.mkdirs = async(myPath, opts, made = null) => {
+fsn.ensureDir = fsn.mkdirs = async(myPath, opts, made = null) => {
 	if (!opts || typeof opts !== 'object') opts = { mode: opts };
 	if (process.platform === 'win32' && invalidWin32Path(myPath)) {
 		const errInval = new Error(`${myPath} contains invalid WIN32 path characters.`);
@@ -47,107 +53,107 @@ fs.ensureDir = fs.mkdirs = async(myPath, opts, made = null) => {
 	// eslint-disable-next-line no-bitwise
 	const mode = opts.mode || o777 & ~process.umask();
 	myPath = path.resolve(myPath);
-	return fs.mkdirAsync(myPath, mode)
+	return fsn.mkdir(myPath, mode)
 		.then(() => made || myPath)
 		.catch((err) => {
-			if (err.code !== 'ENOENT') return fs.statAsync(myPath).then(() => made);
+			if (err.code !== 'ENOENT') return fsn.stat(myPath).then(() => made);
 			if (path.dirname(myPath) === myPath) throw err;
-			return fs.mkdirs(path.dirname(myPath), opts);
+			return fsn.mkdirs(path.dirname(myPath), opts);
 		})
-		.then(() => fs.mkdirs(myPath, opts, made))
+		.then(() => fsn.mkdirs(myPath, opts, made))
 		.catch((err) => { throw err; });
 };
 
-fs.ensureFile = fs.createFile = async (file) => {
-	if (await fs.pathExists(file)) return null;
+fsn.ensureFile = fsn.createFile = async (file) => {
+	if (await fsn.pathExists(file)) return null;
 	const dir = path.dirname(file);
-	if (!await fs.pathExists(dir)) await fs.mkdirs(dir);
-	return fs.writeFileAsync(file, '');
+	if (!await fsn.pathExists(dir)) await fsn.mkdirs(dir);
+	return fsn.writeFile(file, '');
 };
 
-fs.ensureLink = fs.createLink = async (srcpath, dstpath) => {
-	if (await fs.pathExists(dstpath)) return null;
-	await fs.lstatAsync(srcpath).catch(err => { throw err.message.replace('lstat', 'ensureLink'); });
+fsn.ensureLink = fsn.createLink = async (srcpath, dstpath) => {
+	if (await fsn.pathExists(dstpath)) return null;
+	await fsn.lstat(srcpath).catch(err => { throw err.message.replace('lstat', 'ensureLink'); });
 	const dir = path.dirname(dstpath);
-	if (!await fs.pathExists(dir)) await fs.mkdirs(dir);
-	return fs.linkAsync(srcpath, dstpath);
+	if (!await fsn.pathExists(dir)) await fsn.mkdirs(dir);
+	return fsn.link(srcpath, dstpath);
 };
 
-fs.ensureSymlink = fs.createSymlink = async (srcpath, dstpath, type) => {
-	if (await fs.pathExists(dstpath)) return null;
+fsn.ensureSymlink = fsn.createSymlink = async (srcpath, dstpath, type) => {
+	if (await fsn.pathExists(dstpath)) return null;
 	const relative = await symlinkPaths(srcpath, dstpath);
 	srcpath = relative.toDst;
 	const type2 = await symlinkType(relative.toCwd, type);
 	const dir = path.dirname(dstpath);
-	if (!await fs.pathExists(dir)) await fs.mkdirs(dir);
-	return fs.symlinkAsync(srcpath, dstpath, type2);
+	if (!await fsn.pathExists(dir)) await fsn.mkdirs(dir);
+	return fsn.symlink(srcpath, dstpath, type2);
 };
 
-fs.move = async (source, dest, options) => {
+fsn.move = async (source, dest, options) => {
 	const shouldMkdirp = 'mkdirp' in options ? options.mkdirp : true;
 	const overwrite = options.overwrite || options.clobber || false;
 
-	if (shouldMkdirp) await fs.mkdirs(path.dirname(dest)).catch(err => { throw err; });
+	if (shouldMkdirp) await fsn.mkdirs(path.dirname(dest)).catch(err => { throw err; });
 
 	if (path.resolve(source) === path.resolve(dest)) {
-		return fs.accessAsync(source);
+		return fsn.access(source);
 	} else if (overwrite) {
-		return fs.renameAsync(source, dest)
+		return fsn.rename(source, dest)
 			.catch(async(err) => {
 				if (err.code === 'ENOTEMPTY' || err.code === 'EEXIST') {
-					await fs.remove(dest).catch((er) => { throw er; });
+					await fsn.remove(dest).catch((er) => { throw er; });
 					options.overwrite = false;
-					return fs.move(source, dest, options);
+					return fsn.move(source, dest, options);
 				}
 
 				// weird Windows shit
 				if (err.code === 'EPERM') {
 					await setTimeoutPromise(200);
-					await fs.remove(dest).catch((er) => { throw er; });
+					await fsn.remove(dest).catch((er) => { throw er; });
 					options.overwrite = false;
-					return fs.move(source, dest, options);
+					return fsn.move(source, dest, options);
 				}
 
 				if (err.code !== 'EXDEV') throw err;
 				return moveAcrossDevice(source, dest, overwrite);
 			});
 	}
-	return fs.link(source, dest)
-		.then(() => fs.unlink(source))
+	return fsn.link(source, dest)
+		.then(() => fsn.unlink(source))
 		.catch(err => {
 			if (err.code === 'EXDEV' || err.code === 'EISDIR' || err.code === 'EPERM' || err.code === 'ENOTSUP') return moveAcrossDevice(source, dest, overwrite);
 			throw err;
 		});
 };
 
-fs.outputFile = async (file, data, encoding) => {
+fsn.outputFile = async (file, data, encoding) => {
 	const dir = path.dirname(file);
-	if (!await fs.pathExists(dir)) await fs.mkdirs(dir);
-	return fs.writeFileAsync(file, data, encoding);
+	if (!await fsn.pathExists(dir)) await fsn.mkdirs(dir);
+	return fsn.writeFile(file, data, encoding);
 };
 
-fs.outputJSON = async (file, data, options) => {
+fsn.outputJSON = async (file, data, options) => {
 	const dir = path.dirname(file);
-	if (!await fs.pathExists(path)) await fs.mkdirsAsync(dir);
-	return fs.writeJsonAsync(file, data, options);
+	if (!await fsn.pathExists(path)) await fsn.mkdirs(dir);
+	return fsn.writeJson(file, data, options);
 };
 
-fs.pathExists = async (myPath) => fs.accessAsync(myPath).then(() => true).catch(() => false);
+fsn.pathExists = async (myPath) => fsn.access(myPath).then(() => true).catch(() => false);
 
-fs.readJSON = async (file, options = {}) => {
+fsn.readJSON = async (file, options = {}) => {
 	if (typeof options === 'string') options = { encoding: options };
-	const content = await fs.readFileAsync(file, options);
+	const content = await fsn.readFile(file, options);
 	return JSON.parse(stripBom(content), options.reviver);
 };
 
-fs.remove = async (myPath, options) => {
+fsn.remove = async (myPath, options) => {
 	// more later
 };
 
-fs.writeJSON = async (file, obj, options = {}) => {
+fsn.writeJSON = async (file, obj, options = {}) => {
 	const spaces = options.spaces || null;
 	const str = `${JSON.stringify(obj, options.replacer, spaces)}\n`;
-	return fs.writeFileAsync(file, str, options);
+	return fsn.writeFile(file, str, options);
 };
 
 const stripBom = (content) => {
@@ -163,42 +169,42 @@ const invalidWin32Path = (myPath) => {
 
 const symlinkType = async (srcpath, type = false) => {
 	if (type) return type;
-	const stats = await fs.lstatAsync(srcpath).catch(() => 'file');
+	const stats = await fsn.lstat(srcpath).catch(() => 'file');
 	return stats && stats.isDirectory() ? 'dir' : 'file';
 };
 
 const symlinkPaths = async (srcpath, dstpath) => {
 	if (path.isAbsolute(srcpath)) {
-		await fs.lstatAsync(srcpath).throw(err => { throw err.message.replace('lstat', 'ensureSymlink'); });
+		await fsn.lstat(srcpath).throw(err => { throw err.message.replace('lstat', 'ensureSymlink'); });
 		return { toCwd: srcpath, toDst: srcpath };
 	}
 	const dstdir = path.dirname(dstpath);
 	const relativeToDst = path.join(dstdir, srcpath);
-	if (await fs.pathExists(relativeToDst)) return { toCwd: relativeToDst, toDst: srcpath };
-	await fs.lstatAsync(srcpath).catch(err => { throw err.message.replace('lstat', 'ensureSymlink'); });
+	if (await fsn.pathExists(relativeToDst)) return { toCwd: relativeToDst, toDst: srcpath };
+	await fsn.lstat(srcpath).catch(err => { throw err.message.replace('lstat', 'ensureSymlink'); });
 	return { toCwd: srcpath, toDst: path.relative(dstdir, srcpath) };
 };
 
 const moveAcrossDevice = async (source, dest, overwrite) => {
-	const stat = await fs.stat(source).catch(err => { throw err; });
+	const stat = await fsn.stat(source).catch(err => { throw err; });
 	if (stat.isDirectory()) return moveDirAcrossDevice(source, dest, overwrite);
 	return moveFileAcrossDevice(source, dest, overwrite);
 };
 
 const moveFileAcrossDevice = (source, dest, overwrite) => new Promise((resolve, reject) => {
 	const flags = overwrite ? 'w' : 'wx';
-	const ins = fs.createReadStream(source);
-	const outs = fs.createWriteStream(dest, { flags });
+	const ins = fsn.createReadStream(source);
+	const outs = fsn.createWriteStream(dest, { flags });
 
 	ins.on('error', err => {
 		ins.destroy();
 		outs.destroy();
-		outs.removeListener('close', () => { resolve(fs.unlinkAsync(source)); });
+		outs.removeListener('close', () => { resolve(fsn.unlink(source)); });
 
 		// may want to create a directory but `out` line above
 		// creates an empty file for us: See #108
 		// don't care about error here
-		fs.unlinkAsync(dest).catch(() => {
+		fsn.unlink(dest).catch(() => {
 			// note: `err` here is from the input stream errror
 			if (err.code !== 'EISDIR' && err.code !== 'EPERM') reject(err);
 			resolve(moveDirAcrossDevice(source, dest, overwrite).catch(reject));
@@ -208,19 +214,19 @@ const moveFileAcrossDevice = (source, dest, overwrite) => new Promise((resolve, 
 	outs.on('error', err => {
 		ins.destroy();
 		outs.destroy();
-		outs.removeListener('close', () => { resolve(fs.unlinkAsync(source)); });
+		outs.removeListener('close', () => { resolve(fsn.unlink(source)); });
 		reject(err);
 	});
 
-	outs.once('close', () => { resolve(fs.unlinkAsync(source)); });
+	outs.once('close', () => { resolve(fsn.unlink(source)); });
 	ins.pipe(outs);
 });
 
 const moveDirAcrossDevice = async (source, dest, overwrite) => {
 	const options = { overwrite: false };
-	if (overwrite) await fs.remove(dest).catch(err => { throw err; });
+	if (overwrite) await fsn.remove(dest).catch(err => { throw err; });
 	await ncp(source, dest, options).catch(err => { throw err; });
-	return fs.remove(source);
+	return fsn.remove(source);
 };
 
 const ncp = async (src, dest, options = {}) => {
