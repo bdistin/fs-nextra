@@ -244,4 +244,4 @@ const ncp = async (src, dest, options = {}) => {
 	var running = 0;*/
 };
 
-module.exports = fs;
+module.exports = fsn;
