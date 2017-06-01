@@ -147,8 +147,24 @@ fsn.readJSON = async (file, options = {}) => {
 	return JSON.parse(stripBom(content), options.reviver);
 };
 
-fsn.remove = async (myPath, options) => {
-	// more later
+fsn.remove = async (myPath, options = {}) => {
+	if (typeof myPath !== 'string') throw new Error('Path should be a string');
+	let busyTries = 0;
+
+	options.maxBusyTries = options.maxBusyTries || 3;
+
+	return rimraf_(myPath, options)
+		.catch(async(er) => {
+			if (isWindows && (er.code === 'EBUSY' || er.code === 'ENOTEMPTY' || er.code === 'EPERM') &&
+			busyTries < options.maxBusyTries) {
+				busyTries++;
+				const time = busyTries * 100;
+				await setTimeoutPromise(time);
+				return rimraf_(myPath, options);
+			}
+			if (er.code === 'ENOENT') return null;
+			throw er;
+		});
 };
 
 fsn.writeJSON = async (file, obj, options = {}) => {
@@ -226,52 +242,9 @@ const moveDirAcrossDevice = async (source, dest, overwrite) => {
 	return fsn.remove(source);
 };
 
-const ncp = async (src, dest, options = {}) => {
-	// come back to this later
-	/* const basePath = process.cwd();
-	const currentPath = path.resolve(basePath, src);
-	const targetPath = path.resolve(basePath, dest);
-	var filter = options.filter;
-	var transform = options.transform;
-	var overwrite = options.overwrite;
-	if (overwrite === undefined) overwrite = options.clobber;
-	if (overwrite === undefined) overwrite = true;
-	var errorOnExist = options.errorOnExist;
-	var dereference = options.dereference;
-	var preserveTimestamps = options.preserveTimestamps === true;
-
-	var started = 0;
-	var finished = 0;
-	var running = 0;*/
-};
-
-module.exports = fsn;
-
-
-fsn.remove = async (myPath, options = {}) => {
-	if (typeof myPath !== 'string') throw new Error('Path should be a string');
-	let busyTries = 0;
-
-	options.maxBusyTries = options.maxBusyTries || 3;
-
-	return rimraf_(myPath, options)
-		.catch(async(er) => {
-			if (isWindows && (er.code === 'EBUSY' || er.code === 'ENOTEMPTY' || er.code === 'EPERM') &&
-			busyTries < options.maxBusyTries) {
-				busyTries++;
-				const time = busyTries * 100;
-				await setTimeoutPromise(time);
-				return rimraf_(myPath, options);
-			}
-			if (er.code === 'ENOENT') return null;
-			throw er;
-		});
-};
-
 const rimraf_ = async (myPath, options) => {
 	const stat = await fsn.lstat(myPath).catch(er => {
 		if (er && er.code === 'ENOENT') return null;
-		// Windows can EPERM on stat.  Life is suffering.
 		if (er && er.code === 'EPERM' && isWindows) return fixWinEPERM(myPath, options, er);
 		throw er;
 	});
@@ -309,3 +282,26 @@ const rmkids = async(myPath, options) => {
 	return Promise.all(files.map(file => fsn.remove(path.join(myPath, file), options)))
 		.then(() => fsn.rmdir(myPath));
 };
+
+
+const ncp = async (src, dest, options = {}) => {
+	// come back to this later
+	/* const basePath = process.cwd();
+	const currentPath = path.resolve(basePath, src);
+	const targetPath = path.resolve(basePath, dest);
+	var filter = options.filter;
+	var transform = options.transform;
+	var overwrite = options.overwrite;
+	if (overwrite === undefined) overwrite = options.clobber;
+	if (overwrite === undefined) overwrite = true;
+	var errorOnExist = options.errorOnExist;
+	var dereference = options.dereference;
+	var preserveTimestamps = options.preserveTimestamps === true;
+
+	var started = 0;
+	var finished = 0;
+	var running = 0;*/
+};
+
+module.exports = fsn;
+
