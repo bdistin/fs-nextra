@@ -106,7 +106,7 @@ fsn.move = async (source, dest, options) => {
 					return fsn.move(source, dest, options);
 				}
 
-				// weird Windows shit
+				// Windows
 				if (err.code === 'EPERM') {
 					await setTimeoutPromise(200);
 					await fsn.remove(dest).catch((er) => { throw er; });
@@ -201,11 +201,7 @@ const moveFileAcrossDevice = (source, dest, overwrite) => new Promise((resolve, 
 		outs.destroy();
 		outs.removeListener('close', () => { resolve(fsn.unlink(source)); });
 
-		// may want to create a directory but `out` line above
-		// creates an empty file for us: See #108
-		// don't care about error here
 		fsn.unlink(dest).catch(() => {
-			// note: `err` here is from the input stream errror
 			if (err.code !== 'EISDIR' && err.code !== 'EPERM') reject(err);
 			resolve(moveDirAcrossDevice(source, dest, overwrite).catch(reject));
 		});
