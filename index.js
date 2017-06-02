@@ -61,8 +61,7 @@ fsn.ensureDir = fsn.mkdirs = async(myPath, opts, made = null) => {
 			if (path.dirname(myPath) === myPath) throw err;
 			return fsn.mkdirs(path.dirname(myPath), opts);
 		})
-		.then(() => fsn.mkdirs(myPath, opts, made))
-		.catch((err) => { throw err; });
+		.then(() => fsn.mkdirs(myPath, opts, made));
 };
 
 fsn.ensureFile = fsn.createFile = async (file) => {
@@ -102,7 +101,7 @@ fsn.move = async (source, dest, options) => {
 		return fsn.rename(source, dest)
 			.catch(async(err) => {
 				if (err.code === 'ENOTEMPTY' || err.code === 'EEXIST') {
-					await fsn.remove(dest).catch((er) => { throw er; });
+					await fsn.remove(dest).catch(er => { throw er; });
 					options.overwrite = false;
 					return fsn.move(source, dest, options);
 				}
@@ -110,7 +109,7 @@ fsn.move = async (source, dest, options) => {
 				// Windows
 				if (err.code === 'EPERM') {
 					await setTimeoutPromise(200);
-					await fsn.remove(dest).catch((er) => { throw er; });
+					await fsn.remove(dest).catch(er => { throw er; });
 					options.overwrite = false;
 					return fsn.move(source, dest, options);
 				}
@@ -260,12 +259,8 @@ const rimraf_ = async (myPath, options) => {
 };
 
 const fixWinEPERM = async (myPath, options, err) => {
-	await fsn.chmod(myPath, 666).catch(er => {
-		throw er.code === 'ENOENT' ? null : err;
-	});
-	const stats = await fsn.stat(myPath).catch(er => {
-		throw er.code === 'ENOENT' ? null : err;
-	});
+	await fsn.chmod(myPath, 666).catch(er => { throw er.code === 'ENOENT' ? null : err; });
+	const stats = await fsn.stat(myPath).catch(er => { throw er.code === 'ENOENT' ? null : err; });
 	if (stats.isDirectory()) return rmdir(myPath, options, err);
 	else return fsn.unlink(myPath);
 };
@@ -283,25 +278,101 @@ const rmkids = async(myPath, options) => {
 		.then(() => fsn.rmdir(myPath));
 };
 
+const isWritable = (myPath) => fsn.lstat(myPath).then(() => false).catch(err => err.code === 'ENOENT');
 
-const ncp = async (src, dest, options = {}) => {
-	// come back to this later
-	/* const basePath = process.cwd();
-	const currentPath = path.resolve(basePath, src);
+const ncp = async (source, dest, options = {}) => {
+	const basePath = process.cwd();
+	const currentPath = path.resolve(basePath, source);
 	const targetPath = path.resolve(basePath, dest);
-	var filter = options.filter;
-	var transform = options.transform;
-	var overwrite = options.overwrite;
+
+	const filter = typeof filter === 'function' ? options.filter : undefined;
+	const transform = options.transform;
+	let overwrite = options.overwrite;
+	// If overwrite is undefined, use clobber, otherwise default to true:
 	if (overwrite === undefined) overwrite = options.clobber;
 	if (overwrite === undefined) overwrite = true;
-	var errorOnExist = options.errorOnExist;
-	var dereference = options.dereference;
-	var preserveTimestamps = options.preserveTimestamps === true;
+	const errorOnExist = options.errorOnExist;
+	const dereference = options.dereference;
+	const preserveTimestamps = options.preserveTimestamps === true;
 
-	var started = 0;
-	var finished = 0;
-	var running = 0;*/
+	const startCopy = async (mySource) => {
+		if (filter && !filter(mySource, dest)) return null;
+		return getStats(mySource);
+	};
+
+	const getStats = async (mySource) => {
+		const stat = dereference ? fsn.stat : fsn.lstat;
+		const stats = await stat(mySource).catch(err => { throw err; });
+		const item = {
+			name: mySource,
+			mode: stats.mode,
+			mtime: stats.mtime,
+			atime: stats.atime,
+			stats: stats
+		};
+
+		if (stats.isDirectory()) {
+			const target = item.name.replace(currentPath, targetPath.replace('$', '$$$$'));
+			if (await isWritable(target)) return mkDir(item, target);
+			return copyDir(item.name);
+		} else if (stats.isFile() || stats.isCharacterDevice() || stats.isBlockDevice()) {
+			const target = item.name.replace(currentPath, targetPath.replace('$', '$$$$'));
+			if (await isWritable(target)) return copyFile(item, target);
+			else if (overwrite) return fsn.unlink(item).then(() => { copyFile(item, target); });
+			else if (errorOnExist) throw new Error(`${target} already exists`);
+		} else if (stats.isSymbolicLink()) {
+			const target = item.replace(currentPath, targetPath);
+			const resolvedPath = await fsn.readlink(item).catch(err => { throw err; });
+			return checkLink(resolvedPath, target);
+		}
+		throw new Error('FS-NEXT: An Unkown error has occured in getStats.');
+	};
+
+	const copyFile = (file, target) => new Promise((resolve, reject) => {
+		const readStream = fsn.createReadStream(file.name);
+		const writeStream = fsn.createWriteStream(target, { mode: file.mode });
+
+		readStream.on('error', reject);
+		writeStream.on('error', reject);
+
+		if (transform) transform(readStream, writeStream, file);
+		else writeStream.on('open', () => { readStream.pipe(writeStream); });
+
+		writeStream.once('close', async() => {
+			const error = await fsn.chmod(target, file.mode).catch(err => err);
+			if (error) return reject(error);
+			if (!preserveTimestamps) return resolve();
+			const fd = await fsn.open(path, 'r+').catch(err => err);
+			if (fd instanceof Error) return reject(fd);
+			const futimesErr = fsn.futimes(fd, file.atime, file.mtime).catch(err => err);
+			const closeErr = fs.close(fd).catch(err => err);
+			if (futimesErr || closeErr) return reject(futimesErr || closeErr);
+			return resolve();
+		});
+	});
+
+	const mkDir = async (dir, target) => {
+		await fsn.mkdir(target, dir.mode).catch(err => { throw err; });
+		await fsn.chmod(target, dir.mode).catch(err => { throw err; });
+		return copyDir(dir.name);
+	};
+
+	const copyDir = async (dir) => {
+		const items = await fsn.readdir(dir).catch(err => { throw err; });
+		return Promise.all(items.map(item => startCopy(path.join(dir, item))));
+	};
+
+	const checkLink = async (resolvedPath, target) => {
+		if (dereference) resolvedPath = path.resolve(basePath, resolvedPath);
+		if (await isWritable(target)) return fsn.symlink(resolvedPath, target);
+		let targetDest = await fsn.readlink(target).catch(err => { throw err; });
+		if (dereference) targetDest = path.resolve(basePath, targetDest);
+		if (targetDest === resolvedPath) return null;
+		await fsn.unlink(target).catch(err => { throw err; });
+		return fsn.symlink(resolvedPath, target);
+	};
+
+	return startCopy(currentPath);
 };
 
 module.exports = fsn;
-
