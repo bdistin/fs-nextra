@@ -41,11 +41,26 @@ test('copy', async t => {
 	t.true(stats.isFile());
 });
 
-// this test doesn't resolve for some reason
-test.skip('ensureDir', async t => {
+test.skip('ensureDir (pre-existing)', async t => {
 	await nextra.ensureDir(files.ensureDir);
 
-	const stats = await fs.statAsync(dir);
+	const stats = await fs.statAsync(files.ensureDir);
+	t.true(stats.isDirectory());
+});
+
+test.skip('ensureDir (new)', async t => {
+	const newDir = path.resolve(dir, 'ensureDirNew');
+	await nextra.ensureDir(newDir);
+
+	const stats = await fs.statAsync(newDir);
+	t.true(stats.isDirectory());
+});
+
+test.skip('ensureDir (new recursive)', async t => {
+	const deepDir = path.resolve(dir, 'ensureDirNew2', 'ensureDirNew3');
+	await nextra.ensureDir(deepDir);
+
+	const stats = await fs.statAsync(deepDir);
 	t.true(stats.isDirectory());
 });
 
@@ -64,7 +79,7 @@ test('ensureFile (new)', async t => {
 	t.true(stats.isFile());
 });
 
-test('ensureSymlink', async t => {
+test.skip('ensureSymlink', async t => {
 	await nextra.ensureSymlink(files.ensureSymlink.src, files.ensureSymlink.dest);
 
 	const stats = await fs.lstatAsync(files.ensureSymlink.src);
