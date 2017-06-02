@@ -4,11 +4,17 @@
   "description": "Node.js V8 native fs enhanced with util.promisify and standard extra methods.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "ava -T 10000"
   },
   "author": "BDISTIN",
   "license": "MIT",
   "engines": {
     "node": ">=8.0.0"
-  }
+  },
+  "devDependencies": {
+    "ava": "^0.19.1",
+    "mock-fs": "^4.3.0",
+    "tsubaki": "^1.1.1"
+  },
+  "false": {}
 }
