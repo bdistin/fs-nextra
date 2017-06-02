@@ -1,0 +1,4 @@
+# .npmignore
+.get/
+.eslintrc.json
+README.md
