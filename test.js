@@ -11,14 +11,19 @@ const dir = path.resolve(__dirname, 'test');
 const files = {
 	copy: path.resolve(dir, 'copy.txt'),
 	ensureDir: path.resolve(dir, 'ensureDir'),
-	ensureFile: path.resolve(dir, 'ensureFile')
+	ensureFile: path.resolve(dir, 'ensureFile'),
+	ensureSymlink: {
+		src: path.resolve(dir, 'ensureSymlinkSrc'),
+		dest: path.resolve(dir, 'ensureSymlinkDest')
+	}
 };
 
 test.before(t => {
 	mock({
 		[files.copy]: '',
 		[files.ensureDir]: {},
-		[files.ensureFile]: ''
+		[files.ensureFile]: '',
+		[files.ensureSymlink.src]: mock.symlink({ path: files.ensureSymlink.dest })
 	});
 	t.pass();
 });
@@ -57,4 +62,11 @@ test('ensureFile (new)', async t => {
 
 	const stats = await fs.statAsync(file);
 	t.true(stats.isFile());
+});
+
+test('ensureSymlink', async t => {
+	await nextra.ensureSymlink(files.ensureSymlink.src, files.ensureSymlink.dest);
+
+	const stats = await fs.lstatAsync(files.ensureSymlink.src);
+	t.true(stats.isSymbolicLink());
 });
