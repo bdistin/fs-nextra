@@ -59,9 +59,9 @@ fsn.ensureDir = fsn.mkdirs = async(myPath, opts, made = null) => {
 		.catch((err) => {
 			if (err.code !== 'ENOENT') return fsn.stat(myPath).then(() => made);
 			if (path.dirname(myPath) === myPath) throw err;
-			return fsn.mkdirs(path.dirname(myPath), opts);
-		})
-		.then(() => fsn.mkdirs(myPath, opts, made));
+			return fsn.mkdirs(path.dirname(myPath), opts)
+				.then(() => fsn.mkdirs(myPath, opts, made));
+		});
 };
 
 fsn.ensureFile = fsn.createFile = async (file) => {
