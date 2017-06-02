@@ -285,7 +285,7 @@ const ncp = async (source, dest, options = {}) => {
 	const currentPath = path.resolve(basePath, source);
 	const targetPath = path.resolve(basePath, dest);
 
-	const filter = typeof filter === 'function' ? options.filter : undefined;
+	const filter = typeof options.filter === 'function' ? options.filter : undefined;
 	const transform = options.transform;
 	let overwrite = options.overwrite;
 	// If overwrite is undefined, use clobber, otherwise default to true:
