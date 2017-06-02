@@ -63,7 +63,7 @@ fsn.ensureDir = fsn.mkdirs = async(myPath, opts, made = null) => {
 						if (stat.isDirectory()) return made;
 						throw err;
 					})
-					.catch(() => err);
+					.catch(() => { throw err; });
 			}
 			if (path.dirname(myPath) === myPath) throw err;
 			return fsn.mkdirs(path.dirname(myPath), opts)
