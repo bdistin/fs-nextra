@@ -191,7 +191,7 @@ const symlinkType = async (srcpath, type = false) => {
 
 const symlinkPaths = async (srcpath, dstpath) => {
 	if (path.isAbsolute(srcpath)) {
-		await fsn.lstat(srcpath).throw(err => { throw err.message.replace('lstat', 'ensureSymlink'); });
+		await fsn.lstat(srcpath).catch(err => { throw err.message.replace('lstat', 'ensureSymlink'); });
 		return { toCwd: srcpath, toDst: srcpath };
 	}
 	const dstdir = path.dirname(dstpath);
