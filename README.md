@@ -2,6 +2,11 @@ Node.js V8 native fs, enhanced with util.promisify and standard extra methods. W
 
 Testing phase...
 
+Docs
+------
+
+All FS Native methods which return a callback, return a promise instead. All `fs-extra` methods return a promise exclusivly. No sync methods are included from either FS Native or fs-extra. Requires minimum Node.js v8.0.0.
+
 Credit
 ------
 
