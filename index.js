@@ -57,10 +57,17 @@ fsn.ensureDir = fsn.mkdirs = async(myPath, opts, made = null) => {
 	return fsn.mkdir(myPath, mode)
 		.then(() => made || myPath)
 		.catch((err) => {
-			if (err.code !== 'ENOENT') return fsn.stat(myPath).then(() => made);
+			if (err.code !== 'ENOENT') {
+				return fsn.stat(myPath)
+					.then(stat => {
+						if (stat.isDirectory()) return made;
+						throw err;
+					})
+					.catch(() => err);
+			}
 			if (path.dirname(myPath) === myPath) throw err;
 			return fsn.mkdirs(path.dirname(myPath), opts)
-				.then(() => fsn.mkdirs(myPath, opts, made));
+				.then(madeChain => fsn.mkdirs(myPath, opts, madeChain));
 		});
 };
 
