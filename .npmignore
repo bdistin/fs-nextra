@@ -1,4 +1,7 @@
 # .npmignore
 .get/
+node_modules/
+test/
 .eslintrc.json
+package-lock.json
 README.md
