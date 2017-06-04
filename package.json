@@ -1,6 +1,6 @@
 {
   "name": "fs-nextra",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Node.js V8 native fs enhanced with util.promisify and standard extra methods.",
   "main": "index.js",
   "scripts": {
