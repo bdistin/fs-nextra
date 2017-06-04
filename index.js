@@ -39,12 +39,12 @@ fsn.copy = async(src, dest, options = {}) => {
 	return ncp(src, dest, options);
 };
 
-fsn.emptyDir = async (dir) => {
+fsn.emptyDir = fsn.emptydir = async (dir) => {
 	const items = await fsn.readdir(dir).catch(() => fsn.mkdirs(dir));
 	return Promise.all(items.map(item => fsn.remove(path.join(dir, item))));
 };
 
-fsn.ensureDir = fsn.mkdirs = async(myPath, opts, made = null) => {
+fsn.ensureDir = fsn.mkdirs = fsn.mkdirp = async(myPath, opts, made = null) => {
 	if (!opts || typeof opts !== 'object') opts = { mode: opts };
 	if (isWindows && invalidWin32Path(myPath)) {
 		const errInval = new Error(`${myPath} contains invalid WIN32 path characters.`);
@@ -139,7 +139,7 @@ fsn.outputFile = async (file, data, encoding) => {
 	return fsn.writeFile(file, data, encoding);
 };
 
-fsn.outputJSON = async (file, data, options) => {
+fsn.outputJSON = fsn.outputJson = async (file, data, options) => {
 	const dir = path.dirname(file);
 	if (!await fsn.pathExists(path)) await fsn.mkdirs(dir);
 	return fsn.writeJson(file, data, options);
@@ -147,7 +147,7 @@ fsn.outputJSON = async (file, data, options) => {
 
 fsn.pathExists = (myPath) => fsn.access(myPath).then(() => true).catch(() => false);
 
-fsn.readJSON = async (file, options = {}) => {
+fsn.readJSON = fsn.readJson = async (file, options = {}) => {
 	if (typeof options === 'string') options = { encoding: options };
 	const content = await fsn.readFile(file, options);
 	return JSON.parse(stripBom(content), options.reviver);
@@ -172,7 +172,7 @@ fsn.remove = async (myPath, options = {}) => {
 		});
 };
 
-fsn.writeJSON = async (file, obj, options = {}) => {
+fsn.writeJSON = fsn.writeJson = async (file, obj, options = {}) => {
 	const spaces = options.spaces || null;
 	const str = `${JSON.stringify(obj, options.replacer, spaces)}\n`;
 	return fsn.writeFile(file, str, options);
