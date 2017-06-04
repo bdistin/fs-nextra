@@ -28,7 +28,7 @@ for (const [key, value] of Object.entries(fs)) {
 }
 
 fsn.copy = async(src, dest, options = {}) => {
-	if (typeof options === 'function' || options instanceof RegExp) options = { filter: options };
+	if (typeof options === 'function') options = { filter: options };
 	const basePath = process.cwd();
 	const currentPath = path.resolve(basePath, src);
 	const targetPath = path.resolve(basePath, dest);
@@ -145,7 +145,7 @@ fsn.outputJSON = async (file, data, options) => {
 	return fsn.writeJson(file, data, options);
 };
 
-fsn.pathExists = async (myPath) => fsn.access(myPath).then(() => true).catch(() => false);
+fsn.pathExists = (myPath) => fsn.access(myPath).then(() => true).catch(() => false);
 
 fsn.readJSON = async (file, options = {}) => {
 	if (typeof options === 'string') options = { encoding: options };
@@ -161,8 +161,7 @@ fsn.remove = async (myPath, options = {}) => {
 
 	return rimraf_(myPath, options)
 		.catch(async(er) => {
-			if (isWindows && (er.code === 'EBUSY' || er.code === 'ENOTEMPTY' || er.code === 'EPERM') &&
-			busyTries < options.maxBusyTries) {
+			if (isWindows && (er.code === 'EBUSY' || er.code === 'ENOTEMPTY' || er.code === 'EPERM') && busyTries < options.maxBusyTries) {
 				busyTries++;
 				const time = busyTries * 100;
 				await setTimeoutPromise(time);
