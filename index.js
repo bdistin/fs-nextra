@@ -143,7 +143,7 @@ exports.outputJSON = exports.outputJson = async (file, data, options) => {
 	return this.writeJson(file, data, options);
 };
 
-exports.pathExists = (myPath) => exports.access(myPath).then(() => true).catch(() => false);
+exports.pathExists = (myPath) => this.access(myPath).then(() => true).catch(() => false);
 
 exports.readJSON = exports.readJson = async (file, options = {}) => {
 	if (typeof options === 'string') options = { encoding: options };
