@@ -6,6 +6,21 @@
   "scripts": {
     "test": "ava \"test/test.js\" -T 10000"
   },
+  "keywords": [
+    "copy",
+    "delete",
+    "directory",
+    "file",
+    "file system",
+    "fs",
+    "json",
+    "move",
+    "native",
+    "nextra",
+    "promise",
+    "read",
+    "write"
+  ],
   "author": "BDISTIN",
   "license": "MIT",
   "engines": {
