@@ -1,7 +1,5 @@
 Node.js V8 native fs, enhanced with util.promisify and standard extra methods. Written in full ES2017, sans every sync method. *Async is the future!*
 
-Testing phase...
-
 Docs
 ------
 
