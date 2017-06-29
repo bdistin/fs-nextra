@@ -315,7 +315,7 @@ const startCopy = async (mySource, options) => {
 	} else if (stats.isFile() || stats.isCharacterDevice() || stats.isBlockDevice()) {
 		const target = item.name.replace(options.currentPath, options.targetPath.replace('$', '$$$$'));
 		if (await isWritable(target)) return copyFile(item, target, options);
-		else if (options.overwrite) return copyFile(item, target, options).then(() => this.unlink(mySource));
+		else if (options.overwrite) return this.unlink(target).then(() => { copyFile(item, target, options); });
 		else if (options.errorOnExist) throw new Error(`${target} already exists`);
 	} else if (stats.isSymbolicLink()) {
 		const target = item.replace(options.currentPath, options.targetPath);
