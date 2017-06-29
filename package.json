@@ -4,7 +4,7 @@
   "description": "Node.js V8 native fs enhanced with util.promisify and standard extra methods.",
   "main": "index.js",
   "scripts": {
-    "test": "ava \"test/test.js\" -T 10000"
+    "test": "eslint index.js"
   },
   "keywords": [
     "copy",
@@ -28,6 +28,7 @@
   },
   "devDependencies": {
     "ava": "^0.19.1",
+    "eslint": "^4.1.1",
     "mock-fs": "^4.3.0",
     "tsubaki": "^1.1.1"
   },

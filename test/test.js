@@ -1,5 +1,5 @@
 /* eslint-disable id-length */
-
+// ava \"test/test.js\" -T 10000
 const test = require('ava');
 const path = require('path');
 const tsubaki = require('tsubaki');

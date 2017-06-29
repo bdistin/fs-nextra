@@ -25,7 +25,7 @@ for (const [key, value] of Object.entries(fs)) {
 	else exports[key] = value;
 }
 
-exports.copy = async(src, dest, options = {}) => {
+exports.copy = async (src, dest, options = {}) => {
 	if (typeof options === 'function') options = { filter: options };
 	const basePath = process.cwd();
 	const currentPath = resolve(basePath, src);
@@ -42,7 +42,7 @@ exports.emptyDir = exports.emptydir = async (dir) => {
 	return Promise.all(items.map(item => this.remove(join(dir, item))));
 };
 
-exports.ensureDir = exports.mkdirs = exports.mkdirp = async(myPath, opts, made = null) => {
+exports.ensureDir = exports.mkdirs = exports.mkdirp = async (myPath, opts, made = null) => {
 	if (!opts || typeof opts !== 'object') opts = { mode: opts };
 	if (isWindows && invalidWin32Path(myPath)) {
 		const errInval = new Error(`${myPath} contains invalid WIN32 path characters.`);
@@ -104,7 +104,7 @@ exports.move = async (source, dest, options) => {
 		return this.access(source);
 	} else if (overwrite) {
 		return this.rename(source, dest)
-			.catch(async(err) => {
+			.catch(async (err) => {
 				if (err.code === 'ENOTEMPTY' || err.code === 'EEXIST') {
 					await this.remove(dest).catch(throwErr);
 					options.overwrite = false;
@@ -158,7 +158,7 @@ exports.remove = async (myPath, options = {}) => {
 	options.maxBusyTries = options.maxBusyTries || 3;
 
 	return rimraf_(myPath, options)
-		.catch(async(er) => {
+		.catch(async (er) => {
 			if (isWindows && (er.code === 'EBUSY' || er.code === 'ENOTEMPTY' || er.code === 'EPERM') && busyTries < options.maxBusyTries) {
 				busyTries++;
 				const time = busyTries * 100;
@@ -277,7 +277,7 @@ const rmdir = async (myPath, options, originalEr) => this.rmdir(myPath).catch(er
 	else throw er;
 });
 
-const rmkids = async(myPath, options) => {
+const rmkids = async (myPath, options) => {
 	const files = this.readdir(myPath).catch(throwErr);
 	if (files.length === 0) return options.rmdir(myPath);
 	return Promise.all(files.map(file => this.remove(join(myPath, file), options)))
@@ -335,7 +335,7 @@ const copyFile = (file, target, options) => new Promise((res, rej) => {
 	if (options.transform) options.transform(readStream, writeStream, file);
 	else writeStream.on('open', () => { readStream.pipe(writeStream); });
 
-	writeStream.once('close', async() => {
+	writeStream.once('close', async () => {
 		const error = await this.chmod(target, file.mode).catch(err => err);
 		if (error) return rej(error);
 		if (!options.preserveTimestamps) return res();
