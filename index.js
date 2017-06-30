@@ -156,7 +156,8 @@ exports.outputFileAtomic = (file, data, encoding) => this.outputFile(file, data,
 exports.outputJSON = exports.outputJson = async (file, data, options, atomic = false) => {
 	const dir = dirname(file);
 	if (!await this.pathExists(dir)) await this.mkdirs(dir);
-	return atomic ? this.writeFileAtomic(file, data, options) : this.writeFile(file, data, options);
+
+	return this.writeJSON(file, data, options, atomic);
 };
 
 exports.outputJSONAtomic = exports.outputJsonAtomic = (file, data, options) => this.outputJson(file, data, options, true);
