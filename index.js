@@ -148,7 +148,7 @@ exports.move = async (source, dest, options) => {
 exports.outputFile = async (file, data, encoding, atomic = false) => {
 	const dir = dirname(file);
 	if (!await this.pathExists(dir)) await this.mkdirs(dir);
-	return atomic ? this.writeFileAtomic(file, data, encoding) : this.writeFile(file, data, encoding);
+	return this.writeFile(file, data, encoding, atomic);
 };
 
 exports.outputFileAtomic = (file, data, encoding) => this.outputFile(file, data, encoding, true);
@@ -203,7 +203,7 @@ exports.writeFileAtomic = async (destPath, ...writeArgs) => {
 exports.writeJSON = exports.writeJson = async (file, obj, options = {}, atomic = false) => {
 	const spaces = options.spaces || null;
 	const str = `${JSON.stringify(obj, options.replacer, spaces)}\n`;
-	return atomic ? this.writeFileAtomic(file, str, options) : this.writeFile(file, str, options);
+	return this.writeFile(file, str, options, atomic);
 };
 
 exports.writeJSONAtomic = exports.writeJsonAtomic = async (file, obj, options = {}) => this.writeJSON(file, obj, options, true);
