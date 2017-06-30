@@ -1,6 +1,8 @@
 const fs = require('fs');
 const { sep, resolve, dirname, join, normalize, isAbsolute, relative } = require('path');
 const { promisify } = require('util');
+const { randomBytes } = require('crypto');
+const { tmpdir } = require('os');
 
 const targets = [
 	'access', 'appendFile',
@@ -15,7 +17,7 @@ const targets = [
 	'unlink', 'utimes',
 	'write', 'writeFile'
 ];
-const o777 = parseInt('0777', 8);
+const o777 = 0o0777;
 const isWindows = process.platform === 'win32';
 const setTimeoutPromise = promisify(setTimeout);
 
@@ -69,29 +71,41 @@ exports.ensureDir = exports.mkdirs = exports.mkdirp = async (myPath, opts, made 
 		});
 };
 
-exports.ensureFile = exports.createFile = async (file) => {
+exports.ensureFile = exports.createFile = async (file, atomic = false) => {
 	if (await this.pathExists(file)) return null;
 	const dir = dirname(file);
 	if (!await this.pathExists(dir)) await this.mkdirs(dir);
-	return this.writeFile(file, '');
+	return atomic ? this.writeFileAtomic(file, '') : this.writeFile(file, '');
 };
 
-exports.ensureLink = exports.createLink = async (srcpath, dstpath) => {
+exports.ensureFileAtomic = exports.createFileAtomic = (file) => this.ensureFile(file, true);
+
+exports.ensureLink = exports.createLink = async (srcpath, dstpath, atomic = false) => {
 	if (await this.pathExists(dstpath)) return null;
 	await this.lstat(srcpath).catch(err => { throw err.message.replace('lstat', 'ensureLink'); });
 	const dir = dirname(dstpath);
 	if (!await this.pathExists(dir)) await this.mkdirs(dir);
-	return this.link(srcpath, dstpath);
+	return atomic ? this.linkAtomic(srcpath, dstpath) : this.link(srcpath, dstpath);
 };
 
-exports.ensureSymlink = exports.createSymlink = async (srcpath, dstpath, type) => {
+exports.ensureLinkAtomic = exports.createLinkAtomic = (srcpath, dstpath) => this.ensureLink(srcpath, dstpath, true);
+
+exports.ensureSymlink = exports.createSymlink = async (srcpath, dstpath, type, atomic = false) => {
 	if (await this.pathExists(dstpath)) return null;
 	const relativePath = await symlinkPaths(srcpath, dstpath);
 	srcpath = relativePath.toDst;
 	const type2 = await symlinkType(relativePath.toCwd, type);
 	const dir = dirname(dstpath);
 	if (!await this.pathExists(dir)) await this.mkdirs(dir);
-	return this.symlink(srcpath, dstpath, type2);
+	return atomic ? this.symlinkAtomic(srcpath, dstpath, type2) : this.symlink(srcpath, dstpath, type2);
+};
+
+exports.ensureSymlinkAtomic = exports.createSymlinkAtomic = (srcpath, dstpath, type) => this.ensureSymlink(srcpath, dstpath, type, true);
+
+exports.linkAtomic = async (srcpath, dstpath) => {
+	const tempPath = tempFile();
+	await this.link(srcpath, tempPath);
+	return this.move(tempPath, dstpath, { overwrite: true });
 };
 
 exports.move = async (source, dest, options) => {
@@ -131,17 +145,21 @@ exports.move = async (source, dest, options) => {
 		});
 };
 
-exports.outputFile = async (file, data, encoding) => {
+exports.outputFile = async (file, data, encoding, atomic = false) => {
 	const dir = dirname(file);
 	if (!await this.pathExists(dir)) await this.mkdirs(dir);
-	return this.writeFile(file, data, encoding);
+	return atomic ? this.writeFileAtomic(file, data, encoding) : this.writeFile(file, data, encoding);
 };
 
-exports.outputJSON = exports.outputJson = async (file, data, options) => {
+exports.outputFileAtomic = (file, data, encoding) => this.outputFile(file, data, encoding, true);
+
+exports.outputJSON = exports.outputJson = async (file, data, options, atomic = false) => {
 	const dir = dirname(file);
 	if (!await this.pathExists(dir)) await this.mkdirs(dir);
-	return this.writeJson(file, data, options);
+	return atomic ? this.writeFileAtomic(file, data, options) : this.writeFile(file, data, options);
 };
+
+exports.outputJSONAtomic = exports.outputJsonAtomic = (file, data, options) => this.outputJson(file, data, options, true);
 
 exports.pathExists = (myPath) => this.access(myPath).then(() => true).catch(() => false);
 
@@ -170,11 +188,25 @@ exports.remove = async (myPath, options = {}) => {
 		});
 };
 
-exports.writeJSON = exports.writeJson = async (file, obj, options = {}) => {
+exports.symlinkAtomic = async (target, destPath, type) => {
+	const tempPath = tempFile();
+	await this.symlink(target, tempPath, type);
+	return this.move(tempPath, destPath, { overwrite: true });
+};
+
+exports.writeFileAtomic = async (destPath, ...writeArgs) => {
+	const tempPath = tempFile();
+	await this.writeFile(tempPath, ...writeArgs);
+	return this.move(tempPath, destPath, { overwrite: true });
+};
+
+exports.writeJSON = exports.writeJson = async (file, obj, options = {}, atomic = false) => {
 	const spaces = options.spaces || null;
 	const str = `${JSON.stringify(obj, options.replacer, spaces)}\n`;
-	return this.writeFile(file, str, options);
+	return atomic ? this.writeFileAtomic(file, str, options) : this.writeFile(file, str, options);
 };
+
+exports.writeJSONAtomic = exports.writeJsonAtomic = async (file, obj, options = {}) => this.writeJSON(file, obj, options, true);
 
 const throwErr = err => { throw err; };
 
@@ -368,3 +400,10 @@ const checkLink = async (resolvedPath, target, options) => {
 	await this.unlink(target).catch(throwErr);
 	return this.symlink(resolvedPath, target);
 };
+
+const uuid = () => {
+	const id = randomBytes(32).toString('hex');
+	return (Array(32).join(0) + id).slice(-32).replace(/^.{8}|.{4}(?!$)/g, '$&-');
+};
+
+const tempFile = ext => join(tmpdir(), uuid() + (ext || ''));
