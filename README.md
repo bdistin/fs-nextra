@@ -3,7 +3,7 @@ Node.js V8 native fs, enhanced with util.promisify and standard extra methods. W
 Docs
 ------
 
-All `fs` methods which return a callback, return a promise instead. All `fs-extra` methods return a promise exclusivly. No Sync methods are included from either `fs` or `fs-extra`. Requires minimum Node.js v8.0.0.
+All `fs` methods which return a callback, return a promise instead. All `fs-extra` methods return a promise exclusivly. No Sync methods are included from either `fs` or `fs-extra`. Requires minimum Node.js v8.1.0.
 
 Credit
 ------
