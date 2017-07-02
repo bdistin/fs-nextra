@@ -4,26 +4,13 @@ const { promisify } = require('util');
 const { randomBytes } = require('crypto');
 const { tmpdir } = require('os');
 
-const targets = [
-	'access', 'appendFile',
-	'chmod', 'chown', 'close',
-	'fchmod', 'fchown', 'fdatasync', 'fstat', 'fsync', 'ftruncate', 'futimes',
-	'lchmod', 'lchown', 'link', 'lstat',
-	'mkdir', 'mkdtemp',
-	'open',
-	'read', 'readdir', 'readFile', 'readlink', 'realpath', 'rename', 'rmdir',
-	'stat', 'symlink',
-	'truncate',
-	'unlink', 'utimes',
-	'write', 'writeFile'
-];
 const o777 = 0o0777;
 const isWindows = process.platform === 'win32';
 const setTimeoutPromise = promisify(setTimeout);
 
 for (const [key, value] of Object.entries(fs)) {
 	if (key.includes('Sync')) continue;
-	if (targets.includes(key)) exports[key] = promisify(value);
+	if (`${key}Sync` in fs) exports[key] = promisify(value);
 	else exports[key] = value;
 }
 
