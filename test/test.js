@@ -5,7 +5,7 @@ const path = require('path');
 const tsubaki = require('tsubaki');
 const mock = require('mock-fs');
 const fs = tsubaki.promisifyAll(require('fs'));
-const nextra = require('../index');
+const nextra = require('../src/index');
 
 const dir = path.resolve(__dirname, 'test');
 const files = {

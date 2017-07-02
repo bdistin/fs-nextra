@@ -2,9 +2,9 @@
   "name": "fs-nextra",
   "version": "0.1.6",
   "description": "Node.js V8 native fs enhanced with util.promisify and standard extra methods.",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
-    "test": "eslint index.js"
+    "test": "eslint src"
   },
   "keywords": [
     "atomics",
