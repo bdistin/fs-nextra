@@ -12,7 +12,9 @@ for (const [key, value] of Object.entries(fs)) {
 	if (key.includes('Sync')) continue;
 	if (`${key}Sync` in fs) {
 		exports[key] = promisify(value);
-	} else exports[key] = value;
+	} else {
+		exports[key] = value;
+	}
 }
 
 exports.copy = async (src, dest, options = {}) => {
