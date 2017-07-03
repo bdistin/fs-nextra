@@ -1,5 +1,7 @@
 {
     "templates": {
+        "cleverLinks"           : true,
+        "monospaceLinks"        : true,
         "systemName"            : "FS-Nextra",
         "footer"                : "Async is the Future: <a href=\"https://github.com/bdistin/fs-nextra\">Fork me on Github</a>",
         "copyright"             : "",
@@ -17,12 +19,12 @@
         "search"                : false 
     },
     "source": {
-        "include": [ "./src"]
+        "include"               : [ "./src"]
     },
     "opts": {
-        "template": "./node_modules/ink-docstrap/template",
-        "encoding": "utf8",
-        "destination": "./docs/",
-        "recurse": true
+        "template"              : "./node_modules/ink-docstrap/template",
+        "encoding"              : "utf8",
+        "destination"           : "./docs/",
+        "recurse"               : true
     }
 }
