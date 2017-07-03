@@ -54,6 +54,138 @@ for (const [key, value] of Object.entries(fs)) {
  */
 
 /**
+ * Objects returned from {@link fsn/fs.watch|watch()} are of this type.
+ * Identical to {@link https://nodejs.org/api/fs.html#fs_class_fs_fswatcher|fs.FSWatcher}.
+ * @class FSWatcher
+ * @fires FSWatcher#change
+ * @fires FSWatcher#error
+ */
+
+/**
+ * Emitted when an error occurs.
+ * @event FSWatcher#change
+ * @type {fsn/fs.FSWatcher}
+ * @property {string} eventType The type of fs change
+ * @property {string|Buffer} filename The filename that changed
+ * @instance
+ */
+
+/**
+ * Emitted when an error occurs.
+ * @event FSWatcher#error
+ * @type {fsn/fs.FSWatcher}
+ * @property {Error} error The error
+ * @instance
+ */
+
+/**
+ * Closes the FSWatcher instance
+ * @function close
+ * @memberof FSWatcher
+ * @instance
+ */
+
+/**
+ * Objects returned from {@link fsn/fs.stat|stat()}, {@link fsn/fs.lstat|lstat()} and {@link fsn/fs.fstat|fstat()} are of this type.
+ * Identical to {@link https://nodejs.org/api/fs.html#fs_class_fs_fswatcher|fs.Stats}.
+ * @class Stats
+ */
+
+/**
+ * @function isFile
+ * @memberof Stats
+ * @instance
+ * @returns {boolean}
+ */
+
+/**
+ * @function isDirectory
+ * @memberof Stats
+ * @instance
+ * @returns {boolean}
+ */
+
+/**
+ * @function isBlockDevice
+ * @memberof Stats
+ * @instance
+ * @returns {boolean}
+ */
+
+/**
+ * @function isCharacterDevice
+ * @memberof Stats
+ * @instance
+ * @returns {boolean}
+ */
+
+/**
+ * @function isSymbolicLink
+ * @memberof Stats
+ * @instance
+ * @returns {boolean}
+ */
+
+/**
+ * @function isFIFO
+ * @memberof Stats
+ * @instance
+ * @returns {boolean}
+ */
+
+/**
+ * @function isSocket
+ * @memberof Stats
+ * @instance
+ * @returns {boolean}
+ */
+
+/**
+ * Identical to {@link https://nodejs.org/api/fs.html#fs_class_fs_readstream|fs.ReadStream}.
+ * @class ReadStream
+ * @property {integer} bytesRead The number of bytes read so far
+ * @property {string|Buffer} path The file the stream is reading from
+ * @fires ReadStream#close
+ * @fires ReadStream#open
+ */
+
+/**
+ * Emitted when the readstream closes.
+ * @event ReadStream#close
+ * @instance
+ */
+
+/**
+ * Emitted when the readstream's file is opened.
+ * @event ReadStream#open
+ * @property {integer} fd The file discriptor.
+ * @instance
+ */
+
+/**
+ * Identical to {@link https://nodejs.org/api/fs.html#fs_class_fs_writestream|fs.WriteStream}.
+ * @class WriteStream
+ * @property {integer} bytesRead The number of bytes read so far
+ * @property {string|Buffer} path The file the stream is reading from
+ * @fires WriteStream#close
+ * @fires WriteStream#open
+ */
+
+/**
+ * Emitted when the readstream closes.
+ * @event WriteStream#close
+ * @instance
+ */
+
+/**
+ * Emitted when the readstream's file is opened.
+ * @event WriteStream#open
+ * @property {integer} fd The file discriptor.
+ * @instance
+ */
+
+
+/**
  * Identical to {@link https://nodejs.org/api/fs.html#fs_fs_access_path_mode_callback|fs.access} but returns a promise instead.
  * @function access
  * @memberof fsn/fs
@@ -107,7 +239,46 @@ for (const [key, value] of Object.entries(fs)) {
  * @return {Promise<void>}
  */
 
-// create readstream // create writestream
+/**
+ * @typedef readStreamOptions
+ * @memberof fsn/fs
+ * @property {string} [flags = 'r'] The flags to use
+ * @property {string} [defaultEncoding = null] The encoding to use
+ * @property {integer} [fd = null] The file descriptor
+ * @property {integer} [mode = 0o666] The chmod to use
+ * @property {boolean} [autoClose = true] If the stream should auto close
+ * @property {integer} [start] The starting spot
+ * @property {integer} [end] The ending spot
+ */
+
+/**
+ * Identical to {@link https://nodejs.org/api/fs.html#fs_fs_createreadstream_path_options|fs.createReadStream}.
+ * @function createReadStream
+ * @memberof fsn/fs
+ * @param {string|Buffer|URL} path File or directory path
+ * @param {readStreamOptions|string} [options] The stream options or the encoding
+ * @return {ReadStream}
+ */
+
+/**
+ * @typedef writeStreamOptions
+ * @memberof fsn/fs
+ * @property {string} [flags = 'w'] The flags to use
+ * @property {string} [defaultEncoding = 'utf8'] The encoding to use
+ * @property {integer} [fd = null] The file descriptor
+ * @property {integer} [mode = 0o666] The chmod to use
+ * @property {boolean} [autoClose = true] If the stream should auto close
+ * @property {integer} [start] The starting spot
+ */
+
+/**
+ * Identical to {@link https://nodejs.org/api/fs.html#fs_fs_createwritestream_path_options|fs.createWriteStream}.
+ * @function createWriteStream
+ * @memberof fsn/fs
+ * @param {string|Buffer|URL} path File or directory path
+ * @param {writeStreamOptions|string} [options] The stream options or the encoding
+ * @return {WriteStream}
+ */
 
 /**
  * Identical to {@link https://nodejs.org/api/fs.html#fs_fs_exists_path_callback|fs.exists} but returns a promise instead.
@@ -150,7 +321,7 @@ for (const [key, value] of Object.entries(fs)) {
  * @function fstat
  * @memberof fsn/fs
  * @param  {integer} fd The file descriptor id
- * @return {Promise<void>}
+ * @return {Promise<Stats>}
  */
 
 /**
@@ -391,6 +562,7 @@ for (const [key, value] of Object.entries(fs)) {
  * @param  {string|Buffer} path The file path
  * @param  {watchOptions} [options] The watch options
  * @param  {Function} listener The listener function
+ * @returns {FSWatcher}
  */
 
 /**
@@ -407,6 +579,7 @@ for (const [key, value] of Object.entries(fs)) {
  * @param  {string|Buffer|URL} path The file path
  * @param  {watchOptions} [options] The watch options
  * @param  {Function} listener The listener function
+ * @returns {FSWatcher}
  */
 
 /**

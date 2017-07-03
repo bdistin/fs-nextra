@@ -37,6 +37,20 @@
 				</ul>
 			</li>
 			
+			<li class="dropdown">
+				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="FSWatcher.html">FSWatcher</a></li><li><a href="ReadStream.html">ReadStream</a></li><li><a href="Stats.html">Stats</a></li><li><a href="WriteStream.html">WriteStream</a></li>
+				</ul>
+			</li>
+			
+			<li class="dropdown">
+				<a href="events.list.html" class="dropdown-toggle" data-toggle="dropdown">Events<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="FSWatcher.html#event:change">FSWatcher#event:change</a></li><li><a href="FSWatcher.html#event:error">FSWatcher#event:error</a></li><li><a href="ReadStream.html#event:close">ReadStream#event:close</a></li><li><a href="ReadStream.html#event:open">ReadStream#event:open</a></li><li><a href="WriteStream.html#event:close">WriteStream#event:close</a></li><li><a href="WriteStream.html#event:open">WriteStream#event:open</a></li>
+				</ul>
+			</li>
+			
 		</ul>
         
 	</div>
@@ -1305,7 +1319,7 @@
 	
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
-		<a href="https://github.com/bdistin/fs-nextra/blob/master/src/fs.js#L56">fs.js#L56</a>	</dd>
+		<a href="https://github.com/bdistin/fs-nextra/blob/master/src/fs.js#L188">fs.js#L188</a>	</dd>
 	
 
 	
@@ -1545,7 +1559,7 @@
 	
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
-		<a href="https://github.com/bdistin/fs-nextra/blob/master/src/fs.js#L73">fs.js#L73</a>	</dd>
+		<a href="https://github.com/bdistin/fs-nextra/blob/master/src/fs.js#L205">fs.js#L205</a>	</dd>
 	
 
 	
@@ -1727,7 +1741,7 @@
 	
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
-		<a href="https://github.com/bdistin/fs-nextra/blob/master/src/fs.js#L83">fs.js#L83</a>	</dd>
+		<a href="https://github.com/bdistin/fs-nextra/blob/master/src/fs.js#L215">fs.js#L215</a>	</dd>
 	
 
 	
@@ -1933,7 +1947,7 @@
 	
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
-		<a href="https://github.com/bdistin/fs-nextra/blob/master/src/fs.js#L92">fs.js#L92</a>	</dd>
+		<a href="https://github.com/bdistin/fs-nextra/blob/master/src/fs.js#L224">fs.js#L224</a>	</dd>
 	
 
 	
@@ -2085,7 +2099,7 @@
 	
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
-		<a href="https://github.com/bdistin/fs-nextra/blob/master/src/fs.js#L102">fs.js#L102</a>	</dd>
+		<a href="https://github.com/bdistin/fs-nextra/blob/master/src/fs.js#L234">fs.js#L234</a>	</dd>
 	
 
 	
@@ -2119,6 +2133,416 @@
     <dd>
         
 <span class="param-type">Promise.&lt;void></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id=".createReadStream"><span class="type-signature">&lt;static> </span>createReadStream(path [, options])</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Identical to <a href="https://nodejs.org/api/fs.html#fs_fs_createreadstream_path_options">fs.createReadStream</a>.
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>path</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+|
+
+<span class="param-type">Buffer</span>
+|
+
+<span class="param-type">URL</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">File or directory path</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>options</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">readStreamOptions</span>
+|
+
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">The stream options or the encoding</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<a href="https://github.com/bdistin/fs-nextra/blob/master/src/fs.js#L254">fs.js#L254</a>	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="ReadStream.html">ReadStream</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id=".createWriteStream"><span class="type-signature">&lt;static> </span>createWriteStream(path [, options])</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Identical to <a href="https://nodejs.org/api/fs.html#fs_fs_createwritestream_path_options">fs.createWriteStream</a>.
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>path</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+|
+
+<span class="param-type">Buffer</span>
+|
+
+<span class="param-type">URL</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">File or directory path</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>options</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">writeStreamOptions</span>
+|
+
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">The stream options or the encoding</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<a href="https://github.com/bdistin/fs-nextra/blob/master/src/fs.js#L274">fs.js#L274</a>	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="WriteStream.html">WriteStream</a></span>
 
 
 
@@ -2252,7 +2676,7 @@
 	
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
-		<a href="https://github.com/bdistin/fs-nextra/blob/master/src/fs.js#L112">fs.js#L112</a>	</dd>
+		<a href="https://github.com/bdistin/fs-nextra/blob/master/src/fs.js#L283">fs.js#L283</a>	</dd>
 	
 
 	
@@ -2428,7 +2852,7 @@
 	
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
-		<a href="https://github.com/bdistin/fs-nextra/blob/master/src/fs.js#L121">fs.js#L121</a>	</dd>
+		<a href="https://github.com/bdistin/fs-nextra/blob/master/src/fs.js#L292">fs.js#L292</a>	</dd>
 	
 
 	
@@ -2628,7 +3052,7 @@
 	
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
-		<a href="https://github.com/bdistin/fs-nextra/blob/master/src/fs.js#L130">fs.js#L130</a>	</dd>
+		<a href="https://github.com/bdistin/fs-nextra/blob/master/src/fs.js#L301">fs.js#L301</a>	</dd>
 	
 
 	
@@ -2780,7 +3204,7 @@
 	
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
-		<a href="https://github.com/bdistin/fs-nextra/blob/master/src/fs.js#L140">fs.js#L140</a>	</dd>
+		<a href="https://github.com/bdistin/fs-nextra/blob/master/src/fs.js#L311">fs.js#L311</a>	</dd>
 	
 
 	
@@ -2932,7 +3356,7 @@
 	
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
-		<a href="https://github.com/bdistin/fs-nextra/blob/master/src/fs.js#L148">fs.js#L148</a>	</dd>
+		<a href="https://github.com/bdistin/fs-nextra/blob/master/src/fs.js#L319">fs.js#L319</a>	</dd>
 	
 
 	
@@ -2965,7 +3389,7 @@
     </dt>
     <dd>
         
-<span class="param-type">Promise.&lt;void></span>
+<span class="param-type">Promise.&lt;<a href="Stats.html">Stats</a>></span>
 
 
 
@@ -3084,7 +3508,7 @@
 	
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
-		<a href="https://github.com/bdistin/fs-nextra/blob/master/src/fs.js#L156">fs.js#L156</a>	</dd>
+		<a href="https://github.com/bdistin/fs-nextra/blob/master/src/fs.js#L327">fs.js#L327</a>	</dd>
 	
 
 	
@@ -3260,7 +3684,7 @@
 	
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
-		<a href="https://github.com/bdistin/fs-nextra/blob/master/src/fs.js#L164">fs.js#L164</a>	</dd>
+		<a href="https://github.com/bdistin/fs-nextra/blob/master/src/fs.js#L335">fs.js#L335</a>	</dd>
 	
 
 	
@@ -3460,7 +3884,7 @@
 	
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
-		<a href="https://github.com/bdistin/fs-nextra/blob/master/src/fs.js#L173">fs.js#L173</a>	</dd>
+		<a href="https://github.com/bdistin/fs-nextra/blob/master/src/fs.js#L344">fs.js#L344</a>	</dd>
 	
 
 	
@@ -3639,7 +4063,7 @@
 	
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
-		<a href="https://github.com/bdistin/fs-nextra/blob/master/src/fs.js#L183">fs.js#L183</a>	</dd>
+		<a href="https://github.com/bdistin/fs-nextra/blob/master/src/fs.js#L354">fs.js#L354</a>	</dd>
 	
 
 	
@@ -3842,7 +4266,7 @@
 	
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
-		<a href="https://github.com/bdistin/fs-nextra/blob/master/src/fs.js#L192">fs.js#L192</a>	</dd>
+		<a href="https://github.com/bdistin/fs-nextra/blob/master/src/fs.js#L363">fs.js#L363</a>	</dd>
 	
 
 	
@@ -4030,7 +4454,7 @@
 	
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
-		<a href="https://github.com/bdistin/fs-nextra/blob/master/src/fs.js#L202">fs.js#L202</a>	</dd>
+		<a href="https://github.com/bdistin/fs-nextra/blob/master/src/fs.js#L373">fs.js#L373</a>	</dd>
 	
 
 	
@@ -4188,7 +4612,7 @@
 	
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
-		<a href="https://github.com/bdistin/fs-nextra/blob/master/src/fs.js#L211">fs.js#L211</a>	</dd>
+		<a href="https://github.com/bdistin/fs-nextra/blob/master/src/fs.js#L382">fs.js#L382</a>	</dd>
 	
 
 	
@@ -4221,7 +4645,7 @@
     </dt>
     <dd>
         
-<span class="param-type">Promise.&lt;Stats></span>
+<span class="param-type">Promise.&lt;<a href="Stats.html">Stats</a>></span>
 
 
 
@@ -4402,7 +4826,7 @@
 	
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
-		<a href="https://github.com/bdistin/fs-nextra/blob/master/src/fs.js#L219">fs.js#L219</a>	</dd>
+		<a href="https://github.com/bdistin/fs-nextra/blob/master/src/fs.js#L390">fs.js#L390</a>	</dd>
 	
 
 	
@@ -4613,7 +5037,7 @@
 	
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
-		<a href="https://github.com/bdistin/fs-nextra/blob/master/src/fs.js#L234">fs.js#L234</a>	</dd>
+		<a href="https://github.com/bdistin/fs-nextra/blob/master/src/fs.js#L405">fs.js#L405</a>	</dd>
 	
 
 	
@@ -4870,7 +5294,7 @@
 	
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
-		<a href="https://github.com/bdistin/fs-nextra/blob/master/src/fs.js#L243">fs.js#L243</a>	</dd>
+		<a href="https://github.com/bdistin/fs-nextra/blob/master/src/fs.js#L414">fs.js#L414</a>	</dd>
 	
 
 	
@@ -5125,7 +5549,7 @@
 	
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
-		<a href="https://github.com/bdistin/fs-nextra/blob/master/src/fs.js#L260">fs.js#L260</a>	</dd>
+		<a href="https://github.com/bdistin/fs-nextra/blob/master/src/fs.js#L431">fs.js#L431</a>	</dd>
 	
 
 	
@@ -5342,7 +5766,7 @@
 	
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
-		<a href="https://github.com/bdistin/fs-nextra/blob/master/src/fs.js#L272">fs.js#L272</a>	</dd>
+		<a href="https://github.com/bdistin/fs-nextra/blob/master/src/fs.js#L443">fs.js#L443</a>	</dd>
 	
 
 	
@@ -5566,7 +5990,7 @@
 	
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
-		<a href="https://github.com/bdistin/fs-nextra/blob/master/src/fs.js#L281">fs.js#L281</a>	</dd>
+		<a href="https://github.com/bdistin/fs-nextra/blob/master/src/fs.js#L452">fs.js#L452</a>	</dd>
 	
 
 	
@@ -5787,7 +6211,7 @@
 	
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
-		<a href="https://github.com/bdistin/fs-nextra/blob/master/src/fs.js#L290">fs.js#L290</a>	</dd>
+		<a href="https://github.com/bdistin/fs-nextra/blob/master/src/fs.js#L461">fs.js#L461</a>	</dd>
 	
 
 	
@@ -6008,7 +6432,7 @@
 	
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
-		<a href="https://github.com/bdistin/fs-nextra/blob/master/src/fs.js#L299">fs.js#L299</a>	</dd>
+		<a href="https://github.com/bdistin/fs-nextra/blob/master/src/fs.js#L470">fs.js#L470</a>	</dd>
 	
 
 	
@@ -6200,7 +6624,7 @@
 	
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
-		<a href="https://github.com/bdistin/fs-nextra/blob/master/src/fs.js#L308">fs.js#L308</a>	</dd>
+		<a href="https://github.com/bdistin/fs-nextra/blob/master/src/fs.js#L479">fs.js#L479</a>	</dd>
 	
 
 	
@@ -6358,7 +6782,7 @@
 	
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
-		<a href="https://github.com/bdistin/fs-nextra/blob/master/src/fs.js#L317">fs.js#L317</a>	</dd>
+		<a href="https://github.com/bdistin/fs-nextra/blob/master/src/fs.js#L488">fs.js#L488</a>	</dd>
 	
 
 	
@@ -6516,7 +6940,7 @@
 	
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
-		<a href="https://github.com/bdistin/fs-nextra/blob/master/src/fs.js#L325">fs.js#L325</a>	</dd>
+		<a href="https://github.com/bdistin/fs-nextra/blob/master/src/fs.js#L496">fs.js#L496</a>	</dd>
 	
 
 	
@@ -6549,7 +6973,7 @@
     </dt>
     <dd>
         
-<span class="param-type">Promise.&lt;Stats></span>
+<span class="param-type">Promise.&lt;<a href="Stats.html">Stats</a>></span>
 
 
 
@@ -6728,7 +7152,7 @@
 	
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
-		<a href="https://github.com/bdistin/fs-nextra/blob/master/src/fs.js#L333">fs.js#L333</a>	</dd>
+		<a href="https://github.com/bdistin/fs-nextra/blob/master/src/fs.js#L504">fs.js#L504</a>	</dd>
 	
 
 	
@@ -6907,7 +7331,7 @@
 	
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
-		<a href="https://github.com/bdistin/fs-nextra/blob/master/src/fs.js#L343">fs.js#L343</a>	</dd>
+		<a href="https://github.com/bdistin/fs-nextra/blob/master/src/fs.js#L514">fs.js#L514</a>	</dd>
 	
 
 	
@@ -7065,7 +7489,7 @@
 	
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
-		<a href="https://github.com/bdistin/fs-nextra/blob/master/src/fs.js#L352">fs.js#L352</a>	</dd>
+		<a href="https://github.com/bdistin/fs-nextra/blob/master/src/fs.js#L523">fs.js#L523</a>	</dd>
 	
 
 	
@@ -7264,7 +7688,7 @@
 	
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
-		<a href="https://github.com/bdistin/fs-nextra/blob/master/src/fs.js#L360">fs.js#L360</a>	</dd>
+		<a href="https://github.com/bdistin/fs-nextra/blob/master/src/fs.js#L531">fs.js#L531</a>	</dd>
 	
 
 	
@@ -7470,7 +7894,7 @@
 	
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
-		<a href="https://github.com/bdistin/fs-nextra/blob/master/src/fs.js#L369">fs.js#L369</a>	</dd>
+		<a href="https://github.com/bdistin/fs-nextra/blob/master/src/fs.js#L540">fs.js#L540</a>	</dd>
 	
 
 	
@@ -7701,7 +8125,7 @@
 	
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
-		<a href="https://github.com/bdistin/fs-nextra/blob/master/src/fs.js#L387">fs.js#L387</a>	</dd>
+		<a href="https://github.com/bdistin/fs-nextra/blob/master/src/fs.js#L558">fs.js#L558</a>	</dd>
 	
 
 	
@@ -7723,6 +8147,26 @@
     
 
     
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="FSWatcher.html">FSWatcher</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
 
     
 </dd>
@@ -7915,7 +8359,7 @@
 	
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
-		<a href="https://github.com/bdistin/fs-nextra/blob/master/src/fs.js#L403">fs.js#L403</a>	</dd>
+		<a href="https://github.com/bdistin/fs-nextra/blob/master/src/fs.js#L575">fs.js#L575</a>	</dd>
 	
 
 	
@@ -7937,6 +8381,26 @@
     
 
     
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="FSWatcher.html">FSWatcher</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
 
     
 </dd>
@@ -8194,7 +8658,7 @@
 	
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
-		<a href="https://github.com/bdistin/fs-nextra/blob/master/src/fs.js#L412">fs.js#L412</a>	</dd>
+		<a href="https://github.com/bdistin/fs-nextra/blob/master/src/fs.js#L585">fs.js#L585</a>	</dd>
 	
 
 	
@@ -8434,7 +8898,7 @@
 	
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
-		<a href="https://github.com/bdistin/fs-nextra/blob/master/src/fs.js#L432">fs.js#L432</a>	</dd>
+		<a href="https://github.com/bdistin/fs-nextra/blob/master/src/fs.js#L605">fs.js#L605</a>	</dd>
 	
 
 	
@@ -8679,7 +9143,7 @@
 	
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
-		<a href="https://github.com/bdistin/fs-nextra/blob/master/src/fs.js#L65">fs.js#L65</a>	</dd>
+		<a href="https://github.com/bdistin/fs-nextra/blob/master/src/fs.js#L197">fs.js#L197</a>	</dd>
 	
 
 	
@@ -8821,7 +9285,7 @@
 	
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
-		<a href="https://github.com/bdistin/fs-nextra/blob/master/src/fs.js#L228">fs.js#L228</a>	</dd>
+		<a href="https://github.com/bdistin/fs-nextra/blob/master/src/fs.js#L399">fs.js#L399</a>	</dd>
 	
 
 	
@@ -8972,7 +9436,362 @@
 	
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
-		<a href="https://github.com/bdistin/fs-nextra/blob/master/src/fs.js#L253">fs.js#L253</a>	</dd>
+		<a href="https://github.com/bdistin/fs-nextra/blob/master/src/fs.js#L424">fs.js#L424</a>	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+            
+                
+<hr>
+<dt class="name" id=".readStreamOptions">
+    <h4 id=".readStreamOptions">readStreamOptions</h4>
+
+    
+</dt>
+<dd>
+    
+
+    
+
+    
+<dl class="details">
+    
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    <dl>
+
+<table class="props table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>flags</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    'r'
+                
+                </td>
+            
+
+            <td class="description last">The flags to use</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>defaultEncoding</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    null
+                
+                </td>
+            
+
+            <td class="description last">The encoding to use</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>fd</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">integer</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    null
+                
+                </td>
+            
+
+            <td class="description last">The file descriptor</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>mode</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">integer</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    0o666
+                
+                </td>
+            
+
+            <td class="description last">The chmod to use</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>autoClose</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    true
+                
+                </td>
+            
+
+            <td class="description last">If the stream should auto close</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>start</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">integer</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">The starting spot</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>end</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">integer</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">The ending spot</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+</dl>
+
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<a href="https://github.com/bdistin/fs-nextra/blob/master/src/fs.js#L242">fs.js#L242</a>	</dd>
 	
 
 	
@@ -9141,7 +9960,7 @@
 	
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
-		<a href="https://github.com/bdistin/fs-nextra/blob/master/src/fs.js#L396">fs.js#L396</a>	</dd>
+		<a href="https://github.com/bdistin/fs-nextra/blob/master/src/fs.js#L568">fs.js#L568</a>	</dd>
 	
 
 	
@@ -9348,7 +10167,7 @@
 	
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
-		<a href="https://github.com/bdistin/fs-nextra/blob/master/src/fs.js#L379">fs.js#L379</a>	</dd>
+		<a href="https://github.com/bdistin/fs-nextra/blob/master/src/fs.js#L550">fs.js#L550</a>	</dd>
 	
 
 	
@@ -9555,7 +10374,326 @@
 	
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
-		<a href="https://github.com/bdistin/fs-nextra/blob/master/src/fs.js#L424">fs.js#L424</a>	</dd>
+		<a href="https://github.com/bdistin/fs-nextra/blob/master/src/fs.js#L597">fs.js#L597</a>	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+            
+                
+<hr>
+<dt class="name" id=".writeStreamOptions">
+    <h4 id=".writeStreamOptions">writeStreamOptions</h4>
+
+    
+</dt>
+<dd>
+    
+
+    
+
+    
+<dl class="details">
+    
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    <dl>
+
+<table class="props table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>flags</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    'w'
+                
+                </td>
+            
+
+            <td class="description last">The flags to use</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>defaultEncoding</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    'utf8'
+                
+                </td>
+            
+
+            <td class="description last">The encoding to use</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>fd</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">integer</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    null
+                
+                </td>
+            
+
+            <td class="description last">The file descriptor</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>mode</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">integer</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    0o666
+                
+                </td>
+            
+
+            <td class="description last">The chmod to use</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>autoClose</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    true
+                
+                </td>
+            
+
+            <td class="description last">If the stream should auto close</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>start</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">integer</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">The starting spot</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+</dl>
+
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<a href="https://github.com/bdistin/fs-nextra/blob/master/src/fs.js#L263">fs.js#L263</a>	</dd>
 	
 
 	
