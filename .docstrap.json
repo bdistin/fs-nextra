@@ -1,0 +1,19 @@
+{
+    "templates": {
+        "systemName"            : "FS-Nextra",
+        "footer"                : "Async is the Future!",
+        "copyright"             : "",
+        "includeDate"           : false,
+        "navType"               : "vertical",
+        "theme"                 : "united",
+        "linenums"              : true,
+        "collapseSymbols"       : true,
+        "inverseNav"            : true,
+        "outputSourceFiles"     : false ,
+        "outputSourcePath"      : true,
+        "dateFormat"            : "dddd, MMMM Do YYYY, h:mm:ss a",
+        "syntaxTheme"           : "dark",
+        "sort"                  : true,
+        "search"                : true 
+    }
+}

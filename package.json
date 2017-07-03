@@ -4,7 +4,9 @@
   "description": "Node.js V8 native fs enhanced with util.promisify and standard extra methods.",
   "main": "src/index.js",
   "scripts": {
-    "test": "eslint src"
+    "test": "npm run docs & npm lint",
+    "docs": "./node_modules/.bin/jsdoc -c ./.docstrap.json -t ./node_modules/ink-docstrap/template -R README.md -r ./src -d ./docs",
+    "lint": "eslint src"
   },
   "keywords": [
     "atomics",
@@ -30,6 +32,8 @@
   "devDependencies": {
     "ava": "^0.19.1",
     "eslint": "^4.1.1",
+    "ink-docstrap": "^1.3.0",
+    "jsdoc": "github:jsdoc3/jsdoc",
     "mock-fs": "^4.3.0",
     "tsubaki": "^1.1.1"
   },
