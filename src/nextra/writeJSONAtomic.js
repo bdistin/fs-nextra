@@ -1,12 +1,21 @@
 const writeJSON = require('./writeJSON');
 
 /**
-* @function writeJSONAtomic
-* @param  {type} file         {description}
-* @param  {type} obj          {description}
-* @param  {type} options = {} {description}
-* @return {type} {description}
-*/
-module.exports = async function writeJSONAtomic(file, obj, options = {}) {
-	return writeJSON(file, obj, options, true);
+ * Writes a Javascript Object to file as JSON atomicly.
+ * @function writeJsonAtomic
+ * @param  {string} file The path to the file you want to create
+ * @param  {Object} object The javascript object you would like to write to file
+ * @param  {jsonOptions} [options = {}] The options to pass JSON.stringify and writeFile
+ * @return {Promise<void>}
+ */
+/**
+ * Writes a Javascript Object to file as JSON atomicly.
+ * @function writeJSONAtomic
+ * @param  {string} file The path to the file you want to create
+ * @param  {Object} object The javascript object you would like to write to file
+ * @param  {jsonOptions} [options = {}] The options to pass JSON.stringify and writeFile
+ * @return {Promise<void>}
+ */
+module.exports = async function writeJSONAtomic(file, object, options = {}) {
+	return writeJSON(file, object, options, true);
 };

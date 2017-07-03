@@ -8,14 +8,7 @@ const mkdirs = require('./mkdirs');
 const symlinkAtomic = require('./symlinkAtomic');
 
 /**
- * The type of symlink you are creating:
- * * `dir`
- * * `file`
- * @typedef {string} SymLinkType
- */
-
-/**
- * Creates a sof file link, making all folders required to satisfy the given file path.
+ * Creates a soft file link, making all folders required to satisfy the given file path.
  * @function ensureSymlink
  * @param  {string} source The source path of the file
  * @param  {string} destination The destination path of the file
@@ -24,7 +17,7 @@ const symlinkAtomic = require('./symlinkAtomic');
  * @return {Promise<void>}
  */
 /**
- * Creates a sof file link, making all folders required to satisfy the given file path.
+ * Creates a soft file link, making all folders required to satisfy the given file path.
  * @function createSymlink
  * @param  {string} source The source path of the file
  * @param  {string} destination The destination path of the file

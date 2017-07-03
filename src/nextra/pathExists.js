@@ -1,10 +1,11 @@
 const { access } = require('../fs');
 
 /**
-* @function pathExists
-* @param  {type} myPath {description}
-* @return {type} {description}
-*/
-module.exports = function pathExists(myPath) {
-	return access(myPath).then(() => true).catch(() => false);
+ * Checks if a path exists.
+ * @function pathExists
+ * @param {type} path The path to check
+ * @return {Promise<boolean>}
+ */
+module.exports = function pathExists(path) {
+	return access(path).then(() => true).catch(() => false);
 };

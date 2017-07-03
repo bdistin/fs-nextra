@@ -7,12 +7,19 @@ const remove = require('./remove');
 const mkdirs = require('./mkdirs');
 
 /**
-* @function move
-* @param  {type} source  {description}
-* @param  {type} destination    {description}
-* @param  {type} options {description}
-* @return {type} {description}
-*/
+ * @typedef {Object} moveOptions
+ * @property {boolean} [mkdirp = true] Should the move create directories recursivly for the destination path
+ * @property {boolean} [overwrite = false] Should the move overwrite an identical file at the destination path
+ * @property {boolean} [clobber = false] Alias to overwrite for parity to fs-extra
+ */
+
+/**
+ * @function move
+ * @param  {string} source The source path of the file
+ * @param  {string} destination The destination path of the file
+ * @param  {moveOptions} options The options for the move
+ * @return {Promise<void>}
+ */
 module.exports = async function move(source, destination, options) {
 	const shouldMkdirp = 'mkdirp' in options ? options.mkdirp : true;
 	const overwrite = options.overwrite || options.clobber || false;

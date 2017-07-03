@@ -4,35 +4,57 @@ const { isWindows, invalidWin32Path, o777 } = require('../util');
 const { stat, mkdir } = require('../fs');
 
 /**
-* @function mkdirs
-* @param  {type} myPath      {description}
-* @param  {type} opts        {description}
-* @param  {type} made = null {description}
-* @return {type} {description}
-*/
-module.exports = async function mkdirs(myPath, opts, made = null) {
-	if (!opts || typeof opts !== 'object') opts = { mode: opts };
-	if (isWindows && invalidWin32Path(myPath)) {
-		const errInval = new Error(`${myPath} contains invalid WIN32 path characters.`);
+ * @typedef {object} mkdirsOptions
+ * @property {number} [mode = 0o777 & ~process.umask()] The chmod for the directories being made
+ */
+
+/**
+ * Recursivly makes directories, until the directory passed exists.
+ * @function ensureDir
+ * @param {string} path The path you wish to make
+ * @param {mkdirsOptions} [options] Options for making the directories
+ * @param {string} [made = null] The path in progress, do not set.
+ * @return {Promise<string>} The path made.
+ */
+/**
+ * Recursivly makes directories, until the directory passed exists.
+ * @function mkdirp
+ * @param {string} path The path you wish to make
+ * @param {mkdirsOptions} [options] Options for making the directories
+ * @param {string} [made = null] The path in progress, do not set.
+ * @return {Promise<string>} The path made.
+ */
+/**
+ * Recursivly makes directories, until the directory passed exists.
+ * @function mkdirs
+ * @param {string} path The path you wish to make
+ * @param {mkdirsOptions} [options] Options for making the directories
+ * @param {string} [made = null] The path in progress, do not set.
+ * @return {Promise<string>} The path made.
+ */
+module.exports = async function mkdirs(path, options, made = null) {
+	if (!options || typeof options !== 'object') options = { mode: options };
+	if (isWindows && invalidWin32Path(path)) {
+		const errInval = new Error(`${path} contains invalid WIN32 path characters.`);
 		errInval.code = 'EINVAL';
 		throw errInval;
 	}
 	// eslint-disable-next-line no-bitwise
-	const mode = opts.mode || o777 & ~process.umask();
-	myPath = resolve(myPath);
-	return mkdir(myPath, mode)
-		.then(() => made || myPath)
+	const mode = options.mode || o777 & ~process.umask();
+	path = resolve(path);
+	return mkdir(path, mode)
+		.then(() => made || path)
 		.catch((err) => {
 			if (err.code !== 'ENOENT') {
-				return stat(myPath)
+				return stat(path)
 					.then(myStat => {
 						if (myStat.isDirectory()) return made;
 						throw err;
 					})
 					.catch(() => { throw err; });
 			}
-			if (dirname(myPath) === myPath) throw err;
-			return this(dirname(myPath), opts)
-				.then(madeChain => this(myPath, opts, madeChain));
+			if (dirname(path) === path) throw err;
+			return mkdirs(dirname(path), options)
+				.then(madeChain => mkdirs(path, options, madeChain));
 		});
 };

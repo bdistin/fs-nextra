@@ -15,6 +15,7 @@ const nextra = {
 	ensureLinkAtomic: require('./nextra/createLinkAtomic'),
 	ensureSymlink: require('./nextra/createSymlink'),
 	ensureSymlinkAtomic: require('./nextra/createSymlinkAtomic'),
+	linkAtomic: require('./nextra/linkAtomic'),
 	mkdirp: require('./nextra/mkdirs'),
 	mkdirs: require('./nextra/mkdirs'),
 	move: require('./nextra/move'),

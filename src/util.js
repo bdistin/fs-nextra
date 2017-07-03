@@ -116,7 +116,7 @@ exports.rmdir = async (myPath, options, originalEr) => this.rmdir(myPath).catch(
 
 exports.rmkids = async (myPath, options) => {
 	const files = readdir(myPath).catch(this.throwErr);
-	if (files.length === 0) return options.this.rmdir(myPath);
+	if (files.length === 0) return this.rmdir(myPath);
 	return Promise.all(files.map(file => remove(join(myPath, file), options)))
 		.then(() => this.rmdir(myPath));
 };

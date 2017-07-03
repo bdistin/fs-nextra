@@ -7,15 +7,20 @@ const mkdirs = require('./mkdirs');
 const pathExists = require('./pathExists');
 
 /**
-* @function outputFile
-* @param  {type} file           {description}
-* @param  {type} data           {description}
-* @param  {type} encoding       {description}
-* @param  {type} atomic = false {description}
-* @return {type} {description}
-*/
-module.exports = async function outputFile(file, data, encoding, atomic = false) {
+ * Writes a file to disk, creating all directories needed to meet the filepath provided.
+ * @function outputFile
+ * @param  {string} file The path to the file you want to create
+ * @param  {string|Buffer|Uint8Array} data The data to write to file
+ * @param  {writeOptions|string} [options] The write options or the encoding string.
+ * @param  {boolean} [atomic = false] {description}
+ * @return {Promise<void>}
+ */
+module.exports = async function outputFile(file, data, options, atomic = false) {
+	if (typeof options === 'boolean') {
+		atomic = options;
+		options = null;
+	}
 	const dir = dirname(file);
 	if (!await pathExists(dir)) await mkdirs(dir);
-	return atomic ? writeFileAtomic(file, data, encoding) : writeFile(file, data, encoding);
+	return atomic ? writeFileAtomic(file, data, options) : writeFile(file, data, options);
 };

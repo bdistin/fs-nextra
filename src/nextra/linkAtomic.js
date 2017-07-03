@@ -4,11 +4,12 @@ const { link } = require('../fs');
 const move = require('./move');
 
 /**
-* @function linkAtomic
-* @param  {type} source {description}
-* @param  {type} destination {description}
-* @return {type} {description}
-*/
+ * Creates a hard file link atomicaly.
+ * @function linkAtomic
+ * @param  {string} source The source path of the file
+ * @param  {string} destination The destination path of the file
+ * @return {Promise<void>}
+ */
 module.exports = async function linkAtomic(source, destination) {
 	const tempPath = tempFile();
 	await link(source, tempPath);
