@@ -1,4 +1,4 @@
-const outputJSON = require('outputJSON');
+const outputJSON = require('./outputJSON');
 
 /**
 * @function outputJSONAtomic
