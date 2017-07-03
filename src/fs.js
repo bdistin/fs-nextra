@@ -1,6 +1,14 @@
 const fs = require('fs');
 const { promisify } = require('util');
 
+for (const [key, value] of Object.entries(fs)) {
+	if (key.includes('Sync')) continue;
+	if (`${key}Sync` in fs) exports[key] = promisify(value);
+	else exports[key] = value;
+}
+
+/* eslint-disable max-len */
+
 /**
  * @namespace fsn/fs
  * @property {Object} constants Identical to fs.constants.
@@ -44,11 +52,6 @@ const { promisify } = require('util');
  * @property {integer} constants.S_IWOTH File mode indicating writable by others.
  * @property {integer} constants.S_IXOTH File mode indicating executable by others.
  */
-for (const [key, value] of Object.entries(fs)) {
-	if (key.includes('Sync')) continue;
-	if (`${key}Sync` in fs) exports[key] = promisify(value);
-	else exports[key] = value;
-}
 
 /**
  * Identical to {@link https://nodejs.org/api/fs.html#fs_fs_access_path_mode_callback|fs.access} but returns a promise instead.
@@ -435,3 +438,5 @@ for (const [key, value] of Object.entries(fs)) {
  * @param  {writeOptions} [options] The write options
  * @return {Promise<void>}
  */
+
+/* eslint-enable max-len */
