@@ -4,7 +4,7 @@ const { readFile } = require('../fs');
 /**
  * @typedef {object} readJSONOptions
  * @property {string} [encoding] The file encoding to use while reading
- * @property {type} [reviver] The reviver function to pass to JSON.parse() 
+ * @property {type} [reviver] The reviver function to pass to JSON.parse()
  */
 
 /**

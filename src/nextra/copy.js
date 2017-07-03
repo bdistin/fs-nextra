@@ -15,7 +15,7 @@ const pathExists = require('./pathExists');
  */
 
 /**
- * Copies files from one location to another, creating all directories required to satisfy the 
+ * Copies files from one location to another, creating all directories required to satisfy the destination path.
  * source and destination paths.
  * @function copy
  * @param  {string} source The source path
