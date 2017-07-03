@@ -4,8 +4,8 @@ const { randomBytes } = require('crypto');
 const { tmpdir } = require('os');
 
 const { lstat, createReadStream, createWriteStream, unlink, stat, chmod, readdir, readlink, open, futimes, close, mkDir, symlink } = require('./fs');
-const remove = require('./remove');
-const pathExists = require('./pathExists');
+const remove = require('./nextra/remove');
+const pathExists = require('./nextra/pathExists');
 
 exports.o777 = 0o0777;
 
