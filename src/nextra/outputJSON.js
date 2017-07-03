@@ -8,6 +8,7 @@ const pathExists = require('./pathExists');
 /**
  * Writes a json file to disk, creating all directories needed to meet the filepath provided.
  * @function outputJson
+ * @memberof fsn/nextra
  * @param  {string} file The path to the file you want to create
  * @param  {Object|Array} data The data to write to file
  * @param  {writeOptions|string} [options] The write options or the encoding string.
@@ -17,6 +18,7 @@ const pathExists = require('./pathExists');
 /**
  * Writes a json file to disk, creating all directories needed to meet the filepath provided.
  * @function outputJSON
+ * @memberof fsn/nextra
  * @param  {string} file The path to the file you want to create
  * @param  {Object|Array} data The data to write to file
  * @param  {writeOptions|string} [options] The write options or the encoding string.

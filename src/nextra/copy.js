@@ -8,6 +8,7 @@ const pathExists = require('./pathExists');
 
 /**
  * @typedef {Object} CopyOptions
+ * @memberof fsn/nextra
  * @property {Function} [filter = undefined] A filter function to determine which files to copy.
  * @property {boolean} [overwrite = true] Whether to overwrite files or not.
  * @property {boolean} [clobber = true] An alias for overwrite to provide parity to fs-extra.
@@ -18,6 +19,7 @@ const pathExists = require('./pathExists');
  * Copies files from one location to another, creating all directories required to satisfy the destination path.
  * source and destination paths.
  * @function copy
+ * @memberof fsn/nextra
  * @param  {string} source The source path
  * @param  {string} destination The destination path
  * @param  {CopyOptions|Function} [options = {}] Options for the copy, or a filter function

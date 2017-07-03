@@ -1,19 +1,28 @@
 {
     "templates": {
         "systemName"            : "FS-Nextra",
-        "footer"                : "Async is the Future!",
+        "footer"                : "Async is the Future: <a href=\"https://github.com/bdistin/fs-nextra\">Fork me on Github</a>",
         "copyright"             : "",
         "includeDate"           : false,
         "navType"               : "vertical",
         "theme"                 : "united",
         "linenums"              : true,
-        "collapseSymbols"       : true,
+        "collapseSymbols"       : false,
         "inverseNav"            : true,
-        "outputSourceFiles"     : false ,
+        "outputSourceFiles"     : false,
         "outputSourcePath"      : true,
         "dateFormat"            : "dddd, MMMM Do YYYY, h:mm:ss a",
         "syntaxTheme"           : "dark",
         "sort"                  : true,
         "search"                : false 
+    },
+    "source": {
+        "include": [ "./src"]
+    },
+    "opts": {
+        "template": "./node_modules/ink-docstrap/template",
+        "encoding": "utf8",
+        "destination": "./docs/",
+        "recurse": true
     }
 }

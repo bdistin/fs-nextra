@@ -4,6 +4,7 @@ const writeFileAtomic = require('./writeFileAtomic');
 
 /**
  * @typedef {Object} jsonOptions
+ * @memberof fsn/nextra
  * @property {Function} [replacer] A JSON.stringify replacer function
  * @property {integer} [spaces = null] The number of spaces to format the json file with
  * @property {string} [encoding = 'utf8'] The file encoding
@@ -14,6 +15,7 @@ const writeFileAtomic = require('./writeFileAtomic');
 /**
  * Writes a Javascript Object to file as JSON.
  * @function writeJson
+ * @memberof fsn/nextra
  * @param  {string} file The path to the file you want to create
  * @param  {Object} object The javascript object you would like to write to file
  * @param  {jsonOptions} [options = {}] The options to pass JSON.stringify and writeFile
@@ -23,6 +25,7 @@ const writeFileAtomic = require('./writeFileAtomic');
 /**
  * Writes a Javascript Object to file as JSON.
  * @function writeJSON
+ * @memberof fsn/nextra
  * @param  {string} file The path to the file you want to create
  * @param  {Object} object The javascript object you would like to write to file
  * @param  {jsonOptions} [options = {}] The options to pass JSON.stringify and writeFile

@@ -2,12 +2,14 @@ const { rimraf_, isWindows, setTimeoutPromise } = require('../util');
 
 /**
  * @typedef {object} removeOptions
+ * @memberof fsn/nextra
  * @property {integer} [maxBusyTries = 3] The number of times fs-nextra should retry removing a busy file.
  */
 
 /**
  * Removes a single file or single directory with no children.
  * @function remove
+ * @memberof fsn/nextra
  * @param  {string} path The path to remove
  * @param  {removeOptions} [options = {}] {description}
  * @return {Promise<void>}

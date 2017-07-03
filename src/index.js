@@ -1,3 +1,4 @@
+/** @namespace fsn/nextra */
 const nextra = {
 	copy: require('./nextra/copy'),
 	createFile: require('./nextra/createFile'),

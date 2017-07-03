@@ -3,6 +3,7 @@ const { readFile } = require('../fs');
 
 /**
  * @typedef {object} readJSONOptions
+ * @memberof fsn/nextra
  * @property {string} [encoding] The file encoding to use while reading
  * @property {type} [reviver] The reviver function to pass to JSON.parse()
  */
@@ -10,6 +11,7 @@ const { readFile } = require('../fs');
 /**
  * Reads a file and parses it into a javascript object.
  * @function readJson
+ * @memberof fsn/nextra
  * @param  {string} file The file path to the json file
  * @param  {readJSONOptions|string} [options = {}] The options for reading json or the encoding string
  * @return {Promise<Object>}
@@ -17,6 +19,7 @@ const { readFile } = require('../fs');
 /**
  * Reads a file and parses it into a javascript object.
  * @function readJSON
+ * @memberof fsn/nextra
  * @param  {string} file The file path to the json file
  * @param  {readJSONOptions|string} [options = {}] The options for reading json or the encoding string
  * @return {Promise<Object>}

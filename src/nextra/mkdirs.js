@@ -5,12 +5,14 @@ const { stat, mkdir } = require('../fs');
 
 /**
  * @typedef {object} mkdirsOptions
+ * @memberof nextra
  * @property {number} [mode = 0o777 & ~process.umask()] The chmod for the directories being made
  */
 
 /**
  * Recursivly makes directories, until the directory passed exists.
  * @function ensureDir
+ * @memberof nextra
  * @param {string} path The path you wish to make
  * @param {mkdirsOptions} [options] Options for making the directories
  * @param {string} [made = null] The path in progress, do not set.
@@ -19,6 +21,7 @@ const { stat, mkdir } = require('../fs');
 /**
  * Recursivly makes directories, until the directory passed exists.
  * @function mkdirp
+ * @memberof fsn/nextra
  * @param {string} path The path you wish to make
  * @param {mkdirsOptions} [options] Options for making the directories
  * @param {string} [made = null] The path in progress, do not set.
@@ -27,6 +30,7 @@ const { stat, mkdir } = require('../fs');
 /**
  * Recursivly makes directories, until the directory passed exists.
  * @function mkdirs
+ * @memberof fsn/nextra
  * @param {string} path The path you wish to make
  * @param {mkdirsOptions} [options] Options for making the directories
  * @param {string} [made = null] The path in progress, do not set.

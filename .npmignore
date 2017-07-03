@@ -2,6 +2,8 @@
 .get/
 node_modules/
 test/
+docs/
+.docstrap.json
 .eslintrc.json
 .travis.yml
 package-lock.json

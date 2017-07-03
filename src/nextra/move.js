@@ -8,6 +8,7 @@ const mkdirs = require('./mkdirs');
 
 /**
  * @typedef {Object} moveOptions
+ * @memberof fsn/nextra
  * @property {boolean} [mkdirp = true] Should the move create directories recursivly for the destination path
  * @property {boolean} [overwrite = false] Should the move overwrite an identical file at the destination path
  * @property {boolean} [clobber = false] Alias to overwrite for parity to fs-extra
@@ -15,6 +16,7 @@ const mkdirs = require('./mkdirs');
 
 /**
  * @function move
+ * @memberof fsn/nextra
  * @param  {string} source The source path of the file
  * @param  {string} destination The destination path of the file
  * @param  {moveOptions} options The options for the move
