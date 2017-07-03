@@ -4,7 +4,7 @@
   "description": "Node.js V8 native fs enhanced with util.promisify and standard extra methods.",
   "main": "src/index.js",
   "scripts": {
-    "test": "npm run docs & npm lint",
+    "test": "npm run docs & npm run lint",
     "docs": "./node_modules/.bin/jsdoc -c ./.docstrap.json -t ./node_modules/ink-docstrap/template -R README.md -r ./src -d ./docs",
     "lint": "eslint src"
   },
