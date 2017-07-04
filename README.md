@@ -1,8 +1,20 @@
-[![npm](https://img.shields.io/npm/v/fs-nextra.svg?maxAge=3600)](https://www.npmjs.com/package/fs-nextra)
-[![npm](https://img.shields.io/npm/dt/fs-nextra.svg?maxAge=3600)](https://www.npmjs.com/package/fs-nextra)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/6bcb7d5133c94dd6902acb5ef626ff27)](https://www.codacy.com/app/dirigeants/fs-nextra?utm_source=github.com&utm_medium=referral&utm_content=bdistin/fs-nextra&utm_campaign=badger)
-[![Build Status](https://travis-ci.org/bdistin/fs-nextra.svg?branch=master)](https://travis-ci.org/bdistin/fs-nextra)
-[![David](https://david-dm.org/bdistin/fs-nextra.svg)](https://david-dm.org/bdistin/fs-nextra)
+<div align="center">
+  <p>
+    <a href="https://nodei.co/npm/discord.js/"><img src="https://nodei.co/npm/discord.js.png?downloads=true&stars=true" alt="NPM info" /></a>
+  </p>
+  <br />
+  <p>
+    <a href="https://www.npmjs.com/package/fs-nextra"><img src="https://img.shields.io/npm/v/fs-nextra.svg?maxAge=3600" /></a> <a href="https://www.npmjs.com/package/fs-nextra"><img src="https://img.shields.io/npm/dt/fs-nextra.svg?maxAge=3600" /></a>
+  </p>
+  <br />
+  <p>
+    <a href="https://www.codacy.com/app/dirigeants/fs-nextra?utm_source=github.com&utm_medium=referral&utm_content=bdistin/fs-nextra&utm_campaign=badger"><img src="https://api.codacy.com/project/badge/Grade/6bcb7d5133c94dd6902acb5ef626ff27" /></a> <a href="https://travis-ci.org/bdistin/fs-nextra"><img src="https://travis-ci.org/bdistin/fs-nextra.svg?branch=master" /></a>
+  </p>
+  <br />
+  <p>
+    <a href="https://david-dm.org/bdistin/fs-nextra"><img src="https://david-dm.org/bdistin/fs-nextra.svg" /></a> <a href="https://david-dm.org/bdistin/fs-nextra?type=dev"><img src="https://david-dm.org/bdistin/fs-nextra/dev-status.svg" /></a>
+  </p>
+</div>
 
 Node.js V8 native fs, enhanced with util.promisify and standard extra methods. Written in full ES2017, sans every sync method. *Async is the future!*
 
