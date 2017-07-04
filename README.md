@@ -1,4 +1,4 @@
-<div align="center"><h1>FS-Nextra</h1><br /><table align="center"><tr><td>
+<div align="center"><h5>FS-Nextra</h5><br /><table align="center"><tr><td>
   <p>
     <a href="https://nodei.co/npm/fs-nextra/"><img src="https://nodei.co/npm/fs-nextra.png?downloads=true&stars=true" alt="NPM info" /></a>
   </p>
