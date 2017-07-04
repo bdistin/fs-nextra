@@ -5,11 +5,9 @@
   </td><td>
   <p>
     <a href="https://www.npmjs.com/package/fs-nextra"><img src="https://img.shields.io/npm/v/fs-nextra.svg?maxAge=3600" /></a> <a href="https://www.npmjs.com/package/fs-nextra"><img src="https://img.shields.io/npm/dt/fs-nextra.svg?maxAge=3600" /></a>
-  </p>
-  <p>
+<br />
     <a href="https://www.codacy.com/app/dirigeants/fs-nextra?utm_source=github.com&utm_medium=referral&utm_content=bdistin/fs-nextra&utm_campaign=badger"><img src="https://api.codacy.com/project/badge/Grade/6bcb7d5133c94dd6902acb5ef626ff27" /></a> <a href="https://travis-ci.org/bdistin/fs-nextra"><img src="https://travis-ci.org/bdistin/fs-nextra.svg?branch=master" /></a>
-  </p>
-  <p>
+<br />
     <a href="https://david-dm.org/bdistin/fs-nextra"><img src="https://david-dm.org/bdistin/fs-nextra.svg" /></a> <a href="https://david-dm.org/bdistin/fs-nextra?type=dev"><img src="https://david-dm.org/bdistin/fs-nextra/dev-status.svg" /></a>
   </p>
   </td></tr></table>
