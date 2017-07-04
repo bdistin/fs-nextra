@@ -1,8 +1,8 @@
-<div align="center"><table cellspacing="0" cellpadding="0"><tr><td>
+<div align="center"><h1>FS-Nextra</h1><br /><table style="border: none;"><tr style="border: none;"><td style="border: none;">
   <p>
     <a href="https://nodei.co/npm/fs-nextra/"><img src="https://nodei.co/npm/fs-nextra.png?downloads=true&stars=true" alt="NPM info" /></a>
   </p>
-  </td><td>
+  </td><td style="border: none;">
   <p>
     <a href="https://www.npmjs.com/package/fs-nextra"><img src="https://img.shields.io/npm/v/fs-nextra.svg?maxAge=3600" /></a> <a href="https://www.npmjs.com/package/fs-nextra"><img src="https://img.shields.io/npm/dt/fs-nextra.svg?maxAge=3600" /></a>
 <br />
