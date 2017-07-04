@@ -1,4 +1,4 @@
-<table><tr><td>
+<div align="center"><table cellspacing="0" cellpadding="0"><tr><td>
   <p>
     <a href="https://nodei.co/npm/fs-nextra/"><img src="https://nodei.co/npm/fs-nextra.png?downloads=true&stars=true" alt="NPM info" /></a>
   </p>
@@ -10,7 +10,7 @@
 <br />
     <a href="https://david-dm.org/bdistin/fs-nextra"><img src="https://david-dm.org/bdistin/fs-nextra.svg" /></a> <a href="https://david-dm.org/bdistin/fs-nextra?type=dev"><img src="https://david-dm.org/bdistin/fs-nextra/dev-status.svg" /></a>
   </p>
-  </td></tr></table>
+  </td></tr></table></div>
 
 Node.js V8 native fs, enhanced with util.promisify and standard extra methods. Written in full ES2017, sans every sync method. *Async is the future!*
 
