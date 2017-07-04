@@ -1,7 +1,10 @@
-<div align="center">
+<div style="width: 100%">
+<div style="width: 50%; float: left; display: inline-block;">
   <p>
     <a href="https://nodei.co/npm/fs-nextra/"><img src="https://nodei.co/npm/fs-nextra.png?downloads=true&stars=true" alt="NPM info" /></a>
   </p>
+</div>
+<div style="width: 50%; display: inline-block;">
   <p>
     <a href="https://www.npmjs.com/package/fs-nextra"><img src="https://img.shields.io/npm/v/fs-nextra.svg?maxAge=3600" /></a> <a href="https://www.npmjs.com/package/fs-nextra"><img src="https://img.shields.io/npm/dt/fs-nextra.svg?maxAge=3600" /></a>
   </p>
@@ -11,6 +14,7 @@
   <p>
     <a href="https://david-dm.org/bdistin/fs-nextra"><img src="https://david-dm.org/bdistin/fs-nextra.svg" /></a> <a href="https://david-dm.org/bdistin/fs-nextra?type=dev"><img src="https://david-dm.org/bdistin/fs-nextra/dev-status.svg" /></a>
   </p>
+</div>
 </div>
 
 Node.js V8 native fs, enhanced with util.promisify and standard extra methods. Written in full ES2017, sans every sync method. *Async is the future!*
