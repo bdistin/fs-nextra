@@ -1,5 +1,4 @@
 /* eslint-disable id-length */
-// ava \"test/test.js\" -T 10000
 const test = require('ava');
 const path = require('path');
 const tsubaki = require('tsubaki');
@@ -41,14 +40,14 @@ test('copy', async t => {
 	t.true(stats.isFile());
 });
 
-test.skip('ensureDir (pre-existing)', async t => {
+test('ensureDir (pre-existing)', async t => {
 	await nextra.ensureDir(files.ensureDir);
 
 	const stats = await fs.statAsync(files.ensureDir);
 	t.true(stats.isDirectory());
 });
 
-test.skip('ensureDir (new)', async t => {
+test('ensureDir (new)', async t => {
 	const newDir = path.resolve(dir, 'ensureDirNew');
 	await nextra.ensureDir(newDir);
 
@@ -56,7 +55,7 @@ test.skip('ensureDir (new)', async t => {
 	t.true(stats.isDirectory());
 });
 
-test.skip('ensureDir (new recursive)', async t => {
+test('ensureDir (new recursive)', async t => {
 	const deepDir = path.resolve(dir, 'ensureDirNew2', 'ensureDirNew3');
 	await nextra.ensureDir(deepDir);
 
@@ -79,7 +78,7 @@ test('ensureFile (new)', async t => {
 	t.true(stats.isFile());
 });
 
-test.skip('ensureSymlink', async t => {
+test('ensureSymlink', async t => {
 	await nextra.ensureSymlink(files.ensureSymlink.src, files.ensureSymlink.dest);
 
 	const stats = await fs.lstatAsync(files.ensureSymlink.src);
