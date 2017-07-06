@@ -186,15 +186,6 @@ for (const [key, value] of Object.entries(fs)) {
 
 
 /**
- * Identical to {@link https://nodejs.org/api/fs.html#fs_fs_access_path_mode_callback|fs.access} but returns a promise instead.
- * @function access
- * @memberof fsn/fs
- * @param  {string|Buffer|URL} path The path to be checked
- * @param  {integer} [mode] The accessibility checks to be performed
- * @return {Promise<void>}
- */
-
-/**
  * @typedef AppendFileOptions
  * @memberof fsn/fs
  * @property {string} [encoding = 'utf8'] The file encoding
