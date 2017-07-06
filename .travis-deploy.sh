@@ -17,11 +17,13 @@ SHA=$(git rev-parse --verify HEAD)
 TARGET_BRANCH="master"
 git clone $REPO dist -b $TARGET_BRANCH
 
+cd dist
+
 npm run docs
 
-mv docs /dist
+# mv docs /dist
 
-cd dist
+# cd dist
 git add --all .
 git config user.name "Travis CI"
 git config user.email "${COMMIT_EMAIL}"
