@@ -280,13 +280,14 @@ ava('linkAtomic', async test => {
 
 // move
 
-ava.skip('move', async test => {
-	test.plan(2);
+ava('move', async test => {
 	const move = resolve(dir, 'moved.txt');
 	await nextra.move(files.move, move);
 
-	test.throws(await fs.statAsync(files.copy));
-	test.notThrows(await fs.statAsync(move));
+	const oldFile = await fs.accessAsync(files.move).then(() => true).catch(() => false);
+	const newFile = await fs.accessAsync(move).then(() => true).catch(() => false);
+
+	test.true(!oldFile && newFile);
 });
 
 // outputFile
@@ -412,15 +413,15 @@ ava('readJSON', async test => {
 
 // remove
 
-ava.skip('remove', async test => {
+ava('remove', async test => {
 	await nextra.remove(files.remove);
-
-	test.throws(fs.statAsync(files.remove));
+	const file = await fs.accessAsync(files.remove).then(() => true).catch(() => false);
+	test.true(file);
 });
 
 // symlinkAtomic
 
-ava.skip('symlinkAtomic', async test => {
+ava('symlinkAtomic', async test => {
 	const file = resolve(dir, 'SymlinkAtomicTest.txt');
 	await nextra.symlinkAtomic(files.SymlinkAtomic, file);
 
