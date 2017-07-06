@@ -161,7 +161,8 @@
 
     
     <div class="description">
-        Copies files from one location to another, creating all directories required to satisfy the destination path.source and destination paths.
+        Copies files from one location to another, creating all directories required to satisfy the destination path.
+source and destination paths.
     </div>
     
 
@@ -6510,7 +6511,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id=".symlinkAtomic"><span class="type-signature">&lt;static> </span>symlinkAtomic(source, destination, type)</h4>
+    <h4 class="name" id=".symlinkAtomic"><span class="type-signature">&lt;static> </span>symlinkAtomic(source, destination [, type])</h4>
     
     
 </dt>
@@ -6541,7 +6542,11 @@
         <th>Type</th>
 
         
+        <th>Argument</th>
+        
 
+        
+        <th>Default</th>
         
 
         <th class="last">Description</th>
@@ -6567,7 +6572,19 @@
             </td>
 
             
+                <td class="attributes">
+                
 
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
             
 
             <td class="description last">The source path of the file</td>
@@ -6591,7 +6608,19 @@
             </td>
 
             
+                <td class="attributes">
+                
 
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
             
 
             <td class="description last">The destination path of the file</td>
@@ -6615,7 +6644,23 @@
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
 
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    'file'
+                
+                </td>
             
 
             <td class="description last">The type of symlink you are creating</td>
@@ -9092,7 +9137,9 @@
 <dd>
     
     <div class="description">
-        The type of symlink you are creating:* `dir`* `file`
+        The type of symlink you are creating:
+* `dir`
+* `file`
     </div>
     
 
