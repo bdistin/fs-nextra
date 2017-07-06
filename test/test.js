@@ -8,7 +8,7 @@ const nextra = require('../src/index');
 const dir = resolve(__dirname, 'test');
 const files = {
 	copy: resolve(dir, 'copy.txt'),
-	move: resolve(dir, 'move.txt'),
+	move: resolve(dir, 'move', 'move.txt'),
 	ensureDir: resolve(dir, 'ensureDir'),
 	createFile: resolve(dir, 'createFile'),
 	outputFile: resolve(dir, 'outputFile'),
@@ -281,8 +281,8 @@ ava('linkAtomic', async test => {
 // move
 
 ava('move', async test => {
-	const move = resolve(dir, 'moved.txt');
-	await nextra.move(files.move, move);
+	const move = resolve(dir, 'move.txt');
+	await nextra.move(files.move, move, { overwrite: true });
 	let oldFile = true;
 	let newFile = true;
 	try {
@@ -430,7 +430,7 @@ ava('remove', async test => {
 	} catch (err) {
 		pass = true;
 	}
-	await test.true(pass);
+	test.true(pass);
 });
 
 // symlinkAtomic
