@@ -416,7 +416,7 @@ ava('symlinkAtomic', async test => {
 // writeFileAtomic
 
 ava('writeFileAtomic', async test => {
-	const file = resolve(dir, 'file.json');
+	const file = resolve(dir, 'file.txt');
 	const data = 'passed';
 	await nextra.writeFileAtomic(file, data);
 
@@ -430,7 +430,7 @@ ava('writeJSON', async test => {
 	const obj = { test: 'passed' };
 	await nextra.writeJSON(file, obj);
 
-	test.is(await fs.readFileAsync(file, 'utf8'), JSON.stringify(obj));
+	test.deepEqual(JSON.parse(await fs.readFileAsync(file, 'utf8')), obj);
 });
 
 // writeJSONAtomic
@@ -440,5 +440,5 @@ ava('writeJSONAtomic', async test => {
 	const obj = { test: 'passed' };
 	await nextra.writeJSONAtomic(file, obj);
 
-	test.is(await fs.readFileAsync(file, 'utf8'), JSON.stringify(obj));
+	test.deepEqual(JSON.parse(await fs.readFileAsync(file, 'utf8')), obj);
 });
