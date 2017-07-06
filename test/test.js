@@ -255,7 +255,7 @@ ava('ensureDir (new recursive)', async test => {
 // linkAtomic
 
 ava('linkAtomic', async test => {
-	const newFile = resolve(files.createlink.src, 'linkAtomicNew.txt');
+	const newFile = resolve(dir, 'linkAtomicNew.txt');
 	await nextra.linkAtomic(files.createlink.src, newFile);
 
 	const stats = await fs.statAsync(newFile);
