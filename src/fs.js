@@ -87,7 +87,7 @@ for (const [key, value] of Object.entries(fs)) {
 
 /**
  * Objects returned from {@link fsn/fs.stat|stat()}, {@link fsn/fs.lstat|lstat()} and {@link fsn/fs.fstat|fstat()} are of this type.
- * Identical to {@link https://nodejs.org/api/fs.html#fs_class_fs_fswatcher|fs.Stats}.
+ * Identical to {@link https://nodejs.org/api/fs.html#fs_class_fs_stats|fs.Stats}.
  * @class Stats
  */
 

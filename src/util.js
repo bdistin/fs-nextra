@@ -85,7 +85,7 @@ exports.moveDirAcrossDevice = async (source, dest, overwrite) => {
 	return remove(source);
 };
 
-exports.rimraf_ = async (myPath, options) => {
+exports.rimraf = async (myPath, options) => {
 	const stats = await lstat(myPath).catch(er => {
 		if (er && er.code === 'ENOENT') return null;
 		if (er && er.code === 'EPERM' && this.isWindows) return this.fixWinEPERM(myPath, options, er);

@@ -1,86 +1,319 @@
-/* eslint-disable id-length */
-const test = require('ava');
-const path = require('path');
+const ava = require('ava');
+const { resolve } = require('path');
 const tsubaki = require('tsubaki');
 const mock = require('mock-fs');
 const fs = tsubaki.promisifyAll(require('fs'));
 const nextra = require('../src/index');
 
-const dir = path.resolve(__dirname, 'test');
+const dir = resolve(__dirname, 'test');
 const files = {
-	copy: path.resolve(dir, 'copy.txt'),
-	ensureDir: path.resolve(dir, 'ensureDir'),
-	ensureFile: path.resolve(dir, 'ensureFile'),
-	ensureSymlink: {
-		src: path.resolve(dir, 'ensureSymlinkSrc'),
-		dest: path.resolve(dir, 'ensureSymlinkDest')
+	copy: resolve(dir, 'copy.txt'),
+	ensureDir: resolve(dir, 'ensureDir'),
+	createFile: resolve(dir, 'createFile'),
+	createSymlink: {
+		src: resolve(dir, 'createSymlinkSrc'),
+		dest: resolve(dir, 'createSymlinkDest')
+	},
+	createlink: {
+		src: resolve(dir, 'createlinkSrc.txt'),
+		dest: resolve(dir, 'createlinkDest.txt')
+	},
+	emptyDir: {
+		empty: resolve(dir, 'empty'),
+		full: resolve(dir, 'full')
+	},
+	readJSON: resolve(dir, 'readJSON.json'),
+	pathExists: {
+		dir: resolve(dir, 'path'),
+		file: resolve(dir, 'path.txt')
 	}
 };
 
-test.before(t => {
+ava.before(test => {
 	mock({
 		[files.copy]: '',
 		[files.ensureDir]: {},
-		[files.ensureFile]: '',
-		[files.ensureSymlink.src]: mock.symlink({ path: files.ensureSymlink.dest })
+		[files.createFile]: '',
+		[files.createSymlink.src]: mock.symlink({ path: files.createSymlink.dest }),
+		[files.createlink.src]: 'linked',
+		[files.createlink.dest]: 'linked',
+		[files.emptyDir.empty]: {},
+		[files.emptyDir.full]: { 'file.txt': '' },
+		[files.readJSON]: '{ "validate": true }',
+		[files.pathExists.dir]: {},
+		[files.pathExists.file]: ''
 	});
-	t.pass();
+	test.pass();
 });
 
-test.after.always(t => {
+ava.after.always(test => {
 	mock.restore();
-	t.pass();
+	test.pass();
 });
 
-test('copy', async t => {
-	const copy = path.resolve(dir, 'copied');
+// Copy
+
+ava('copy', async test => {
+	const copy = resolve(dir, 'copied');
 	await nextra.copy(files.copy, copy);
 
 	const stats = await fs.statAsync(copy);
-	t.true(stats.isFile());
+	test.true(stats.isFile());
 });
 
-test('ensureDir (pre-existing)', async t => {
+// createFile
+
+ava('createFile (pre-existing)', async test => {
+	await nextra.createFile(files.createFile);
+
+	const stats = await fs.statAsync(files.createFile);
+	test.true(stats.isFile());
+});
+
+ava('createFile (new)', async test => {
+	const file = resolve(dir, 'createFileNew');
+	await nextra.createFile(file);
+
+	const stats = await fs.statAsync(file);
+	test.true(stats.isFile());
+});
+
+ava('createFile (new recursive)', async test => {
+	const file = resolve(dir, 'createFileNew2', 'createFileNew3');
+	await nextra.createFile(file);
+
+	const stats = await fs.statAsync(file);
+	test.true(stats.isFile());
+});
+
+// createFileAtomic
+
+ava('createFileAtomic (pre-existing)', async test => {
+	await nextra.createFileAtomic(files.createFile);
+
+	const stats = await fs.statAsync(files.createFile);
+	test.true(stats.isFile());
+});
+
+ava('createFileAtomic (new)', async test => {
+	const file = resolve(dir, 'createFileNew');
+	await nextra.createFileAtomic(file);
+
+	const stats = await fs.statAsync(file);
+	test.true(stats.isFile());
+});
+
+ava('createFileAtomic (new recursive)', async test => {
+	const file = resolve(dir, 'createFileNew2', 'createFileNew3');
+	await nextra.createFileAtomic(file);
+
+	const stats = await fs.statAsync(file);
+	test.true(stats.isFile());
+});
+
+// createLink
+
+ava('createLink (pre-existing)', async test => {
+	await nextra.createLink(files.createlink.src, files.createlink.dest);
+
+	const stats = await fs.statAsync(files.createlink.dest);
+	test.true(stats.isFile());
+});
+
+ava('createLink (new)', async test => {
+	const newDir = resolve(dir, 'createLinkNew.txt');
+	await nextra.createLink(files.createlink.src, newDir);
+
+	const stats = await fs.statAsync(newDir);
+	test.true(stats.isFile());
+});
+
+ava('createLink (new recursive)', async test => {
+	const deepDir = resolve(dir, 'createLinkNew2', 'createLinkNew3.txt');
+	await nextra.createLink(files.createlink.src, deepDir);
+
+	const stats = await fs.statAsync(deepDir);
+	test.true(stats.isFile());
+});
+
+// createLinkAtomic
+
+ava('createLinkAtomic (pre-existing)', async test => {
+	await nextra.createLinkAtomic(files.createlink.src, files.createlink.dest);
+
+	const stats = await fs.statAsync(files.createlink.dest);
+	test.true(stats.isFile());
+});
+
+ava('createLinkAtomic (new)', async test => {
+	const newDir = resolve(dir, 'createLinkNew.txt');
+	await nextra.createLinkAtomic(files.createlink.src, newDir);
+
+	const stats = await fs.statAsync(newDir);
+	test.true(stats.isFile());
+});
+
+ava('createLinkAtomic (new recursive)', async test => {
+	const deepDir = resolve(dir, 'createLinkNew2', 'createLinkNew3.txt');
+	await nextra.createLinkAtomic(files.createlink.src, deepDir);
+
+	const stats = await fs.statAsync(deepDir);
+	test.true(stats.isFile());
+});
+
+// createSymlink
+
+ava('createSymlink (pre-existing)', async test => {
+	await nextra.createSymlink(files.createSymlink.src, files.createSymlink.dest);
+
+	const stats = await fs.lstatAsync(files.createSymlink.src);
+	test.true(stats.isSymbolicLink());
+});
+
+ava('createSymlink (new)', async test => {
+	const newDir = resolve(dir, 'createSymlinkNew');
+	await nextra.createSymlink(files.createSymlink.src, newDir);
+
+	const stats = await fs.lstatAsync(files.createSymlink.src);
+	test.true(stats.isSymbolicLink());
+});
+
+ava('createSymlink (new recursive)', async test => {
+	const deepDir = resolve(dir, 'createSymlinkNew2', 'createSymlinkNew3');
+	await nextra.createSymlink(files.createSymlink.src, deepDir);
+
+	const stats = await fs.lstatAsync(files.createSymlink.src);
+	test.true(stats.isSymbolicLink());
+});
+
+// createSymlinkAtomic
+
+ava('createSymlinkAtomic (pre-existing)', async test => {
+	await nextra.createLinkAtomic(files.createSymlink.src, files.createSymlink.dest);
+
+	const stats = await fs.lstatAsync(files.createSymlink.dest);
+	test.true(stats.isSymbolicLink());
+});
+
+ava('createSymlinkAtomic (new)', async test => {
+	const newDir = resolve(dir, 'createSymlinkNew');
+	await nextra.createLinkAtomic(files.createSymlink.src, newDir);
+
+	const stats = await fs.lstatAsync(newDir);
+	test.true(stats.isSymbolicLink());
+});
+
+ava('createSymlinkAtomic (new recursive)', async test => {
+	const deepDir = resolve(dir, 'createSymlinkNew2', 'createSymlinkNew3');
+	await nextra.createLinkAtomic(files.createSymlink.src, deepDir);
+
+	const stats = await fs.lstatAsync(deepDir);
+	test.true(stats.isSymbolicLink());
+});
+
+// emptyDir
+
+ava('emptyDir (empty)', async test => {
+	await nextra.emptyDir(files.emptyDir.empty);
+
+	const contents = await fs.readdirAsync(files.emptyDir.empty);
+	test.true(contents.length === 0);
+});
+
+ava('emptyDir (full)', async test => {
+	await nextra.emptyDir(files.emptyDir.full);
+
+	const contents = await fs.readdirAsync(files.emptyDir.full);
+	test.true(contents.length === 0);
+});
+
+// ensureDir
+
+ava('ensureDir (pre-existing)', async test => {
 	await nextra.ensureDir(files.ensureDir);
 
 	const stats = await fs.statAsync(files.ensureDir);
-	t.true(stats.isDirectory());
+	test.true(stats.isDirectory());
 });
 
-test('ensureDir (new)', async t => {
-	const newDir = path.resolve(dir, 'ensureDirNew');
+ava('ensureDir (new)', async test => {
+	const newDir = resolve(dir, 'ensureDirNew');
 	await nextra.ensureDir(newDir);
 
 	const stats = await fs.statAsync(newDir);
-	t.true(stats.isDirectory());
+	test.true(stats.isDirectory());
 });
 
-test('ensureDir (new recursive)', async t => {
-	const deepDir = path.resolve(dir, 'ensureDirNew2', 'ensureDirNew3');
+ava('ensureDir (new recursive)', async test => {
+	const deepDir = resolve(dir, 'ensureDirNew2', 'ensureDirNew3');
 	await nextra.ensureDir(deepDir);
 
 	const stats = await fs.statAsync(deepDir);
-	t.true(stats.isDirectory());
+	test.true(stats.isDirectory());
 });
 
-test('ensureFile (pre-existing)', async t => {
-	await nextra.ensureFile(files.ensureFile);
+// linkAtomic
 
-	const stats = await fs.statAsync(files.ensureFile);
-	t.true(stats.isFile());
+ava('linkAtomic', async test => {
+	const newFile = resolve(files.createlink.src, 'linkAtomicNew.txt');
+	await nextra.linkAtomic(files.createlink.src, newFile);
+
+	const stats = await fs.statAsync(newFile);
+	test.true(stats.isFile());
 });
 
-test('ensureFile (new)', async t => {
-	const file = path.resolve(dir, 'ensureFileNew');
-	await nextra.ensureFile(file);
+// move
 
-	const stats = await fs.statAsync(file);
-	t.true(stats.isFile());
+// outputFile
+
+// outputFileAtomic
+
+// outputJSON
+
+// outputJSONAtomic
+
+// pathExists
+
+ava('pathExists (dir true)', async test => {
+	test.true(await nextra.pathExists(files.pathExists.dir));
 });
 
-test('ensureSymlink', async t => {
-	await nextra.ensureSymlink(files.ensureSymlink.src, files.ensureSymlink.dest);
-
-	const stats = await fs.lstatAsync(files.ensureSymlink.src);
-	t.true(stats.isSymbolicLink());
+ava('pathExists (file true)', async test => {
+	test.true(await nextra.pathExists(files.pathExists.file));
 });
+
+ava('pathExists (dir false)', async test => {
+	const noExist = resolve(dir, 'pathDoesntExist');
+	test.false(await nextra.pathExists(noExist));
+});
+
+ava('pathExists (file false)', async test => {
+	const noExist = resolve(dir, 'pathDoesntExist.txt');
+	test.false(await nextra.pathExists(noExist));
+});
+
+// readJSON
+
+ava('readJSON', async test => {
+	const readJSON = await nextra.readJSON(files.readJSON);
+	test.true(readJSON.validate);
+});
+
+// remove
+
+ava('remove', async test => {
+	const file = resolve(files.emptyDir.full, 'file.txt');
+	await nextra.remove(file);
+
+	const gone = await fs.statAsync(file).catch(() => true);
+	test.true(gone);
+});
+
+// symlinkAtomic
+
+// writeFileAtomic
+
+// writeJSON
+
+// writeJSONAtomic
+
