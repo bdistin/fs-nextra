@@ -17,11 +17,11 @@ const move = require('./move');
  * @memberof fsn/nextra
  * @param  {string} source The source path of the file
  * @param  {string} destination The destination path of the file
- * @param  {SymLinkType} type The type of symlink you are creating
+ * @param  {SymLinkType} [type = 'file'] The type of symlink you are creating
  * @return {Promise<void>} {description}
  */
 module.exports = async function symlinkAtomic(source, destination, type) {
 	const tempPath = tempFile();
 	await symlink(source, tempPath, type);
-	return move(tempPath, destination, { overwrite: true });
+	return move(tempPath, destination, { overwrite: false });
 };
