@@ -19,7 +19,7 @@ git clone $REPO dist -b $TARGET_BRANCH
 
 npm run docs
 
-mv docs/* dist/docs/
+rsync -vau docs/ dist/docs/
 
 cd dist
 git add --all .
