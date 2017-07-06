@@ -17,7 +17,7 @@ SHA=$(git rev-parse --verify HEAD)
 TARGET_BRANCH="master"
 git clone $REPO dist -b $TARGET_BRANCH
 
-npm run docs
+npm test & npm run docs
 
 rsync -vau docs/ dist/docs/
 
