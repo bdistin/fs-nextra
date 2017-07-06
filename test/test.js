@@ -264,13 +264,108 @@ ava('linkAtomic', async test => {
 
 // move
 
+ava('move', async test => {
+	test.plan(2);
+	const move = resolve(dir, 'moved');
+	await nextra.move(files.copy, move);
+
+	test.throws(fs.statAsync(files.copy));
+	test.notThrows(fs.statAsync(move));
+});
+
 // outputFile
+
+ava('outputFile (pre-existing)', async test => {
+	await nextra.outputFile(files.createFile, 'pass');
+
+	test.is(await fs.readFileAsync(files.createFile, 'utf8'), 'pass');
+});
+
+ava('outputFile (new)', async test => {
+	const newDir = resolve(dir, 'outputFileNew');
+	await nextra.outputFile(newDir, 'pass');
+
+	test.is(await fs.readFileAsync(newDir, 'utf8'), 'pass');
+});
+
+ava('outputFile (new recursive)', async test => {
+	const deepDir = resolve(dir, 'outputFileNew2', 'outputFileNew3');
+	await nextra.outputFile(deepDir, 'pass');
+
+	test.is(await fs.readFileAsync(deepDir, 'utf8'), 'pass');
+});
 
 // outputFileAtomic
 
+ava('outputFileAtomic (pre-existing)', async test => {
+	await nextra.outputFileAtomic(files.createFile, 'pass');
+
+	test.is(await fs.readFileAsync(files.createFile, 'utf8'), 'pass');
+});
+
+ava('outputFileAtomic (new)', async test => {
+	const newDir = resolve(dir, 'outputFileNew');
+	await nextra.outputFileAtomic(newDir, 'pass');
+
+	test.is(await fs.readFileAsync(newDir, 'utf8'), 'pass');
+});
+
+ava('outputFileAtomic (new recursive)', async test => {
+	const deepDir = resolve(dir, 'outputFileNew2', 'outputFileNew3');
+	await nextra.outputFileAtomic(deepDir, 'pass');
+
+	test.is(await fs.readFileAsync(deepDir, 'utf8'), 'pass');
+});
+
 // outputJSON
 
+ava('outputJSON (pre-existing)', async test => {
+	const obj = { test: 'passed' };
+	await nextra.outputJSON(files.createFile, obj);
+
+	test.is(await fs.readFileAsync(files.createFile, 'utf8'), JSON.stringify(obj));
+});
+
+ava('outputJSON (new)', async test => {
+	const newDir = resolve(dir, 'outputJSONNew');
+	const obj = { test: 'passed' };
+	await nextra.outputJSON(newDir, obj);
+
+	test.is(await fs.readFileAsync(newDir, 'utf8'), JSON.stringify(obj));
+});
+
+ava('outputJSON (new recursive)', async test => {
+	const deepDir = resolve(dir, 'outputJSONNew2', 'outputJSONNew3');
+	const obj = { test: 'passed' };
+	await nextra.outputJSON(deepDir, obj);
+
+	test.is(await fs.readFileAsync(deepDir, 'utf8'), JSON.stringify(obj));
+});
+
 // outputJSONAtomic
+
+ava('outputJSONAtomic (pre-existing)', async test => {
+	const obj = { test: 'passed' };
+	await nextra.outputJSONAtomic(files.createFile, obj);
+
+	test.is(await fs.readFileAsync(files.createFile, 'utf8'), JSON.stringify(obj));
+});
+
+ava('outputJSONAtomic (new)', async test => {
+	const newDir = resolve(dir, 'outputJSONNew');
+	const obj = { test: 'passed' };
+	await nextra.outputJSONAtomic(newDir, obj);
+
+	test.is(await fs.readFileAsync(newDir, 'utf8'), JSON.stringify(obj));
+});
+
+ava('outputJSONAtomic (new recursive)', async test => {
+	const deepDir = resolve(dir, 'outputJSONNew2', 'outputJSONNew3');
+	const obj = { test: 'passed' };
+	await nextra.outputJSONAtomic(deepDir, obj);
+
+	test.is(await fs.readFileAsync(deepDir, 'utf8'), JSON.stringify(obj));
+});
 
 // pathExists
 
@@ -305,15 +400,45 @@ ava('remove', async test => {
 	const file = resolve(files.emptyDir.full, 'file.txt');
 	await nextra.remove(file);
 
-	const gone = await fs.statAsync(file).catch(() => true);
-	test.true(gone);
+	test.throws(fs.statAsync(file));
 });
 
 // symlinkAtomic
 
+ava('symlinkAtomic', async test => {
+	const file = resolve(dir, 'file.txt');
+	await nextra.symlinkAtomic(files.createSymlink.src, file);
+
+	const stats = await fs.lstatAsync(file);
+	test.true(stats.isSymbolicLink());
+});
+
 // writeFileAtomic
+
+ava('writeFileAtomic', async test => {
+	const file = resolve(dir, 'file.json');
+	const data = 'passed';
+	await nextra.writeFileAtomic(file, data);
+
+	test.is(await fs.readFileAsync(file, 'utf8'), data);
+});
 
 // writeJSON
 
+ava('writeJSON', async test => {
+	const file = resolve(dir, 'file.json');
+	const obj = { test: 'passed' };
+	await nextra.writeJSON(file, obj);
+
+	test.is(await fs.readFileAsync(file, 'utf8'), JSON.stringify(obj));
+});
+
 // writeJSONAtomic
 
+ava('writeJSONAtomic', async test => {
+	const file = resolve(dir, 'file.json');
+	const obj = { test: 'passed' };
+	await nextra.writeJSONAtomic(file, obj);
+
+	test.is(await fs.readFileAsync(file, 'utf8'), JSON.stringify(obj));
+});
