@@ -3,7 +3,7 @@ const { promisify } = require('util');
 const { randomBytes } = require('crypto');
 const { tmpdir } = require('os');
 
-const { lstat, createReadStream, createWriteStream, unlink, stat, chmod, readdir, readlink, open, futimes, close, mkDir, symlink } = require('./fs');
+const { rmdir, lstat, createReadStream, createWriteStream, unlink, stat, chmod, readdir, readlink, open, futimes, close, mkDir, symlink } = require('./fs');
 
 const remove = require('./nextra/remove');
 const pathExists = require('./nextra/pathExists');
@@ -92,12 +92,12 @@ exports.rimraf = async (myPath, options) => {
 		throw er;
 	});
 
-	if (stats && stats.isDirectory()) return this.rmdir(myPath, options, null);
+	if (stats && stats.isDirectory()) return this.removeDir(myPath, options, null);
 
 	return unlink(myPath).catch(er => {
 		if (er.code === 'ENOENT') return null;
-		if (er.code === 'EPERM') return this.isWindows ? this.fixWinEPERM(myPath, options, er) : this.rmdir(myPath, options, er);
-		if (er.code === 'EISDIR') return this.rmdir(myPath, options, er);
+		if (er.code === 'EPERM') return this.isWindows ? this.fixWinEPERM(myPath, options, er) : this.removeDir(myPath, options, er);
+		if (er.code === 'EISDIR') return this.removeDir(myPath, options, er);
 		throw er;
 	});
 };
@@ -105,11 +105,11 @@ exports.rimraf = async (myPath, options) => {
 exports.fixWinEPERM = async (myPath, options, err) => {
 	await chmod(myPath, 666).catch(er => { throw er.code === 'ENOENT' ? null : err; });
 	const stats = await stat(myPath).catch(er => { throw er.code === 'ENOENT' ? null : err; });
-	if (stats.isDirectory()) return this.rmdir(myPath, options, err);
+	if (stats.isDirectory()) return this.removeDir(myPath, options, err);
 	else return unlink(myPath);
 };
 
-exports.rmdir = async (myPath, options, originalEr) => this.rmdir(myPath).catch(er => {
+exports.removeDir = async (myPath, options, originalEr) => rmdir(myPath).catch(er => {
 	if (er && (er.code === 'ENOTEMPTY' || er.code === 'EEXIST' || er.code === 'EPERM')) return this.rmkids(myPath, options);
 	else if (er && er.code === 'ENOTDIR') throw originalEr;
 	else throw er;
@@ -117,9 +117,9 @@ exports.rmdir = async (myPath, options, originalEr) => this.rmdir(myPath).catch(
 
 exports.rmkids = async (myPath, options) => {
 	const files = readdir(myPath).catch(this.throwErr);
-	if (files.length === 0) return this.rmdir(myPath);
+	if (files.length === 0) return rmdir(myPath);
 	return Promise.all(files.map(file => remove(join(myPath, file), options)))
-		.then(() => this.rmdir(myPath));
+		.then(() => rmdir(myPath));
 };
 
 exports.isWritable = (myPath) => lstat(myPath).then(() => false).catch(err => err.code === 'ENOENT');

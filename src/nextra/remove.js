@@ -1,4 +1,4 @@
-const { rimraf, isWindows, setTimeoutPromise } = require('../util');
+const util = require('../util');
 
 /**
  * @typedef {object} removeOptions
@@ -20,13 +20,13 @@ module.exports = async function remove(path, options = {}) {
 
 	options.maxBusyTries = options.maxBusyTries || 3;
 
-	return rimraf(path, options)
+	return util.rimraf(path, options)
 		.catch(async (er) => {
-			if (isWindows && (er.code === 'EBUSY' || er.code === 'ENOTEMPTY' || er.code === 'EPERM') && busyTries < options.maxBusyTries) {
+			if (util.isWindows && (er.code === 'EBUSY' || er.code === 'ENOTEMPTY' || er.code === 'EPERM') && busyTries < options.maxBusyTries) {
 				busyTries++;
 				const time = busyTries * 100;
-				await setTimeoutPromise(time);
-				return rimraf(path, options);
+				await util.setTimeoutPromise(time);
+				return util.rimraf(path, options);
 			}
 			if (er.code === 'ENOENT') return null;
 			throw er;
