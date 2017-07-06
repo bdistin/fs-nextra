@@ -188,14 +188,14 @@ ava('createSymlink (new recursive)', async test => {
 
 // createSymlinkAtomic
 
-ava('createSymlinkAtomic (pre-existing)', async test => {
+ava.skip('createSymlinkAtomic (pre-existing)', async test => {
 	await nextra.createLinkAtomic(files.createSymlink.src, files.createSymlink.dest);
 
 	const stats = await fs.lstatAsync(files.createSymlink.dest);
 	test.true(stats.isSymbolicLink());
 });
 
-ava('createSymlinkAtomic (new)', async test => {
+ava.skip('createSymlinkAtomic (new)', async test => {
 	const newDir = resolve(dir, 'createSymlinkNew');
 	await nextra.createLinkAtomic(files.createSymlink.src, newDir);
 
@@ -203,7 +203,7 @@ ava('createSymlinkAtomic (new)', async test => {
 	test.true(stats.isSymbolicLink());
 });
 
-ava('createSymlinkAtomic (new recursive)', async test => {
+ava.skip('createSymlinkAtomic (new recursive)', async test => {
 	const deepDir = resolve(dir, 'createSymlinkNew2', 'createSymlinkNew3');
 	await nextra.createLinkAtomic(files.createSymlink.src, deepDir);
 
