@@ -10,9 +10,14 @@ const files = {
 	copy: resolve(dir, 'copy.txt'),
 	ensureDir: resolve(dir, 'ensureDir'),
 	createFile: resolve(dir, 'createFile'),
+	outputFileAtomic: resolve(dir, 'createFile'),
 	createSymlink: {
 		src: resolve(dir, 'createSymlinkSrc'),
 		dest: resolve(dir, 'createSymlinkDest')
+	},
+	createSymlinkAtomic: {
+		src: resolve(dir, 'createSymlinkSrc.txt'),
+		dest: resolve(dir, 'createSymlinkDest.txt')
 	},
 	createlink: {
 		src: resolve(dir, 'createlinkSrc.txt'),
@@ -34,6 +39,9 @@ ava.before(test => {
 		[files.copy]: '',
 		[files.ensureDir]: {},
 		[files.createFile]: '',
+		[files.outputFileAtomic]: '',
+		[files.createSymlinkAtomic.src]: 'symLinked',
+		[files.createSymlink.dest]: mock.symlink({ path: files.createSymlinkAtomic.src }),
 		[files.createSymlink.src]: mock.symlink({ path: files.createSymlink.dest }),
 		[files.createlink.src]: 'linked',
 		[files.createlink.dest]: 'linked',
@@ -189,23 +197,23 @@ ava('createSymlink (new recursive)', async test => {
 // createSymlinkAtomic
 
 ava.skip('createSymlinkAtomic (pre-existing)', async test => {
-	await nextra.createLinkAtomic(files.createSymlink.src, files.createSymlink.dest);
+	await nextra.createLinkAtomic(files.createSymlinkAtomic.src, files.createSymlinkAtomic.dest);
 
-	const stats = await fs.lstatAsync(files.createSymlink.dest);
+	const stats = await fs.lstatAsync(files.createSymlinkAtomic.dest);
 	test.true(stats.isSymbolicLink());
 });
 
 ava.skip('createSymlinkAtomic (new)', async test => {
-	const newDir = resolve(dir, 'createSymlinkNew');
-	await nextra.createLinkAtomic(files.createSymlink.src, newDir);
+	const newDir = resolve(dir, 'createSymlinkAtomicNew.txt');
+	await nextra.createLinkAtomic(files.createSymlinkAtomic.src, newDir);
 
 	const stats = await fs.lstatAsync(newDir);
 	test.true(stats.isSymbolicLink());
 });
 
 ava.skip('createSymlinkAtomic (new recursive)', async test => {
-	const deepDir = resolve(dir, 'createSymlinkNew2', 'createSymlinkNew3');
-	await nextra.createLinkAtomic(files.createSymlink.src, deepDir);
+	const deepDir = resolve(dir, 'createSymlinkAtomicNew2', 'createSymlinkAtomicNew3.txt');
+	await nextra.createLinkAtomic(files.createSymlinkAtomic.src, deepDir);
 
 	const stats = await fs.lstatAsync(deepDir);
 	test.true(stats.isSymbolicLink());
@@ -276,9 +284,9 @@ ava.skip('move', async test => {
 // outputFile
 
 ava.skip('outputFile (pre-existing)', async test => {
-	await nextra.outputFile(files.createFile, 'pass');
+	await nextra.outputFile(files.outputFileAtomic, 'pass');
 
-	test.is(await fs.readFileAsync(files.createFile, 'utf8'), 'pass');
+	test.is(await fs.readFileAsync(files.outputFileAtomic, 'utf8'), 'pass');
 });
 
 ava('outputFile (new)', async test => {
@@ -298,20 +306,20 @@ ava('outputFile (new recursive)', async test => {
 // outputFileAtomic
 
 ava.skip('outputFileAtomic (pre-existing)', async test => {
-	await nextra.outputFileAtomic(files.createFile, 'pass');
+	await nextra.outputFileAtomic(files.outputFileAtomic, 'pass');
 
-	test.is(await fs.readFileAsync(files.createFile, 'utf8'), 'pass');
+	test.is(await fs.readFileAsync(files.outputFileAtomic, 'utf8'), 'pass');
 });
 
 ava('outputFileAtomic (new)', async test => {
-	const newDir = resolve(dir, 'outputFileNew');
+	const newDir = resolve(dir, 'outputFileAtomicNew.txt');
 	await nextra.outputFileAtomic(newDir, 'pass');
 
 	test.is(await fs.readFileAsync(newDir, 'utf8'), 'pass');
 });
 
 ava('outputFileAtomic (new recursive)', async test => {
-	const deepDir = resolve(dir, 'outputFileNew2', 'outputFileNew3');
+	const deepDir = resolve(dir, 'outputFileAtomicNew2', 'outputFileAtomicNew3.txt');
 	await nextra.outputFileAtomic(deepDir, 'pass');
 
 	test.is(await fs.readFileAsync(deepDir, 'utf8'), 'pass');
@@ -407,7 +415,7 @@ ava.skip('remove', async test => {
 
 ava.skip('symlinkAtomic', async test => {
 	const file = resolve(dir, 'file.txt');
-	await nextra.symlinkAtomic(files.createSymlink.src, file);
+	await nextra.symlinkAtomic(files.createSymlinkAtomic.src, file);
 
 	const stats = await fs.lstatAsync(file);
 	test.true(stats.isSymbolicLink());
