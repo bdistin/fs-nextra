@@ -323,7 +323,7 @@ ava('outputJSON (pre-existing)', async test => {
 	const obj = { test: 'passed' };
 	await nextra.outputJSON(files.createFile, obj);
 
-	test.is(await fs.readFileAsync(files.createFile, 'utf8'), JSON.stringify(obj));
+	test.deepEqual(JSON.parse(await fs.readFileAsync(files.createFile, 'utf8')), obj);
 });
 
 ava('outputJSON (new)', async test => {
@@ -331,7 +331,7 @@ ava('outputJSON (new)', async test => {
 	const obj = { test: 'passed' };
 	await nextra.outputJSON(newDir, obj);
 
-	test.is(await fs.readFileAsync(newDir, 'utf8'), JSON.stringify(obj));
+	test.deepEqual(JSON.parse(await fs.readFileAsync(newDir, 'utf8')), obj);
 });
 
 ava('outputJSON (new recursive)', async test => {
@@ -339,7 +339,7 @@ ava('outputJSON (new recursive)', async test => {
 	const obj = { test: 'passed' };
 	await nextra.outputJSON(deepDir, obj);
 
-	test.is(await fs.readFileAsync(deepDir, 'utf8'), JSON.stringify(obj));
+	test.deepEqual(JSON.parse(await fs.readFileAsync(deepDir, 'utf8')), obj);
 });
 
 // outputJSONAtomic
@@ -348,7 +348,7 @@ ava('outputJSONAtomic (pre-existing)', async test => {
 	const obj = { test: 'passed' };
 	await nextra.outputJSONAtomic(files.createFile, obj);
 
-	test.is(await fs.readFileAsync(files.createFile, 'utf8'), JSON.stringify(obj));
+	test.deepEqual(JSON.parse(await fs.readFileAsync(files.createFile, 'utf8')), obj);
 });
 
 ava('outputJSONAtomic (new)', async test => {
@@ -356,7 +356,7 @@ ava('outputJSONAtomic (new)', async test => {
 	const obj = { test: 'passed' };
 	await nextra.outputJSONAtomic(newDir, obj);
 
-	test.is(await fs.readFileAsync(newDir, 'utf8'), JSON.stringify(obj));
+	test.deepEqual(JSON.parse(await fs.readFileAsync(newDir, 'utf8')), obj);
 });
 
 ava('outputJSONAtomic (new recursive)', async test => {
@@ -364,7 +364,7 @@ ava('outputJSONAtomic (new recursive)', async test => {
 	const obj = { test: 'passed' };
 	await nextra.outputJSONAtomic(deepDir, obj);
 
-	test.is(await fs.readFileAsync(deepDir, 'utf8'), JSON.stringify(obj));
+	test.deepEqual(JSON.parse(await fs.readFileAsync(deepDir, 'utf8')), obj);
 });
 
 // pathExists
