@@ -2,7 +2,10 @@
 .get/
 node_modules/
 test/
+docs/
+.docstrap.json
 .eslintrc.json
 .travis.yml
+.travis-deploy.sh
 package-lock.json
 README.md
