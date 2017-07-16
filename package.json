@@ -31,12 +31,12 @@
     "node": ">=8.1.0"
   },
   "devDependencies": {
-    "ava": "^0.20.0",
-    "eslint": "^4.1.1",
+    "ava": "^0.21.0",
+    "eslint": "^4.2.0",
     "ink-docstrap": "github:bdistin/docstrap",
     "jsdoc": "github:jsdoc3/jsdoc",
     "mock-fs": "^4.4.1",
-    "tsubaki": "^1.1.1"
+    "tsubaki": "^1.2.0"
   },
   "repository": {
     "type": "git",
