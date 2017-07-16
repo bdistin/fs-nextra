@@ -1,5 +1,7 @@
 FS-Nextra
 ------
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/bdistin/fs-nextra.svg)](https://greenkeeper.io/)
 [![npm](https://nodei.co/npm/fs-nextra.png?downloads=true&stars=true)](https://nodei.co/npm/fs-nextra/)
 
 [![npm](https://img.shields.io/npm/v/fs-nextra.svg?maxAge=3600)](https://www.npmjs.com/package/fs-nextra)
