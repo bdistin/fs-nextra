@@ -5,9 +5,9 @@
   "main": "src/index.js",
   "scripts": {
     "test": "npm run lint & npm run ava",
-    "docs": "./node_modules/.bin/jsdoc -c ./.docstrap.json -R README.md",
-    "lint": "./node_modules/.bin/eslint src test",
-    "ava": "./node_modules/.bin/ava \"test/test.js\" -T 10000"
+    "docs": "npx jsdoc -c ./.docstrap.json -R README.md",
+    "lint": "npx eslint src test",
+    "ava": "npx ava \"test/test.js\" -T 10000"
   },
   "keywords": [
     "atomics",
@@ -32,7 +32,7 @@
   },
   "devDependencies": {
     "ava": "^0.21.0",
-    "eslint": "^4.2.0",
+    "eslint": "^4.3.0",
     "ink-docstrap": "github:bdistin/docstrap",
     "jsdoc": "github:jsdoc3/jsdoc",
     "mock-fs": "^4.4.1",
