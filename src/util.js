@@ -3,7 +3,7 @@ const { promisify } = require('util');
 const { randomBytes } = require('crypto');
 const { tmpdir } = require('os');
 
-const { rmdir, lstat, createReadStream, createWriteStream, unlink, stat, chmod, readdir, readlink, open, futimes, close, mkDir, symlink } = require('./fs');
+const { rmdir, lstat, createReadStream, createWriteStream, unlink, stat, chmod, readdir, readlink, open, futimes, close, mkdir, symlink } = require('./fs');
 
 const remove = require('./nextra/remove');
 const pathExists = require('./nextra/pathExists');
@@ -185,7 +185,7 @@ exports.copyFile = (file, target, options) => new Promise((res, rej) => {
 });
 
 exports.mkDir = async (dir, target, options) => {
-	await mkDir(target, dir.mode);
+	await mkdir(target, dir.mode);
 	await chmod(target, dir.mode);
 	return this.copyDir(dir.name, options);
 };
