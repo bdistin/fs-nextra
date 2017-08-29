@@ -147,7 +147,7 @@ exports.startCopy = async (mySource, options) => {
 	if (stats.isDirectory()) {
 		const target = item.name.replace(options.currentPath, options.targetPath.replace('$', '$$$$'));
 		if (await this.isWritable(target)) return this.mkDir(item, target, options);
-		return this.copyDir(item.name);
+		return this.copyDir(item.name, options);
 	} else if (stats.isFile() || stats.isCharacterDevice() || stats.isBlockDevice()) {
 		const target = item.name.replace(options.currentPath, options.targetPath.replace('$', '$$$$'));
 		if (await this.isWritable(target)) return this.copyFile(item, target, options);
