@@ -17,7 +17,7 @@ const pathExists = require('./pathExists');
 
 /**
  * Creates an empty file, making all folders required to satisfy the given file path.
- * @function createFile
+ * @function createFileCopy
  * @memberof fsn/nextra
  * @param  {string} source The path to the file you want to copy
  * @param  {string} destination The path to the file destination
@@ -25,7 +25,7 @@ const pathExists = require('./pathExists');
  * @param  {boolean} [atomic = false] Whether the operation should run atomicly
  * @return {Promise<void>}
  */
-module.exports = async function createFile(source, destination, options, atomic = false) {
+module.exports = async function createFileCopy(source, destination, options, atomic = false) {
 	const dir = dirname(destination);
 	if (!await pathExists(dir)) await mkdirs(dir);
 	return atomic ? copyFileAtomic(source, destination, options) : copyFile(source, destination, options);
