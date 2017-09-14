@@ -69,7 +69,7 @@ ava.after.always(test => {
 
 // Copy
 
-ava('copy', async test => {
+ava.skip('copy', async test => {
 	const copy = resolve(dir, 'copied');
 	await nextra.copy(files.copy, copy);
 
