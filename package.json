@@ -3,10 +3,11 @@
   "version": "0.3.0",
   "description": "Node.js V8 native fs enhanced with util.promisify and standard extra methods.",
   "main": "src/index.js",
+  "types": "typings/index.d.ts",
   "scripts": {
     "test": "npm run lint & npm run ava",
     "docs": "npx jsdoc -c ./.docstrap.json -R README.md",
-    "lint": "npx eslint src test",
+    "lint": "npx eslint src test && npx tslint --fix 'typings/*.ts'",
     "ava": "npx ava \"test/test.js\" -T 10000"
   },
   "keywords": [

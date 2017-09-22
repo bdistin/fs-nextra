@@ -6,9 +6,9 @@ const writeFileAtomic = require('./writeFileAtomic');
  * @typedef {Object} jsonOptions
  * @memberof fsn/nextra
  * @property {Function} [replacer] A JSON.stringify replacer function
- * @property {integer} [spaces = null] The number of spaces to format the json file with
+ * @property {number} [spaces = null] The number of spaces to format the json file with
  * @property {string} [encoding = 'utf8'] The file encoding
- * @property {integer} [mode = 0o666] The chmod
+ * @property {number} [mode = 0o666] The chmod
  * @property {string} [flag = 'w'] The flag
  */
 

@@ -7,7 +7,7 @@ const move = require('./move');
  * @typedef writeOptions
  * @memberof fsn/nextra
  * @property {string} [encoding = 'utf8'] The file encoding
- * @property {integer} [mode = 0o666] The chmod
+ * @property {number} [mode = 0o666] The chmod
  * @property {string} [flag = 'w'] The flag
  */
 
@@ -17,7 +17,7 @@ const move = require('./move');
  * @param  {string} file The path to the file you want to create
  * @param  {string|Buffer|Uint8Array} data The data to write to file
  * @param  {writeOptions|string} [options] The write options or the encoding string.
- * @return {type} {description}
+ * @return {Promise<void>}
  */
 module.exports = async function writeFileAtomic(file, data, options) {
 	const tempPath = tempFile();
