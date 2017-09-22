@@ -7,7 +7,7 @@ const move = require('./move');
  * @typedef writeOptions
  * @memberof fsn/nextra
  * @property {string} [encoding = 'utf8'] The file encoding
- * @property {integer} [mode = 0o666] The chmod
+ * @property {number} [mode = 0o666] The chmod
  * @property {string} [flag = 'w'] The flag
  */
 

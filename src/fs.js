@@ -12,45 +12,45 @@ for (const [key, value] of Object.entries(fs)) {
 /**
  * @namespace fsn/fs
  * @property {Object} constants Identical to fs.constants.
- * @property {integer} constants.F_OK Flag indicating that the file is visible to the calling process.
- * @property {integer} constants.R_OK Flag indicating that the file can be read by the calling process.
- * @property {integer} constants.W_OK Flag indicating that the file can be written by the calling process.
- * @property {integer} constants.X_OK Flag indicating that the file can be executed by the calling process.
- * @property {integer} constants.O_RDONLY Flag indicating to open a file for read-only access.
- * @property {integer} constants.O_WRONLY Flag indicating to open a file for write-only access.
- * @property {integer} constants.O_RDWR Flag indicating to open a file for read-write access.
- * @property {integer} constants.O_CREAT Flag indicating to create the file if it does not already exist.
- * @property {integer} constants.O_EXCL Flag indicating that opening a file should fail if the O_CREAT flag is set and the file already exists.
- * @property {integer} constants.O_NOCTTY Flag indicating that if path identifies a terminal device, opening the path shall not cause that terminal to become the controlling terminal for the process (if the process does not already have one).
- * @property {integer} constants.O_TRUNC Flag indicating that if the file exists and is a regular file, and the file is opened successfully for write access, its length shall be truncated to zero.
- * @property {integer} constants.O_APPEND Flag indicating that data will be appended to the end of the file.
- * @property {integer} constants.O_DIRECTORY Flag indicating that the open should fail if the path is not a directory.
- * @property {integer} constants.O_NOATIME Flag indicating reading accesses to the file system will no longer result in an update to the atime information associated with the file. This flag is available on Linux operating systems only.
- * @property {integer} constants.O_NOFOLLOW Flag indicating that the open should fail if the path is a symbolic link.
- * @property {integer} constants.O_SYNC Flag indicating that the file is opened for synchronous I/O.
- * @property {integer} constants.O_SYMLINK Flag indicating to open the symbolic link itself rather than the resource it is pointing to.
- * @property {integer} constants.O_DIRECT When set, an attempt will be made to minimize caching effects of file I/O.
- * @property {integer} constants.O_NONBLOCK Flag indicating to open the file in nonblocking mode when possible.
- * @property {integer} constants.S_IFMT Bit mask used to extract the file type code.
- * @property {integer} constants.S_IFREG File type constant for a regular file.
- * @property {integer} constants.S_IFDIR File type constant for a directory.
- * @property {integer} constants.S_IFCHR File type constant for a character-oriented device file.
- * @property {integer} constants.S_IFBLK File type constant for a block-oriented device file.
- * @property {integer} constants.S_IFIFO File type constant for a FIFO/pipe.
- * @property {integer} constants.S_IFLNK File type constant for a symbolic link.
- * @property {integer} constants.S_IFSOCK File type constant for a socket.
- * @property {integer} constants.S_IRWXU File mode indicating readable, writable and executable by owner.
- * @property {integer} constants.S_IRUSR File mode indicating readable by owner.
- * @property {integer} constants.S_IWUSR File mode indicating writable by owner.
- * @property {integer} constants.S_IXUSR File mode indicating executable by owner.
- * @property {integer} constants.S_IRWXG File mode indicating readable, writable and executable by group.
- * @property {integer} constants.S_IRGRP File mode indicating readable by group.
- * @property {integer} constants.S_IWGRP File mode indicating writable by group.
- * @property {integer} constants.S_IXGRP File mode indicating executable by group.
- * @property {integer} constants.S_IRWXO File mode indicating readable, writable and executable by others.
- * @property {integer} constants.S_IROTH File mode indicating readable by others.
- * @property {integer} constants.S_IWOTH File mode indicating writable by others.
- * @property {integer} constants.S_IXOTH File mode indicating executable by others.
+ * @property {number} constants.F_OK Flag indicating that the file is visible to the calling process.
+ * @property {number} constants.R_OK Flag indicating that the file can be read by the calling process.
+ * @property {number} constants.W_OK Flag indicating that the file can be written by the calling process.
+ * @property {number} constants.X_OK Flag indicating that the file can be executed by the calling process.
+ * @property {number} constants.O_RDONLY Flag indicating to open a file for read-only access.
+ * @property {number} constants.O_WRONLY Flag indicating to open a file for write-only access.
+ * @property {number} constants.O_RDWR Flag indicating to open a file for read-write access.
+ * @property {number} constants.O_CREAT Flag indicating to create the file if it does not already exist.
+ * @property {number} constants.O_EXCL Flag indicating that opening a file should fail if the O_CREAT flag is set and the file already exists.
+ * @property {number} constants.O_NOCTTY Flag indicating that if path identifies a terminal device, opening the path shall not cause that terminal to become the controlling terminal for the process (if the process does not already have one).
+ * @property {number} constants.O_TRUNC Flag indicating that if the file exists and is a regular file, and the file is opened successfully for write access, its length shall be truncated to zero.
+ * @property {number} constants.O_APPEND Flag indicating that data will be appended to the end of the file.
+ * @property {number} constants.O_DIRECTORY Flag indicating that the open should fail if the path is not a directory.
+ * @property {number} constants.O_NOATIME Flag indicating reading accesses to the file system will no longer result in an update to the atime information associated with the file. This flag is available on Linux operating systems only.
+ * @property {number} constants.O_NOFOLLOW Flag indicating that the open should fail if the path is a symbolic link.
+ * @property {number} constants.O_SYNC Flag indicating that the file is opened for synchronous I/O.
+ * @property {number} constants.O_SYMLINK Flag indicating to open the symbolic link itself rather than the resource it is pointing to.
+ * @property {number} constants.O_DIRECT When set, an attempt will be made to minimize caching effects of file I/O.
+ * @property {number} constants.O_NONBLOCK Flag indicating to open the file in nonblocking mode when possible.
+ * @property {number} constants.S_IFMT Bit mask used to extract the file type code.
+ * @property {number} constants.S_IFREG File type constant for a regular file.
+ * @property {number} constants.S_IFDIR File type constant for a directory.
+ * @property {number} constants.S_IFCHR File type constant for a character-oriented device file.
+ * @property {number} constants.S_IFBLK File type constant for a block-oriented device file.
+ * @property {number} constants.S_IFIFO File type constant for a FIFO/pipe.
+ * @property {number} constants.S_IFLNK File type constant for a symbolic link.
+ * @property {number} constants.S_IFSOCK File type constant for a socket.
+ * @property {number} constants.S_IRWXU File mode indicating readable, writable and executable by owner.
+ * @property {number} constants.S_IRUSR File mode indicating readable by owner.
+ * @property {number} constants.S_IWUSR File mode indicating writable by owner.
+ * @property {number} constants.S_IXUSR File mode indicating executable by owner.
+ * @property {number} constants.S_IRWXG File mode indicating readable, writable and executable by group.
+ * @property {number} constants.S_IRGRP File mode indicating readable by group.
+ * @property {number} constants.S_IWGRP File mode indicating writable by group.
+ * @property {number} constants.S_IXGRP File mode indicating executable by group.
+ * @property {number} constants.S_IRWXO File mode indicating readable, writable and executable by others.
+ * @property {number} constants.S_IROTH File mode indicating readable by others.
+ * @property {number} constants.S_IWOTH File mode indicating writable by others.
+ * @property {number} constants.S_IXOTH File mode indicating executable by others.
  */
 
 /**
@@ -143,7 +143,7 @@ for (const [key, value] of Object.entries(fs)) {
 /**
  * Identical to {@link https://nodejs.org/api/fs.html#fs_class_fs_readstream|fs.ReadStream}.
  * @class ReadStream
- * @property {integer} bytesRead The number of bytes read so far
+ * @property {number} bytesRead The number of bytes read so far
  * @property {string|Buffer} path The file the stream is reading from
  * @fires ReadStream#close
  * @fires ReadStream#open
@@ -158,14 +158,14 @@ for (const [key, value] of Object.entries(fs)) {
 /**
  * Emitted when the readstream's file is opened.
  * @event ReadStream#open
- * @property {integer} fd The file discriptor.
+ * @property {number} fd The file discriptor.
  * @instance
  */
 
 /**
  * Identical to {@link https://nodejs.org/api/fs.html#fs_class_fs_writestream|fs.WriteStream}.
  * @class WriteStream
- * @property {integer} bytesWritten The number of bytes written so far
+ * @property {number} bytesWritten The number of bytes written so far
  * @property {string|Buffer} path The file the stream is reading from
  * @fires WriteStream#close
  * @fires WriteStream#open
@@ -180,7 +180,7 @@ for (const [key, value] of Object.entries(fs)) {
 /**
  * Emitted when the readstream's file is opened.
  * @event WriteStream#open
- * @property {integer} fd The file discriptor.
+ * @property {number} fd The file discriptor.
  * @instance
  */
 
@@ -189,7 +189,7 @@ for (const [key, value] of Object.entries(fs)) {
  * @function access
  * @memberof fsn/fs
  * @param  {string|Buffer|URL} path The path to be checked
- * @param  {integer} [mode] The accessibility checks to be performed
+ * @param  {number} [mode] The accessibility checks to be performed
  * @return {Promise<void>}
  */
 
@@ -197,7 +197,7 @@ for (const [key, value] of Object.entries(fs)) {
  * @typedef AppendFileOptions
  * @memberof fsn/fs
  * @property {string} [encoding = 'utf8'] The file encoding
- * @property {integer} [mode = 0o666] The chmod
+ * @property {number} [mode = 0o666] The chmod
  * @property {string} [flag = 'a'] The flag
  */
 
@@ -216,7 +216,7 @@ for (const [key, value] of Object.entries(fs)) {
  * @function chmod
  * @memberof fsn/fs
  * @param  {string|Buffer|URL} path File or directory path
- * @param  {integer} mode The chmod to be applied
+ * @param  {number} mode The chmod to be applied
  * @return {Promise<void>}
  */
 
@@ -225,8 +225,8 @@ for (const [key, value] of Object.entries(fs)) {
  * @function chown
  * @memberof fsn/fs
  * @param  {string|Buffer|URL} path File or directory path
- * @param  {integer} uid The new owner id
- * @param  {integer} gid The new group id
+ * @param  {number} uid The new owner id
+ * @param  {number} gid The new group id
  * @return {Promise<void>}
  */
 
@@ -234,7 +234,7 @@ for (const [key, value] of Object.entries(fs)) {
  * Identical to {@link https://nodejs.org/api/fs.html#fs_fs_close_fd_callback|fs.close} but returns a promise instead.
  * @function close
  * @memberof fsn/fs
- * @param  {integer} fd The file descriptor
+ * @param  {number} fd The file descriptor
  * @return {Promise<void>}
  */
 
@@ -243,11 +243,11 @@ for (const [key, value] of Object.entries(fs)) {
  * @memberof fsn/fs
  * @property {string} [flags = 'r'] The flags to use
  * @property {string} [defaultEncoding = null] The encoding to use
- * @property {integer} [fd = null] The file descriptor
- * @property {integer} [mode = 0o666] The chmod to use
+ * @property {number} [fd = null] The file descriptor
+ * @property {number} [mode = 0o666] The chmod to use
  * @property {boolean} [autoClose = true] If the stream should auto close
- * @property {integer} [start] The starting spot
- * @property {integer} [end] The ending spot
+ * @property {number} [start] The starting spot
+ * @property {number} [end] The ending spot
  */
 
 /**
@@ -264,10 +264,10 @@ for (const [key, value] of Object.entries(fs)) {
  * @memberof fsn/fs
  * @property {string} [flags = 'w'] The flags to use
  * @property {string} [defaultEncoding = 'utf8'] The encoding to use
- * @property {integer} [fd = null] The file descriptor
- * @property {integer} [mode = 0o666] The chmod to use
+ * @property {number} [fd = null] The file descriptor
+ * @property {number} [mode = 0o666] The chmod to use
  * @property {boolean} [autoClose = true] If the stream should auto close
- * @property {integer} [start] The starting spot
+ * @property {number} [start] The starting spot
  */
 
 /**
@@ -292,8 +292,8 @@ for (const [key, value] of Object.entries(fs)) {
  * Identical to {@link https://nodejs.org/api/fs.html#fs_fs_fchmod_fd_mode_callback|fs.fchmod} but returns a promise instead.
  * @function fchmod
  * @memberof fsn/fs
- * @param  {integer} fd The file descriptor id
- * @param  {integer} mode The chmod to be applied
+ * @param  {number} fd The file descriptor id
+ * @param  {number} mode The chmod to be applied
  * @return {Promise<void>}
  */
 
@@ -301,9 +301,9 @@ for (const [key, value] of Object.entries(fs)) {
  * Identical to {@link https://nodejs.org/api/fs.html#fs_fs_fchown_fd_uid_gid_callback|fs.fchown} but returns a promise instead.
  * @function fchown
  * @memberof fsn/fs
- * @param  {integer} fd The file descriptor id
- * @param  {integer} uid The new owner id
- * @param  {integer} gid The new group id
+ * @param  {number} fd The file descriptor id
+ * @param  {number} uid The new owner id
+ * @param  {number} gid The new group id
  * @return {Promise<void>}
  */
 
@@ -311,7 +311,7 @@ for (const [key, value] of Object.entries(fs)) {
  * Identical to {@link https://nodejs.org/api/fs.html#fs_fs_fdatasync_fd_callback|fs.fdatasync} but returns a promise instead.
  * @function fdatasync
  * @memberof fsn/fs
- * @param  {integer} fd The file descriptor id
+ * @param  {number} fd The file descriptor id
  * @return {Promise<void>}
  */
 
@@ -319,7 +319,7 @@ for (const [key, value] of Object.entries(fs)) {
  * Identical to {@link https://nodejs.org/api/fs.html#fs_fs_fstat_fd_callback|fs.fstat} but returns a promise instead.
  * @function fstat
  * @memberof fsn/fs
- * @param  {integer} fd The file descriptor id
+ * @param  {number} fd The file descriptor id
  * @return {Promise<Stats>}
  */
 
@@ -327,7 +327,7 @@ for (const [key, value] of Object.entries(fs)) {
  * Identical to {@link https://nodejs.org/api/fs.html#fs_fs_fsync_fd_callback|fs.fsync} but returns a promise instead.
  * @function fsync
  * @memberof fsn/fs
- * @param  {integer} fd The file descriptor id
+ * @param  {number} fd The file descriptor id
  * @return {Promise<void>}
  */
 
@@ -335,8 +335,8 @@ for (const [key, value] of Object.entries(fs)) {
  * Identical to {@link https://nodejs.org/api/fs.html#fs_fs_ftruncate_fd_len_callback|fs.ftruncate} but returns a promise instead.
  * @function ftruncate
  * @memberof fsn/fs
- * @param  {integer} fd The file descriptor id
- * @param  {integer} len The length in bytes to truncate to
+ * @param  {number} fd The file descriptor id
+ * @param  {number} len The length in bytes to truncate to
  * @return {Promise<void>}
  */
 
@@ -344,9 +344,9 @@ for (const [key, value] of Object.entries(fs)) {
  * Identical to {@link https://nodejs.org/api/fs.html#fs_fs_futimes_fd_atime_mtime_callback|fs.futimes} but returns a promise instead.
  * @function futimes
  * @memberof fsn/fs
- * @param  {integer} fd The file descriptor id
- * @param  {integer} atime The atime
- * @param  {integer} mtime The mtime
+ * @param  {number} fd The file descriptor id
+ * @param  {number} atime The atime
+ * @param  {number} mtime The mtime
  * @return {Promise<void>}
  */
 
@@ -355,7 +355,7 @@ for (const [key, value] of Object.entries(fs)) {
  * @function lchmod
  * @memberof fsn/fs
  * @param  {string|Buffer} path The file path
- * @param  {integer} mode The chmod
+ * @param  {number} mode The chmod
  * @return {Promise<void>}
  */
 
@@ -364,8 +364,8 @@ for (const [key, value] of Object.entries(fs)) {
  * @function lchown
  * @memberof fsn/fs
  * @param  {string|Buffer} path The file path
- * @param  {integer} uid The new owner id
- * @param  {integer} gid The new group id
+ * @param  {number} uid The new owner id
+ * @param  {number} gid The new group id
  * @return {Promise<void>}
  */
 
@@ -391,7 +391,7 @@ for (const [key, value] of Object.entries(fs)) {
  * @function mkdir
  * @memberof fsn/fs
  * @param  {string|Buffer|URL} path The file path
- * @param  {integer} [mode = 0o777] The chmod
+ * @param  {number} [mode = 0o777] The chmod
  * @return {Promise<void>}
  */
 
@@ -416,14 +416,14 @@ for (const [key, value] of Object.entries(fs)) {
  * @memberof fsn/fs
  * @param  {string|Buffer|URL} path The file path
  * @param  {string|number} flags The flags for opening the file.
- * @param  {integer} [mode = 0o666] The chmod
+ * @param  {number} [mode = 0o666] The chmod
  * @return {Promise<integer>} The file descriptor
  */
 
 /**
  * @typedef {Object} readObject
  * @memberof fsn/fs
- * @property {integer} bytesRead The numberof bytes read
+ * @property {number} bytesRead The numberof bytes read
  * @property {Buffer|Uint8Array} buffer The buffer containing the data read
  */
 
@@ -431,11 +431,11 @@ for (const [key, value] of Object.entries(fs)) {
  * Identical to {@link https://nodejs.org/api/fs.html#fs_fs_read_fd_buffer_offset_length_position_callback|fs.read} but returns a promise instead.
  * @function read
  * @memberof fsn/fs
- * @param  {integer} fd The file descriptor
+ * @param  {number} fd The file descriptor
  * @param  {Buffer|Uint8Array} buffer The buffer that he data will be written to.
- * @param  {integer} offset The offset in the buffer to start writing at
- * @param  {integer} length The thenumber of bytes to read
- * @param  {integer} position The the postition to begin reading from the file
+ * @param  {number} offset The offset in the buffer to start writing at
+ * @param  {number} length The thenumber of bytes to read
+ * @param  {number} position The the postition to begin reading from the file
  * @return {Promise<readObject>}
  */
 
@@ -515,7 +515,7 @@ for (const [key, value] of Object.entries(fs)) {
  * @function truncate
  * @memberof fsn/fs
  * @param  {string|Buffer} path The file path
- * @param  {integer} len The number of bytes to truncate to
+ * @param  {number} len The number of bytes to truncate to
  * @return {Promise<void>}
  */
 
@@ -541,8 +541,8 @@ for (const [key, value] of Object.entries(fs)) {
  * @function utimes
  * @memberof fsn/fs
  * @param  {string|Buffer|URL} path The file path
- * @param  {integer} atime The atime
- * @param  {integer} mtime The mtime
+ * @param  {number} atime The atime
+ * @param  {number} mtime The mtime
  * @return {Promise<void>}
  */
 
@@ -568,7 +568,7 @@ for (const [key, value] of Object.entries(fs)) {
  * @typedef watchFileOptions
  * @memberof fsn/fs
  * @property {boolean} [persistent = true] Indicates whether the process should continue to run as long as files are being watched.
- * @property {integer} [interval = 5007] Indicaties how often the target should be polled in milliseconds.
+ * @property {number} [interval = 5007] Indicaties how often the target should be polled in milliseconds.
  */
 
 /**
@@ -585,11 +585,11 @@ for (const [key, value] of Object.entries(fs)) {
  * Identical to {@link https://nodejs.org/api/fs.html#fs_fs_write_fd_buffer_offset_length_position_callback|fs.write} but returns a promise instead.
  * @function write
  * @memberof fsn/fs
- * @param  {integer} fd The file descriptor id
+ * @param  {number} fd The file descriptor id
  * @param  {Buffer|Uint8Array} buffer The buffer to write to file
- * @param  {integer} [offset] The offset in the buffer to start reading at
- * @param  {integer} [length] The the number of bytes to write
- * @param  {integer} [position] The the postition to begin writing to the file
+ * @param  {number} [offset] The offset in the buffer to start reading at
+ * @param  {number} [length] The the number of bytes to write
+ * @param  {number} [position] The the postition to begin writing to the file
  * @return {Promise<void>}
  */
 
@@ -597,7 +597,7 @@ for (const [key, value] of Object.entries(fs)) {
  * @typedef writeOptions
  * @memberof fsn/fs
  * @property {string} [encoding = 'utf8'] The file encoding
- * @property {integer} [mode = 0o666] The chmod
+ * @property {number} [mode = 0o666] The chmod
  * @property {string} [flag = 'w'] The flag
  */
 
