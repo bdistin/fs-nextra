@@ -5,9 +5,9 @@
   "main": "src/index.js",
   "types": "typings/index.d.ts",
   "scripts": {
-    "test": "npm run lint & npm run ava",
+    "test": "npx eslint src test && npx tslint 'typings/*.ts' && npm run ava",
     "docs": "npx jsdoc -c ./.docstrap.json -R README.md",
-    "lint": "npx eslint src test && npx tslint --fix 'typings/*.ts'",
+    "lint": "npx eslint --fix src test && npx tslint --fix 'typings/*.ts'",
     "ava": "npx ava \"test/test.js\" -T 10000"
   },
   "keywords": [
@@ -37,7 +37,9 @@
     "ink-docstrap": "github:bdistin/docstrap",
     "jsdoc": "github:jsdoc3/jsdoc",
     "mock-fs": "^4.4.1",
-    "tsubaki": "^1.2.0"
+	"tsubaki": "^1.2.0",
+	"tslint": "^5.7.0",
+    "typescript": "^2.5.2"
   },
   "repository": {
     "type": "git",
