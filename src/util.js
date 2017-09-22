@@ -150,8 +150,8 @@ exports.startCopy = async (mySource, options) => {
 		return this.copyDir(item.name, options);
 	} else if (stats.isFile() || stats.isCharacterDevice() || stats.isBlockDevice()) {
 		const target = item.name.replace(options.currentPath, options.targetPath.replace('$', '$$$$'));
-		if (await this.isWritable(target)) return copyFile(mySource, join(target, basename(mySource)), options);
-		else if (options.overwrite) return unlink(target).then(() => { copyFile(mySource, join(target, basename(mySource)), options); });
+		if (await this.isWritable(target)) return copyFile(mySource, target.endsWith(basename(mySource)) ? target : join(target, basename(mySource)), options);
+		else if (options.overwrite) return unlink(target).then(() => { copyFile(mySource, join(target, target.endsWith(basename(mySource)) ? target : join(target, basename(mySource))), options); });
 		else if (options.errorOnExist) throw new Error(`${target} already exists`);
 	} else if (stats.isSymbolicLink()) {
 		const target = item.replace(options.currentPath, options.targetPath);
