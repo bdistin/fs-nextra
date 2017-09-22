@@ -1,9 +1,9 @@
-const { sep, resolve, dirname, join, normalize, isAbsolute, relative } = require('path');
+const { sep, resolve, dirname, basename, join, normalize, isAbsolute, relative } = require('path');
 const { promisify } = require('util');
 const { randomBytes } = require('crypto');
 const { tmpdir } = require('os');
 
-const { rmdir, lstat, createReadStream, createWriteStream, unlink, stat, chmod, readdir, readlink, open, futimes, close, mkdir, symlink } = require('./fs');
+const { rmdir, lstat, createReadStream, createWriteStream, unlink, stat, chmod, readdir, readlink, mkdir, symlink, copyFile } = require('./fs');
 
 const remove = require('./nextra/remove');
 const pathExists = require('./nextra/pathExists');
@@ -114,8 +114,8 @@ exports.removeDir = async (myPath, options, originalEr) => rmdir(myPath).catch(e
 });
 
 exports.rmkids = async (myPath, options) => {
-	const files = readdir(myPath);
-	if (files.length === 0) return rmdir(myPath);
+	const files = await readdir(myPath);
+	if (!files.length) return rmdir(myPath);
 	return Promise.all(files.map(file => remove(join(myPath, file), options)))
 		.then(() => rmdir(myPath));
 };
@@ -150,8 +150,8 @@ exports.startCopy = async (mySource, options) => {
 		return this.copyDir(item.name, options);
 	} else if (stats.isFile() || stats.isCharacterDevice() || stats.isBlockDevice()) {
 		const target = item.name.replace(options.currentPath, options.targetPath.replace('$', '$$$$'));
-		if (await this.isWritable(target)) return this.copyFile(item, target, options);
-		else if (options.overwrite) return unlink(target).then(() => { this.copyFile(item, target, options); });
+		if (await this.isWritable(target)) return copyFile(mySource, target.endsWith(basename(mySource)) ? target : join(target, basename(mySource)), options);
+		else if (options.overwrite) return unlink(target).then(() => { copyFile(mySource, join(target, target.endsWith(basename(mySource)) ? target : join(target, basename(mySource))), options); });
 		else if (options.errorOnExist) throw new Error(`${target} already exists`);
 	} else if (stats.isSymbolicLink()) {
 		const target = item.replace(options.currentPath, options.targetPath);
@@ -160,29 +160,6 @@ exports.startCopy = async (mySource, options) => {
 	}
 	throw new Error('FS-NEXTRA: An Unkown error has occured in startCopy.');
 };
-
-exports.copyFile = (file, target, options) => new Promise((res, rej) => {
-	const readStream = createReadStream(file.name);
-	const writeStream = createWriteStream(target, { mode: file.mode });
-
-	readStream.on('error', rej);
-	writeStream.on('error', rej);
-
-	if (options.transform) options.transform(readStream, writeStream, file);
-	else writeStream.on('open', () => { readStream.pipe(writeStream); });
-
-	writeStream.once('close', async () => {
-		const error = await chmod(target, file.mode).catch(err => err);
-		if (error) return rej(error);
-		if (!options.preserveTimestamps) return res();
-		const fd = await open(target, 'r+').catch(err => err);
-		if (fd instanceof Error) return rej(fd);
-		const futimesErr = futimes(fd, file.atime, file.mtime).catch(err => err);
-		const closeErr = close(fd).catch(err => err);
-		if (futimesErr || closeErr) return rej(futimesErr || closeErr);
-		return res();
-	});
-});
 
 exports.mkDir = async (dir, target, options) => {
 	await mkdir(target, dir.mode);
