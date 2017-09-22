@@ -212,7 +212,9 @@ declare module 'fs-nextra' {
 	export function createLink(source: string, destination: string, atomic?: boolean): Promise<void>;
 	export function ensureLink(source: string, destination: string, atomic?: boolean): Promise<void>;
 	export function createFileCopyAtomic(source: string, destination: string, options?: writeOptions|string): Promise<void>;
+	export function ensureFileCopyAtomic(source: string, destination: string, options?: writeOptions|string): Promise<void>;
 	export function createFileCopy(source: string, destination: string, options?: writeOptions|string, atomic?: boolean): Promise<void>;
+	export function ensureFileCopy(source: string, destination: string, options?: writeOptions|string, atomic?: boolean): Promise<void>;
 	export function createFileAtomic(file: string): Promise<void>;
 	export function ensureFileAtomic(file: string): Promise<void>;
 	export function createFile(file: string, atomic?: boolean): Promise<void>;
