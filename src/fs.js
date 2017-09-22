@@ -165,7 +165,7 @@ for (const [key, value] of Object.entries(fs)) {
 /**
  * Identical to {@link https://nodejs.org/api/fs.html#fs_class_fs_writestream|fs.WriteStream}.
  * @class WriteStream
- * @property {integer} bytesRead The number of bytes read so far
+ * @property {integer} bytesWritten The number of bytes written so far
  * @property {string|Buffer} path The file the stream is reading from
  * @fires WriteStream#close
  * @fires WriteStream#open
