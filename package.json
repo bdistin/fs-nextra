@@ -37,8 +37,8 @@
     "ink-docstrap": "github:bdistin/docstrap",
     "jsdoc": "github:jsdoc3/jsdoc",
     "mock-fs": "^4.4.1",
-	"tsubaki": "^1.2.0",
-	"tslint": "^5.7.0",
+    "tsubaki": "^1.2.0",
+    "tslint": "^5.7.0",
     "typescript": "^2.5.2"
   },
   "repository": {
