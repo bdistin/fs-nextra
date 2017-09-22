@@ -54,8 +54,7 @@ module.exports = async function mkdirs(path, options, made = null) {
 					.then(myStat => {
 						if (myStat.isDirectory()) return made;
 						throw err;
-					})
-					.catch(() => { throw err; });
+					});
 			}
 			if (dirname(path) === path) throw err;
 			return mkdirs(dirname(path), options)

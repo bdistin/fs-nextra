@@ -1,6 +1,6 @@
 const { resolve, dirname } = require('path');
 
-const { throwErr, setTimeoutPromise, moveAcrossDevice } = require('../util');
+const { setTimeoutPromise, moveAcrossDevice } = require('../util');
 const { access, rename, link, unlink } = require('../fs');
 
 const remove = require('./remove');
@@ -26,7 +26,7 @@ module.exports = async function move(source, destination, options) {
 	const shouldMkdirp = 'mkdirp' in options ? options.mkdirp : true;
 	const overwrite = options.overwrite || options.clobber || false;
 
-	if (shouldMkdirp) await mkdirs(dirname(destination)).catch(throwErr);
+	if (shouldMkdirp) await mkdirs(dirname(destination));
 
 	if (resolve(source) === resolve(destination)) {
 		return access(source);
@@ -34,7 +34,7 @@ module.exports = async function move(source, destination, options) {
 		return rename(source, destination)
 			.catch(async (err) => {
 				if (err.code === 'ENOTEMPTY' || err.code === 'EEXIST') {
-					await remove(destination).catch(throwErr);
+					await remove(destination);
 					options.overwrite = false;
 					return move(source, destination, options);
 				}
@@ -42,7 +42,7 @@ module.exports = async function move(source, destination, options) {
 				// Windows
 				if (err.code === 'EPERM') {
 					await setTimeoutPromise(200);
-					await remove(destination).catch(throwErr);
+					await remove(destination);
 					options.overwrite = false;
 					return move(source, destination, options);
 				}

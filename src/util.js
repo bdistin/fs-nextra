@@ -1,9 +1,9 @@
-const { sep, resolve, dirname, join, normalize, isAbsolute, relative } = require('path');
+const { sep, resolve, dirname, basename, join, normalize, isAbsolute, relative } = require('path');
 const { promisify } = require('util');
 const { randomBytes } = require('crypto');
 const { tmpdir } = require('os');
 
-const { rmdir, lstat, createReadStream, createWriteStream, unlink, stat, chmod, readdir, readlink, open, futimes, close, mkDir, symlink } = require('./fs');
+const { rmdir, lstat, createReadStream, createWriteStream, unlink, stat, chmod, readdir, readlink, mkdir, symlink, copyFile } = require('./fs');
 
 const remove = require('./nextra/remove');
 const pathExists = require('./nextra/pathExists');
@@ -13,8 +13,6 @@ exports.o777 = 0o0777;
 exports.isWindows = process.platform === 'win32';
 
 exports.setTimeoutPromise = promisify(setTimeout);
-
-exports.throwErr = err => { throw err; };
 
 exports.stripBom = (content) => {
 	if (Buffer.isBuffer(content)) content = content.toString('utf8');
@@ -46,7 +44,7 @@ exports.symlinkPaths = async (srcpath, dstpath) => {
 };
 
 exports.moveAcrossDevice = async (source, dest, overwrite) => {
-	const stats = await stat(source).catch(this.throwErr);
+	const stats = await stat(source);
 	if (stats.isDirectory()) return this.moveDirAcrossDevice(source, dest, overwrite);
 	return this.moveFileAcrossDevice(source, dest, overwrite);
 };
@@ -80,8 +78,8 @@ exports.moveFileAcrossDevice = (source, dest, overwrite) => new Promise((res, re
 
 exports.moveDirAcrossDevice = async (source, dest, overwrite) => {
 	const options = { overwrite: false };
-	if (overwrite) await remove(dest).catch(this.throwErr);
-	await this.ncp(source, dest, options).catch(this.throwErr);
+	if (overwrite) await remove(dest);
+	await this.ncp(source, dest, options);
 	return remove(source);
 };
 
@@ -116,8 +114,8 @@ exports.removeDir = async (myPath, options, originalEr) => rmdir(myPath).catch(e
 });
 
 exports.rmkids = async (myPath, options) => {
-	const files = readdir(myPath).catch(this.throwErr);
-	if (files.length === 0) return rmdir(myPath);
+	const files = await readdir(myPath);
+	if (!files.length) return rmdir(myPath);
 	return Promise.all(files.map(file => remove(join(myPath, file), options)))
 		.then(() => rmdir(myPath));
 };
@@ -137,7 +135,7 @@ exports.ncp = async (source, dest, options = {}) => {
 exports.startCopy = async (mySource, options) => {
 	if (options.filter && !options.filter(mySource, options.targetPath)) return null;
 	const myStat = options.dereference ? stat : lstat;
-	const stats = await myStat(mySource).catch(this.throwErr);
+	const stats = await myStat(mySource);
 	const item = {
 		name: mySource,
 		mode: stats.mode,
@@ -149,61 +147,38 @@ exports.startCopy = async (mySource, options) => {
 	if (stats.isDirectory()) {
 		const target = item.name.replace(options.currentPath, options.targetPath.replace('$', '$$$$'));
 		if (await this.isWritable(target)) return this.mkDir(item, target, options);
-		return this.copyDir(item.name);
+		return this.copyDir(item.name, options);
 	} else if (stats.isFile() || stats.isCharacterDevice() || stats.isBlockDevice()) {
 		const target = item.name.replace(options.currentPath, options.targetPath.replace('$', '$$$$'));
-		if (await this.isWritable(target)) return this.copyFile(item, target, options);
-		else if (options.overwrite) return unlink(target).then(() => { this.copyFile(item, target, options); });
+		if (await this.isWritable(target)) return copyFile(mySource, target.endsWith(basename(mySource)) ? target : join(target, basename(mySource)), options);
+		else if (options.overwrite) return unlink(target).then(() => { copyFile(mySource, join(target, target.endsWith(basename(mySource)) ? target : join(target, basename(mySource))), options); });
 		else if (options.errorOnExist) throw new Error(`${target} already exists`);
 	} else if (stats.isSymbolicLink()) {
 		const target = item.replace(options.currentPath, options.targetPath);
-		const resolvedPath = await readlink(item).catch(this.throwErr);
+		const resolvedPath = await readlink(item);
 		return this.checkLink(resolvedPath, target, options);
 	}
 	throw new Error('FS-NEXTRA: An Unkown error has occured in startCopy.');
 };
 
-exports.copyFile = (file, target, options) => new Promise((res, rej) => {
-	const readStream = createReadStream(file.name);
-	const writeStream = createWriteStream(target, { mode: file.mode });
-
-	readStream.on('error', rej);
-	writeStream.on('error', rej);
-
-	if (options.transform) options.transform(readStream, writeStream, file);
-	else writeStream.on('open', () => { readStream.pipe(writeStream); });
-
-	writeStream.once('close', async () => {
-		const error = await chmod(target, file.mode).catch(err => err);
-		if (error) return rej(error);
-		if (!options.preserveTimestamps) return res();
-		const fd = await open(target, 'r+').catch(err => err);
-		if (fd instanceof Error) return rej(fd);
-		const futimesErr = futimes(fd, file.atime, file.mtime).catch(err => err);
-		const closeErr = close(fd).catch(err => err);
-		if (futimesErr || closeErr) return rej(futimesErr || closeErr);
-		return res();
-	});
-});
-
 exports.mkDir = async (dir, target, options) => {
-	await mkDir(target, dir.mode).catch(this.throwErr);
-	await chmod(target, dir.mode).catch(this.throwErr);
+	await mkdir(target, dir.mode);
+	await chmod(target, dir.mode);
 	return this.copyDir(dir.name, options);
 };
 
 exports.copyDir = async (dir, options) => {
-	const items = await readdir(dir).catch(this.throwErr);
+	const items = await readdir(dir);
 	return Promise.all(items.map(item => this.startCopy(join(dir, item), options)));
 };
 
 exports.checkLink = async (resolvedPath, target, options) => {
 	if (options.dereference) resolvedPath = resolve(options.basePath, resolvedPath);
 	if (await this.isWritable(target)) return symlink(resolvedPath, target);
-	let targetDest = await readlink(target).catch(this.throwErr);
+	let targetDest = await readlink(target);
 	if (options.dereference) targetDest = resolve(options.basePath, targetDest);
 	if (targetDest === resolvedPath) return null;
-	await unlink(target).catch(this.throwErr);
+	await unlink(target);
 	return symlink(resolvedPath, target);
 };
 

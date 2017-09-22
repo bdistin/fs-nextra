@@ -1,8 +1,11 @@
 /** @namespace fsn/nextra */
 const nextra = {
 	copy: require('./nextra/copy'),
+	copyFileAtomic: require('./nextra/copyFileAtomic'),
 	createFile: require('./nextra/createFile'),
 	createFileAtomic: require('./nextra/createFileAtomic'),
+	createFileCopy: require('./nextra/createFileCopy'),
+	createFileCopyAtomic: require('./nextra/createFileCopyAtomic'),
 	createLink: require('./nextra/createLink'),
 	createLinkAtomic: require('./nextra/createLinkAtomic'),
 	createSymlink: require('./nextra/createSymlink'),
@@ -12,6 +15,8 @@ const nextra = {
 	ensureDir: require('./nextra/mkdirs'),
 	ensureFile: require('./nextra/createFile'),
 	ensureFileAtomic: require('./nextra/createFileAtomic'),
+	ensureFileCopy: require('./nextra/createFileCopy'),
+	ensureFileCopyAtomic: require('./nextra/createFileCopyAtomic'),
 	ensureLink: require('./nextra/createLink'),
 	ensureLinkAtomic: require('./nextra/createLinkAtomic'),
 	ensureSymlink: require('./nextra/createSymlink'),
