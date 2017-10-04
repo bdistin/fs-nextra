@@ -7,10 +7,11 @@
   "scripts": {
     "test": "npx ava",
 	"test:lint": "npx eslint src test && npx tslint 'typings/*.ts'",
-	"test:coverage": "npx nyc npm test && npx nyc check-coverage --lines 50 --functions 50 --branches 50",
+	"test:coverage": "npx run coverage && npx nyc check-coverage --lines 50 --functions 50 --branches 50",
+	"coverage": "npx nyc npm test",
+	"coveralls": "npx nyc report --reporter=text-lcov | coveralls",
 	"docs": "npx jsdoc -c ./.docstrap.json -R README.md",
-	"lint": "npx eslint --fix src test && npx tslint --fix 'typings/*.ts'",
-	"coveralls": "npx nyc report --reporter=text-lcov | coveralls"
+	"lint": "npx eslint --fix src test && npx tslint --fix 'typings/*.ts'"
   },
   "keywords": [
     "atomics",

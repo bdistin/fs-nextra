@@ -281,22 +281,27 @@ ava('linkAtomic', async test => {
 // move
 
 ava('move', async test => {
+	test.plan(2);
+
 	const move = resolve(dir, 'move.txt');
 	await nextra.move(files.move, move, { overwrite: true });
-	let oldFile = true;
-	let newFile = true;
-	try {
-		await fs.accessAsync(files.move);
-	} catch (err) {
-		oldFile = false;
-	}
-	try {
-		await fs.accessAsync(move);
-	} catch (err) {
-		newFile = false;
-	}
 
-	test.true(!oldFile && newFile);
+	test.throws(fs.accessAsync(files.move));
+	test.notThrows(fs.accessAsync(move));
+});
+
+ava('move (self)', async test => {
+	test.deepEqual(await nextra.move(files.move, files.move, { overwrite: true }) === await fs.accessAsync(files.move));
+});
+
+ava('move (no overwrite)', async test => {
+	test.plan(2);
+
+	const move = resolve(dir, 'move.txt');
+	await nextra.move(files.move, move, { overwrite: false });
+
+	test.throws(fs.accessAsync(files.move));
+	test.notThrows(fs.accessAsync(move));
 });
 
 // outputFile
@@ -415,8 +420,13 @@ ava('pathExists (file false)', async test => {
 
 // readJSON
 
-ava('readJSON', async test => {
+ava('readJSON (standard)', async test => {
 	const readJSON = await nextra.readJSON(files.readJSON);
+	test.true(readJSON.validate);
+});
+
+ava('readJSON (string options)', async test => {
+	const readJSON = await nextra.readJSON(files.readJSON, 'utf8');
 	test.true(readJSON.validate);
 });
 
@@ -459,6 +469,14 @@ ava('writeJSON', async test => {
 	const file = resolve(dir, 'file.json');
 	const obj = { test: 'passed' };
 	await nextra.writeJSON(file, obj);
+
+	test.deepEqual(JSON.parse(await fs.readFileAsync(file, 'utf8')), obj);
+});
+
+ava('writeJSON (atomic shortcut)', async test => {
+	const file = resolve(dir, 'file.json');
+	const obj = { test: 'passed' };
+	await nextra.writeJSON(file, obj, true);
 
 	test.deepEqual(JSON.parse(await fs.readFileAsync(file, 'utf8')), obj);
 });
