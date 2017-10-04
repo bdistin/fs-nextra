@@ -7,7 +7,7 @@ jobs:
     - stage: lint
       script: npm run test:lint
     - stage: coverage
-      script: npm ./scripts/.travis-coverage.sh
+      script: bash ./scripts/.travis-coverage.sh
     - stage: deploy
       script: bash ./scripts/.travis-deploy.sh
 cache:
