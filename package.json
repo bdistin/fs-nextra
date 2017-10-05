@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "types": "typings/index.d.ts",
   "scripts": {
-    "test": "npx ava",
+    "test": "npx ava test/*.js",
     "test:lint": "npx eslint src test && npx tslint 'typings/*.ts'",
     "test:coverage": "npm run coverage && npx nyc check-coverage --lines 50 --functions 50 --branches 50",
     "coverage": "npx nyc npm test",
