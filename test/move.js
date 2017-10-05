@@ -3,7 +3,7 @@ const { fs, tempFileLoc, tempFile } = require('./lib');
 const nextra = require('../src');
 
 ava('standard usage', async test => {
-	test.plan(2);
+	test.plan(1);
 	const existing = tempFile();
 	const move = tempFileLoc();
 	await nextra.move(existing, move, { overwrite: true });
@@ -18,7 +18,7 @@ ava('self', async test => {
 });
 
 ava('no overwrite', async test => {
-	test.plan(2);
+	test.plan(1);
 	const existing = tempFile();
 	const move = tempFileLoc();
 	await nextra.move(existing, move, { overwrite: false });

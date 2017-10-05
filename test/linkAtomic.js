@@ -2,7 +2,7 @@ const ava = require('ava');
 const { fs, tempFile, tempFileLoc } = require('./lib');
 const nextra = require('../src');
 
-ava.skip('Standard Usage', async test => {
+ava('Standard Usage', async test => {
 	const newFile = tempFileLoc();
 	await nextra.linkAtomic(tempFile(), newFile);
 
