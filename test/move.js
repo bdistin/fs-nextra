@@ -8,8 +8,8 @@ ava('standard usage', async test => {
 	const move = tempFileLoc();
 	await nextra.move(existing, move, { overwrite: true });
 
-	test.notThrows(await fs.accessAsync(move));
-	test.throws(await fs.accessAsync(existing));
+	await test.notThrows(fs.accessAsync(move));
+	await test.throws(fs.accessAsync(existing));
 });
 
 ava('self', async test => {
@@ -23,6 +23,6 @@ ava('no overwrite', async test => {
 	const move = tempFileLoc();
 	await nextra.move(existing, move, { overwrite: false });
 
-	test.notThrows(await fs.accessAsync(move));
-	test.throws(await fs.accessAsync(existing));
+	await test.notThrows(fs.accessAsync(move));
+	await test.throws(fs.accessAsync(existing));
 });
