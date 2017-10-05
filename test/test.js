@@ -69,9 +69,34 @@ ava.after.always(test => {
 
 // Copy
 
-ava.skip('copy', async test => {
-	const copy = resolve(dir, 'copied');
+ava('copy (file)', async test => {
+	const copy = resolve(dir, 'copy.txt');
 	await nextra.copy(files.copy, copy);
+
+	const stats = await fs.statAsync(copy);
+	test.true(stats.isFile());
+});
+
+ava('copy (dir)', async test => {
+	await nextra.copy(files.emptyDir.full, files.emptyDir.empty);
+
+	const stats = await fs.statAsync(resolve(files.emptyDir.empty, 'file.txt'));
+	test.true(stats.isFile());
+});
+
+ava('copy (symlink)', async test => {
+	const copy = resolve(dir, 'copied');
+	await nextra.copy(files.createSymlink.src, copy);
+
+	const stats = await fs.lstatAsync(copy);
+	test.true(stats.isSymbolicLink());
+});
+
+// CopyFileAtomic
+
+ava('copyFileAtomic', async test => {
+	const copy = resolve(dir, 'copied');
+	await nextra.copyFileAtomic(files.copy, copy);
 
 	const stats = await fs.statAsync(copy);
 	test.true(stats.isFile());
@@ -122,6 +147,51 @@ ava('createFileAtomic (new)', async test => {
 ava('createFileAtomic (new recursive)', async test => {
 	const file = resolve(dir, 'createFileNew2', 'createFileNew3');
 	await nextra.createFileAtomic(file);
+
+	const stats = await fs.statAsync(file);
+	test.true(stats.isFile());
+});
+
+// createFileCopy
+
+ava('createFileCopy (new)', async test => {
+	const file = resolve(dir, 'createFileNew.txt');
+	await nextra.createFile(files.copy, file);
+
+	const stats = await fs.statAsync(file);
+	test.true(stats.isFile());
+});
+
+ava('createFileCopy (new recursive)', async test => {
+	const file = resolve(dir, 'createFileNew2', 'createFileNew3.txt');
+	await nextra.createFile(files.copy, file);
+
+	const stats = await fs.statAsync(file);
+	test.true(stats.isFile());
+});
+
+
+ava('createFileCopy (atomic shortcut)', async test => {
+	const file = resolve(dir, 'createFileNew.txt');
+	await nextra.createFile(files.copy, file, true);
+
+	const stats = await fs.statAsync(file);
+	test.true(stats.isFile());
+});
+
+// createFileCopyAtomic
+
+ava('createFileCopyAtomic (new)', async test => {
+	const file = resolve(dir, 'createFileNew.txt');
+	await nextra.createFileCopyAtomic(files.copy, file);
+
+	const stats = await fs.statAsync(file);
+	test.true(stats.isFile());
+});
+
+ava('createFileCopyAtomic (new recursive)', async test => {
+	const file = resolve(dir, 'createFileNew2', 'createFileNew3.txt');
+	await nextra.createFileCopyAtomic(files.copy, file);
 
 	const stats = await fs.statAsync(file);
 	test.true(stats.isFile());
@@ -179,14 +249,14 @@ ava('createLinkAtomic (new recursive)', async test => {
 
 // createSymlink
 
-ava.skip('createSymlink (pre-existing)', async test => {
+ava('createSymlink (pre-existing)', async test => {
 	await nextra.createSymlink(files.createSymlink.src, files.createSymlink.dest);
 
 	const stats = await fs.lstatAsync(files.createSymlink.dest);
 	test.true(stats.isSymbolicLink());
 });
 
-ava.skip('createSymlink (new)', async test => {
+ava('createSymlink (new)', async test => {
 	const newDir = resolve(dir, 'createSymlinkNew');
 	await nextra.createSymlink(files.createSymlink.src, newDir);
 
@@ -194,7 +264,7 @@ ava.skip('createSymlink (new)', async test => {
 	test.true(stats.isSymbolicLink());
 });
 
-ava.skip('createSymlink (new recursive)', async test => {
+ava('createSymlink (new recursive)', async test => {
 	const deepDir = resolve(dir, 'createSymlinkNew2', 'createSymlinkNew3');
 	await nextra.createSymlink(files.createSymlink.src, deepDir);
 
@@ -202,26 +272,34 @@ ava.skip('createSymlink (new recursive)', async test => {
 	test.true(stats.isSymbolicLink());
 });
 
-// createSymlinkAtomic
-
-ava.skip('createSymlinkAtomic (pre-existing)', async test => {
-	await nextra.createLinkAtomic(files.createSymlinkAtomic.src, files.createSymlinkAtomic.dest);
-
-	const stats = await fs.lstatAsync(files.createSymlinkAtomic.dest);
-	test.true(stats.isSymbolicLink());
-});
-
-ava.skip('createSymlinkAtomic (new)', async test => {
-	const newDir = resolve(dir, 'createSymlinkAtomicNew.txt');
-	await nextra.createLinkAtomic(files.createSymlinkAtomic.src, newDir);
+ava('createSymlink (atomic shortcut)', async test => {
+	const newDir = resolve(dir, 'createSymlinkNew');
+	await nextra.createSymlink(files.createSymlink.src, newDir);
 
 	const stats = await fs.lstatAsync(newDir);
 	test.true(stats.isSymbolicLink());
 });
 
-ava.skip('createSymlinkAtomic (new recursive)', async test => {
+// createSymlinkAtomic
+
+ava('createSymlinkAtomic (pre-existing)', async test => {
+	await nextra.createSymlinkinkAtomic(files.createSymlinkAtomic.src, files.createSymlinkAtomic.dest);
+
+	const stats = await fs.lstatAsync(files.createSymlinkAtomic.dest);
+	test.true(stats.isSymbolicLink());
+});
+
+ava('createSymlinkAtomic (new)', async test => {
+	const newDir = resolve(dir, 'createSymlinkAtomicNew.txt');
+	await nextra.createSymlinkinkAtomic(files.createSymlinkAtomic.src, newDir);
+
+	const stats = await fs.lstatAsync(newDir);
+	test.true(stats.isSymbolicLink());
+});
+
+ava('createSymlinkAtomic (new recursive)', async test => {
 	const deepDir = resolve(dir, 'createSymlinkAtomicNew2', 'createSymlinkAtomicNew3.txt');
-	await nextra.createLinkAtomic(files.createSymlinkAtomic.src, deepDir);
+	await nextra.createSymlinkinkAtomic(files.createSymlinkAtomic.src, deepDir);
 
 	const stats = await fs.lstatAsync(deepDir);
 	test.true(stats.isSymbolicLink());
@@ -291,7 +369,7 @@ ava('move', async test => {
 });
 
 ava('move (self)', async test => {
-	test.deepEqual(await nextra.move(files.move, files.move, { overwrite: true }) === await fs.accessAsync(files.move));
+	test.deepEqual(await nextra.move(files.move, files.move, { overwrite: true }), await fs.accessAsync(files.move));
 });
 
 ava('move (no overwrite)', async test => {
@@ -324,6 +402,12 @@ ava('outputFile (new recursive)', async test => {
 	await nextra.outputFile(deepDir, 'pass');
 
 	test.is(await fs.readFileAsync(deepDir, 'utf8'), 'pass');
+});
+
+ava('outputFile (atomic shortcut)', async test => {
+	await nextra.outputFile(files.outputFile, 'pass', true);
+
+	test.is(await fs.readFileAsync(files.outputFile, 'utf8'), 'pass');
 });
 
 // outputFileAtomic
@@ -371,6 +455,13 @@ ava('outputJSON (new recursive)', async test => {
 	await nextra.outputJSON(deepDir, obj);
 
 	test.deepEqual(JSON.parse(await fs.readFileAsync(deepDir, 'utf8')), obj);
+});
+
+ava('outputJSON (atomic shortcut)', async test => {
+	const obj = { test: 'passed' };
+	await nextra.outputJSON(files.createFile, obj, true);
+
+	test.deepEqual(JSON.parse(await fs.readFileAsync(files.createFile, 'utf8')), obj);
 });
 
 // outputJSONAtomic
@@ -441,6 +532,11 @@ ava('remove', async test => {
 		pass = true;
 	}
 	test.true(pass);
+});
+
+
+ava('remove (non-existant)', async test => {
+	test.true(await nextra.remove(resolve(dir, 'noexist')) === null);
 });
 
 // symlinkAtomic

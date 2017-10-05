@@ -154,7 +154,7 @@ exports.startCopy = async (mySource, options) => {
 		else if (options.overwrite) return unlink(target).then(() => { copyFile(mySource, join(target, target.endsWith(basename(mySource)) ? target : join(target, basename(mySource))), options); });
 		else if (options.errorOnExist) throw new Error(`${target} already exists`);
 	} else if (stats.isSymbolicLink()) {
-		const target = item.replace(options.currentPath, options.targetPath);
+		const target = mySource.replace(options.currentPath, options.targetPath);
 		const resolvedPath = await readlink(item);
 		return this.checkLink(resolvedPath, target, options);
 	}
