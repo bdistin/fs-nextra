@@ -2,7 +2,7 @@ const ava = require('ava');
 const { fs, tempFile, tempDir } = require('./lib');
 const nextra = require('../src');
 
-ava.skip('emptyDir (empty)', async test => {
+ava('emptyDir (empty)', async test => {
 	const dir = tempDir();
 	await nextra.emptyDir(dir);
 
@@ -10,7 +10,7 @@ ava.skip('emptyDir (empty)', async test => {
 	test.true(contents.length === 0);
 });
 
-ava.skip('emptyDir (full)', async test => {
+ava('emptyDir (full)', async test => {
 	const dir = tempDir();
 	tempFile(dir);
 	await nextra.emptyDir(dir);
