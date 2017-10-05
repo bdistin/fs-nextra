@@ -7,7 +7,7 @@
   "scripts": {
     "test": "npx ava",
     "test:lint": "npx eslint src test && npx tslint 'typings/*.ts'",
-    "test:coverage": "npx run coverage && npx nyc check-coverage --lines 50 --functions 50 --branches 50",
+    "test:coverage": "npm run coverage && npx nyc check-coverage --lines 50 --functions 50 --branches 50",
     "coverage": "npx nyc npm test",
     "codacy": "npx nyc report --reporter=text-lcov | npx codacy-coverage",
     "docs": "npx jsdoc -c ./.docstrap.json -R README.md",
