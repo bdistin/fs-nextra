@@ -31,7 +31,7 @@ ava('Directory to Empty Directory', async test => {
 	test.true(stats.isFile());
 });
 
-ava('Simlink to Empty Directory', async test => {
+ava('Symlink to Empty Directory', async test => {
 	const emptyDir = tempDir();
 	const symlink = tempSymlink();
 	await nextra.copy(symlink, emptyDir);
