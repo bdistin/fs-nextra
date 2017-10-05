@@ -21,7 +21,7 @@ ava('pre-existing file', async test => {
 
 ava('new file with non-existant directories', async test => {
 	const file = tempFile();
-	const newfile = tempDirLoc(tempFileLoc());
+	const newfile = tempFileLoc(tempDirLoc());
 	await nextra.createLinkAtomic(file, newfile);
 
 	const stats = await fs.statAsync(newfile);
