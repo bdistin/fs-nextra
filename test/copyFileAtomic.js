@@ -2,7 +2,7 @@ const ava = require('ava');
 const { fs, tempFile, tempFileLoc } = require('./lib');
 const nextra = require('../src');
 
-ava('copyFileAtomic', async test => {
+ava('Standard Usage', async test => {
 	const copy = tempFileLoc();
 	await nextra.copyFileAtomic(tempFile(), copy);
 

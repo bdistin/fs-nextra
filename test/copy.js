@@ -1,18 +1,27 @@
 const ava = require('ava');
 const { join, basename } = require('path');
-const { fs, tempFile, tempDir, tempSymlink, tempFileLoc } = require('./lib');
+const { fs, tempFile, tempFileLoc, tempDir, tempSymlink } = require('./lib');
 const nextra = require('../src');
 
-ava('copy (file)', async test => {
+ava('File to New File Location', async test => {
+	const newFile = tempFileLoc();
+	const file = tempFile();
+	await nextra.copy(file, newFile);
+
+	const stats = await fs.statAsync(newFile);
+	test.true(stats.isFile());
+});
+
+ava('File to Empty Directory', async test => {
 	const emptyDir = tempDir();
-	const file = tempFileLoc();
-	await nextra.copy(tempFile(), emptyDir);
+	const file = tempFile();
+	await nextra.copy(file, emptyDir);
 
 	const stats = await fs.statAsync(join(emptyDir, basename(file)));
 	test.true(stats.isFile());
 });
 
-ava('copy (dir)', async test => {
+ava('Directory to Empty Directory', async test => {
 	const fullDir = tempDir();
 	const emptyDir = tempDir();
 	const file = tempFile(fullDir);
@@ -22,7 +31,7 @@ ava('copy (dir)', async test => {
 	test.true(stats.isFile());
 });
 
-ava('copy (symlink)', async test => {
+ava('Simlink to Empty Directory', async test => {
 	const emptyDir = tempDir();
 	const symlink = tempSymlink();
 	await nextra.copy(symlink, emptyDir);
