@@ -5,7 +5,7 @@ const nextra = require('../src');
 ava('file', async test => {
 	const file = tempFile();
 	await nextra.remove(file);
-	test.throws(fs.accessAsync(file));
+	await test.throws(fs.accessAsync(file));
 });
 
 ava('non-existant file', async test => {
@@ -15,14 +15,14 @@ ava('non-existant file', async test => {
 ava('empty directory', async test => {
 	const dir = tempDir();
 	await nextra.remove(dir);
-	test.throws(fs.accessAsync(dir));
+	await test.throws(fs.accessAsync(dir));
 });
 
 ava('full directory', async test => {
 	const dir = tempDir();
 	tempFile(dir);
 	await nextra.remove(dir);
-	test.throws(fs.accessAsync(dir));
+	await test.throws(fs.accessAsync(dir));
 });
 
 ava('non-existant directory', async test => {
