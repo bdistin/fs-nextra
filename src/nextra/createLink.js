@@ -2,7 +2,7 @@ const { dirname } = require('path');
 
 const { lstat, link } = require('../fs');
 
-const linkAtomic = require('./writeFileAtomic');
+const linkAtomic = require('./linkAtomic');
 const mkdirs = require('./mkdirs');
 const pathExists = require('./pathExists');
 
