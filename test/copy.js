@@ -24,7 +24,7 @@ ava('File to Existing File', async test => {
 ava('File to Existing File w/ errorOnExist', async test => {
 	const newFile = tempFile();
 	const file = tempFile();
-	await test.throws(nextra.copy(file, newFile, { errorOnExist: true }));
+	await test.throws(nextra.copy(file, newFile, { overwrite: false, errorOnExist: true }));
 });
 
 ava('File to Empty Directory', async test => {
