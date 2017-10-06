@@ -30,7 +30,7 @@ ava('new file with non-existant directories', async test => {
 });
 
 ava('relative source', async test => {
-	const file = './createSymlink.js';
+	const file = './test/createSymlink.js';
 	const newfile = tempFileLoc();
 	await nextra.createSymlink(file, newfile);
 
