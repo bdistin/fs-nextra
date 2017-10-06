@@ -1,14 +1,17 @@
 {
   "name": "fs-nextra",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Node.js V8 native fs enhanced with util.promisify and standard extra methods.",
   "main": "src/index.js",
   "types": "typings/index.d.ts",
   "scripts": {
-    "test": "npx eslint src test && npx tslint 'typings/*.ts' && npm run ava",
+    "test": "npx ava test/*.js",
+    "test:lint": "npx eslint src test && npx tslint 'typings/*.ts'",
+    "test:coverage": "npm run coverage && npx nyc check-coverage --lines 60 --functions 60 --branches 60",
+    "coverage": "npx nyc npm test",
+    "codacy": "npx nyc report --reporter=text-lcov | npx codacy-coverage",
     "docs": "npx jsdoc -c ./.docstrap.json -R README.md",
-    "lint": "npx eslint --fix src test && npx tslint --fix 'typings/*.ts'",
-    "ava": "npx ava \"test/test.js\" -T 10000"
+    "lint": "npx eslint --fix src test && npx tslint --fix 'typings/*.ts'"
   },
   "keywords": [
     "atomics",
@@ -33,12 +36,14 @@
   },
   "devDependencies": {
     "ava": "^0.22.0",
+    "codacy-coverage": "^2.0.3",
     "eslint": "^4.6.1",
     "ink-docstrap": "github:bdistin/docstrap",
     "jsdoc": "github:jsdoc3/jsdoc",
     "mock-fs": "^4.4.1",
-    "tsubaki": "^1.2.0",
+    "nyc": "^11.2.1",
     "tslint": "^5.7.0",
+    "tsubaki": "^1.2.0",
     "typescript": "^2.5.2"
   },
   "repository": {

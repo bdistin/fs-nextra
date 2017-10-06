@@ -28,7 +28,7 @@ const pathExists = require('./pathExists');
 module.exports = async function outputJSON(file, data, options, atomic = false) {
 	if (typeof options === 'boolean') {
 		atomic = options;
-		options = null;
+		options = {};
 	}
 	const dir = dirname(file);
 	if (!await pathExists(dir)) await mkdirs(dir);

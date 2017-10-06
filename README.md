@@ -7,9 +7,10 @@ FS-Nextra
 [![npm](https://img.shields.io/npm/dt/fs-nextra.svg?maxAge=3600)](https://www.npmjs.com/package/fs-nextra)
 
 [![codacy](https://api.codacy.com/project/badge/Grade/6bcb7d5133c94dd6902acb5ef626ff27)](https://www.codacy.com/app/dirigeants/fs-nextra?utm_source=github.com&utm_medium=referral&utm_content=bdistin/fs-nextra&utm_campaign=badger)
+[![Codacy Badge](https://api.codacy.com/project/badge/Coverage/6bcb7d5133c94dd6902acb5ef626ff27)](https://www.codacy.com/app/dirigeants/fs-nextra?utm_source=github.com&utm_medium=referral&utm_content=bdistin/fs-nextra&utm_campaign=Badge_Coverage)
 [![travic-ci](https://travis-ci.org/bdistin/fs-nextra.svg?branch=master)](https://travis-ci.org/bdistin/fs-nextra)
-[![Greenkeeper badge](https://badges.greenkeeper.io/bdistin/fs-nextra.svg)](https://greenkeeper.io/)
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/bdistin/fs-nextra.svg)](https://greenkeeper.io/)
 [![david](https://david-dm.org/bdistin/fs-nextra.svg)](https://david-dm.org/bdistin/fs-nextra)
 [![david](https://david-dm.org/bdistin/fs-nextra/dev-status.svg)](https://david-dm.org/bdistin/fs-nextra?type=dev)
 

@@ -3,9 +3,10 @@
 node_modules/
 test/
 docs/
+scripts/
 .docstrap.json
 .eslintrc.json
+tslint.json
 .travis.yml
-.travis-deploy.sh
 package-lock.json
 README.md
