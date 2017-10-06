@@ -65,6 +65,15 @@ ava('Symlink to Empty Directory', async test => {
 	test.true(stats.isSymbolicLink());
 });
 
+ava('Symlink to Existing Symlink', async test => {
+	const newfile = tempSymlink();
+	const symlink = tempSymlink();
+	await nextra.copy(symlink, newfile);
+
+	const stats = await fs.lstatAsync(newfile);
+	test.true(stats.isSymbolicLink());
+});
+
 ava('Duplicated Directories', async test => {
 	const dir = tempDir();
 	tempFile(dir);
