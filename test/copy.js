@@ -12,6 +12,21 @@ ava('File to New File Location', async test => {
 	test.true(stats.isFile());
 });
 
+ava('File to Existing File', async test => {
+	const newFile = tempFile();
+	const file = tempFile();
+	await nextra.copy(file, newFile);
+
+	const stats = await fs.statAsync(newFile);
+	test.true(stats.isFile());
+});
+
+ava('File to Existing File w/ errorOnExist', async test => {
+	const newFile = tempFile();
+	const file = tempFile();
+	await test.throws(nextra.copy(file, newFile, { overwrite: false, errorOnExist: true }));
+});
+
 ava('File to Empty Directory', async test => {
 	const emptyDir = tempDir();
 	const file = tempFile();
@@ -47,6 +62,15 @@ ava('Symlink to Empty Directory', async test => {
 	await nextra.copy(symlink, emptyDir);
 
 	const stats = await fs.lstatAsync(join(emptyDir, basename(symlink)));
+	test.true(stats.isSymbolicLink());
+});
+
+ava('Symlink to Existing Symlink', async test => {
+	const newfile = tempSymlink();
+	const symlink = tempSymlink();
+	await nextra.copy(symlink, newfile);
+
+	const stats = await fs.lstatAsync(newfile);
 	test.true(stats.isSymbolicLink());
 });
 

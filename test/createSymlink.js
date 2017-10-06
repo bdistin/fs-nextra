@@ -29,6 +29,15 @@ ava('new file with non-existant directories', async test => {
 	test.true(stats.isSymbolicLink());
 });
 
+ava('relative source', async test => {
+	const file = './test/createSymlink.js';
+	const newfile = tempFileLoc();
+	await nextra.createSymlink(file, newfile);
+
+	const stats = await fs.lstatAsync(newfile);
+	test.true(stats.isSymbolicLink());
+});
+
 ava('new file (atomic shortcut)', async test => {
 	const file = tempFile();
 	const newfile = tempFileLoc();
