@@ -31,9 +31,9 @@ ava('Directory to Empty Directory', async test => {
 	test.true(stats.isFile());
 });
 
-ava('Directory to new Directory', async test => {
+ava('Directory to new Deep Directory', async test => {
 	const fullDir = tempDir();
-	const emptyDir = tempDirLoc();
+	const emptyDir = tempDirLoc(tempDirLoc());
 	const file = tempFile(fullDir);
 	await nextra.copy(fullDir, emptyDir);
 
