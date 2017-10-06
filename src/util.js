@@ -146,40 +146,42 @@ exports.startCopy = async (mySource, options) => {
 
 	if (stats.isDirectory()) {
 		const target = item.name.replace(options.currentPath, options.targetPath.replace('$', '$$$$'));
-		if (await this.isWritable(target)) return this.mkDir(item, target, options);
-		return this.copyDir(item.name, options);
+		if (this.isSrcKid(item.name, target)) throw new Error('FS-NEXTRA: Copying a parent directory into a child will result in an infinite loop.');
+		if (await this.isWritable(target)) {
+			await mkdir(target, item.name.mode);
+			await chmod(target, item.name.mode);
+		}
+		const items = await readdir(item.name);
+		return Promise.all(items.map(itm => this.startCopy(join(item.name, itm), options)));
 	} else if (stats.isFile() || stats.isCharacterDevice() || stats.isBlockDevice()) {
 		const target = item.name.replace(options.currentPath, options.targetPath.replace('$', '$$$$'));
 		if (await this.isWritable(target)) return copyFile(mySource, target.endsWith(basename(mySource)) ? target : join(target, basename(mySource)), options);
-		else if (options.overwrite) return unlink(target).then(() => { copyFile(mySource, join(target, target.endsWith(basename(mySource)) ? target : join(target, basename(mySource))), options); });
+		else if (options.overwrite) return unlink(target).then(() => copyFile(mySource, target.endsWith(basename(mySource)) ? target : join(target, basename(mySource)), options));
 		else if (options.errorOnExist) throw new Error(`${target} already exists`);
 	} else if (stats.isSymbolicLink()) {
 		const target = mySource.replace(options.currentPath, options.targetPath);
-		const resolvedPath = await readlink(item);
-		return this.checkLink(resolvedPath, target, options);
+		let resolvedPath = await readlink(item);
+		if (options.dereference) resolvedPath = resolve(options.basePath, resolvedPath);
+		if (await this.isWritable(target)) return symlink(resolvedPath, target);
+		let targetDest = await readlink(target);
+		if (options.dereference) targetDest = resolve(options.basePath, targetDest);
+		if (targetDest === resolvedPath) return null;
+		await unlink(target);
+		return symlink(resolvedPath, target);
 	}
 	throw new Error('FS-NEXTRA: An Unkown error has occured in startCopy.');
 };
 
-exports.mkDir = async (dir, target, options) => {
-	await mkdir(target, dir.mode);
-	await chmod(target, dir.mode);
-	return this.copyDir(dir.name, options);
-};
-
-exports.copyDir = async (dir, options) => {
-	const items = await readdir(dir);
-	return Promise.all(items.map(item => this.startCopy(join(dir, item), options)));
-};
-
-exports.checkLink = async (resolvedPath, target, options) => {
-	if (options.dereference) resolvedPath = resolve(options.basePath, resolvedPath);
-	if (await this.isWritable(target)) return symlink(resolvedPath, target);
-	let targetDest = await readlink(target);
-	if (options.dereference) targetDest = resolve(options.basePath, targetDest);
-	if (targetDest === resolvedPath) return null;
-	await unlink(target);
-	return symlink(resolvedPath, target);
+exports.isSrcKid = (src, dest) => {
+	src = resolve(src);
+	dest = resolve(dest);
+	try {
+		return src !== dest &&
+			dest.indexOf(src) > -1 &&
+			dest.split(dirname(src) + sep)[1].split(sep)[0] === basename(src);
+	} catch (err) {
+		return false;
+	}
 };
 
 exports.uuid = () => {
