@@ -12,6 +12,21 @@ ava('File to New File Location', async test => {
 	test.true(stats.isFile());
 });
 
+ava('File to Existing File', async test => {
+	const newFile = tempFile();
+	const file = tempFile();
+	await nextra.copy(file, newFile);
+
+	const stats = await fs.statAsync(newFile);
+	test.true(stats.isFile());
+});
+
+ava('File to Existing File w/ errorOnExist', async test => {
+	const newFile = tempFile();
+	const file = tempFile();
+	await test.throws(nextra.copy(file, newFile, { errorOnExist: true }));
+});
+
 ava('File to Empty Directory', async test => {
 	const emptyDir = tempDir();
 	const file = tempFile();
