@@ -153,7 +153,9 @@ exports.startCopy = async (mySource, options) => {
 		else if (options.overwrite) return unlink(target).then(() => copyFile(mySource, target, options));
 		else if (options.errorOnExist) throw new Error(`${target} already exists`);
 	} else if (stats.isSymbolicLink()) {
-		const target = mySource.replace(options.currentPath, options.targetPath);
+		let target = mySource.replace(options.currentPath, options.targetPath);
+		const tstats = await stat(target).catch(() => null);
+		if (tstats && tstats.isDirectory()) target = join(target, basename(mySource));
 		let resolvedPath = await readlink(mySource);
 		if (options.dereference) resolvedPath = resolve(process.cwd(), resolvedPath);
 		if (await this.isWritable(target)) return symlink(resolvedPath, target);
