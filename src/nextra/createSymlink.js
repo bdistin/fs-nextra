@@ -30,7 +30,7 @@ const symlinkAtomic = require('./symlinkAtomic');
 module.exports = async function createSymlink(source, destination, type, atomic = false) {
 	if (await pathExists(destination)) return null;
 	const relativePath = await symlinkPaths(source, destination);
-	source = relativePath.todestination;
+	source = relativePath.toDst;
 	if (typeof type === 'boolean') {
 		atomic = type;
 		type = undefined;
