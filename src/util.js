@@ -147,8 +147,8 @@ exports.startCopy = async (mySource, options) => {
 		return Promise.all(items.map(item => this.startCopy(join(mySource, item), options)));
 	} else if (stats.isFile() || stats.isCharacterDevice() || stats.isBlockDevice()) {
 		let target = mySource.replace(options.currentPath, options.targetPath.replace('$', '$$$$'));
-		const tstats = await stat(target);
-		if (tstats.isDirectory()) target = join(target, basename(mySource));
+		const tstats = await stat(target).catch(() => null);
+		if (tstats && tstats.isDirectory()) target = join(target, basename(mySource));
 		if (await this.isWritable(target)) return copyFile(mySource, target, options);
 		else if (options.overwrite) return unlink(target).then(() => copyFile(mySource, target, options));
 		else if (options.errorOnExist) throw new Error(`${target} already exists`);
