@@ -35,6 +35,7 @@ const nextra = {
 	readJSON: require('./nextra/readJSON'),
 	readJson: require('./nextra/readJSON'),
 	remove: require('./nextra/remove'),
+	scan: require('./nextra/scan'),
 	symlinkAtomic: require('./nextra/symlinkAtomic'),
 	writeFileAtomic: require('./nextra/writeFileAtomic'),
 	writeJSON: require('./nextra/writeJSON'),
