@@ -9,6 +9,6 @@ const getStat = async (dir, results, level, limit) => {
 	level++;
 	const stats = await lstat(dir);
 	results.set(dir, stats);
-	if (stats.isDirectory() && (typeof limit === 'undefined' || level < limit)) await Promise.all((await readdir(dir)).map(part => getStat(join(dir, part), results)));
+	if (stats.isDirectory() && (typeof limit === 'undefined' || level < limit)) await Promise.all((await readdir(dir)).map(part => getStat(join(dir, part), results, level, limit)));
 	return results;
 };
