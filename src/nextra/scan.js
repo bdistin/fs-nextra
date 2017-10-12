@@ -16,6 +16,6 @@ const { scanDeep } = require('../util');
  * @param  {scanOptions} [options = {}] The options for the scan
  * @return {Promise<Map<string, Stats>>}
  */
-module.exports = async function scan(root, options = {}) {
+module.exports = function scan(root, options = {}) {
 	return scanDeep(resolve(root), new Map(), -1, options);
 };
