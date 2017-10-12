@@ -26,7 +26,7 @@ ava('full directory', async test => {
 });
 
 ava('non-existant directory', async test => {
-	await test.throws(await nextra.scan(tempDirLoc()));
+	await test.throws(nextra.scan(tempDirLoc()));
 });
 
 ava('deep directory', async test => {
