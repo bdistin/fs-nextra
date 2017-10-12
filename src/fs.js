@@ -54,6 +54,16 @@ for (const [key, value] of Object.entries(fs)) {
  */
 
 /**
+ * Identical to {@link https://nodejs.org/api/fs.html#fs_fs_copyfile_src_dest_flags_callback|fs.copyFile} but returns a promise instead.
+ * @function appendFile
+ * @memberof fsn/fs
+ * @param  {string|Buffer|URL} src File path to copy
+ * @param  {string|Buffer|URL} dest Destination to copy to
+ * @param  {number} [flags = 0] modifiers for copy operation.
+ * @return {Promise<void>}
+ */
+
+/**
  * Objects returned from {@link fsn/fs.watch|watch()} are of this type.
  * Identical to {@link https://nodejs.org/api/fs.html#fs_class_fs_fswatcher|fs.FSWatcher}.
  * @class FSWatcher

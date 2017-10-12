@@ -1,13 +1,21 @@
-const { resolve, join } = require('path');
-const { lstat, readdir } = require('../fs');
+const { resolve } = require('path');
+const { scanDeep } = require('../util');
 
+/**
+ * @typedef {object} scanOptions
+ * @memberof fsn/nextra
+ * @property {Function} [filter] A filter function recieving (stats, path) to determin if the returned map should include a given entry
+ * @property {number} [depthLimit] How many directories deep the scan should go (0 is just the children of the passed root directory, no subdirectory files)
+ */
+
+/**
+ * Recursivly scans a directory, returning a map of stats keyed on the full path to the item.
+ * @function scan
+ * @memberof fsn/nextra
+ * @param  {string} root The path to scan
+ * @param  {scanOptions} [options = {}] The options for the scan
+ * @return {Promise<Map<string, Stats>>}
+ */
 module.exports = async function scan(root, options = {}) {
-	return getStat(resolve(root), new Map(), -1, options);
-};
-
-const getStat = async (dir, results, level, options) => {
-	const stats = await lstat(dir);
-	if (!options.filter || options.filter(stats)) results.set(dir, stats);
-	if (stats.isDirectory() && (typeof options.limit === 'undefined' || level < options.limit)) await Promise.all((await readdir(dir)).map(part => getStat(join(dir, part), results, ++level, options)));
-	return results;
+	return scanDeep(resolve(root), new Map(), -1, options);
 };
