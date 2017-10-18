@@ -180,6 +180,15 @@ exports.isSrcKid = (src, dest) => {
 	}
 };
 
+exports.scanDeep = async (dir, results, level, options) => {
+	const stats = await lstat(dir);
+	if (!options.filter || options.filter(stats, dir)) results.set(dir, stats);
+	if (stats.isDirectory() && (typeof options.depthLimit === 'undefined' || level < options.depthLimit)) {
+		await Promise.all((await readdir(dir)).map(part => this.scanDeep(join(dir, part), results, ++level, options)));
+	}
+	return results;
+};
+
 exports.uuid = () => {
 	const id = randomBytes(32).toString('hex');
 	return (Array(32).join(0) + id).slice(-32).replace(/^.{8}|.{4}(?!$)/g, '$&-');

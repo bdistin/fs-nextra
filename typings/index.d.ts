@@ -9,6 +9,7 @@ declare module 'fs-nextra' {
 	export function chmod(path: string|Buffer|URL, mode?: number): Promise<void>;
 	export function chown(path: string|Buffer|URL, uid: number, gid: number): Promise<void>;
 	export function close(fd: number): Promise<void>;
+	export function copyFile(existingPath: string|Buffer|URL, newPath: string|Buffer|URL, flags?: number): Promise<void>;
 	export function createReadStream(path: string|Buffer|URL, options?: readStreamOptions|string): Promise<void>;
 	export function createWriteStream(path: string|Buffer|URL, options?: writeStreamOptions|string): Promise<void>;
 	export function exists(path: string|Buffer|URL): Promise<boolean>;
@@ -186,6 +187,7 @@ declare module 'fs-nextra' {
 	export function writeJSON(file: string, object: Object, options?: jsonOptions, atomic?: boolean): Promise<void>;
 	export function writeFileAtomic(file: string, data: string|Buffer|Uint8Array, options?: writeOptions|string): Promise<void>;
 	export function symlinkAtomic(source: string, destination: string, type?: SymLinkType): Promise<void>;
+	export function scan(path: string, options?: scanOptions): Promise<Map<string, Stats>>;
 	export function remove(path: string, options?: removeOptions): Promise<void>;
 	export function readJson(file: string, options?: readJSONOptions|string): Promise<Object>;
 	export function readJSON(file: string, options?: readJSONOptions|string): Promise<Object>;
@@ -249,6 +251,11 @@ declare module 'fs-nextra' {
 	};
 
 	export type SymLinkType = 'dir'|'file';
+
+	export type scanOptions = {
+		filter?: Function;
+		depthLimit?: number;
+	};
 
 	export type jsonOptions = {
 		replacer: Function;
