@@ -10,8 +10,8 @@ declare module 'fs-nextra' {
 	export function chown(path: string|Buffer|URL, uid: number, gid: number): Promise<void>;
 	export function close(fd: number): Promise<void>;
 	export function copyFile(existingPath: string|Buffer|URL, newPath: string|Buffer|URL, flags?: number): Promise<void>;
-	export function createReadStream(path: string|Buffer|URL, options?: readStreamOptions|string): Promise<void>;
-	export function createWriteStream(path: string|Buffer|URL, options?: writeStreamOptions|string): Promise<void>;
+	export function createReadStream(path: string|Buffer|URL, options?: readStreamOptions|string): Promise<ReadStream>;
+	export function createWriteStream(path: string|Buffer|URL, options?: writeStreamOptions|string): Promise<WriteStream>;
 	export function exists(path: string|Buffer|URL): Promise<boolean>;
 	export function fchmod(fd: number, mode: number): Promise<void>;
 	export function fchown(fd: number, uid: number, gid: number): Promise<void>;
