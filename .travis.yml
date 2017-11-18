@@ -8,7 +8,9 @@ jobs:
       script: npm run test:lint
     - stage: coverage
       script: bash ./scripts/.travis-coverage.sh
-      node_js: "9"
+      node_js:
+        - "8"
+        - "9"
     - stage: deploy
       script: bash ./scripts/.travis-deploy.sh
 cache:
