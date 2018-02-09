@@ -37,7 +37,8 @@
   "devDependencies": {
     "ava": "^0.23.0",
     "codacy-coverage": "^2.0.3",
-    "eslint": "^4.6.1",
+    "eslint": "^4.17.0",
+    "eslint-config-klasa": "github:dirigeants/klasa-lint",
     "ink-docstrap": "github:bdistin/docstrap",
     "jsdoc": "github:jsdoc3/jsdoc",
     "nyc": "^11.2.1",
