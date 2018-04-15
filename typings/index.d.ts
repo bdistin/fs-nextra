@@ -1,4 +1,5 @@
 import { Buffer } from 'buffer';
+import { ReadStream, WriteStream } from 'fs';
 
 declare module 'fs-nextra' {
 
@@ -66,24 +67,6 @@ declare module 'fs-nextra' {
 		public isFile(): boolean;
 		public isSocket(): boolean;
 		public isSymbolicLink(): boolean;
-
-	}
-
-	export class ReadStream {
-
-		public bytesRead: number;
-		public path: string|Buffer;
-		public on(event: 'close', listener: () => void): this;
-		public on(event: 'open', listener: (fd: number) => void): this;
-
-	}
-
-	export class WriteStream {
-
-		public bytesWritten: number;
-		public path: string|Buffer;
-		public on(event: 'close', listener: () => void): this;
-		public on(event: 'open', listener: (fd: number) => void): this;
 
 	}
 
