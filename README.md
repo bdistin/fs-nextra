@@ -21,6 +21,8 @@ Docs
 
 All `fs` methods which return a callback, return a promise instead. All `fs-extra` methods return a promise exclusively. No sync methods are included from either `fs` or `fs-extra`. Requires minimum Node.js v8.5.0.
 
+> Note: If your node version is high enough, fs-nextra will automatically use fs/promises instead of util.promisify-ing fs.
+
 The full documentation can be found here: [fs-nextra.js.org](https://fs-nextra.js.org/).
 
 Credit

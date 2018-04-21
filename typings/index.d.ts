@@ -1,3 +1,6 @@
+import { Buffer } from 'buffer';
+import { ReadStream, WriteStream } from 'fs';
+
 declare module 'fs-nextra' {
 
 	// FS NAMESPACE
@@ -10,8 +13,8 @@ declare module 'fs-nextra' {
 	export function chown(path: string|Buffer|URL, uid: number, gid: number): Promise<void>;
 	export function close(fd: number): Promise<void>;
 	export function copyFile(existingPath: string|Buffer|URL, newPath: string|Buffer|URL, flags?: number): Promise<void>;
-	export function createReadStream(path: string|Buffer|URL, options?: readStreamOptions|string): Promise<void>;
-	export function createWriteStream(path: string|Buffer|URL, options?: writeStreamOptions|string): Promise<void>;
+	export function createReadStream(path: string|Buffer|URL, options?: readStreamOptions|string): ReadStream;
+	export function createWriteStream(path: string|Buffer|URL, options?: writeStreamOptions|string): WriteStream;
 	export function exists(path: string|Buffer|URL): Promise<boolean>;
 	export function fchmod(fd: number, mode: number): Promise<void>;
 	export function fchown(fd: number, uid: number, gid: number): Promise<void>;
@@ -64,24 +67,6 @@ declare module 'fs-nextra' {
 		public isFile(): boolean;
 		public isSocket(): boolean;
 		public isSymbolicLink(): boolean;
-
-	}
-
-	export class ReadStream {
-
-		public bytesRead: number;
-		public path: string|Buffer;
-		public on(event: 'close', listener: () => void): this;
-		public on(event: 'open', listener: (fd: number) => void): this;
-
-	}
-
-	export class WriteStream {
-
-		public bytesWritten: number;
-		public path: string|Buffer;
-		public on(event: 'close', listener: () => void): this;
-		public on(event: 'open', listener: (fd: number) => void): this;
 
 	}
 

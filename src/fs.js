@@ -1,10 +1,20 @@
-const fs = require('fs');
-const { promisify } = require('util');
+try {
+	const fsp = require('fs/promises');
+	const fs = require('fs');
+	const otherMethods = {};
 
-for (const [key, value] of Object.entries(fs)) {
-	if (key.includes('Sync')) continue;
-	if (`${key}Sync` in fs) exports[key] = promisify(value);
-	else exports[key] = value;
+	for (const [key, value] of Object.entries(fs)) if (!key.includes('Sync') && !(`${key}Sync` in fs)) otherMethods[key] = value;
+
+	module.exports = { ...fsp, ...otherMethods };
+} catch (error) {
+	const fs = require('fs');
+	const { promisify } = require('util');
+
+	for (const [key, value] of Object.entries(fs)) {
+		if (key.includes('Sync')) continue;
+		if (`${key}Sync` in fs) exports[key] = promisify(value);
+		else exports[key] = value;
+	}
 }
 
 /* eslint-disable max-len */
