@@ -24,8 +24,8 @@ const { readFile } = require('../fs');
  * @param  {readJSONOptions|string} [options = {}] The options for reading json or the encoding string
  * @returns {Promise<Object>}
  */
-module.exports = async function readJSON(file, options = {}) {
-	if (typeof options === 'string') options = { encoding: options, flags: 'r' };
+module.exports = async function readJSON(file, options = { flag: 'r' }) {
+	if (typeof options === 'string') options = { encoding: options, flag: 'r' };
 	const content = await readFile(file, options);
 	return JSON.parse(stripBom(content), options.reviver);
 };
