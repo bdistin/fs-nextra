@@ -22,10 +22,10 @@ const { readFile } = require('../fs');
  * @memberof fsn/nextra
  * @param  {string} file The file path to the json file
  * @param  {readJSONOptions|string} [options = {}] The options for reading json or the encoding string
- * @return {Promise<Object>}
+ * @returns {Promise<Object>}
  */
-module.exports = async function readJSON(file, options = {}) {
-	if (typeof options === 'string') options = { encoding: options };
+module.exports = async function readJSON(file, options = { flag: 'r' }) {
+	if (typeof options === 'string') options = { encoding: options, flag: 'r' };
 	const content = await readFile(file, options);
 	return JSON.parse(stripBom(content), options.reviver);
 };
