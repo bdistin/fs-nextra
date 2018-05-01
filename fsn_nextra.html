@@ -2742,6 +2742,256 @@ source and destination paths.
             
 <hr>
 <dt>
+    <h4 class="name" id=".ensureDir"><span class="type-signature">&lt;static> </span>ensureDir(path [, options] [, made])</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Recursively makes directories, until the directory passed exists.
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>path</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">The path you wish to make</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>options</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">mkdirsOptions</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">Options for making the directories</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>made</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    null
+                
+                </td>
+            
+
+            <td class="description last">The path in progress, do not set.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<a href="https://github.com/bdistin/fs-nextra/blob/master/src/nextra/mkdirs.js#L12">nextra/mkdirs.js#L12</a>	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    The path made.
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;string></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
     <h4 class="name" id=".ensureFile"><span class="type-signature">&lt;static> </span>ensureFile(file [, atomic])</h4>
     
     
@@ -4732,7 +4982,7 @@ source and destination paths.
 
     
     <div class="description">
-        Recursivly makes directories, until the directory passed exists.
+        Recursively makes directories, until the directory passed exists.
     </div>
     
 
@@ -4982,7 +5232,7 @@ source and destination paths.
 
     
     <div class="description">
-        Recursivly makes directories, until the directory passed exists.
+        Recursively makes directories, until the directory passed exists.
     </div>
     
 
