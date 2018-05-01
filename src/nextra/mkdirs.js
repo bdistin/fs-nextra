@@ -5,7 +5,7 @@ const { stat, mkdir } = require('../fs');
 
 /**
  * @typedef {object} mkdirsOptions
- * @memberof nextra
+ * @memberof fsn/nextra
  * @property {number} [mode = 0o777 & ~process.umask()] The chmod for the directories being made
  */
 
