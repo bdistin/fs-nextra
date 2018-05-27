@@ -7,7 +7,7 @@ const outputFile = require('./outputFile');
  * @param  {string} file The path to the file you want to create
  * @param  {string|Buffer|Uint8Array} data The data to write to file
  * @param  {writeOptions|string} [options] The write options or the encoding string.
- * @return {Promise<void>}
+ * @returns {Promise<void>}
  */
 module.exports = function outputFileAtomic(file, data, options) {
 	return outputFile(file, data, options, true);

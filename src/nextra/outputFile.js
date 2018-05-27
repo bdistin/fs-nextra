@@ -14,7 +14,7 @@ const pathExists = require('./pathExists');
  * @param  {string|Buffer|Uint8Array} data The data to write to file
  * @param  {writeOptions|string} [options] The write options or the encoding string.
  * @param  {boolean} [atomic = false] {description}
- * @return {Promise<void>}
+ * @returns {Promise<void>}
  */
 module.exports = async function outputFile(file, data, options, atomic = false) {
 	if (typeof options === 'boolean') {

@@ -18,7 +18,7 @@ const move = require('./move');
  * @param  {string} source The source path of the file
  * @param  {string} destination The destination path of the file
  * @param  {SymLinkType} [type = 'file'] The type of symlink you are creating
- * @return {Promise<void>} {description}
+ * @returns {Promise<void>} {description}
  */
 module.exports = async function symlinkAtomic(source, destination, type) {
 	const tempPath = tempFile();

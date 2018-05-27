@@ -1,13 +1,10 @@
-try {
-	const fsp = require('fs/promises');
-	const fs = require('fs');
+const fs = require('fs');
+
+if (fs.promises) {
 	const otherMethods = {};
-
 	for (const [key, value] of Object.entries(fs)) if (!key.includes('Sync') && !(`${key}Sync` in fs)) otherMethods[key] = value;
-
-	module.exports = { ...fsp, ...otherMethods };
-} catch (error) {
-	const fs = require('fs');
+	module.exports = { ...fs.promises, ...otherMethods };
+} else {
 	const { promisify } = require('util');
 
 	for (const [key, value] of Object.entries(fs)) {
@@ -70,7 +67,7 @@ try {
  * @param  {string|Buffer|URL} src File path to copy
  * @param  {string|Buffer|URL} dest Destination to copy to
  * @param  {number} [flags = 0] modifiers for copy operation.
- * @return {Promise<void>}
+ * @returns {Promise<void>}
  */
 
 /**
@@ -210,7 +207,7 @@ try {
  * @memberof fsn/fs
  * @param  {string|Buffer|URL} path The path to be checked
  * @param  {number} [mode] The accessibility checks to be performed
- * @return {Promise<void>}
+ * @returns {Promise<void>}
  */
 
 /**
@@ -228,7 +225,7 @@ try {
  * @param  {string|Buffer|number} file Filename or file descriptor
  * @param  {string|Buffer} data The data to be written
  * @param  {AppendFileOptions|string} [options] Options for the append, or the encoding.
- * @return {Promise<void>}
+ * @returns {Promise<void>}
  */
 
 /**
@@ -237,7 +234,7 @@ try {
  * @memberof fsn/fs
  * @param  {string|Buffer|URL} path File or directory path
  * @param  {number} mode The chmod to be applied
- * @return {Promise<void>}
+ * @returns {Promise<void>}
  */
 
 /**
@@ -247,7 +244,7 @@ try {
  * @param  {string|Buffer|URL} path File or directory path
  * @param  {number} uid The new owner id
  * @param  {number} gid The new group id
- * @return {Promise<void>}
+ * @returns {Promise<void>}
  */
 
 /**
@@ -255,7 +252,7 @@ try {
  * @function close
  * @memberof fsn/fs
  * @param  {number} fd The file descriptor
- * @return {Promise<void>}
+ * @returns {Promise<void>}
  */
 
 /**
@@ -276,7 +273,7 @@ try {
  * @memberof fsn/fs
  * @param {string|Buffer|URL} path File or directory path
  * @param {readStreamOptions|string} [options] The stream options or the encoding
- * @return {ReadStream}
+ * @returns {ReadStream}
  */
 
 /**
@@ -296,7 +293,7 @@ try {
  * @memberof fsn/fs
  * @param {string|Buffer|URL} path File or directory path
  * @param {writeStreamOptions|string} [options] The stream options or the encoding
- * @return {WriteStream}
+ * @returns {WriteStream}
  */
 
 /**
@@ -305,7 +302,7 @@ try {
  * @memberof fsn/fs
  * @deprecated Use {@link https://fs-nextra.js.org/fsn_fs.html#.stat__anchor|Stat} or {@link https://fs-nextra.js.org/fsn_nextra.html#.pathExists__anchor|pathExists} instead.
  * @param  {string|Buffer|URL} path The file or directory path
- * @return {Promise<boolean>}
+ * @returns {Promise<boolean>}
  */
 
 /**
@@ -314,7 +311,7 @@ try {
  * @memberof fsn/fs
  * @param  {number} fd The file descriptor id
  * @param  {number} mode The chmod to be applied
- * @return {Promise<void>}
+ * @returns {Promise<void>}
  */
 
 /**
@@ -324,7 +321,7 @@ try {
  * @param  {number} fd The file descriptor id
  * @param  {number} uid The new owner id
  * @param  {number} gid The new group id
- * @return {Promise<void>}
+ * @returns {Promise<void>}
  */
 
 /**
@@ -332,7 +329,7 @@ try {
  * @function fdatasync
  * @memberof fsn/fs
  * @param  {number} fd The file descriptor id
- * @return {Promise<void>}
+ * @returns {Promise<void>}
  */
 
 /**
@@ -340,7 +337,7 @@ try {
  * @function fstat
  * @memberof fsn/fs
  * @param  {number} fd The file descriptor id
- * @return {Promise<Stats>}
+ * @returns {Promise<Stats>}
  */
 
 /**
@@ -348,7 +345,7 @@ try {
  * @function fsync
  * @memberof fsn/fs
  * @param  {number} fd The file descriptor id
- * @return {Promise<void>}
+ * @returns {Promise<void>}
  */
 
 /**
@@ -357,7 +354,7 @@ try {
  * @memberof fsn/fs
  * @param  {number} fd The file descriptor id
  * @param  {number} len The length in bytes to truncate to
- * @return {Promise<void>}
+ * @returns {Promise<void>}
  */
 
 /**
@@ -367,7 +364,7 @@ try {
  * @param  {number} fd The file descriptor id
  * @param  {number} atime The atime
  * @param  {number} mtime The mtime
- * @return {Promise<void>}
+ * @returns {Promise<void>}
  */
 
 /**
@@ -376,7 +373,7 @@ try {
  * @memberof fsn/fs
  * @param  {string|Buffer} path The file path
  * @param  {number} mode The chmod
- * @return {Promise<void>}
+ * @returns {Promise<void>}
  */
 
 /**
@@ -386,7 +383,7 @@ try {
  * @param  {string|Buffer} path The file path
  * @param  {number} uid The new owner id
  * @param  {number} gid The new group id
- * @return {Promise<void>}
+ * @returns {Promise<void>}
  */
 
 /**
@@ -395,7 +392,7 @@ try {
  * @memberof fsn/fs
  * @param  {string|Buffer|URL} existingPath The existing file path
  * @param  {string|Buffer|URL} newPath The new file path
- * @return {Promise<void>}
+ * @returns {Promise<void>}
  */
 
 /**
@@ -403,7 +400,7 @@ try {
  * @function lstat
  * @memberof fsn/fs
  * @param  {string|Buffer|URL} path The file path
- * @return {Promise<Stats>}
+ * @returns {Promise<Stats>}
  */
 
 /**
@@ -412,7 +409,7 @@ try {
  * @memberof fsn/fs
  * @param  {string|Buffer|URL} path The file path
  * @param  {number} [mode = 0o777] The chmod
- * @return {Promise<void>}
+ * @returns {Promise<void>}
  */
 
 /**
@@ -427,7 +424,7 @@ try {
  * @memberof fsn/fs
  * @param  {string} prefix The prefix of the temperary folder to create
  * @param  {encodingOptions|string} [options = 'utf8'] The temperary directory options, or encoding
- * @return {Promise<string>} The folder path
+ * @returns {Promise<string>} The folder path
  */
 
 /**
@@ -437,7 +434,7 @@ try {
  * @param  {string|Buffer|URL} path The file path
  * @param  {string|number} flags The flags for opening the file.
  * @param  {number} [mode = 0o666] The chmod
- * @return {Promise<integer>} The file descriptor
+ * @returns {Promise<integer>} The file descriptor
  */
 
 /**
@@ -456,7 +453,7 @@ try {
  * @param  {number} offset The offset in the buffer to start writing at
  * @param  {number} length The thenumber of bytes to read
  * @param  {number} position The the postition to begin reading from the file
- * @return {Promise<readObject>}
+ * @returns {Promise<readObject>}
  */
 
 /**
@@ -465,7 +462,7 @@ try {
  * @memberof fsn/fs
  * @param  {string|Buffer|URL} path The file path
  * @param  {encodingOptions|string} [options = 'utf8'] The encoding options
- * @return {Promise<string[]|Buffer>} The files and directories
+ * @returns {Promise<string[]|Buffer>} The files and directories
  */
 
 /**
@@ -474,7 +471,7 @@ try {
  * @memberof fsn/fs
  * @param  {string|Buffer|URL|integer} path The file path or file descriptor
  * @param  {encodingOptions|string} [options = {encoding: null, flag: 'r'}] The encoding options
- * @return {Promise<string|Buffer>} The file contents
+ * @returns {Promise<string|Buffer>} The file contents
  */
 
 /**
@@ -483,7 +480,7 @@ try {
  * @memberof fsn/fs
  * @param  {string|Buffer|URL} path The file path
  * @param  {encodingOptions|string} [options = 'utf8'] The encoding options
- * @return {Promise<string|Buffer>} The linkString
+ * @returns {Promise<string|Buffer>} The linkString
  */
 
 /**
@@ -492,7 +489,7 @@ try {
  * @memberof fsn/fs
  * @param  {string|Buffer|URL} path The file path
  * @param  {encodingOptions|string} [options = 'utf8'] The encoding options
- * @return {Promise<string|Buffer>} The resolvedPath
+ * @returns {Promise<string|Buffer>} The resolvedPath
  */
 
 /**
@@ -501,7 +498,7 @@ try {
  * @memberof fsn/fs
  * @param  {string|Buffer|URL} oldPath The old file path
  * @param  {string|Buffer|URL} newPath The new file path
- * @return {Promise<void>}
+ * @returns {Promise<void>}
  */
 
 /**
@@ -509,7 +506,7 @@ try {
  * @function rmdir
  * @memberof fsn/fs
  * @param  {string|Buffer|URL} path The directory path
- * @return {Promise<void>}
+ * @returns {Promise<void>}
  */
 
 /**
@@ -517,7 +514,7 @@ try {
  * @function stat
  * @memberof fsn/fs
  * @param  {string|Buffer|URL} path The file path
- * @return {Promise<Stats>}
+ * @returns {Promise<Stats>}
  */
 
 /**
@@ -527,7 +524,7 @@ try {
  * @param  {string|Buffer|URL} target The path to link from
  * @param  {string|Buffer|URL} path The path to link to
  * @param  {string} type `dir`, `file`, or `junction` windows only
- * @return {Promise<void>}
+ * @returns {Promise<void>}
  */
 
 /**
@@ -536,7 +533,7 @@ try {
  * @memberof fsn/fs
  * @param  {string|Buffer} path The file path
  * @param  {number} len The number of bytes to truncate to
- * @return {Promise<void>}
+ * @returns {Promise<void>}
  */
 
 /**
@@ -544,7 +541,7 @@ try {
  * @function unlink
  * @memberof fsn/fs
  * @param  {string|Buffer|URL} path The file path
- * @return {Promise<void>}
+ * @returns {Promise<void>}
  */
 
 /**
@@ -553,7 +550,7 @@ try {
  * @memberof fsn/fs
  * @param  {string|Buffer} path The file path
  * @param  {Function} [listener] The listener function
- * @return {Promise<void>}
+ * @returns {Promise<void>}
  */
 
 /**
@@ -563,7 +560,7 @@ try {
  * @param  {string|Buffer|URL} path The file path
  * @param  {number} atime The atime
  * @param  {number} mtime The mtime
- * @return {Promise<void>}
+ * @returns {Promise<void>}
  */
 
 /**
@@ -610,7 +607,7 @@ try {
  * @param  {number} [offset] The offset in the buffer to start reading at
  * @param  {number} [length] The the number of bytes to write
  * @param  {number} [position] The the postition to begin writing to the file
- * @return {Promise<void>}
+ * @returns {Promise<void>}
  */
 
 /**
@@ -628,7 +625,7 @@ try {
  * @param  {string|Buffer|integer} file The filename or file descriptor
  * @param  {string|Buffer|Uint8Array} data The data to write to file
  * @param  {writeOptions} [options] The write options
- * @return {Promise<void>}
+ * @returns {Promise<void>}
  */
 
 /* eslint-enable max-len */

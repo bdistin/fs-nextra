@@ -13,7 +13,7 @@ const pathExists = require('./pathExists');
  * @param  {string} source The source path of the file
  * @param  {string} destination The destination path of the file
  * @param  {boolean} [atomic = false] Whether the operation should run atomicly
- * @return {Promise<void>}
+ * @returns {Promise<void>}
  */
 /**
  * Creates a hard file link, making all folders required to satisfy the given file path.
@@ -22,7 +22,7 @@ const pathExists = require('./pathExists');
  * @param  {string} source The source path of the file
  * @param  {string} destination The destination path of the file
  * @param  {boolean} [atomic = false] Whether the operation should run atomicly
- * @return {Promise<void>}
+ * @returns {Promise<void>}
  */
 module.exports = async function createLink(source, destination, atomic = false) {
 	if (await pathExists(destination)) return null;

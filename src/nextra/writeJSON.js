@@ -20,7 +20,7 @@ const writeFileAtomic = require('./writeFileAtomic');
  * @param  {Object} object The javascript object you would like to write to file
  * @param  {jsonOptions} [options = {}] The options to pass JSON.stringify and writeFile
  * @param  {boolean} [atomic = false] Whether the operation should run atomicly
- * @return {Promise<void>}
+ * @returns {Promise<void>}
  */
 /**
  * Writes a Javascript Object to file as JSON.
@@ -30,7 +30,7 @@ const writeFileAtomic = require('./writeFileAtomic');
  * @param  {Object} object The javascript object you would like to write to file
  * @param  {jsonOptions} [options = {}] The options to pass JSON.stringify and writeFile
  * @param  {boolean} [atomic = false] Whether the operation should run atomicly
- * @return {Promise<void>}
+ * @returns {Promise<void>}
  */
 module.exports = async function writeJSON(file, object, options = {}, atomic = false) {
 	if (typeof options === 'boolean') {

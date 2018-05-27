@@ -13,7 +13,7 @@ const pathExists = require('./pathExists');
  * @param  {Object|Array} data The data to write to file
  * @param  {writeOptions|string} [options] The write options or the encoding string.
  * @param  {boolean} [atomic = false] {description}
- * @return {Promise<void>}
+ * @returns {Promise<void>}
  */
 /**
  * Writes a json file to disk, creating all directories needed to meet the filepath provided.
@@ -23,7 +23,7 @@ const pathExists = require('./pathExists');
  * @param  {Object|Array} data The data to write to file
  * @param  {writeOptions|string} [options] The write options or the encoding string.
  * @param  {boolean} [atomic = false] {description}
- * @return {Promise<void>}
+ * @returns {Promise<void>}
  */
 module.exports = async function outputJSON(file, data, options, atomic = false) {
 	if (typeof options === 'boolean') {
