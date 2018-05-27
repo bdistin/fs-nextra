@@ -14,7 +14,7 @@ const { scanDeep } = require('../util');
  * @memberof fsn/nextra
  * @param  {string} root The path to scan
  * @param  {scanOptions} [options = {}] The options for the scan
- * @return {Promise<Map<string, Stats>>}
+ * @returns {Promise<Map<string, Stats>>}
  */
 module.exports = function scan(root, options = {}) {
 	return scanDeep(resolve(root), new Map(), -1, options);

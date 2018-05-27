@@ -20,7 +20,7 @@ const mkdirs = require('./mkdirs');
  * @param  {string} source The source path of the file
  * @param  {string} destination The destination path of the file
  * @param  {moveOptions} options The options for the move
- * @return {Promise<void>}
+ * @returns {Promise<void>}
  */
 module.exports = async function move(source, destination, options) {
 	const shouldMkdirp = 'mkdirp' in options ? options.mkdirp : true;

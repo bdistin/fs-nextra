@@ -9,7 +9,7 @@ const move = require('./move');
  * @memberof fsn/nextra
  * @param  {string} source The source path of the file
  * @param  {string} destination The destination path of the file
- * @return {Promise<void>}
+ * @returns {Promise<void>}
  */
 module.exports = async function linkAtomic(source, destination) {
 	const tempPath = tempFile();

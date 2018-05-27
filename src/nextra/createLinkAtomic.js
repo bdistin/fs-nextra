@@ -6,7 +6,7 @@ const createLink = require('./createLink');
  * @memberof fsn/nextra
  * @param  {string} source The source path of the file
  * @param  {string} destination The destination path of the file
- * @return {Promise<void>}
+ * @returns {Promise<void>}
  */
 /**
  * Creates a hard file link, making all folders required to satisfy the given file path atomicly.
@@ -14,7 +14,7 @@ const createLink = require('./createLink');
  * @memberof fsn/nextra
  * @param  {string} source The source path of the file
  * @param  {string} destination The destination path of the file
- * @return {Promise<void>}
+ * @returns {Promise<void>}
  */
 module.exports = function createLinkAtomic(source, destination) {
 	return createLink(source, destination, true);
