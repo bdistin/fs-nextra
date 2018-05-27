@@ -15,7 +15,7 @@ const symlinkAtomic = require('./symlinkAtomic');
  * @param  {string} destination The destination path of the file
  * @param  {SymLinkType} [type] The type of symlink you are creating
  * @param  {boolean} [atomic = false] Whether the operation should run atomicly
- * @return {Promise<void>}
+ * @returns {Promise<void>}
  */
 /**
  * Creates a soft file link, making all folders required to satisfy the given file path.
@@ -25,7 +25,7 @@ const symlinkAtomic = require('./symlinkAtomic');
  * @param  {string} destination The destination path of the file
  * @param  {SymLinkType} [type] The type of symlink you are creating
  * @param  {boolean} [atomic = false] Whether the operation should run atomicly
- * @return {Promise<void>}
+ * @returns {Promise<void>}
  */
 module.exports = async function createSymlink(source, destination, type, atomic = false) {
 	if (await pathExists(destination)) return null;

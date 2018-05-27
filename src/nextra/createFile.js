@@ -12,7 +12,7 @@ const pathExists = require('./pathExists');
  * @memberof fsn/nextra
  * @param  {string} file Path of the file you want to create
  * @param  {boolean} [atomic = false] Whether the operation should run atomicly
- * @return {Promise<void>}
+ * @returns {Promise<void>}
  */
 /**
  * Creates an empty file, making all folders required to satisfy the given file path.
@@ -20,7 +20,7 @@ const pathExists = require('./pathExists');
  * @memberof fsn/nextra
  * @param  {string} file Path of the file you want to create
  * @param  {boolean} [atomic = false] Whether the operation should run atomicly
- * @return {Promise<void>}
+ * @returns {Promise<void>}
  */
 module.exports = async function createFile(file, atomic = false) {
 	if (await pathExists(file)) return null;

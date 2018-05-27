@@ -12,7 +12,7 @@ const util = require('../util');
  * @memberof fsn/nextra
  * @param  {string} path The path to remove
  * @param  {removeOptions} [options = {}] {description}
- * @return {Promise<void>}
+ * @returns {Promise<void>}
  */
 module.exports = async function remove(path, options = {}) {
 	if (typeof path !== 'string') throw new Error('Path should be a string');

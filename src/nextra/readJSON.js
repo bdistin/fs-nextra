@@ -14,7 +14,7 @@ const { readFile } = require('../fs');
  * @memberof fsn/nextra
  * @param  {string} file The file path to the json file
  * @param  {readJSONOptions|string} [options = {}] The options for reading json or the encoding string
- * @return {Promise<Object>}
+ * @returns {Promise<Object>}
  */
 /**
  * Reads a file and parses it into a javascript object.

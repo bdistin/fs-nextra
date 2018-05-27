@@ -23,7 +23,7 @@ const pathExists = require('./pathExists');
  * @param  {string} source The source path
  * @param  {string} destination The destination path
  * @param  {CopyOptions|Function} [options = {}] Options for the copy, or a filter function
- * @return {Promise<void>}
+ * @returns {Promise<void>}
  */
 module.exports = async function copy(source, destination, options = {}) {
 	if (typeof options === 'function') options = { filter: options };

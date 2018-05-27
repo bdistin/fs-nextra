@@ -9,7 +9,7 @@ const move = require('./move');
  * @param  {string} source The path to the file you want to copy
  * @param  {string} destination The path to the file destination
  * @param  {writeOptions|string} [options] The write options or the encoding string.
- * @return {Promise<void>} {description}
+ * @returns {Promise<void>} {description}
  */
 module.exports = async function copyFileAtomic(source, destination, options) {
 	const tempPath = tempFile();

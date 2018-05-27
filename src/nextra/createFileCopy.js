@@ -14,7 +14,7 @@ const pathExists = require('./pathExists');
  * @param  {string} destination The path to the file destination
  * @param  {writeOptions|string} [options] The write options or the encoding string.
  * @param  {boolean} [atomic = false] Whether the operation should run atomicly
- * @return {Promise<void>}
+ * @returns {Promise<void>}
  */
 /**
  * Creates an file copy, making all folders required to satisfy the given file path.
@@ -24,7 +24,7 @@ const pathExists = require('./pathExists');
  * @param  {string} destination The path to the file destination
  * @param  {writeOptions|string} [options] The write options or the encoding string.
  * @param  {boolean} [atomic = false] Whether the operation should run atomicly
- * @return {Promise<void>}
+ * @returns {Promise<void>}
  */
 module.exports = async function createFileCopy(source, destination, options, atomic = false) {
 	const dir = dirname(destination);
