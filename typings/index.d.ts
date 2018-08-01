@@ -66,8 +66,8 @@ declare module 'fs-nextra' {
 	export function watch(filename: PathLike, options: { encoding?: string | null, persistent?: boolean, recursive?: boolean } | string | null, listener?: (event: string, filename: string | Buffer) => void): FSWatcher;
 	export function watchFile(filename: PathLike, listener: (curr: Stats, prev: Stats) => void): void;
 	export function watchFile(filename: PathLike, options: { persistent?: boolean; interval?: number; } | undefined, listener: (curr: Stats, prev: Stats) => void): void;
-	export function write(fd: number, string: any, position?: number | null, encoding?: string | null): Promise<{ bytesWritten: number, buffer: string }>;
-	export function write<TBuffer extends Buffer | Uint8Array>(fd: number, buffer?: TBuffer, offset?: number, length?: number, position?: number | null): Promise<{ bytesWritten: number, buffer: TBuffer }>;
+	export function write(fd: number, value: string, position?: number | null, encoding?: string | null): Promise<{ bytesWritten: number, buffer: string }>;
+	export function write<TBuffer extends Buffer | Uint8Array>(fd: number, value: TBuffer, offset?: number, length?: number, position?: number | null): Promise<{ bytesWritten: number, buffer: TBuffer }>;
 	export function writeFile(path: PathLike | number, data: any, options?: { encoding?: string | null; mode?: number | string; flag?: string; } | string | null): Promise<void>;
 
 	export type ReadStreamOptions = {
