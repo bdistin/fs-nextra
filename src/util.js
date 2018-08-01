@@ -25,9 +25,9 @@ exports.invalidWin32Path = (myPath) => {
 	return /[<>:"|?*]/.test(myPath.replace(rp, ''));
 };
 
-exports.symlinkType = async (srcpath, type = false) => {
+exports.symlinkType = async (srcpath, type) => {
 	if (type) return type;
-	const stats = await lstat(srcpath).catch(() => 'file');
+	const stats = await lstat(srcpath).catch(() => null);
 	return stats && stats.isDirectory() ? 'dir' : 'file';
 };
 
@@ -191,7 +191,7 @@ exports.scanDeep = async (dir, results, level, options) => {
 
 exports.uuid = () => {
 	const id = randomBytes(32).toString('hex');
-	return (Array(32).join(0) + id).slice(-32).replace(/^.{8}|.{4}(?!$)/g, '$&-');
+	return (Array(32).join('0') + id).slice(-32).replace(/^.{8}|.{4}(?!$)/g, '$&-');
 };
 
 exports.tempFile = ext => join(tmpdir(), this.uuid() + (ext || ''));

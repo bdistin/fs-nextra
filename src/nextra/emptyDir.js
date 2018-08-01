@@ -21,5 +21,5 @@ const remove = require('./remove');
  */
 module.exports = async function emptyDir(dir) {
 	const items = await readdir(dir).catch(() => mkdirs(dir));
-	return Promise.all(items.map(item => remove(join(dir, item))));
+	if (typeof items !== 'string') await Promise.all(items.map(item => remove(join(dir, item))));
 };
