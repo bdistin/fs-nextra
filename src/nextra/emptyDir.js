@@ -17,7 +17,6 @@ const remove = require('./remove');
  * @function emptyDir
  * @memberof fsn/nextra
  * @param {string} dir The directory you wish to empty
- * @returns {Promise<void>}
  */
 module.exports = async function emptyDir(dir) {
 	const items = await readdir(dir).catch(() => mkdirs(dir));
