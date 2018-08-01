@@ -7,6 +7,7 @@ const move = require('./move');
  * The type of symlink you are creating:
  * * `dir`
  * * `file`
+ * * `junction`
  * @typedef {string} SymLinkType
  * @memberof fsn/nextra
  */
@@ -15,9 +16,9 @@ const move = require('./move');
  * Creates a soft file link atomicly.
  * @function symlinkAtomic
  * @memberof fsn/nextra
- * @param  {string} source The source path of the file
- * @param  {string} destination The destination path of the file
- * @param  {SymLinkType} [type = 'file'] The type of symlink you are creating
+ * @param {string} source The source path of the file
+ * @param {string} destination The destination path of the file
+ * @param {SymLinkType} [type = 'file'] The type of symlink you are creating
  * @returns {Promise<void>} {description}
  */
 module.exports = async function symlinkAtomic(source, destination, type) {

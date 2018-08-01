@@ -9,14 +9,14 @@ const remove = require('./remove');
  * Deletes all directories and files within the provided directory.
  * @function emptydir
  * @memberof fsn/nextra
- * @param  {string} dir The directory you wish to empty
+ * @param {string} dir The directory you wish to empty
  * @returns {Promise<void>}
  */
 /**
  * Deletes all directories and files within the provided directory.
  * @function emptyDir
  * @memberof fsn/nextra
- * @param  {string} dir The directory you wish to empty
+ * @param {string} dir The directory you wish to empty
  * @returns {Promise<void>}
  */
 module.exports = async function emptyDir(dir) {

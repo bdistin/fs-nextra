@@ -20,9 +20,9 @@ const pathExists = require('./pathExists');
  * source and destination paths.
  * @function copy
  * @memberof fsn/nextra
- * @param  {string} source The source path
- * @param  {string} destination The destination path
- * @param  {CopyOptions|Function} [options = {}] Options for the copy, or a filter function
+ * @param {string} source The source path
+ * @param {string} destination The destination path
+ * @param {CopyOptions|Function} [options = {}] Options for the copy, or a filter function
  * @returns {Promise<void>}
  */
 module.exports = async function copy(source, destination, options = {}) {
