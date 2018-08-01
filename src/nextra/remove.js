@@ -1,7 +1,7 @@
 const util = require('../util');
 
 /**
- * @typedef {object} removeOptions
+ * @typedef {Object} RemoveOptions
  * @memberof fsn/nextra
  * @property {number} [maxBusyTries = 3] The number of times fs-nextra should retry removing a busy file.
  */
@@ -10,8 +10,8 @@ const util = require('../util');
  * Removes a single file or single directory with no children.
  * @function remove
  * @memberof fsn/nextra
- * @param  {string} path The path to remove
- * @param  {removeOptions} [options = {}] {description}
+ * @param {string} path The path to remove
+ * @param {RemoveOptions} [options = {}] {description}
  * @returns {Promise<void>}
  */
 module.exports = async function remove(path, options = {}) {

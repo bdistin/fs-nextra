@@ -64,9 +64,9 @@ if (fs.promises) {
  * Identical to {@link https://nodejs.org/api/fs.html#fs_fs_copyfile_src_dest_flags_callback|fs.copyFile} but returns a promise instead.
  * @function copyFile
  * @memberof fsn/fs
- * @param  {string|Buffer|URL} src File path to copy
- * @param  {string|Buffer|URL} dest Destination to copy to
- * @param  {number} [flags = 0] modifiers for copy operation.
+ * @param {string|Buffer|URL} src File path to copy
+ * @param {string|Buffer|URL} dest Destination to copy to
+ * @param {number} [flags = 0] modifiers for copy operation.
  * @returns {Promise<void>}
  */
 
@@ -205,8 +205,8 @@ if (fs.promises) {
  * Identical to {@link https://nodejs.org/api/fs.html#fs_fs_access_path_mode_callback|fs.access} but returns a promise instead.
  * @function access
  * @memberof fsn/fs
- * @param  {string|Buffer|URL} path The path to be checked
- * @param  {number} [mode] The accessibility checks to be performed
+ * @param {string|Buffer|URL} path The path to be checked
+ * @param {number} [mode] The accessibility checks to be performed
  * @returns {Promise<void>}
  */
 
@@ -222,9 +222,9 @@ if (fs.promises) {
  * Identical to {@link https://nodejs.org/api/fs.html#fs_fs_appendfile_file_data_options_callback|fs.appendFile} but returns a promise instead.
  * @function appendFile
  * @memberof fsn/fs
- * @param  {string|Buffer|number} file Filename or file descriptor
- * @param  {string|Buffer} data The data to be written
- * @param  {AppendFileOptions|string} [options] Options for the append, or the encoding.
+ * @param {string|Buffer|number} file Filename or file descriptor
+ * @param {string|Buffer} data The data to be written
+ * @param {AppendFileOptions|string} [options] Options for the append, or the encoding.
  * @returns {Promise<void>}
  */
 
@@ -232,8 +232,8 @@ if (fs.promises) {
  * Identical to {@link https://nodejs.org/api/fs.html#fs_fs_chmod_path_mode_callback|fs.chmod} but returns a promise instead.
  * @function chmod
  * @memberof fsn/fs
- * @param  {string|Buffer|URL} path File or directory path
- * @param  {number} mode The chmod to be applied
+ * @param {string|Buffer|URL} path File or directory path
+ * @param {number} mode The chmod to be applied
  * @returns {Promise<void>}
  */
 
@@ -241,9 +241,9 @@ if (fs.promises) {
  * Identical to {@link https://nodejs.org/api/fs.html#fs_fs_chown_path_uid_gid_callback|fs.chown} but returns a promise instead.
  * @function chown
  * @memberof fsn/fs
- * @param  {string|Buffer|URL} path File or directory path
- * @param  {number} uid The new owner id
- * @param  {number} gid The new group id
+ * @param {string|Buffer|URL} path File or directory path
+ * @param {number} uid The new owner id
+ * @param {number} gid The new group id
  * @returns {Promise<void>}
  */
 
@@ -251,12 +251,12 @@ if (fs.promises) {
  * Identical to {@link https://nodejs.org/api/fs.html#fs_fs_close_fd_callback|fs.close} but returns a promise instead.
  * @function close
  * @memberof fsn/fs
- * @param  {number} fd The file descriptor
+ * @param {number} fd The file descriptor
  * @returns {Promise<void>}
  */
 
 /**
- * @typedef readStreamOptions
+ * @typedef ReadStreamOptions
  * @memberof fsn/fs
  * @property {string} [flags = 'r'] The flags to use
  * @property {string} [defaultEncoding = null] The encoding to use
@@ -272,12 +272,12 @@ if (fs.promises) {
  * @function createReadStream
  * @memberof fsn/fs
  * @param {string|Buffer|URL} path File or directory path
- * @param {readStreamOptions|string} [options] The stream options or the encoding
+ * @param {ReadStreamOptions|string} [options] The stream options or the encoding
  * @returns {ReadStream}
  */
 
 /**
- * @typedef writeStreamOptions
+ * @typedef WriteStreamOptions
  * @memberof fsn/fs
  * @property {string} [flags = 'w'] The flags to use
  * @property {string} [defaultEncoding = 'utf8'] The encoding to use
@@ -292,7 +292,7 @@ if (fs.promises) {
  * @function createWriteStream
  * @memberof fsn/fs
  * @param {string|Buffer|URL} path File or directory path
- * @param {writeStreamOptions|string} [options] The stream options or the encoding
+ * @param {WriteStreamOptions|string} [options] The stream options or the encoding
  * @returns {WriteStream}
  */
 
@@ -301,7 +301,7 @@ if (fs.promises) {
  * @function exists
  * @memberof fsn/fs
  * @deprecated Use {@link https://fs-nextra.js.org/fsn_fs.html#.stat__anchor|Stat} or {@link https://fs-nextra.js.org/fsn_nextra.html#.pathExists__anchor|pathExists} instead.
- * @param  {string|Buffer|URL} path The file or directory path
+ * @param {string|Buffer|URL} path The file or directory path
  * @returns {Promise<boolean>}
  */
 
@@ -309,8 +309,8 @@ if (fs.promises) {
  * Identical to {@link https://nodejs.org/api/fs.html#fs_fs_fchmod_fd_mode_callback|fs.fchmod} but returns a promise instead.
  * @function fchmod
  * @memberof fsn/fs
- * @param  {number} fd The file descriptor id
- * @param  {number} mode The chmod to be applied
+ * @param {number} fd The file descriptor id
+ * @param {number} mode The chmod to be applied
  * @returns {Promise<void>}
  */
 
@@ -318,9 +318,9 @@ if (fs.promises) {
  * Identical to {@link https://nodejs.org/api/fs.html#fs_fs_fchown_fd_uid_gid_callback|fs.fchown} but returns a promise instead.
  * @function fchown
  * @memberof fsn/fs
- * @param  {number} fd The file descriptor id
- * @param  {number} uid The new owner id
- * @param  {number} gid The new group id
+ * @param {number} fd The file descriptor id
+ * @param {number} uid The new owner id
+ * @param {number} gid The new group id
  * @returns {Promise<void>}
  */
 
@@ -328,7 +328,7 @@ if (fs.promises) {
  * Identical to {@link https://nodejs.org/api/fs.html#fs_fs_fdatasync_fd_callback|fs.fdatasync} but returns a promise instead.
  * @function fdatasync
  * @memberof fsn/fs
- * @param  {number} fd The file descriptor id
+ * @param {number} fd The file descriptor id
  * @returns {Promise<void>}
  */
 
@@ -336,7 +336,7 @@ if (fs.promises) {
  * Identical to {@link https://nodejs.org/api/fs.html#fs_fs_fstat_fd_callback|fs.fstat} but returns a promise instead.
  * @function fstat
  * @memberof fsn/fs
- * @param  {number} fd The file descriptor id
+ * @param {number} fd The file descriptor id
  * @returns {Promise<Stats>}
  */
 
@@ -344,7 +344,7 @@ if (fs.promises) {
  * Identical to {@link https://nodejs.org/api/fs.html#fs_fs_fsync_fd_callback|fs.fsync} but returns a promise instead.
  * @function fsync
  * @memberof fsn/fs
- * @param  {number} fd The file descriptor id
+ * @param {number} fd The file descriptor id
  * @returns {Promise<void>}
  */
 
@@ -352,8 +352,8 @@ if (fs.promises) {
  * Identical to {@link https://nodejs.org/api/fs.html#fs_fs_ftruncate_fd_len_callback|fs.ftruncate} but returns a promise instead.
  * @function ftruncate
  * @memberof fsn/fs
- * @param  {number} fd The file descriptor id
- * @param  {number} len The length in bytes to truncate to
+ * @param {number} fd The file descriptor id
+ * @param {number} len The length in bytes to truncate to
  * @returns {Promise<void>}
  */
 
@@ -361,9 +361,9 @@ if (fs.promises) {
  * Identical to {@link https://nodejs.org/api/fs.html#fs_fs_futimes_fd_atime_mtime_callback|fs.futimes} but returns a promise instead.
  * @function futimes
  * @memberof fsn/fs
- * @param  {number} fd The file descriptor id
- * @param  {number} atime The atime
- * @param  {number} mtime The mtime
+ * @param {number} fd The file descriptor id
+ * @param {number} atime The atime
+ * @param {number} mtime The mtime
  * @returns {Promise<void>}
  */
 
@@ -371,8 +371,8 @@ if (fs.promises) {
  * Identical to {@link https://nodejs.org/api/fs.html#fs_fs_lchmod_path_mode_callback|fs.lchmod} but returns a promise instead.
  * @function lchmod
  * @memberof fsn/fs
- * @param  {string|Buffer} path The file path
- * @param  {number} mode The chmod
+ * @param {string|Buffer} path The file path
+ * @param {number} mode The chmod
  * @returns {Promise<void>}
  */
 
@@ -380,9 +380,9 @@ if (fs.promises) {
  * Identical to {@link https://nodejs.org/api/fs.html#fs_fs_lchown_path_uid_gid_callback|fs.lchown} but returns a promise instead.
  * @function lchown
  * @memberof fsn/fs
- * @param  {string|Buffer} path The file path
- * @param  {number} uid The new owner id
- * @param  {number} gid The new group id
+ * @param {string|Buffer} path The file path
+ * @param {number} uid The new owner id
+ * @param {number} gid The new group id
  * @returns {Promise<void>}
  */
 
@@ -390,8 +390,8 @@ if (fs.promises) {
  * Identical to {@link https://nodejs.org/api/fs.html#fs_fs_link_existingpath_newpath_callback|fs.link} but returns a promise instead.
  * @function link
  * @memberof fsn/fs
- * @param  {string|Buffer|URL} existingPath The existing file path
- * @param  {string|Buffer|URL} newPath The new file path
+ * @param {string|Buffer|URL} existingPath The existing file path
+ * @param {string|Buffer|URL} newPath The new file path
  * @returns {Promise<void>}
  */
 
@@ -399,7 +399,7 @@ if (fs.promises) {
  * Identical to {@link https://nodejs.org/api/fs.html#fs_fs_lstat_path_callback|fs.lstat} but returns a promise instead.
  * @function lstat
  * @memberof fsn/fs
- * @param  {string|Buffer|URL} path The file path
+ * @param {string|Buffer|URL} path The file path
  * @returns {Promise<Stats>}
  */
 
@@ -407,13 +407,13 @@ if (fs.promises) {
  * Identical to {@link https://nodejs.org/api/fs.html#fs_fs_mkdir_path_mode_callback|fs.mkdir} but returns a promise instead.
  * @function mkdir
  * @memberof fsn/fs
- * @param  {string|Buffer|URL} path The file path
- * @param  {number} [mode = 0o777] The chmod
+ * @param {string|Buffer|URL} path The file path
+ * @param {number} [mode = 0o777] The chmod
  * @returns {Promise<void>}
  */
 
 /**
- * @typedef {object} encodingOptions
+ * @typedef {Object} EncodingOptions
  * @memberof fsn/fs
  * @property {string} [encoding = 'utf8'] The encoding for the temperary directory
  */
@@ -422,8 +422,8 @@ if (fs.promises) {
  * Identical to {@link https://nodejs.org/api/fs.html#fs_fs_mkdtemp_prefix_options_callback|fs.mkdtemp} but returns a promise instead.
  * @function mkdtemp
  * @memberof fsn/fs
- * @param  {string} prefix The prefix of the temperary folder to create
- * @param  {encodingOptions|string} [options = 'utf8'] The temperary directory options, or encoding
+ * @param {string} prefix The prefix of the temperary folder to create
+ * @param {EncodingOptions|string} [options = 'utf8'] The temperary directory options, or encoding
  * @returns {Promise<string>} The folder path
  */
 
@@ -431,14 +431,14 @@ if (fs.promises) {
  * Identical to {@link https://nodejs.org/api/fs.html#fs_fs_open_path_flags_mode_callback|fs.open} but returns a promise instead.
  * @function open
  * @memberof fsn/fs
- * @param  {string|Buffer|URL} path The file path
- * @param  {string|number} flags The flags for opening the file.
- * @param  {number} [mode = 0o666] The chmod
+ * @param {string|Buffer|URL} path The file path
+ * @param {string|number} flags The flags for opening the file.
+ * @param {number} [mode = 0o666] The chmod
  * @returns {Promise<integer>} The file descriptor
  */
 
 /**
- * @typedef {Object} readObject
+ * @typedef {Object} ReadObject
  * @memberof fsn/fs
  * @property {number} bytesRead The numberof bytes read
  * @property {Buffer|Uint8Array} buffer The buffer containing the data read
@@ -448,20 +448,20 @@ if (fs.promises) {
  * Identical to {@link https://nodejs.org/api/fs.html#fs_fs_read_fd_buffer_offset_length_position_callback|fs.read} but returns a promise instead.
  * @function read
  * @memberof fsn/fs
- * @param  {number} fd The file descriptor
- * @param  {Buffer|Uint8Array} buffer The buffer that he data will be written to.
- * @param  {number} offset The offset in the buffer to start writing at
- * @param  {number} length The thenumber of bytes to read
- * @param  {number} position The the postition to begin reading from the file
- * @returns {Promise<readObject>}
+ * @param {number} fd The file descriptor
+ * @param {Buffer|Uint8Array} buffer The buffer that he data will be written to.
+ * @param {number} offset The offset in the buffer to start writing at
+ * @param {number} length The thenumber of bytes to read
+ * @param {number} position The the postition to begin reading from the file
+ * @returns {Promise<ReadObject>}
  */
 
 /**
  * Identical to {@link https://nodejs.org/api/fs.html#fs_fs_readdir_path_options_callback|fs.readdir} but returns a promise instead.
  * @function readdir
  * @memberof fsn/fs
- * @param  {string|Buffer|URL} path The file path
- * @param  {encodingOptions|string} [options = 'utf8'] The encoding options
+ * @param {string|Buffer|URL} path The file path
+ * @param {EncodingOptions|string} [options = 'utf8'] The encoding options
  * @returns {Promise<string[]|Buffer>} The files and directories
  */
 
@@ -469,8 +469,8 @@ if (fs.promises) {
  * Identical to {@link https://nodejs.org/api/fs.html#fs_fs_readfile_path_options_callback|fs.readFile} but returns a promise instead.
  * @function readFile
  * @memberof fsn/fs
- * @param  {string|Buffer|URL|integer} path The file path or file descriptor
- * @param  {encodingOptions|string} [options = {encoding: null, flag: 'r'}] The encoding options
+ * @param {string|Buffer|URL|integer} path The file path or file descriptor
+ * @param {EncodingOptions|string} [options = {encoding: null, flag: 'r'}] The encoding options
  * @returns {Promise<string|Buffer>} The file contents
  */
 
@@ -478,8 +478,8 @@ if (fs.promises) {
  * Identical to {@link https://nodejs.org/api/fs.html#fs_fs_readlink_path_options_callback|fs.readlink} but returns a promise instead.
  * @function readlink
  * @memberof fsn/fs
- * @param  {string|Buffer|URL} path The file path
- * @param  {encodingOptions|string} [options = 'utf8'] The encoding options
+ * @param {string|Buffer|URL} path The file path
+ * @param {EncodingOptions|string} [options = 'utf8'] The encoding options
  * @returns {Promise<string|Buffer>} The linkString
  */
 
@@ -487,8 +487,8 @@ if (fs.promises) {
  * Identical to {@link https://nodejs.org/api/fs.html#fs_fs_realpath_path_options_callback|fs.realpath} but returns a promise instead.
  * @function realpath
  * @memberof fsn/fs
- * @param  {string|Buffer|URL} path The file path
- * @param  {encodingOptions|string} [options = 'utf8'] The encoding options
+ * @param {string|Buffer|URL} path The file path
+ * @param {EncodingOptions|string} [options = 'utf8'] The encoding options
  * @returns {Promise<string|Buffer>} The resolvedPath
  */
 
@@ -496,8 +496,8 @@ if (fs.promises) {
  * Identical to {@link https://nodejs.org/api/fs.html#fs_fs_rename_oldpath_newpath_callback|fs.rename} but returns a promise instead.
  * @function rename
  * @memberof fsn/fs
- * @param  {string|Buffer|URL} oldPath The old file path
- * @param  {string|Buffer|URL} newPath The new file path
+ * @param {string|Buffer|URL} oldPath The old file path
+ * @param {string|Buffer|URL} newPath The new file path
  * @returns {Promise<void>}
  */
 
@@ -505,7 +505,7 @@ if (fs.promises) {
  * Identical to {@link https://nodejs.org/api/fs.html#fs_fs_rmdir_path_callback|fs.rmdir} but returns a promise instead.
  * @function rmdir
  * @memberof fsn/fs
- * @param  {string|Buffer|URL} path The directory path
+ * @param {string|Buffer|URL} path The directory path
  * @returns {Promise<void>}
  */
 
@@ -513,7 +513,7 @@ if (fs.promises) {
  * Identical to {@link https://nodejs.org/api/fs.html#fs_fs_stat_path_callback|fs.stat} but returns a promise instead.
  * @function stat
  * @memberof fsn/fs
- * @param  {string|Buffer|URL} path The file path
+ * @param {string|Buffer|URL} path The file path
  * @returns {Promise<Stats>}
  */
 
@@ -521,9 +521,9 @@ if (fs.promises) {
  * Identical to {@link https://nodejs.org/api/fs.html#fs_fs_symlink_target_path_type_callback|fs.symlink} but returns a promise instead.
  * @function symlink
  * @memberof fsn/fs
- * @param  {string|Buffer|URL} target The path to link from
- * @param  {string|Buffer|URL} path The path to link to
- * @param  {string} type `dir`, `file`, or `junction` windows only
+ * @param {string|Buffer|URL} target The path to link from
+ * @param {string|Buffer|URL} path The path to link to
+ * @param {string} type `dir`, `file`, or `junction` windows only
  * @returns {Promise<void>}
  */
 
@@ -531,8 +531,8 @@ if (fs.promises) {
  * Identical to {@link https://nodejs.org/api/fs.html#fs_fs_truncate_path_len_callback|fs.truncate} but returns a promise instead.
  * @function truncate
  * @memberof fsn/fs
- * @param  {string|Buffer} path The file path
- * @param  {number} len The number of bytes to truncate to
+ * @param {string|Buffer} path The file path
+ * @param {number} len The number of bytes to truncate to
  * @returns {Promise<void>}
  */
 
@@ -540,7 +540,7 @@ if (fs.promises) {
  * Identical to {@link https://nodejs.org/api/fs.html#fs_fs_unlink_path_callback|fs.unlink} but returns a promise instead.
  * @function unlink
  * @memberof fsn/fs
- * @param  {string|Buffer|URL} path The file path
+ * @param {string|Buffer|URL} path The file path
  * @returns {Promise<void>}
  */
 
@@ -548,8 +548,8 @@ if (fs.promises) {
  * Identical to {@link https://nodejs.org/api/fs.html#fs_fs_unwatchfile_filename_listener|fs.unwatchFile}.
  * @function unwatchFile
  * @memberof fsn/fs
- * @param  {string|Buffer} path The file path
- * @param  {Function} [listener] The listener function
+ * @param {string|Buffer} path The file path
+ * @param {Function} [listener] The listener function
  * @returns {Promise<void>}
  */
 
@@ -557,14 +557,14 @@ if (fs.promises) {
  * Identical to {@link https://nodejs.org/api/fs.html#fs_fs_utimes_path_atime_mtime_callback|fs.utimes} but returns a promise instead.
  * @function utimes
  * @memberof fsn/fs
- * @param  {string|Buffer|URL} path The file path
- * @param  {number} atime The atime
- * @param  {number} mtime The mtime
+ * @param {string|Buffer|URL} path The file path
+ * @param {number} atime The atime
+ * @param {number} mtime The mtime
  * @returns {Promise<void>}
  */
 
 /**
- * @typedef watchOptions
+ * @typedef WatchOptions
  * @memberof fsn/fs
  * @property {boolean} [persistent = true] Indicates whether the process should continue to run as long as files are being watched.
  * @property {boolean} [recursive = false] Indicates whether all subdirectories should be watched, or only the current directory.
@@ -575,26 +575,19 @@ if (fs.promises) {
  * Identical to {@link https://nodejs.org/api/fs.html#fs_fs_watch_filename_options_listener|fs.watch}.
  * @function watch
  * @memberof fsn/fs
- * @param  {string|Buffer} path The file path
- * @param  {watchOptions} [options] The watch options
- * @param  {Function} listener The listener function
+ * @param {string|Buffer} path The file path
+ * @param {WatchOptions} [options] The watch options
+ * @param {Function} listener The listener function
  * @returns {FSWatcher}
- */
-
-/**
- * @typedef watchFileOptions
- * @memberof fsn/fs
- * @property {boolean} [persistent = true] Indicates whether the process should continue to run as long as files are being watched.
- * @property {number} [interval = 5007] Indicaties how often the target should be polled in milliseconds.
  */
 
 /**
  * Identical to {@link https://nodejs.org/api/fs.html#fs_fs_watchfile_filename_options_listener|fs.watchFile}.
  * @function watchFile
  * @memberof fsn/fs
- * @param  {string|Buffer|URL} path The file path
- * @param  {watchOptions} [options] The watch options
- * @param  {Function} listener The listener function
+ * @param {string|Buffer|URL} path The file path
+ * @param {WatchOptions} [options] The watch options
+ * @param {Function} listener The listener function
  * @returns {FSWatcher}
  */
 
@@ -602,16 +595,16 @@ if (fs.promises) {
  * Identical to {@link https://nodejs.org/api/fs.html#fs_fs_write_fd_buffer_offset_length_position_callback|fs.write} but returns a promise instead.
  * @function write
  * @memberof fsn/fs
- * @param  {number} fd The file descriptor id
- * @param  {Buffer|Uint8Array} buffer The buffer to write to file
- * @param  {number} [offset] The offset in the buffer to start reading at
- * @param  {number} [length] The the number of bytes to write
- * @param  {number} [position] The the postition to begin writing to the file
+ * @param {number} fd The file descriptor id
+ * @param {Buffer|Uint8Array} buffer The buffer to write to file
+ * @param {number} [offset] The offset in the buffer to start reading at
+ * @param {number} [length] The the number of bytes to write
+ * @param {number} [position] The the postition to begin writing to the file
  * @returns {Promise<void>}
  */
 
 /**
- * @typedef writeOptions
+ * @typedef WriteOptions
  * @memberof fsn/fs
  * @property {string} [encoding = 'utf8'] The file encoding
  * @property {number} [mode = 0o666] The chmod
@@ -622,9 +615,9 @@ if (fs.promises) {
  * Identical to {@link https://nodejs.org/api/fs.html#fs_fs_writefile_file_data_options_callback|fs.writeFile} but returns a promise instead.
  * @function writeFile
  * @memberof fsn/fs
- * @param  {string|Buffer|integer} file The filename or file descriptor
- * @param  {string|Buffer|Uint8Array} data The data to write to file
- * @param  {writeOptions} [options] The write options
+ * @param {string|Buffer|integer} file The filename or file descriptor
+ * @param {string|Buffer|Uint8Array} data The data to write to file
+ * @param {WriteOptions} [options] The write options
  * @returns {Promise<void>}
  */
 

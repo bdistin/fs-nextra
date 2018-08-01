@@ -3,7 +3,7 @@ const { writeFile } = require('../fs');
 const writeFileAtomic = require('./writeFileAtomic');
 
 /**
- * @typedef {Object} jsonOptions
+ * @typedef {Object} JsonOptions
  * @memberof fsn/nextra
  * @property {Function} [replacer] A JSON.stringify replacer function
  * @property {number} [spaces = null] The number of spaces to format the json file with
@@ -16,20 +16,20 @@ const writeFileAtomic = require('./writeFileAtomic');
  * Writes a Javascript Object to file as JSON.
  * @function writeJson
  * @memberof fsn/nextra
- * @param  {string} file The path to the file you want to create
- * @param  {Object} object The javascript object you would like to write to file
- * @param  {jsonOptions} [options = {}] The options to pass JSON.stringify and writeFile
- * @param  {boolean} [atomic = false] Whether the operation should run atomicly
+ * @param {string} file The path to the file you want to create
+ * @param {Object} object The javascript object you would like to write to file
+ * @param {JsonOptions} [options = {}] The options to pass JSON.stringify and writeFile
+ * @param {boolean} [atomic = false] Whether the operation should run atomicly
  * @returns {Promise<void>}
  */
 /**
  * Writes a Javascript Object to file as JSON.
  * @function writeJSON
  * @memberof fsn/nextra
- * @param  {string} file The path to the file you want to create
- * @param  {Object} object The javascript object you would like to write to file
- * @param  {jsonOptions} [options = {}] The options to pass JSON.stringify and writeFile
- * @param  {boolean} [atomic = false] Whether the operation should run atomicly
+ * @param {string} file The path to the file you want to create
+ * @param {Object} object The javascript object you would like to write to file
+ * @param {JsonOptions} [options = {}] The options to pass JSON.stringify and writeFile
+ * @param {boolean} [atomic = false] Whether the operation should run atomicly
  * @returns {Promise<void>}
  */
 module.exports = async function writeJSON(file, object, options = {}, atomic = false) {
