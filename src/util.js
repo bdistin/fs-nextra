@@ -27,8 +27,12 @@ exports.invalidWin32Path = (myPath) => {
 
 exports.symlinkType = async (srcpath, type) => {
 	if (type) return type;
-	const stats = await lstat(srcpath).catch(() => null);
-	return stats && stats.isDirectory() ? 'dir' : 'file';
+	try {
+		const stats = await lstat(srcpath);
+		return stats.isDirectory() ? 'dir' : 'file';
+	} catch (err) {
+		return 'file';
+	}
 };
 
 exports.symlinkPaths = async (srcpath, dstpath) => {
