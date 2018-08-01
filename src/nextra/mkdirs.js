@@ -4,7 +4,7 @@ const { isWindows, invalidWin32Path, o777 } = require('../util');
 const { stat, mkdir } = require('../fs');
 
 /**
- * @typedef {object} mkdirsOptions
+ * @typedef {Object} MkdirsOptions
  * @memberof fsn/nextra
  * @property {number} [mode = 0o777 & ~process.umask()] The chmod for the directories being made
  */
@@ -14,7 +14,7 @@ const { stat, mkdir } = require('../fs');
  * @function ensureDir
  * @memberof fsn/nextra
  * @param {string} path The path you wish to make
- * @param {mkdirsOptions} [options] Options for making the directories
+ * @param {MkdirsOptions} [options] Options for making the directories
  * @param {string} [made = null] The path in progress, do not set.
  * @returns {Promise<string>} The path made.
  */
@@ -23,7 +23,7 @@ const { stat, mkdir } = require('../fs');
  * @function mkdirp
  * @memberof fsn/nextra
  * @param {string} path The path you wish to make
- * @param {mkdirsOptions} [options] Options for making the directories
+ * @param {MkdirsOptions} [options] Options for making the directories
  * @param {string} [made = null] The path in progress, do not set.
  * @returns {Promise<string>} The path made.
  */
@@ -32,7 +32,7 @@ const { stat, mkdir } = require('../fs');
  * @function mkdirs
  * @memberof fsn/nextra
  * @param {string} path The path you wish to make
- * @param {mkdirsOptions} [options] Options for making the directories
+ * @param {MkdirsOptions} [options] Options for making the directories
  * @param {string} [made = null] The path in progress, do not set.
  * @returns {Promise<string>} The path made.
  */

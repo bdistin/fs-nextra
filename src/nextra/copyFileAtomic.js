@@ -6,9 +6,9 @@ const move = require('./move');
 /**
  * @function copyFileAtomic
  * @memberof fsn/nextra
- * @param  {string} source The path to the file you want to copy
- * @param  {string} destination The path to the file destination
- * @param  {writeOptions|string} [options] The write options or the encoding string.
+ * @param {string} source The path to the file you want to copy
+ * @param {string} destination The path to the file destination
+ * @param {WriteOptions|string} [options] The write options or the encoding string.
  * @returns {Promise<void>} {description}
  */
 module.exports = async function copyFileAtomic(source, destination, options) {
