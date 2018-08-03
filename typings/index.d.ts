@@ -138,7 +138,7 @@ declare module 'fs-nextra' {
 	export { outputJson as outputJSON };
 	export { outputJsonAtomic as outputJSONAtomic };
 	export { readJson as readJSON };
-	export { readJsonAtomic as writeJSONAtomic };
+	export { writeJsonAtomic as writeJSONAtomic };
 	export { writeJson as writeJSON };
 
 	export type CopyOptions = {
