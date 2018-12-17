@@ -23,7 +23,7 @@ ava('overwrite dir with file', async test => {
 	await test.throwsAsync(nextra.move(existing, move, { overwrite: true }));
 });
 
-ava('overwrite exiting file', async test => {
+ava('overwrite existing file', async test => {
 	test.plan(2);
 	const existing = tempFile();
 	const move = tempFile();
@@ -33,7 +33,7 @@ ava('overwrite exiting file', async test => {
 	await test.throwsAsync(fs.accessAsync(existing));
 });
 
-ava('no overwrite', async test => {
+ava('no overwrite non-existent file', async test => {
 	test.plan(2);
 	const existing = tempFile();
 	const move = tempFileLoc();
@@ -41,6 +41,12 @@ ava('no overwrite', async test => {
 
 	await test.notThrowsAsync(fs.accessAsync(move));
 	await test.throwsAsync(fs.accessAsync(existing));
+});
+
+ava('no overwrite existing file', async test => {
+	const existing = tempFile();
+	const move = tempFile();
+	await test.throwsAsync(nextra.move(existing, move, { overwrite: false }));
 });
 
 ava('deep', async test => {
