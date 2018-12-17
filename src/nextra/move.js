@@ -50,11 +50,10 @@ module.exports = async function move(source, destination, options = {}) {
 
 				// For renaming files across devices, can't test via travis
 				/* istanbul ignore if */
-				if (err.code !== 'EXDEV') throw err;
+				if (err.code === 'EXDEV') return moveAcrossDevice(source, destination, overwrite);
 
-				// For moving files across the network, can't test via travis
-				/* istanbul ignore next */
-				return moveAcrossDevice(source, destination, overwrite);
+				// Any other error
+				throw err;				
 			});
 	}
 	return link(source, destination)
