@@ -53,7 +53,7 @@ module.exports = async function move(source, destination, options = {}) {
 				if (err.code === 'EXDEV') return moveAcrossDevice(source, destination, overwrite);
 
 				// Any other error
-				throw err;				
+				throw err;
 			});
 	}
 	return link(source, destination)
