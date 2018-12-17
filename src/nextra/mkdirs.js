@@ -40,7 +40,7 @@ module.exports = async function mkdirs(path, options, made = null) {
 	if (!options || typeof options !== 'object') options = { mode: options };
 
 	// Windows
-	/* istanbul ignore if */
+	/* istanbul ignore next */
 	if (isWindows && invalidWin32Path(path)) {
 		const errInval = new Error(`${path} contains invalid WIN32 path characters.`);
 		errInval.code = 'EINVAL';
@@ -50,18 +50,20 @@ module.exports = async function mkdirs(path, options, made = null) {
 	// eslint-disable-next-line no-bitwise
 	const mode = options.mode || o777 & ~process.umask();
 	path = resolve(path);
-	return mkdir(path, mode)
-		.then(() => made || path)
-		.catch((err) => {
-			if (err.code !== 'ENOENT') {
-				return stat(path)
-					.then(myStat => {
-						if (myStat.isDirectory()) return made;
-						throw err;
-					});
-			}
-			if (dirname(path) === path) throw err;
-			return mkdirs(dirname(path), options)
-				.then(madeChain => mkdirs(path, options, madeChain));
-		});
+
+	try {
+		await mkdir(path, mode)
+		return made || path;
+	} catch (err) {
+		if (err.code !== 'ENOENT') {
+			const myStat = await stat(path)
+			if (myStat.isDirectory()) return made;
+			throw err;
+		}
+
+		if (dirname(path) === path) throw err;
+
+		const madeChain = await mkdirs(dirname(path), options);
+		return mkdirs(path, options, madeChain);
+	}
 };
