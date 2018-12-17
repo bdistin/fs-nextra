@@ -49,7 +49,7 @@ ava('no overwrite existing file', async test => {
 	await test.throwsAsync(nextra.move(existing, move, { overwrite: false }));
 });
 
-ava('deep', async test => {
+ava('deep mkdirp', async test => {
 	test.plan(2);
 	const existing = tempFile();
 	const move = tempFileLoc(tempDirLoc());
@@ -57,4 +57,10 @@ ava('deep', async test => {
 
 	await test.notThrowsAsync(fs.accessAsync(move));
 	await test.throwsAsync(fs.accessAsync(existing));
+});
+
+ava('deep no mkdirp', async test => {
+	const existing = tempFile();
+	const move = tempFileLoc(tempDirLoc());
+	await test.throwsAsync(nextra.move(existing, move, { mkdirp: false }));
 });
