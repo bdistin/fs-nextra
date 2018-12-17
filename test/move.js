@@ -78,7 +78,6 @@ ava('overwrite full directory', async test => {
 });
 
 ava('no overwrite full directory', async test => {
-	test.plan(2);
 	const existing = tempDir();
 	tempFile(existing);
 	const move = tempDir();
