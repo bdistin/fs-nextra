@@ -108,13 +108,13 @@ exports.fixWinEPERM = async (myPath, options, err) => {
 	await chmod(myPath, 666).catch(er => { throw er.code === 'ENOENT' ? null : err; });
 	const stats = await stat(myPath).catch(er => { throw er.code === 'ENOENT' ? null : err; });
 	if (stats.isDirectory()) return this.removeDir(myPath, options, err);
-	else return unlink(myPath);
+	return unlink(myPath);
 };
 
 exports.removeDir = async (myPath, options, originalEr) => rmdir(myPath).catch(er => {
 	if (er && (er.code === 'ENOTEMPTY' || er.code === 'EEXIST' || er.code === 'EPERM')) return this.rmkids(myPath, options);
-	else if (er && er.code === 'ENOTDIR') throw originalEr;
-	else throw er;
+	if (er && er.code === 'ENOTDIR') throw originalEr;
+	throw er;
 });
 
 exports.rmkids = async (myPath, options) => {

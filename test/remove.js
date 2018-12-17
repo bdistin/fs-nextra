@@ -28,3 +28,7 @@ ava('full directory', async test => {
 ava('non-existant directory', async test => {
 	test.true(await nextra.remove(tempDirLoc()) === null);
 });
+
+ava('bad input', async test => {
+	await test.throwsAsync(nextra.remove({}));
+});
