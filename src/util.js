@@ -139,38 +139,50 @@ exports.startCopy = async (mySource, options) => {
 	if (options.filter && !options.filter(mySource, options.targetPath)) return null;
 	const myStat = options.dereference ? stat : lstat;
 	const stats = await myStat(mySource);
+	let target = mySource.replace(options.currentPath, this.replaceEsc(options.targetPath));
 
 	if (stats.isDirectory()) {
-		const target = mySource.replace(options.currentPath, options.targetPath.replace('$', '$$$$'));
-		if (this.isSrcKid(mySource, target)) throw new Error('FS-NEXTRA: Copying a parent directory into a child will result in an infinite loop.');
-		if (await this.isWritable(target)) {
-			await mkdir(target, stats.mode);
-			await chmod(target, stats.mode);
-		}
-		const items = await readdir(mySource);
-		return Promise.all(items.map(item => this.startCopy(join(mySource, item), options)));
-	} else if (stats.isFile() || stats.isCharacterDevice() || stats.isBlockDevice()) {
-		let target = mySource.replace(options.currentPath, options.targetPath.replace('$', '$$$$'));
+		return this.copyDir(mySource, target, stats, options);
+	} else if (stats.isFile() || stats.isCharacterDevice() || stats.isBlockDevice() || stats.isSymbolicLink()) {
 		const tstats = await stat(target).catch(() => null);
 		if (tstats && tstats.isDirectory()) target = join(target, basename(mySource));
-		if (await this.isWritable(target)) return copyFile(mySource, target, options);
-		else if (options.overwrite) return unlink(target).then(() => copyFile(mySource, target, options));
-		else if (options.errorOnExist) throw new Error(`${target} already exists`);
-	} else if (stats.isSymbolicLink()) {
-		let target = mySource.replace(options.currentPath, options.targetPath);
-		const tstats = await stat(target).catch(() => null);
-		if (tstats && tstats.isDirectory()) target = join(target, basename(mySource));
-		let resolvedPath = await readlink(mySource);
-		if (options.dereference) resolvedPath = resolve(process.cwd(), resolvedPath);
-		if (await this.isWritable(target)) return symlink(resolvedPath, target);
-		let targetDest = await readlink(target);
-		if (options.dereference) targetDest = resolve(process.cwd(), targetDest);
-		if (targetDest === resolvedPath) return null;
-		await unlink(target);
-		return symlink(resolvedPath, target);
+
+		return stats.isSymbolicLink() ?
+			this.copyLink(mySource, target, options) :
+			this.copyFile(mySource, target, options);
 	}
-	throw new Error('FS-NEXTRA: An Unkown error has occured in startCopy.');
+	throw new Error('FS-NEXTRA: An Unknown error has occurred in startCopy.');
 };
+
+exports.copyDir = async (mySource, target, stats, options) => {
+	if (this.isSrcKid(mySource, target)) throw new Error('FS-NEXTRA: Copying a parent directory into a child will result in an infinite loop.');
+	if (await this.isWritable(target)) {
+		await mkdir(target, stats.mode);
+		await chmod(target, stats.mode);
+	}
+	const items = await readdir(mySource);
+	return Promise.all(items.map(item => this.startCopy(join(mySource, item), options)));
+};
+
+exports.copyFile = async (mySource, target, options) => {
+	if (await this.isWritable(target)) return copyFile(mySource, target, options);
+	else if (options.overwrite) return unlink(target).then(() => copyFile(mySource, target, options));
+	else if (options.errorOnExist) throw new Error(`${target} already exists`);
+	return null;
+};
+
+exports.copyLink = async (mySource, target, options) => {
+	let resolvedPath = await readlink(mySource);
+	if (options.dereference) resolvedPath = resolve(process.cwd(), resolvedPath);
+	if (await this.isWritable(target)) return symlink(resolvedPath, target);
+	let targetDest = await readlink(target);
+	if (options.dereference) targetDest = resolve(process.cwd(), targetDest);
+	if (targetDest === resolvedPath) return null;
+	await unlink(target);
+	return symlink(resolvedPath, target);
+};
+
+exports.replaceEsc = (str) => str.replace(/\$/g, '$$');
 
 exports.isSrcKid = (src, dest) => {
 	src = resolve(src);
