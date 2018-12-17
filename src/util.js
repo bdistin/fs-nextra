@@ -19,6 +19,8 @@ exports.stripBom = (content) => {
 	return content.replace(/^\uFEFF/, '');
 };
 
+// Windows
+/* istanbul ignore next */
 exports.invalidWin32Path = (myPath) => {
 	const root = normalize(resolve(myPath)).split(sep);
 	const rp = root.length > 0 ? root[0] : null;
@@ -47,12 +49,16 @@ exports.symlinkPaths = async (srcpath, dstpath) => {
 	return { toCwd: srcpath, toDst: relative(dstdir, srcpath) };
 };
 
+// Impossible to test on travis
+/* istanbul ignore next */
 exports.moveAcrossDevice = async (source, dest, overwrite) => {
 	const stats = await stat(source);
 	if (stats.isDirectory()) return this.moveDirAcrossDevice(source, dest, overwrite);
 	return this.moveFileAcrossDevice(source, dest, overwrite);
 };
 
+// Impossible to test on travis
+/* istanbul ignore next */
 exports.moveFileAcrossDevice = (source, dest, overwrite) => new Promise((res, rej) => {
 	const flags = overwrite ? 'w' : 'wx';
 	const ins = createReadStream(source);
@@ -80,6 +86,8 @@ exports.moveFileAcrossDevice = (source, dest, overwrite) => new Promise((res, re
 	ins.pipe(outs);
 });
 
+// Impossible to test on travis
+/* istanbul ignore next */
 exports.moveDirAcrossDevice = async (source, dest, overwrite) => {
 	const options = { overwrite: false };
 	if (overwrite) await remove(dest);
@@ -108,6 +116,8 @@ exports.rimraf = async (myPath, options) => {
 	});
 };
 
+// Windows
+/* istanbul ignore next */
 exports.fixWinEPERM = async (myPath, options, err) => {
 	await chmod(myPath, 666).catch(er => { throw er.code === 'ENOENT' ? null : err; });
 	const stats = await stat(myPath).catch(er => { throw er.code === 'ENOENT' ? null : err; });
