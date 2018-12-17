@@ -11,10 +11,6 @@ jobs:
       script: yarn run test:lint
     - stage: coverage
       script: bash ./scripts/.travis-coverage.sh
-    - # Node 9 test
-      script: bash ./scripts/.travis-coverage.sh
-      node_js:
-        - "9"
     - # Node 10 test
       script: bash ./scripts/.travis-coverage.sh
       node_js:
