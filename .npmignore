@@ -10,3 +10,4 @@ tslint.json
 .travis.yml
 package-lock.json
 README.md
+yarn.lock
