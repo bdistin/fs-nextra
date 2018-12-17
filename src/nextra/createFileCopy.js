@@ -13,7 +13,7 @@ const pathExists = require('./pathExists');
  * @param {string} source The path to the file you want to copy
  * @param {string} destination The path to the file destination
  * @param {WriteOptions|string} [options] The write options or the encoding string.
- * @param {boolean} [atomic = false] Whether the operation should run atomicly
+ * @param {boolean} [atomic = false] Whether the operation should run atomically
  * @returns {Promise<void>}
  */
 /**
@@ -23,7 +23,7 @@ const pathExists = require('./pathExists');
  * @param {string} source The path to the file you want to copy
  * @param {string} destination The path to the file destination
  * @param {WriteOptions|string} [options] The write options or the encoding string.
- * @param {boolean} [atomic = false] Whether the operation should run atomicly
+ * @param {boolean} [atomic = false] Whether the operation should run atomically
  * @returns {Promise<void>}
  */
 module.exports = async function createFileCopy(source, destination, options, atomic = false) {

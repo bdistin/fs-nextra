@@ -14,7 +14,7 @@ const symlinkAtomic = require('./symlinkAtomic');
  * @param {string} source The source path of the file
  * @param {string} destination The destination path of the file
  * @param {SymLinkType} [type] The type of symlink you are creating
- * @param {boolean} [atomic = false] Whether the operation should run atomicly
+ * @param {boolean} [atomic = false] Whether the operation should run atomically
  * @returns {Promise<void>}
  */
 /**
@@ -24,7 +24,7 @@ const symlinkAtomic = require('./symlinkAtomic');
  * @param {string} source The source path of the file
  * @param {string} destination The destination path of the file
  * @param {SymLinkType} [type] The type of symlink you are creating
- * @param {boolean} [atomic = false] Whether the operation should run atomicly
+ * @param {boolean} [atomic = false] Whether the operation should run atomically
  * @returns {Promise<void>}
  */
 module.exports = async function createSymlink(source, destination, type, atomic = false) {

@@ -13,7 +13,7 @@ const move = require('./move');
  */
 
 /**
- * Creates a soft file link atomicly.
+ * Creates a soft file link atomically.
  * @function symlinkAtomic
  * @memberof fsn/nextra
  * @param {string} source The source path of the file

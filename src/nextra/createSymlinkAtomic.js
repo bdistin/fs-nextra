@@ -1,7 +1,7 @@
 const createSymlink = require('./createSymlink');
 
 /**
- * Creates a soft file link, making all folders required to satisfy the given file path atomicly.
+ * Creates a soft file link, making all folders required to satisfy the given file path atomically.
  * @function ensureSymlinkAtomic
  * @memberof fsn/nextra
  * @param {string} source The source path of the file
@@ -10,7 +10,7 @@ const createSymlink = require('./createSymlink');
  * @returns {Promise<void>}
  */
 /**
- * Creates a soft file link, making all folders required to satisfy the given file path atomicly.
+ * Creates a soft file link, making all folders required to satisfy the given file path atomically.
  * @function createSymlinkAtomic
  * @memberof fsn/nextra
  * @param {string} source The source path of the file

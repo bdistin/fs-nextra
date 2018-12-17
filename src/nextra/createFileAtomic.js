@@ -1,14 +1,14 @@
 const createFile = require('./createFile');
 
 /**
- * Creates an file copy, making all folders required to satisfy the given file path atomicly.
+ * Creates an file copy, making all folders required to satisfy the given file path atomically.
  * @function ensureFileAtomic
  * @memberof fsn/nextra
  * @param {string} file Path of the file you want to create
  * @returns {Promise<void>}
  */
 /**
- * Creates an file copy, making all folders required to satisfy the given file path atomicly.
+ * Creates an file copy, making all folders required to satisfy the given file path atomically.
  * @function createFileAtomic
  * @memberof fsn/nextra
  * @param {string} file Path of the file you want to create

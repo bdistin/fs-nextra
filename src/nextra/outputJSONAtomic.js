@@ -1,7 +1,7 @@
 const outputJSON = require('./outputJSON');
 
 /**
- * Writes a json file to disk, creating all directories needed to meet the filepath provided atomicly.
+ * Writes a json file to disk, creating all directories needed to meet the filepath provided atomically.
  * @function outputJsonAtomic
  * @memberof fsn/nextra
  * @param {string} file The path to the file you want to create
@@ -10,7 +10,7 @@ const outputJSON = require('./outputJSON');
  * @returns {Promise<void>}
  */
 /**
- * Writes a json file to disk, creating all directories needed to meet the filepath provided atomicly.
+ * Writes a json file to disk, creating all directories needed to meet the filepath provided atomically.
  * @function outputJSONAtomic
  * @memberof fsn/nextra
  * @param {string} file The path to the file you want to create

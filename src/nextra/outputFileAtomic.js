@@ -1,7 +1,7 @@
 const outputFile = require('./outputFile');
 
 /**
- * Writes a file to disk, creating all directories needed to meet the filepath provided atomicly.
+ * Writes a file to disk, creating all directories needed to meet the filepath provided atomically.
  * @function outputFileAtomic
  * @memberof fsn/nextra
  * @param {string} file The path to the file you want to create

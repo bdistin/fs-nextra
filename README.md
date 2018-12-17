@@ -8,7 +8,7 @@ FS-Nextra
 
 [![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/bdistin/fs-nextra.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/bdistin/fs-nextra/context:javascript)
 [![Coverage Status](https://coveralls.io/repos/github/bdistin/fs-nextra/badge.svg?branch=master)](https://coveralls.io/github/bdistin/fs-nextra?branch=master)
-[![travic-ci](https://travis-ci.com/bdistin/fs-nextra.svg?branch=master)](https://travis-ci.com/bdistin/fs-nextra)
+[![travis-ci](https://travis-ci.com/bdistin/fs-nextra.svg?branch=master)](https://travis-ci.com/bdistin/fs-nextra)
 
 [![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=bdistin/fs-nextra)](https://dependabot.com)
 [![david](https://david-dm.org/bdistin/fs-nextra.svg)](https://david-dm.org/bdistin/fs-nextra)

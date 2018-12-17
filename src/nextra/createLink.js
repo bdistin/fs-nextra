@@ -12,7 +12,7 @@ const pathExists = require('./pathExists');
  * @memberof fsn/nextra
  * @param {string} source The source path of the file
  * @param {string} destination The destination path of the file
- * @param {boolean} [atomic = false] Whether the operation should run atomicly
+ * @param {boolean} [atomic = false] Whether the operation should run atomically
  * @returns {Promise<void>}
  */
 /**
@@ -21,7 +21,7 @@ const pathExists = require('./pathExists');
  * @memberof fsn/nextra
  * @param {string} source The source path of the file
  * @param {string} destination The destination path of the file
- * @param {boolean} [atomic = false] Whether the operation should run atomicly
+ * @param {boolean} [atomic = false] Whether the operation should run atomically
  * @returns {Promise<void>}
  */
 module.exports = async function createLink(source, destination, atomic = false) {

@@ -417,15 +417,15 @@ if (fs.promises) {
 /**
  * @typedef {Object} EncodingOptions
  * @memberof fsn/fs
- * @property {string} [encoding = 'utf8'] The encoding for the temperary directory
+ * @property {string} [encoding = 'utf8'] The encoding for the temporary directory
  */
 
 /**
  * Identical to {@link https://nodejs.org/api/fs.html#fs_fs_mkdtemp_prefix_options_callback|fs.mkdtemp} but returns a promise instead.
  * @function mkdtemp
  * @memberof fsn/fs
- * @param {string} prefix The prefix of the temperary folder to create
- * @param {EncodingOptions|string} [options = 'utf8'] The temperary directory options, or encoding
+ * @param {string} prefix The prefix of the temporary folder to create
+ * @param {EncodingOptions|string} [options = 'utf8'] The temporary directory options, or encoding
  * @returns {Promise<string>} The folder path
  */
 

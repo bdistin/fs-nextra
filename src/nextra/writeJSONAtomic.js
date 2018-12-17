@@ -1,7 +1,7 @@
 const writeJSON = require('./writeJSON');
 
 /**
- * Writes a Javascript Object to file as JSON atomicly.
+ * Writes a Javascript Object to file as JSON atomically.
  * @function writeJsonAtomic
  * @memberof fsn/nextra
  * @param {string} file The path to the file you want to create
@@ -10,7 +10,7 @@ const writeJSON = require('./writeJSON');
  * @returns {Promise<void>}
  */
 /**
- * Writes a Javascript Object to file as JSON atomicly.
+ * Writes a Javascript Object to file as JSON atomically.
  * @function writeJSONAtomic
  * @memberof fsn/nextra
  * @param {string} file The path to the file you want to create
