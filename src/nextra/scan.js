@@ -9,7 +9,7 @@ const { scanDeep } = require('../util');
  */
 
 /**
- * Recursivly scans a directory, returning a map of stats keyed on the full path to the item.
+ * Recursively scans a directory, returning a map of stats keyed on the full path to the item.
  * @function scan
  * @memberof fsn/nextra
  * @param {string} root The path to scan
