@@ -18,4 +18,4 @@ echo -e "Testing a master branch push - testing and reporting coverage."
 
 npm run test:coverage
 
-npm run codacy
+npm run coveralls
