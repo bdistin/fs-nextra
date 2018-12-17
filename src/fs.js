@@ -1,7 +1,7 @@
 const fs = require('fs');
 
 // Node 10/11 in else
-/* istanbul ignore else */
+/* istanbul ignore if */
 if (fs.promises) {
 	const otherMethods = {};
 	for (const [key, value] of Object.entries(fs)) if (!key.includes('Sync') && !(`${key}Sync` in fs)) otherMethods[key] = value;
