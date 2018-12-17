@@ -97,7 +97,6 @@ exports.moveDirAcrossDevice = async (source, dest, overwrite) => {
 
 exports.rimraf = async (myPath, options) => {
 	const stats = await lstat(myPath).catch(er => {
-		if (er && er.code === 'ENOENT') return null;
 		// Windows
 		/* istanbul ignore if */
 		if (er && er.code === 'EPERM' && this.isWindows) return this.fixWinEPERM(myPath, options, er);
@@ -107,7 +106,6 @@ exports.rimraf = async (myPath, options) => {
 	if (stats && stats.isDirectory()) return this.removeDir(myPath, options, null);
 
 	return unlink(myPath).catch(er => {
-		if (er.code === 'ENOENT') return null;
 		// Windows
 		/* istanbul ignore if */
 		if (er.code === 'EPERM') return this.isWindows ? this.fixWinEPERM(myPath, options, er) : this.removeDir(myPath, options, er);
