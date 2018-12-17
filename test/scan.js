@@ -8,7 +8,7 @@ ava('file', async test => {
 	await test.true(map.size === 1 && map.get(file).isFile());
 });
 
-ava('non-existant file', async test => {
+ava('non-existent file', async test => {
 	await test.throwsAsync(nextra.scan(tempFileLoc()));
 });
 
@@ -25,7 +25,7 @@ ava('full directory', async test => {
 	test.true(map.size === 1 && map.has(file));
 });
 
-ava('non-existant directory', async test => {
+ava('non-existent directory', async test => {
 	await test.throwsAsync(nextra.scan(tempDirLoc()));
 });
 

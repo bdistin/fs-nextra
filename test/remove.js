@@ -8,7 +8,7 @@ ava('file', async test => {
 	await test.throwsAsync(fs.accessAsync(file));
 });
 
-ava('non-existant file', async test => {
+ava('non-existent file', async test => {
 	test.true(await nextra.remove(tempFileLoc()) === null);
 });
 
@@ -25,7 +25,7 @@ ava('full directory', async test => {
 	await test.throwsAsync(fs.accessAsync(dir));
 });
 
-ava('non-existant directory', async test => {
+ava('non-existent directory', async test => {
 	test.true(await nextra.remove(tempDirLoc()) === null);
 });
 

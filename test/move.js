@@ -17,10 +17,16 @@ ava('self', async test => {
 	test.deepEqual(await nextra.move(existing, existing, { overwrite: true }), await fs.accessAsync(existing));
 });
 
-ava('overwrite exiting dir', async test => {
-	test.plan(2);
+ava('overwrite dir with file', async test => {
 	const existing = tempFile();
 	const move = tempDir();
+	await test.throwsAsync(nextra.move(existing, move, { overwrite: true }));
+});
+
+ava('overwrite exiting file', async test => {
+	test.plan(2);
+	const existing = tempFile();
+	const move = tempFile();
 	await nextra.move(existing, move, { overwrite: true });
 
 	await test.notThrowsAsync(fs.accessAsync(move));

@@ -20,7 +20,7 @@ ava('pre-existing symlink', async test => {
 	test.true(stats.isSymbolicLink());
 });
 
-ava('new file with non-existant directories', async test => {
+ava('new file with non-existent directories', async test => {
 	const file = tempFile();
 	const newfile = tempDirLoc(tempFileLoc());
 	await nextra.createSymlinkAtomic(file, newfile);
