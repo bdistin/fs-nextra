@@ -9,7 +9,7 @@ ava('file', async test => {
 });
 
 ava('non-existant file', async test => {
-	await test.throws(nextra.scan(tempFileLoc()));
+	await test.throwsAsync(nextra.scan(tempFileLoc()));
 });
 
 ava('empty directory', async test => {
@@ -26,7 +26,7 @@ ava('full directory', async test => {
 });
 
 ava('non-existant directory', async test => {
-	await test.throws(nextra.scan(tempDirLoc()));
+	await test.throwsAsync(nextra.scan(tempDirLoc()));
 });
 
 ava('deep directory', async test => {

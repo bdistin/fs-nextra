@@ -24,7 +24,7 @@ ava('File to Existing File', async test => {
 ava('File to Existing File w/ errorOnExist', async test => {
 	const newFile = tempFile();
 	const file = tempFile();
-	await test.throws(nextra.copy(file, newFile, { overwrite: false, errorOnExist: true }));
+	await test.throwsAsync(nextra.copy(file, newFile, { overwrite: false, errorOnExist: true }));
 });
 
 ava('File to Empty Directory', async test => {
@@ -77,7 +77,7 @@ ava('Symlink to Existing Symlink', async test => {
 ava('Duplicated Directories', async test => {
 	const dir = tempDir();
 	tempFile(dir);
-	await test.throws(nextra.copy(dir, dir));
+	await test.throwsAsync(nextra.copy(dir, dir));
 });
 
 ava('filter shortcut', async test => {
