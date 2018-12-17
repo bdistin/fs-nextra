@@ -6,8 +6,8 @@ FS-Nextra
 [![npm](https://img.shields.io/npm/v/fs-nextra.svg?maxAge=3600)](https://www.npmjs.com/package/fs-nextra)
 [![npm](https://img.shields.io/npm/dt/fs-nextra.svg?maxAge=3600)](https://www.npmjs.com/package/fs-nextra)
 
-[![codacy](https://api.codacy.com/project/badge/Grade/6bcb7d5133c94dd6902acb5ef626ff27)](https://www.codacy.com/app/dirigeants/fs-nextra?utm_source=github.com&utm_medium=referral&utm_content=bdistin/fs-nextra&utm_campaign=badger)
-[![Codacy Badge](https://api.codacy.com/project/badge/Coverage/6bcb7d5133c94dd6902acb5ef626ff27)](https://www.codacy.com/app/dirigeants/fs-nextra?utm_source=github.com&utm_medium=referral&utm_content=bdistin/fs-nextra&utm_campaign=Badge_Coverage)
+[![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/bdistin/fs-nextra.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/bdistin/fs-nextra/context:javascript)
+[![Coverage Status](https://coveralls.io/repos/github/bdistin/fs-nextra/badge.svg?branch=master)](https://coveralls.io/github/bdistin/fs-nextra?branch=master)
 [![travic-ci](https://travis-ci.com/bdistin/fs-nextra.svg?branch=master)](https://travis-ci.com/bdistin/fs-nextra)
 
 [![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=bdistin/fs-nextra)](https://dependabot.com)
