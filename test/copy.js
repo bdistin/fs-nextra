@@ -27,6 +27,12 @@ ava('File to Existing File w/ errorOnExist', async test => {
 	await test.throwsAsync(nextra.copy(file, newFile, { overwrite: false, errorOnExist: true }));
 });
 
+ava('File to Existing File w/o errorOnExist', async test => {
+	const newFile = tempFile();
+	const file = tempFile();
+	await test.notThrowsAsync(nextra.copy(file, newFile, { overwrite: false, errorOnExist: false }));
+});
+
 ava('File to Empty Directory', async test => {
 	const emptyDir = tempDir();
 	const file = tempFile();
@@ -44,6 +50,12 @@ ava('Directory to Empty Directory', async test => {
 
 	const stats = await fs.statAsync(join(emptyDir, basename(file)));
 	test.true(stats.isFile());
+});
+
+ava('Directory to Child Directory', async test => {
+	const parent = tempDir();
+	const child = tempDir(parent);
+	await test.throwsAsync(nextra.copy(parent, child))
 });
 
 ava('Directory to new Deep Directory', async test => {
