@@ -22,6 +22,8 @@ module.exports = async function remove(path, options = {}) {
 
 	return util.rimraf(path, options)
 		.catch(async (er) => {
+			// Windows
+			/* istanbul ignore if */
 			if (util.isWindows && (er.code === 'EBUSY' || er.code === 'ENOTEMPTY' || er.code === 'EPERM') && busyTries < options.maxBusyTries) {
 				busyTries++;
 				const time = busyTries * 100;

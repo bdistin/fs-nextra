@@ -38,11 +38,15 @@ const { stat, mkdir } = require('../fs');
  */
 module.exports = async function mkdirs(path, options, made = null) {
 	if (!options || typeof options !== 'object') options = { mode: options };
+
+	// Windows
+	/* istanbul ignore if */
 	if (isWindows && invalidWin32Path(path)) {
 		const errInval = new Error(`${path} contains invalid WIN32 path characters.`);
 		errInval.code = 'EINVAL';
 		throw errInval;
 	}
+
 	// eslint-disable-next-line no-bitwise
 	const mode = options.mode || o777 & ~process.umask();
 	path = resolve(path);

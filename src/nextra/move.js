@@ -40,6 +40,7 @@ module.exports = async function move(source, destination, options = {}) {
 				}
 
 				// Windows
+				/* istanbul ignore if */
 				if (err.code === 'EPERM') {
 					await setTimeoutPromise(200);
 					await remove(destination);
