@@ -52,11 +52,11 @@ module.exports = async function mkdirs(path, options, made = null) {
 	path = resolve(path);
 
 	try {
-		await mkdir(path, mode)
+		await mkdir(path, mode);
 		return made || path;
 	} catch (err) {
 		if (err.code !== 'ENOENT') {
-			const myStat = await stat(path)
+			const myStat = await stat(path);
 			if (myStat.isDirectory()) return made;
 			throw err;
 		}
