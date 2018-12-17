@@ -64,3 +64,24 @@ ava('deep no mkdirp', async test => {
 	const move = tempFileLoc(tempDirLoc());
 	await test.throwsAsync(nextra.move(existing, move, { mkdirp: false }));
 });
+
+ava('overwrite full directory', async test => {
+	test.plan(2);
+	const existing = tempDir();
+	tempFile(existing);
+	const move = tempDir();
+	tempFile(move);
+	await nextra.move(existing, move, { overwrite: true });
+
+	await test.notThrowsAsync(fs.accessAsync(move));
+	await test.throwsAsync(fs.accessAsync(existing));
+});
+
+ava('no overwrite full directory', async test => {
+	test.plan(2);
+	const existing = tempDir();
+	tempFile(existing);
+	const move = tempDir();
+	tempFile(move);
+	await test.throwsAsync(nextra.move(existing, move, { overwrite: false }));
+});
