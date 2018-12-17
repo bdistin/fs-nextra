@@ -55,7 +55,7 @@ ava('Directory to Empty Directory', async test => {
 ava('Directory to Child Directory', async test => {
 	const parent = tempDir();
 	const child = tempDir(parent);
-	await test.throwsAsync(nextra.copy(parent, child))
+	await test.throwsAsync(nextra.copy(parent, child));
 });
 
 ava('Directory to new Deep Directory', async test => {
