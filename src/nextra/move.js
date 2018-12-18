@@ -42,6 +42,8 @@ module.exports = async function move(source, destination, options = {}) {
 	try {
 		return await rename(source, destination);
 	} catch (err) {
+		// Cross network moving: Can't test via travis
+		/* istanbul ignore next */
 		if (err.code === 'EXDEV') {
 			const opts = {
 				overwrite,
@@ -51,6 +53,9 @@ module.exports = async function move(source, destination, options = {}) {
 			await copy(source, destination, opts);
 			return remove(source);
 		}
+
+		// Hard to produce, such as ENOMEM (Kernel running out of memory): Can't test via travis
+		/* istanbul ignore next */
 		throw err;
 	}
 };
