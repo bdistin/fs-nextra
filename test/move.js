@@ -82,10 +82,3 @@ ava('no overwrite full directory', async test => {
 	tempFile(move);
 	await test.throwsAsync(nextra.move(existing, move, { overwrite: false }));
 });
-
-// bugged on windows
-ava('overwrite dir with file', async test => {
-	const existing = tempFile();
-	const move = tempDir();
-	await test.throwsAsync(nextra.move(existing, move, { overwrite: true }));
-});
