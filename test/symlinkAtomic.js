@@ -4,10 +4,10 @@ const nextra = require('../src');
 
 ava('file', async test => {
 	const file = tempFile();
-	const newfile = tempFileLoc();
-	await nextra.symlinkAtomic(file, newfile);
+	const newFile = tempFileLoc();
+	await nextra.symlinkAtomic(file, newFile);
 
-	const stats = await fs.lstatAsync(newfile);
+	const stats = await fs.lstatAsync(newFile);
 	test.true(stats.isSymbolicLink());
 });
 

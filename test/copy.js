@@ -78,18 +78,18 @@ ava('Symlink to Empty Directory', async test => {
 });
 
 ava('Symlink to Existing Symlink', async test => {
-	const newfile = tempSymlink();
+	const newFile = tempSymlink();
 	const symlink = tempSymlink();
-	await nextra.copy(symlink, newfile);
+	await nextra.copy(symlink, newFile);
 
-	const stats = await fs.lstatAsync(newfile);
+	const stats = await fs.lstatAsync(newFile);
 	test.true(stats.isSymbolicLink());
 });
 
-ava('Duplicated Directories', async test => {
+ava('Duplicated Directories (error on exist)', async test => {
 	const dir = tempDir();
 	tempFile(dir);
-	await test.throwsAsync(nextra.copy(dir, dir));
+	await test.throwsAsync(nextra.copy(dir, dir, { errorOnExist: true }));
 });
 
 ava('filter shortcut', async test => {

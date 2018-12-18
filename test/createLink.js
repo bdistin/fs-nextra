@@ -4,10 +4,10 @@ const nextra = require('../src');
 
 ava('new file (standard usage)', async test => {
 	const file = tempFile();
-	const newfile = tempFileLoc();
-	await nextra.createLink(file, newfile);
+	const newFile = tempFileLoc();
+	await nextra.createLink(file, newFile);
 
-	const stats = await fs.statAsync(newfile);
+	const stats = await fs.statAsync(newFile);
 	test.true(stats.isFile());
 });
 
@@ -21,18 +21,18 @@ ava('pre-existing file', async test => {
 
 ava('new file with non-existent directories', async test => {
 	const file = tempFile();
-	const newfile = tempFileLoc(tempDirLoc());
-	await nextra.createLink(file, newfile);
+	const newFile = tempFileLoc(tempDirLoc());
+	await nextra.createLink(file, newFile);
 
-	const stats = await fs.statAsync(newfile);
+	const stats = await fs.statAsync(newFile);
 	test.true(stats.isFile());
 });
 
 ava('new file (atomic shortcut)', async test => {
 	const file = tempFile();
-	const newfile = tempFileLoc();
-	await nextra.createLink(file, newfile, true);
+	const newFile = tempFileLoc();
+	await nextra.createLink(file, newFile, true);
 
-	const stats = await fs.statAsync(newfile);
+	const stats = await fs.statAsync(newFile);
 	test.true(stats.isFile());
 });

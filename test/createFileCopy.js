@@ -4,10 +4,10 @@ const nextra = require('../src');
 
 ava('new file (standard usage)', async test => {
 	const file = tempFile();
-	const newfile = tempFileLoc();
-	await nextra.createFileCopy(file, newfile);
+	const newFile = tempFileLoc();
+	await nextra.createFileCopy(file, newFile);
 
-	const stats = await fs.statAsync(newfile);
+	const stats = await fs.statAsync(newFile);
 	test.true(stats.isFile());
 });
 
@@ -21,24 +21,24 @@ ava('pre-existing file', async test => {
 
 ava('new file with non-existent directories', async test => {
 	const file = tempFile();
-	const newfile = tempDirLoc(tempFileLoc());
-	await nextra.createFileCopy(file, newfile);
+	const newFile = tempDirLoc(tempFileLoc());
+	await nextra.createFileCopy(file, newFile);
 
-	const stats = await fs.statAsync(newfile);
+	const stats = await fs.statAsync(newFile);
 	test.true(stats.isFile());
 });
 
 ava('new file (atomic shortcut)', async test => {
 	const file = tempFile();
-	const newfile = tempFileLoc();
-	await nextra.createFileCopy(file, newfile, true);
+	const newFile = tempFileLoc();
+	await nextra.createFileCopy(file, newFile, true);
 
-	const stats = await fs.statAsync(newfile);
+	const stats = await fs.statAsync(newFile);
 	test.true(stats.isFile());
 });
 
 ava('directory', async test => {
 	const dir = tempDir();
-	const newfile = tempFileLoc();
-	await test.throwsAsync(nextra.createFileCopy(dir, newfile));
+	const newFile = tempFileLoc();
+	await test.throwsAsync(nextra.createFileCopy(dir, newFile));
 });

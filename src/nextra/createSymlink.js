@@ -1,7 +1,5 @@
-const { dirname } = require('path');
-
-const { symlinkPaths, symlinkType } = require('../util');
-const { symlink } = require('../fs');
+const { dirname, join, isAbsolute, relative } = require('path');
+const { symlink, lstat } = require('../fs');
 
 const pathExists = require('./pathExists');
 const mkdirs = require('./mkdirs');
@@ -39,4 +37,26 @@ module.exports = async function createSymlink(source, destination, type, atomic 
 	const dir = dirname(destination);
 	if (!await pathExists(dir)) await mkdirs(dir);
 	return atomic ? symlinkAtomic(source, destination, type2) : symlink(source, destination, type2);
+};
+
+const symlinkPaths = async (srcpath, dstpath) => {
+	if (isAbsolute(srcpath)) {
+		await lstat(srcpath).catch(err => { throw err.message.replace('lstat', 'ensureSymlink'); });
+		return { toCwd: srcpath, toDst: srcpath };
+	}
+	const dstdir = dirname(dstpath);
+	const relativeToDst = join(dstdir, srcpath);
+	if (await pathExists(relativeToDst)) return { toCwd: relativeToDst, toDst: srcpath };
+	await lstat(srcpath).catch(err => { throw err.message.replace('lstat', 'ensureSymlink'); });
+	return { toCwd: srcpath, toDst: relative(dstdir, srcpath) };
+};
+
+const symlinkType = async (srcpath, type) => {
+	if (type) return type;
+	try {
+		const stats = await lstat(srcpath);
+		return stats.isDirectory() ? 'dir' : 'file';
+	} catch (err) {
+		return 'file';
+	}
 };

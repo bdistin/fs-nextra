@@ -1,4 +1,3 @@
-const { stripBom } = require('../util');
 const { readFile } = require('../fs');
 
 /**
@@ -28,4 +27,9 @@ module.exports = async function readJSON(file, options = { flag: 'r' }) {
 	if (typeof options === 'string') options = { encoding: options, flag: 'r' };
 	const content = await readFile(file, options);
 	return JSON.parse(stripBom(content), options.reviver);
+};
+
+const stripBom = (content) => {
+	if (Buffer.isBuffer(content)) content = content.toString('utf8');
+	return content.replace(/^\uFEFF/, '');
 };

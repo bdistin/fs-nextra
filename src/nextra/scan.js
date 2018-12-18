@@ -1,5 +1,5 @@
-const { resolve } = require('path');
-const { scanDeep } = require('../util');
+const { resolve, join } = require('path');
+const { lstat, readdir } = require('../fs');
 
 /**
  * @typedef {Object} ScanOptions
@@ -18,4 +18,13 @@ const { scanDeep } = require('../util');
  */
 module.exports = function scan(root, options = {}) {
 	return scanDeep(resolve(root), new Map(), -1, options);
+};
+
+const scanDeep = async (dir, results, level, options) => {
+	const stats = await lstat(dir);
+	if (!options.filter || options.filter(stats, dir)) results.set(dir, stats);
+	if (stats.isDirectory() && (typeof options.depthLimit === 'undefined' || level < options.depthLimit)) {
+		await Promise.all((await readdir(dir)).map(part => scanDeep(join(dir, part), results, ++level, options)));
+	}
+	return results;
 };

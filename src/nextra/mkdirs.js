@@ -1,6 +1,6 @@
-const { resolve, dirname } = require('path');
+const { resolve, dirname, normalize, sep } = require('path');
 
-const { isWindows, invalidWin32Path, o777 } = require('../util');
+const { isWindows, o777 } = require('../util');
 const { stat, mkdir } = require('../fs');
 
 /**
@@ -63,4 +63,12 @@ module.exports = async function mkdirs(path, options, made = null) {
 		if (myStat.isDirectory()) return made;
 		throw err;
 	}
+};
+
+// Windows
+/* istanbul ignore next */
+const invalidWin32Path = (myPath) => {
+	const root = normalize(resolve(myPath)).split(sep);
+	const rp = root.length > 0 ? root[0] : null;
+	return /[<>:"|?*]/.test(myPath.replace(rp, ''));
 };

@@ -1,10 +1,10 @@
-const { sep, resolve, dirname } = require('path');
+const { resolve, dirname, join, basename } = require('path');
 
-const { ncp } = require('../util');
-const { lstat } = require('../fs');
+const { replaceEsc, isSrcKid } = require('../util');
+const { access, readlink, mkdir, symlink, copyFile, lstat, stat, chmod, readdir } = require('../fs');
 
 const mkdirs = require('./mkdirs');
-const pathExists = require('./pathExists');
+const remove = require('./remove');
 
 /**
  * @typedef {Object} CopyOptions
@@ -12,6 +12,7 @@ const pathExists = require('./pathExists');
  * @property {Function} [filter = undefined] A filter function to determine which files to copy.
  * @property {boolean} [overwrite = true] Whether to overwrite files or not.
  * @property {boolean} [preserveTimestamps = true] Whether or not to preserve timestamps on the files.
+ * @property {boolean} [errorOnExist = false] Whether or not to error if the destination exists
  */
 
 /**
@@ -25,13 +26,54 @@ const pathExists = require('./pathExists');
  * @returns {Promise<void>}
  */
 module.exports = async function copy(source, destination, options = {}) {
+	options = resolveCopyOptions(source, destination, options);
+
+	if (resolve(source) === resolve(destination)) {
+		if (options.errorOnExist) throw new Error('Source and destination must not be the same.');
+		return access(source);
+	}
+
+	await mkdirs(dirname(destination));
+	return startCopy(source, options);
+};
+
+const resolveCopyOptions = (source, destination, options) => {
 	if (typeof options === 'function') options = { filter: options };
-	const basePath = process.cwd();
-	const currentPath = resolve(basePath, source);
-	const targetPath = resolve(basePath, destination);
-	if (currentPath === targetPath) throw new Error('Source and destination must not be the same.');
-	const stats = await lstat(source);
-	const dir = stats.isDirectory() ? destination.split(sep).slice(0, -1).join(sep) : dirname(destination);
-	if (!await pathExists(dir)) await mkdirs(dir);
-	return ncp(source, destination, options);
+	options.currentPath = resolve(source);
+	options.targetPath = resolve(destination);
+	options.filter = typeof options.filter === 'function' ? options.filter : () => true;
+	options.overwrite = 'overwrite' in options ? Boolean(options.overwrite) : true;
+	options.preserveTimestamps = Boolean(options.preserveTimestamps);
+	options.errorOnExist = Boolean(options.errorOnExist);
+	return options;
+};
+
+const isWritable = (myPath) => lstat(myPath).then(() => false).catch(err => err.code === 'ENOENT');
+
+const startCopy = async (mySource, options) => {
+	if (!options.filter(mySource, options.targetPath)) return;
+	const stats = await lstat(mySource);
+	let target = mySource.replace(options.currentPath, replaceEsc(options.targetPath));
+
+	if (stats.isDirectory()) {
+		if (isSrcKid(mySource, target)) throw new Error('FS-NEXTRA: Copying a parent directory into a child will result in an infinite loop.');
+		if (await isWritable(target)) {
+			await mkdir(target, stats.mode);
+			await chmod(target, stats.mode);
+		}
+		const items = await readdir(mySource);
+		await Promise.all(items.map(item => startCopy(join(mySource, item), options)));
+	} else if (stats.isFile() || stats.isCharacterDevice() || stats.isBlockDevice() || stats.isSymbolicLink()) {
+		const tstats = await stat(target).catch(() => null);
+		if (tstats && tstats.isDirectory()) target = join(target, basename(mySource));
+
+		if (!await isWritable(target)) {
+			if (options.errorOnExist) throw new Error(`FS-NEXTRA: ${target} already exists`);
+			if (!options.overwrite) return;
+			await remove(target);
+		}
+
+		if (stats.isSymbolicLink()) await symlink(await readlink(mySource), target);
+		else await copyFile(mySource, target, options);
+	}
 };
