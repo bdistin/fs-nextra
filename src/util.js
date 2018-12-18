@@ -1,4 +1,4 @@
-const { sep, resolve, dirname, basename, join } = require('path');
+const { sep, resolve, join } = require('path');
 const { promisify } = require('util');
 const { randomBytes } = require('crypto');
 const { tmpdir } = require('os');
@@ -11,16 +11,10 @@ exports.setTimeoutPromise = promisify(setTimeout);
 
 exports.replaceEsc = (str) => str.replace(/\$/g, '$$');
 
-exports.isSrcKid = (src, dest) => {
-	src = resolve(src);
-	dest = resolve(dest);
-	try {
-		return src !== dest &&
-			dest.indexOf(src) > -1 &&
-			dest.split(dirname(src) + sep)[1].split(sep)[0] === basename(src);
-	} catch (err) {
-		return false;
-	}
+exports.isSrcKid = (source, destination) => {
+	const sourceArray = resolve(source).split(sep);
+	const destinationArray = resolve(destination).split(sep);
+	return sourceArray.every((current, i) => destinationArray[i] === current);
 };
 
 exports.uuid = () => {
