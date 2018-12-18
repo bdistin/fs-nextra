@@ -39,11 +39,11 @@ ava('no overwrite non-existent file', async test => {
 	await test.throwsAsync(fs.accessAsync(existing));
 });
 
-ava('deep mkdirp', async test => {
+ava('deep destination', async test => {
 	test.plan(2);
 	const existing = tempFile();
 	const move = tempFileLoc(tempDirLoc());
-	await nextra.move(existing, move, { mkdirp: true });
+	await nextra.move(existing, move);
 
 	await test.notThrowsAsync(fs.accessAsync(move));
 	await test.throwsAsync(fs.accessAsync(existing));
@@ -63,10 +63,10 @@ ava('overwrite full directory', async test => {
 
 // Bad Usage (function should throw)
 
-ava('deep no mkdirp', async test => {
-	const existing = tempFile();
-	const move = tempFileLoc(tempDirLoc());
-	await test.throwsAsync(nextra.move(existing, move, { mkdirp: false }));
+ava('Directory to Child Directory', async test => {
+	const parent = tempDir();
+	const child = tempDir(parent);
+	await test.throwsAsync(nextra.move(parent, child));
 });
 
 ava('no overwrite existing file', async test => {
@@ -75,20 +75,17 @@ ava('no overwrite existing file', async test => {
 	await test.throwsAsync(nextra.move(existing, move, { overwrite: false }));
 });
 
-// bugged on windows
-ava('overwrite dir with file', async test => {
-	const existing = tempFile();
-	const move = tempDir();
-	await nextra.move(existing, move, { overwrite: true });
-	await test.throwsAsync(nextra.move(existing, move, { overwrite: true }));
-});
-
-// bugged on windows
 ava('no overwrite full directory', async test => {
 	const existing = tempDir();
 	tempFile(existing);
 	const move = tempDir();
 	tempFile(move);
-	await nextra.move(existing, move, { overwrite: false });
 	await test.throwsAsync(nextra.move(existing, move, { overwrite: false }));
+});
+
+// bugged on windows
+ava('overwrite dir with file', async test => {
+	const existing = tempFile();
+	const move = tempDir();
+	await test.throwsAsync(nextra.move(existing, move, { overwrite: true }));
 });

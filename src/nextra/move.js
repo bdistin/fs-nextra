@@ -1,17 +1,17 @@
 const { resolve, dirname } = require('path');
 
-const { setTimeoutPromise, moveAcrossDevice } = require('../util');
-const { access, rename, link, unlink } = require('../fs');
+const { isSrcKid } = require('../util');
+const { access, rename, stat } = require('../fs');
 
 const remove = require('./remove');
 const mkdirs = require('./mkdirs');
+const pathExists = require('./pathExists');
+const copy = require('./copy');
 
 /**
  * @typedef {Object} MoveOptions
  * @memberof fsn/nextra
- * @property {boolean} [mkdirp = true] Should the move create directories recursively for the destination path
  * @property {boolean} [overwrite = false] Should the move overwrite an identical file at the destination path
- * @property {boolean} [clobber = false] Alias to overwrite for parity to fs-extra
  */
 
 /**
@@ -23,43 +23,34 @@ const mkdirs = require('./mkdirs');
  * @returns {Promise<void>}
  */
 module.exports = async function move(source, destination, options = {}) {
-	const shouldMkdirp = 'mkdirp' in options ? options.mkdirp : true;
-	const overwrite = options.overwrite || options.clobber || false;
+	const overwrite = options.overwrite || false;
+	if (resolve(source) === resolve(destination)) return access(source);
 
-	if (shouldMkdirp) await mkdirs(dirname(destination));
-
-	if (resolve(source) === resolve(destination)) {
-		return access(source);
-	} else if (overwrite) {
-		return rename(source, destination)
-			.catch(async (err) => {
-				if (err.code === 'ENOTEMPTY' || err.code === 'EEXIST') {
-					await remove(destination);
-					options.overwrite = false;
-					return move(source, destination, options);
-				}
-
-				// Windows
-				/* istanbul ignore if */
-				if (err.code === 'EPERM') {
-					await setTimeoutPromise(200);
-					await remove(destination);
-					options.overwrite = false;
-					return move(source, destination, options);
-				}
-
-				// For renaming files across devices, can't test via travis
-				/* istanbul ignore if */
-				if (err.code === 'EXDEV') return moveAcrossDevice(source, destination, overwrite);
-
-				// Any other error
-				throw err;
-			});
+	const myStat = await stat(source);
+	if (myStat.isDirectory() && isSrcKid(source, destination)) {
+		throw new Error('FS-NEXTRA: Moving a parent directory into a child will result in an infinite loop.');
 	}
-	return link(source, destination)
-		.then(() => unlink(source))
-		.catch(err => {
-			if (err.code === 'EXDEV' || err.code === 'EISDIR' || err.code === 'EPERM' || err.code === 'ENOTSUP') return moveAcrossDevice(source, destination, overwrite);
-			throw err;
-		});
+
+	await mkdirs(dirname(destination));
+
+	if (overwrite) {
+		await remove(destination);
+	} else if (await pathExists(destination)) {
+		throw new Error('FS-NEXTRA: Destination already exists.');
+	}
+
+	try {
+		return await rename(source, destination);
+	} catch (err) {
+		if (err.code === 'EXDEV') {
+			const opts = {
+				overwrite,
+				errorOnExist: true
+			};
+
+			await copy(source, destination, opts);
+			return remove(source);
+		}
+		throw err;
+	}
 };

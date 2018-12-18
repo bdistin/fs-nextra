@@ -3,7 +3,7 @@ const { promisify } = require('util');
 const { randomBytes } = require('crypto');
 const { tmpdir } = require('os');
 
-const { rmdir, lstat, createReadStream, createWriteStream, unlink, stat, chmod, readdir, readlink, mkdir, symlink, copyFile } = require('./fs');
+const { rmdir, lstat, unlink, stat, chmod, readdir, readlink, mkdir, symlink, copyFile } = require('./fs');
 
 const remove = require('./nextra/remove');
 const pathExists = require('./nextra/pathExists');
@@ -47,52 +47,6 @@ exports.symlinkPaths = async (srcpath, dstpath) => {
 	if (await pathExists(relativeToDst)) return { toCwd: relativeToDst, toDst: srcpath };
 	await lstat(srcpath).catch(err => { throw err.message.replace('lstat', 'ensureSymlink'); });
 	return { toCwd: srcpath, toDst: relative(dstdir, srcpath) };
-};
-
-// Impossible to test on travis
-/* istanbul ignore next */
-exports.moveAcrossDevice = async (source, dest, overwrite) => {
-	const stats = await stat(source);
-	if (stats.isDirectory()) return this.moveDirAcrossDevice(source, dest, overwrite);
-	return this.moveFileAcrossDevice(source, dest, overwrite);
-};
-
-// Impossible to test on travis
-/* istanbul ignore next */
-exports.moveFileAcrossDevice = (source, dest, overwrite) => new Promise((res, rej) => {
-	const flags = overwrite ? 'w' : 'wx';
-	const ins = createReadStream(source);
-	const outs = createWriteStream(dest, { flags });
-
-	ins.on('error', err => {
-		ins.destroy();
-		outs.destroy();
-		outs.removeListener('close', () => { res(unlink(source)); });
-
-		unlink(dest).catch(() => {
-			if (err.code !== 'EISDIR' && err.code !== 'EPERM') rej(err);
-			res(this.moveDirAcrossDevice(source, dest, overwrite).catch(rej));
-		});
-	});
-
-	outs.on('error', err => {
-		ins.destroy();
-		outs.destroy();
-		outs.removeListener('close', () => { res(unlink(source)); });
-		rej(err);
-	});
-
-	outs.once('close', () => { res(unlink(source)); });
-	ins.pipe(outs);
-});
-
-// Impossible to test on travis
-/* istanbul ignore next */
-exports.moveDirAcrossDevice = async (source, dest, overwrite) => {
-	const options = { overwrite: false };
-	if (overwrite) await remove(dest);
-	await this.ncp(source, dest, options);
-	return remove(source);
 };
 
 exports.rimraf = async (myPath, options) => {
