@@ -1,6 +1,6 @@
-const { dirname } = require('path');
+const { dirname, resolve } = require('path');
 
-const { copyFile } = require('../fs');
+const { access, copyFile } = require('../fs');
 
 const copyFileAtomic = require('./copyFileAtomic');
 const mkdirs = require('./mkdirs');
@@ -27,6 +27,7 @@ const pathExists = require('./pathExists');
  * @returns {Promise<void>}
  */
 module.exports = async function createFileCopy(source, destination, options, atomic = false) {
+	if (resolve(source) === resolve(destination)) return access(source);
 	const dir = dirname(destination);
 	if (!await pathExists(dir)) await mkdirs(dir);
 	return atomic ? copyFileAtomic(source, destination, options) : copyFile(source, destination, options);

@@ -4,7 +4,7 @@ const { link } = require('../fs');
 const move = require('./move');
 
 /**
- * Creates a hard file link atomicaly.
+ * Creates a hard file link atomically.
  * @function linkAtomic
  * @memberof fsn/nextra
  * @param {string} source The source path of the file

@@ -55,15 +55,12 @@ module.exports = async function mkdirs(path, options, made = null) {
 		await mkdir(path, mode);
 		return made || path;
 	} catch (err) {
-		if (err.code !== 'ENOENT') {
-			const myStat = await stat(path);
-			if (myStat.isDirectory()) return made;
-			throw err;
+		if (err.code === 'ENOENT') {
+			const madeChain = await mkdirs(dirname(path), options);
+			return mkdirs(path, options, madeChain);
 		}
-
-		if (dirname(path) === path) throw err;
-
-		const madeChain = await mkdirs(dirname(path), options);
-		return mkdirs(path, options, madeChain);
+		const myStat = await stat(path);
+		if (myStat.isDirectory()) return made;
+		throw err;
 	}
 };

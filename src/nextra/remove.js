@@ -30,6 +30,9 @@ module.exports = async function remove(path, options = {}) {
 				await util.setTimeoutPromise(time);
 				return util.rimraf(path, options);
 			}
+
+			// Hard to test via travis, such as ENOMEM (running the kernel out of memory)
+			/* istanbul ignore else */
 			if (er.code === 'ENOENT') return null;
 			throw er;
 		});

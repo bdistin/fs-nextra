@@ -107,8 +107,10 @@ exports.rimraf = async (myPath, options) => {
 
 	return unlink(myPath).catch(er => {
 		// Windows
-		/* istanbul ignore if */
+		/* istanbul ignore next */
 		if (er.code === 'EPERM') return this.isWindows ? this.fixWinEPERM(myPath, options, er) : this.removeDir(myPath, options, er);
+		// Difficult to reproduce
+		/* istanbul ignore next */
 		if (er.code === 'EISDIR') return this.removeDir(myPath, options, er);
 		throw er;
 	});

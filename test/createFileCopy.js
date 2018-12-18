@@ -1,5 +1,5 @@
 const ava = require('ava');
-const { fs, tempFile, tempFileLoc, tempDirLoc } = require('./lib');
+const { fs, tempFile, tempDir, tempFileLoc, tempDirLoc } = require('./lib');
 const nextra = require('../src');
 
 ava('new file (standard usage)', async test => {
@@ -35,4 +35,10 @@ ava('new file (atomic shortcut)', async test => {
 
 	const stats = await fs.statAsync(newfile);
 	test.true(stats.isFile());
+});
+
+ava('directory', async test => {
+	const dir = tempDir();
+	const newfile = tempFileLoc();
+	await test.throwsAsync(nextra.createFileCopy(dir, newfile));
 });
