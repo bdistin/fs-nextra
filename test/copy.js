@@ -92,6 +92,14 @@ ava('Duplicated Directories (error on exist)', async test => {
 	await test.throwsAsync(nextra.copy(dir, dir, { errorOnExist: true }));
 });
 
+ava('Duplicated File (no error on exist)', async test => {
+	const file = tempFile();
+	await nextra.copy(file, file);
+
+	const stats = await fs.statAsync(file);
+	test.true(stats.isFile());
+});
+
 ava('filter shortcut', async test => {
 	const emptyDir = tempDir();
 	const file = tempFile();
