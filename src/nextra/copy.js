@@ -11,7 +11,6 @@ const pathExists = require('./pathExists');
  * @memberof fsn/nextra
  * @property {Function} [filter = undefined] A filter function to determine which files to copy.
  * @property {boolean} [overwrite = true] Whether to overwrite files or not.
- * @property {boolean} [clobber = true] An alias for overwrite to provide parity to fs-extra.
  * @property {boolean} [preserveTimestamps = true] Whether or not to preserve timestamps on the files.
  */
 

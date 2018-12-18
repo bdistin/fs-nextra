@@ -98,7 +98,7 @@ exports.ncp = async (source, dest, options = {}) => {
 	options.currentPath = resolve(process.cwd(), source);
 	options.targetPath = resolve(process.cwd(), dest);
 	options.filter = typeof options.filter === 'function' ? options.filter : () => true;
-	options.overwrite = 'overwrite' in options || 'clobber' in options ? Boolean(options.overwrite || options.clobber) : true;
+	options.overwrite = 'overwrite' in options ? Boolean(options.overwrite) : true;
 	options.preserveTimestamps = Boolean(options.preserveTimestamps);
 	return this.startCopy(options.currentPath, options);
 };
