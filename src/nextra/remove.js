@@ -68,7 +68,7 @@ const rimraf = async (myPath, options) => {
 const fixWinEPERM = async (myPath, options, err) => {
 	await chmod(myPath, 666).catch(er => { throw er.code === 'ENOENT' ? null : err; });
 	const stats = await stat(myPath).catch(er => { throw er.code === 'ENOENT' ? null : err; });
-	if (stats.isDirectory()) return this.removeDir(myPath, options, err);
+	if (stats.isDirectory()) return removeDir(myPath, options, err);
 	return unlink(myPath);
 };
 
