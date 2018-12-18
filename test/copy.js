@@ -108,3 +108,11 @@ ava('filter shortcut', async test => {
 	const stats = await fs.statAsync(join(emptyDir, basename(file)));
 	test.true(stats.isFile());
 });
+
+ava('filter everything', async test => {
+	const emptyDir = tempDir();
+	const file = tempFile();
+	await nextra.copy(file, emptyDir, () => false);
+
+	await test.throwsAsync(fs.statAsync(join(emptyDir, basename(file))));
+});
