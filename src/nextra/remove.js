@@ -34,6 +34,6 @@ module.exports = async function remove(path, options = {}) {
 			// Hard to test via travis, such as ENOMEM (running the kernel out of memory)
 			/* istanbul ignore else */
 			if (er.code === 'ENOENT') return null;
-			throw er;
+			else throw er;
 		});
 };
