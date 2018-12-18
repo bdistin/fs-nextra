@@ -116,3 +116,15 @@ ava('filter everything', async test => {
 
 	await test.throwsAsync(fs.statAsync(join(emptyDir, basename(file))));
 });
+
+ava('block device', async test => {
+	if (process.platform === 'win32') {
+		test.pass();
+	} else {
+		const file = tempFileLoc();
+		await nextra.copy('/dev/null', file);
+
+		const stats = await fs.statAsync(file);
+		test.true(stats.isFile());
+	}
+});
