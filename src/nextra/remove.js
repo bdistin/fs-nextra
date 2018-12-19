@@ -41,14 +41,15 @@ const remove = module.exports = async function remove(path, options = {}) {
 };
 
 const rimraf = async (myPath, options) => {
-	const stats = await lstat(myPath).catch(er => {
+	try {
+		const stats = await lstat(myPath);
+		if (stats.isDirectory()) return removeDir(myPath, options);
+	} catch (err) {
 		// Windows
 		/* istanbul ignore next */
-		if (isWindows && er.code === 'EPERM') return fixWinEPERM(myPath, options);
-		throw er;
-	});
-
-	if (stats.isDirectory()) return removeDir(myPath, options);
+		if (isWindows && err.code === 'EPERM') return fixWinEPERM(myPath, options);
+		throw err;
+	}
 
 	try {
 		return await unlink(myPath);

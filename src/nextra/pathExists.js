@@ -7,6 +7,11 @@ const { access } = require('../fs');
  * @param {string} path The path to check
  * @returns {Promise<boolean>}
  */
-module.exports = function pathExists(path) {
-	return access(path).then(() => true).catch(() => false);
+module.exports = async function pathExists(path) {
+	try {
+		await access(path);
+		return true;
+	} catch (err) {
+		return false;
+	}
 };

@@ -48,7 +48,14 @@ const resolveCopyOptions = (source, destination, options) => {
 	return options;
 };
 
-const isWritable = (myPath) => lstat(myPath).then(() => false).catch(err => err.code === 'ENOENT');
+const isWritable = async (myPath) => {
+	try {
+		await lstat(myPath);
+		return false;
+	} catch (err) {
+		return err.code === 'ENOENT';
+	}
+};
 
 const startCopy = async (mySource, options) => {
 	if (!options.filter(mySource, options.targetPath)) return;
@@ -64,8 +71,12 @@ const startCopy = async (mySource, options) => {
 		const items = await readdir(mySource);
 		await Promise.all(items.map(item => startCopy(join(mySource, item), options)));
 	} else if (stats.isFile() || stats.isCharacterDevice() || stats.isBlockDevice() || stats.isSymbolicLink()) {
-		const tstats = await stat(target).catch(() => null);
-		if (tstats && tstats.isDirectory()) target = join(target, basename(mySource));
+		try {
+			const tstats = await stat(target);
+			if (tstats && tstats.isDirectory()) target = join(target, basename(mySource));
+		} catch (err) {
+			// noop
+		}
 
 		if (!await isWritable(target)) {
 			if (options.errorOnExist) throw new Error(`FS-NEXTRA: ${target} already exists`);

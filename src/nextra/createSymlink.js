@@ -27,36 +27,35 @@ const symlinkAtomic = require('./symlinkAtomic');
  */
 module.exports = async function createSymlink(source, destination, type, atomic = false) {
 	if (await pathExists(destination)) return null;
+	if (typeof type === 'boolean') [atomic, type] = [type, undefined];
+
+	await mkdirs(dirname(destination));
 	const relativePath = await symlinkPaths(source, destination);
-	source = relativePath.toDst;
-	if (typeof type === 'boolean') {
-		atomic = type;
-		type = undefined;
-	}
-	const type2 = await symlinkType(relativePath.toCwd, type);
-	const dir = dirname(destination);
-	if (!await pathExists(dir)) await mkdirs(dir);
-	return atomic ? symlinkAtomic(source, destination, type2) : symlink(source, destination, type2);
+
+	return atomic ?
+		symlinkAtomic(relativePath.toDst, destination, type || await symlinkType(relativePath.toCwd)) :
+		symlink(relativePath.toDst, destination, type || await symlinkType(relativePath.toCwd));
 };
 
 const symlinkPaths = async (srcpath, dstpath) => {
 	if (isAbsolute(srcpath)) {
-		await lstat(srcpath).catch(err => { throw err.message.replace('lstat', 'ensureSymlink'); });
+		await lstat(srcpath);
 		return { toCwd: srcpath, toDst: srcpath };
 	}
 	const dstdir = dirname(dstpath);
 	const relativeToDst = join(dstdir, srcpath);
 	if (await pathExists(relativeToDst)) return { toCwd: relativeToDst, toDst: srcpath };
-	await lstat(srcpath).catch(err => { throw err.message.replace('lstat', 'ensureSymlink'); });
+	await lstat(srcpath);
 	return { toCwd: srcpath, toDst: relative(dstdir, srcpath) };
 };
 
-const symlinkType = async (srcpath, type) => {
-	if (type) return type;
+const symlinkType = async (srcpath) => {
 	try {
 		const stats = await lstat(srcpath);
 		return stats.isDirectory() ? 'dir' : 'file';
 	} catch (err) {
+		// Windows
+		/* istanbul ignore next */
 		return 'file';
 	}
 };
