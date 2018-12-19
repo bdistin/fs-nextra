@@ -74,10 +74,10 @@ const removeDir = async (myPath, options, originalEr = null) => {
 	try {
 		return await rmdir(myPath);
 	} catch (err) {
-		if (['ENOTEMPTY', 'EEXIST', 'EPERM'].includes(err.code)) return rmkids(myPath, options);
 		// Difficult to reproduce
-		/* istanbul ignore next */
-		if (err.code === 'ENOTDIR') throw originalEr;
+		/* istanbul ignore else */
+		if (['ENOTEMPTY', 'EEXIST', 'EPERM'].includes(err.code)) return rmkids(myPath, options);
+		else if (err.code === 'ENOTDIR') throw originalEr;
 		else throw err;
 	}
 };
