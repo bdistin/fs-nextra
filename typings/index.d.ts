@@ -142,7 +142,6 @@ declare module 'fs-nextra' {
 	export { writeJson as writeJSON };
 
 	export type CopyOptions = {
-		clobber?: boolean;
 		filter?: (source: string, target: string) => boolean;
 		overwrite?: boolean;
 		preserveTimestamps?: boolean;
@@ -153,7 +152,6 @@ declare module 'fs-nextra' {
 	};
 
 	export type MoveOptions = {
-		clobber?: boolean;
 		mkdirp?: boolean;
 		overwrite?: boolean;
 	};
