@@ -56,7 +56,7 @@ const rimraf = async (myPath, options) => {
 	} catch (er) {
 		// Windows
 		/* istanbul ignore next */
-		if (er.code === 'EPERM') return isWindows ? fixWinEPERM(myPath, options, er) : removeDir(myPath, options, er);
+		if (er.code === 'EPERM') return isWindows ? fixWinEPERM(myPath, options) : removeDir(myPath, options, er);
 		// Difficult to reproduce
 		/* istanbul ignore next */
 		if (er.code === 'EISDIR') return removeDir(myPath, options, er);
