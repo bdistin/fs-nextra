@@ -62,6 +62,10 @@ const startCopy = async (mySource, options) => {
 	const stats = await lstat(mySource);
 	let target = mySource.replace(options.currentPath, replaceEsc(options.targetPath));
 
+	// Unable to test blockDevices from travis
+	/* istanbul ignore next */
+	const hardwareDevice = stats.isCharacterDevice() || stats.isBlockDevice();
+
 	if (stats.isDirectory()) {
 		if (isSrcKid(mySource, target)) throw new Error('FS-NEXTRA: Copying a parent directory into a child will result in an infinite loop.');
 		if (await isWritable(target)) {
@@ -70,7 +74,7 @@ const startCopy = async (mySource, options) => {
 		}
 		const items = await readdir(mySource);
 		await Promise.all(items.map(item => startCopy(join(mySource, item), options)));
-	} else if (stats.isFile() || stats.isCharacterDevice() || stats.isBlockDevice() || stats.isSymbolicLink()) {
+	} else if (stats.isFile() || hardwareDevice || stats.isSymbolicLink()) {
 		try {
 			const tstats = await stat(target);
 			if (tstats && tstats.isDirectory()) target = join(target, basename(mySource));
