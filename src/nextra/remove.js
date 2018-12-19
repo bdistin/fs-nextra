@@ -59,7 +59,7 @@ const rimraf = async (myPath, options) => {
 		// Difficult to reproduce
 		/* istanbul ignore next */
 		if (er.code === 'EISDIR') return removeDir(myPath, options, er);
-		throw er;
+		else throw er;
 	}
 };
 
@@ -75,8 +75,10 @@ const removeDir = async (myPath, options, originalEr = null) => {
 		return await rmdir(myPath);
 	} catch (err) {
 		if (err.code === 'ENOTEMPTY' || err.code === 'EEXIST' || err.code === 'EPERM') return rmkids(myPath, options);
+		// Difficult to reproduce
+		/* istanbul ignore next */
 		if (err.code === 'ENOTDIR') throw originalEr;
-		throw err;
+		else throw err;
 	}
 };
 
