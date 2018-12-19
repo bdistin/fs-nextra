@@ -129,7 +129,7 @@ ava('block device', async test => {
 	}
 });
 
-ava('block device', async test => {
+ava('character device', async test => {
 	if (process.platform === 'win32') {
 		test.pass();
 	} else {
