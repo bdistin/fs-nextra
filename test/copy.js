@@ -128,3 +128,15 @@ ava('block device', async test => {
 		test.true(stats.isFile());
 	}
 });
+
+ava('block device', async test => {
+	if (process.platform === 'win32') {
+		test.pass();
+	} else {
+		const file = tempFileLoc();
+		await nextra.copy('/dev/tty', file);
+
+		const stats = await fs.statAsync(file);
+		test.true(stats.isFile());
+	}
+});
