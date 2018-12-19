@@ -1,5 +1,5 @@
 const ava = require('ava');
-const { fs, tempFile, tempSymlink, tempFileLoc, tempDirLoc } = require('./lib');
+const { fs, tempFile, tempDir, tempSymlink, tempFileLoc, tempDirLoc } = require('./lib');
 const nextra = require('../src');
 
 ava('new file (standard usage)', async test => {
@@ -8,6 +8,15 @@ ava('new file (standard usage)', async test => {
 	await nextra.createSymlink(file, newFile);
 
 	const stats = await fs.lstatAsync(newFile);
+	test.true(stats.isSymbolicLink());
+});
+
+ava('new dir (standard usage)', async test => {
+	const dir = tempDir();
+	const newDir = tempDirLoc();
+	await nextra.createSymlink(dir, newDir);
+
+	const stats = await fs.lstatAsync(newDir);
 	test.true(stats.isSymbolicLink());
 });
 
