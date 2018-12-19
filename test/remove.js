@@ -9,7 +9,7 @@ ava('file', async test => {
 });
 
 ava('non-existent file', async test => {
-	test.true(await nextra.remove(tempFileLoc()) === null);
+	await test.notThrowsAsync(nextra.remove(tempFileLoc()));
 });
 
 ava('empty directory', async test => {
@@ -26,7 +26,7 @@ ava('full directory', async test => {
 });
 
 ava('non-existent directory', async test => {
-	test.true(await nextra.remove(tempDirLoc()) === null);
+	await test.notThrowsAsync(nextra.remove(tempDirLoc()));
 });
 
 ava('bad input', async test => {

@@ -1,7 +1,7 @@
 const { join } = require('path');
 
 const { isWindows, setTimeoutPromise } = require('../util');
-const { lstat, unlink, rmdir, stat, chmod, readdir } = require('../fs');
+const { lstat, unlink, rmdir, chmod, readdir } = require('../fs');
 
 /**
  * @typedef {Object} RemoveOptions
@@ -19,39 +19,40 @@ const { lstat, unlink, rmdir, stat, chmod, readdir } = require('../fs');
  */
 const remove = module.exports = async function remove(path, options = {}) {
 	if (typeof path !== 'string') throw new Error('Path should be a string');
-	let busyTries = 0;
+	options.maxBusyTries = typeof options.maxBusyTries === 'undefined' ? 3 : options.maxBusyTries;
 
-	options.maxBusyTries = options.maxBusyTries || 3;
-
-	return rimraf(path, options)
-		.catch(async (er) => {
+	for (let buysTries = 0; buysTries < options.maxBusyTries; buysTries++) {
+		try {
+			await rimraf(path, options);
+			break;
+		} catch (err) {
 			// Windows
 			/* istanbul ignore next */
-			if (isWindows && (er.code === 'EBUSY' || er.code === 'ENOTEMPTY' || er.code === 'EPERM') && busyTries < options.maxBusyTries) {
-				busyTries++;
-				const time = busyTries * 100;
-				await setTimeoutPromise(time);
-				return rimraf(path, options);
+			if (isWindows && (err.code === 'EBUSY' || err.code === 'ENOTEMPTY' || err.code === 'EPERM')) {
+				await setTimeoutPromise(buysTries * 100);
+				continue;
 			}
-
 			// Hard to test via travis, such as ENOMEM (running the kernel out of memory)
 			/* istanbul ignore else */
-			if (er.code === 'ENOENT') return null;
-			else throw er;
-		});
+			if (err.code === 'ENOENT') return;
+			else throw err;
+		}
+	}
 };
 
 const rimraf = async (myPath, options) => {
 	const stats = await lstat(myPath).catch(er => {
 		// Windows
-		/* istanbul ignore if */
-		if (er && er.code === 'EPERM' && isWindows) return fixWinEPERM(myPath, options, er);
+		/* istanbul ignore next */
+		if (isWindows && er.code === 'EPERM') return fixWinEPERM(myPath, options);
 		throw er;
 	});
 
-	if (stats && stats.isDirectory()) return removeDir(myPath, options, null);
+	if (stats.isDirectory()) return removeDir(myPath, options);
 
-	return unlink(myPath).catch(er => {
+	try {
+		return await unlink(myPath);
+	} catch (er) {
 		// Windows
 		/* istanbul ignore next */
 		if (er.code === 'EPERM') return isWindows ? fixWinEPERM(myPath, options, er) : removeDir(myPath, options, er);
@@ -59,28 +60,28 @@ const rimraf = async (myPath, options) => {
 		/* istanbul ignore next */
 		if (er.code === 'EISDIR') return removeDir(myPath, options, er);
 		throw er;
-	});
+	}
 };
-
 
 // Windows
 /* istanbul ignore next */
-const fixWinEPERM = async (myPath, options, err) => {
-	await chmod(myPath, 666).catch(er => { throw er.code === 'ENOENT' ? null : err; });
-	const stats = await stat(myPath).catch(er => { throw er.code === 'ENOENT' ? null : err; });
-	if (stats.isDirectory()) return removeDir(myPath, options, err);
-	return unlink(myPath);
+const fixWinEPERM = async (myPath, options) => {
+	await chmod(myPath, 0o666);
+	return rimraf(myPath, options);
 };
 
-const removeDir = async (myPath, options, originalEr) => rmdir(myPath).catch(er => {
-	if (er && (er.code === 'ENOTEMPTY' || er.code === 'EEXIST' || er.code === 'EPERM')) return rmkids(myPath, options);
-	if (er && er.code === 'ENOTDIR') throw originalEr;
-	throw er;
-});
+const removeDir = async (myPath, options, originalEr = null) => {
+	try {
+		return await rmdir(myPath);
+	} catch (err) {
+		if (err.code === 'ENOTEMPTY' || err.code === 'EEXIST' || err.code === 'EPERM') return rmkids(myPath, options);
+		if (err.code === 'ENOTDIR') throw originalEr;
+		throw err;
+	}
+};
 
 const rmkids = async (myPath, options) => {
 	const files = await readdir(myPath);
-	if (!files.length) return rmdir(myPath);
-	return Promise.all(files.map(file => remove(join(myPath, file), options)))
-		.then(() => rmdir(myPath));
+	await Promise.all(files.map(file => remove(join(myPath, file), options)));
+	return rmdir(myPath);
 };
