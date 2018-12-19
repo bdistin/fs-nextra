@@ -1,5 +1,4 @@
 const ava = require('ava');
-const { tmpdir } = require('os');
 const { relative } = require('path');
 const { fs, tempFile, tempDir, tempSymlink, tempFileLoc, tempDirLoc } = require('./lib');
 const nextra = require('../src');
@@ -52,7 +51,7 @@ ava('relative source', async test => {
 ava('relative source and destination', async test => {
 	const file = tempFile();
 	const newFile = tempDirLoc(tempFileLoc());
-	await nextra.createSymlink(relative(tmpdir, file), relative(tmpdir, newFile));
+	await nextra.createSymlink(relative(process.cwd(), file), relative(process.cwd(), newFile));
 
 	const stats = await fs.lstatAsync(newFile);
 	test.true(stats.isSymbolicLink());
