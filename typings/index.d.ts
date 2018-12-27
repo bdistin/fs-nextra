@@ -110,7 +110,7 @@ declare module 'fs-nextra' {
 	export function createSymlinkAtomic(source: string, destination: string, type?: SymLinkType): Promise<void>;
 	export function emptydir(dir: string): Promise<void>;
 	export function linkAtomic(source: string, destination: string): Promise<void>;
-	export function mkdirs(path: string, options?: MkdirsOptions): Promise<string>;
+	export function mkdirs(path: string, options?: MkdirsOptions): Promise<void>;
 	export function move(source: string, destination: string, options?: MoveOptions): Promise<void>;
 	export function outputFile(file: string, data: string | Buffer | Uint8Array, options?: WriteOptions | string, atomic?: boolean): Promise<void>;
 	export function outputFileAtomic(file: string, data: string | Buffer | Uint8Array, options?: WriteOptions | string): Promise<void>;
