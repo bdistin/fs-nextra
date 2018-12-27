@@ -2,66 +2,83 @@ const ava = require('ava');
 const { fs, tempFileLoc, tempDirLoc, tempFile, tempDir } = require('./lib');
 const nextra = require('../src');
 
-// Good Usage (should get desired results)
+// #region Success
 
-ava('standard usage', async test => {
-	test.plan(2);
+ava('Standard Usage', async test => {
+	test.plan(3);
+
 	const existing = tempFile();
 	const move = tempFileLoc();
-	await nextra.move(existing, move);
+	const retVal = await nextra.move(existing, move);
 
+	test.is(retVal, undefined);
 	await test.notThrowsAsync(fs.accessAsync(move));
 	await test.throwsAsync(fs.accessAsync(existing));
 });
 
-ava('self', async test => {
+ava('Self', async test => {
+	test.plan(2);
+
 	const existing = tempFile();
-	test.deepEqual(await nextra.move(existing, existing, { overwrite: true }), await fs.accessAsync(existing));
+	const retVal = await nextra.move(existing, existing, { overwrite: true });
+
+	test.is(retVal, undefined);
+	await test.notThrowsAsync(fs.accessAsync(existing));
 });
 
-ava('overwrite existing file', async test => {
-	test.plan(2);
+ava('Overwrite Existing File', async test => {
+	test.plan(3);
+
 	const existing = tempFile();
 	const move = tempFile();
-	await nextra.move(existing, move, { overwrite: true });
+	const retVal = await nextra.move(existing, move, { overwrite: true });
 
+	test.is(retVal, undefined);
 	await test.notThrowsAsync(fs.accessAsync(move));
 	await test.throwsAsync(fs.accessAsync(existing));
 });
 
-ava('no overwrite non-existent file', async test => {
-	test.plan(2);
+ava('No Overwrite Non-Existent File', async test => {
+	test.plan(3);
+
 	const existing = tempFile();
 	const move = tempFileLoc();
-	await nextra.move(existing, move, { overwrite: false });
+	const retVal = await nextra.move(existing, move, { overwrite: false });
 
+	test.is(retVal, undefined);
 	await test.notThrowsAsync(fs.accessAsync(move));
 	await test.throwsAsync(fs.accessAsync(existing));
 });
 
-ava('deep destination', async test => {
-	test.plan(2);
+ava('Deep Destination', async test => {
+	test.plan(3);
+
 	const existing = tempFile();
 	const move = tempFileLoc(tempDirLoc());
-	await nextra.move(existing, move);
+	const retVal = await nextra.move(existing, move);
 
+	test.is(retVal, undefined);
 	await test.notThrowsAsync(fs.accessAsync(move));
 	await test.throwsAsync(fs.accessAsync(existing));
 });
 
-ava('overwrite full directory', async test => {
-	test.plan(2);
+ava('Overwrite Full Directory', async test => {
+	test.plan(3);
+
 	const existing = tempDir();
 	tempFile(existing);
 	const move = tempDir();
 	tempFile(move);
-	await nextra.move(existing, move, { overwrite: true });
+	const retVal = await nextra.move(existing, move, { overwrite: true });
 
+	test.is(retVal, undefined);
 	await test.notThrowsAsync(fs.accessAsync(move));
 	await test.throwsAsync(fs.accessAsync(existing));
 });
 
-// Bad Usage (function should throw)
+// #endregion Success
+
+// #region Throws
 
 ava('Directory to Child Directory', async test => {
 	const parent = tempDir();
@@ -69,16 +86,18 @@ ava('Directory to Child Directory', async test => {
 	await test.throwsAsync(nextra.move(parent, child));
 });
 
-ava('no overwrite existing file', async test => {
+ava('No Overwrite Existing File', async test => {
 	const existing = tempFile();
 	const move = tempFile();
 	await test.throwsAsync(nextra.move(existing, move, { overwrite: false }));
 });
 
-ava('no overwrite full directory', async test => {
+ava('No Overwrite Full Directory', async test => {
 	const existing = tempDir();
 	tempFile(existing);
 	const move = tempDir();
 	tempFile(move);
 	await test.throwsAsync(nextra.move(existing, move, { overwrite: false }));
 });
+
+// #endregion Throws

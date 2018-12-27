@@ -60,31 +60,36 @@ const isWritable = async (myPath) => {
 const startCopy = async (mySource, options) => {
 	if (!options.filter(mySource, options.targetPath)) return;
 	const stats = await lstat(mySource);
-	let target = mySource.replace(options.currentPath, replaceEsc(options.targetPath));
+	const target = mySource.replace(options.currentPath, replaceEsc(options.targetPath));
 
-	if (stats.isDirectory()) {
-		if (isSrcKid(mySource, target)) throw new Error('FS-NEXTRA: Copying a parent directory into a child will result in an infinite loop.');
-		if (await isWritable(target)) {
-			await mkdir(target, stats.mode);
-			await chmod(target, stats.mode);
-		}
-		const items = await readdir(mySource);
-		await Promise.all(items.map(item => startCopy(join(mySource, item), options)));
-	} else {
-		try {
-			const tstats = await stat(target);
-			if (tstats && tstats.isDirectory()) target = join(target, basename(mySource));
-		} catch (err) {
-			// noop
-		}
+	if (stats.isDirectory()) await copyDirectory(mySource, stats, target, options);
+	else await copyOther(mySource, stats, target, options);
+};
 
-		if (!await isWritable(target)) {
-			if (options.errorOnExist) throw new Error(`FS-NEXTRA: ${target} already exists`);
-			if (!options.overwrite) return;
-			await remove(target);
-		}
-
-		if (stats.isSymbolicLink()) await symlink(await readlink(mySource), target);
-		else await copyFile(mySource, target, options);
+const copyDirectory = async (mySource, stats, target, options) => {
+	if (isSrcKid(mySource, target)) throw new Error('FS-NEXTRA: Copying a parent directory into a child will result in an infinite loop.');
+	if (await isWritable(target)) {
+		await mkdir(target, stats.mode);
+		await chmod(target, stats.mode);
 	}
+	const items = await readdir(mySource);
+	await Promise.all(items.map(item => startCopy(join(mySource, item), options)));
+};
+
+const copyOther = async (mySource, stats, target, options) => {
+	try {
+		const tstats = await stat(target);
+		if (tstats && tstats.isDirectory()) target = join(target, basename(mySource));
+	} catch (err) {
+		// noop
+	}
+
+	if (!await isWritable(target)) {
+		if (options.errorOnExist) throw new Error(`FS-NEXTRA: ${target} already exists`);
+		if (!options.overwrite) return;
+		await remove(target);
+	}
+
+	if (stats.isSymbolicLink()) await symlink(await readlink(mySource), target);
+	else await copyFile(mySource, target, options);
 };

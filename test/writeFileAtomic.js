@@ -2,18 +2,24 @@ const ava = require('ava');
 const { fs, tempFile, tempFileLoc } = require('./lib');
 const nextra = require('../src');
 
-ava('existing', async test => {
+ava('Existing', async test => {
+	test.plan(2);
+
 	const file = tempFile();
 	const data = 'passed';
-	await nextra.writeFileAtomic(file, data);
+	const retVal = await nextra.writeFileAtomic(file, data);
 
+	test.is(retVal, undefined);
 	test.is(await fs.readFileAsync(file, 'utf8'), data);
 });
 
-ava('new', async test => {
+ava('New', async test => {
+	test.plan(2);
+
 	const file = tempFileLoc();
 	const data = 'passed';
-	await nextra.writeFileAtomic(file, data);
+	const retVal = await nextra.writeFileAtomic(file, data);
 
+	test.is(retVal, undefined);
 	test.is(await fs.readFileAsync(file, 'utf8'), data);
 });

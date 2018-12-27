@@ -2,28 +2,37 @@ const ava = require('ava');
 const { fs, tempFile, tempFileLoc, tempDirLoc } = require('./lib');
 const nextra = require('../src');
 
-ava('new file (standard usage)', async test => {
+ava('New File (Standard Usage)', async test => {
+	test.plan(2);
+
 	const file = tempFile();
 	const newFile = tempFileLoc();
-	await nextra.createFileCopyAtomic(file, newFile);
-
+	const retVal = await nextra.createFileCopyAtomic(file, newFile);
 	const stats = await fs.statAsync(newFile);
+
+	test.is(retVal, undefined);
 	test.true(stats.isFile());
 });
 
-ava('pre-existing file', async test => {
+ava('Pre-Existing File', async test => {
+	test.plan(2);
+
 	const file = tempFile();
-	await nextra.createFileCopyAtomic(file, file);
-
+	const retVal = await nextra.createFileCopyAtomic(file, file);
 	const stats = await fs.statAsync(file);
+
+	test.is(retVal, undefined);
 	test.true(stats.isFile());
 });
 
-ava('new file with non-existent directories', async test => {
+ava('New File w/ Non-Existent Directories', async test => {
+	test.plan(2);
+
 	const file = tempFile();
 	const newFile = tempDirLoc(tempFileLoc());
-	await nextra.createFileCopyAtomic(file, newFile);
-
+	const retVal = await nextra.createFileCopyAtomic(file, newFile);
 	const stats = await fs.statAsync(newFile);
+
+	test.is(retVal, undefined);
 	test.true(stats.isFile());
 });

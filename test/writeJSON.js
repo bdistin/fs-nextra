@@ -2,27 +2,36 @@ const ava = require('ava');
 const { fs, tempFile, tempFileLoc } = require('./lib');
 const nextra = require('../src');
 
-ava('standard usage', async test => {
+ava('Standard Usage', async test => {
+	test.plan(2);
+
 	const file = tempFileLoc();
 	const obj = { test: 'passed' };
-	await nextra.writeJSON(file, obj);
+	const retVal = await nextra.writeJSON(file, obj);
 
+	test.is(retVal, undefined);
 	test.deepEqual(JSON.parse(await fs.readFileAsync(file, 'utf8')), obj);
 });
 
-ava('existing', async test => {
+ava('Existing', async test => {
+	test.plan(2);
+
 	const file = tempFile();
 	const obj = { test: 'passed' };
-	await nextra.writeJSON(file, obj);
+	const retVal = await nextra.writeJSON(file, obj);
 
+	test.is(retVal, undefined);
 	test.deepEqual(JSON.parse(await fs.readFileAsync(file, 'utf8')), obj);
 });
 
 
-ava('atomic shortcut', async test => {
+ava('Atomic Shortcut', async test => {
+	test.plan(2);
+
 	const file = tempFileLoc();
 	const obj = { test: 'passed' };
-	await nextra.writeJSON(file, obj, true);
+	const retVal = await nextra.writeJSON(file, obj, true);
 
+	test.is(retVal, undefined);
 	test.deepEqual(JSON.parse(await fs.readFileAsync(file, 'utf8')), obj);
 });

@@ -26,15 +26,14 @@ const symlinkAtomic = require('./symlinkAtomic');
  * @returns {Promise<void>}
  */
 module.exports = async function createSymlink(source, destination, type, atomic = false) {
-	if (await pathExists(destination)) return null;
+	if (await pathExists(destination)) return;
 	if (typeof type === 'boolean') [atomic, type] = [type, undefined];
 
 	await mkdirs(dirname(destination));
 	const relativePath = await symlinkPaths(source, destination);
 
-	return atomic ?
-		symlinkAtomic(relativePath.toDst, destination, type || await symlinkType(relativePath.toCwd)) :
-		symlink(relativePath.toDst, destination, type || await symlinkType(relativePath.toCwd));
+	if (atomic) await symlinkAtomic(relativePath.toDst, destination, type || await symlinkType(relativePath.toCwd));
+	else await symlink(relativePath.toDst, destination, type || await symlinkType(relativePath.toCwd));
 };
 
 const symlinkPaths = async (srcpath, dstpath) => {

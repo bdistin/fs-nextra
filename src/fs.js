@@ -169,15 +169,15 @@ if (fs.promises) {
  */
 
 /**
- * Emitted when the readstream closes.
+ * Emitted when the ReadStream closes.
  * @event ReadStream#close
  * @instance
  */
 
 /**
- * Emitted when the readstream's file is opened.
+ * Emitted when the ReadStream's file is opened.
  * @event ReadStream#open
- * @property {number} fd The file discriptor.
+ * @property {number} fd The file descriptor.
  * @instance
  */
 
@@ -191,15 +191,15 @@ if (fs.promises) {
  */
 
 /**
- * Emitted when the readstream closes.
+ * Emitted when the ReadStream closes.
  * @event WriteStream#close
  * @instance
  */
 
 /**
- * Emitted when the readstream's file is opened.
+ * Emitted when the ReadStream's file is opened.
  * @event WriteStream#open
- * @property {number} fd The file discriptor.
+ * @property {number} fd The file descriptor.
  * @instance
  */
 
@@ -442,7 +442,7 @@ if (fs.promises) {
 /**
  * @typedef {Object} ReadObject
  * @memberof fsn/fs
- * @property {number} bytesRead The numberof bytes read
+ * @property {number} bytesRead The number of bytes read
  * @property {Buffer|Uint8Array} buffer The buffer containing the data read
  */
 
@@ -453,8 +453,8 @@ if (fs.promises) {
  * @param {number} fd The file descriptor
  * @param {Buffer|Uint8Array} buffer The buffer that he data will be written to.
  * @param {number} offset The offset in the buffer to start writing at
- * @param {number} length The thenumber of bytes to read
- * @param {number} position The the postition to begin reading from the file
+ * @param {number} length The the number of bytes to read
+ * @param {number} position The the postilion to begin reading from the file
  * @returns {Promise<ReadObject>}
  */
 
@@ -601,7 +601,7 @@ if (fs.promises) {
  * @param {Buffer|Uint8Array} buffer The buffer to write to file
  * @param {number} [offset] The offset in the buffer to start reading at
  * @param {number} [length] The the number of bytes to write
- * @param {number} [position] The the postition to begin writing to the file
+ * @param {number} [position] The the position to begin writing to the file
  * @returns {Promise<void>}
  */
 

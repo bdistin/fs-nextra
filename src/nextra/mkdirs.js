@@ -1,6 +1,6 @@
 const { resolve, dirname, normalize, sep } = require('path');
 
-const { isWindows, o777 } = require('../util');
+const { isWindows } = require('../util');
 const { stat, mkdir } = require('../fs');
 
 /**
@@ -15,8 +15,7 @@ const { stat, mkdir } = require('../fs');
  * @memberof fsn/nextra
  * @param {string} path The path you wish to make
  * @param {MkdirsOptions} [options] Options for making the directories
- * @param {string} [made = null] The path in progress, do not set.
- * @returns {Promise<string>} The path made.
+ * @returns {Promise<void>}
  */
 /**
  * Recursively makes directories, until the directory passed exists.
@@ -24,8 +23,7 @@ const { stat, mkdir } = require('../fs');
  * @memberof fsn/nextra
  * @param {string} path The path you wish to make
  * @param {MkdirsOptions} [options] Options for making the directories
- * @param {string} [made = null] The path in progress, do not set.
- * @returns {Promise<string>} The path made.
+ * @returns {Promise<void>}
  */
 /**
  * Recursively makes directories, until the directory passed exists.
@@ -33,10 +31,9 @@ const { stat, mkdir } = require('../fs');
  * @memberof fsn/nextra
  * @param {string} path The path you wish to make
  * @param {MkdirsOptions} [options] Options for making the directories
- * @param {string} [made = null] The path in progress, do not set.
- * @returns {Promise<string>} The path made.
+ * @returns {Promise<void>}
  */
-module.exports = async function mkdirs(path, options, made = null) {
+module.exports = async function mkdirs(path, options) {
 	if (!options || typeof options !== 'object') options = { mode: options };
 
 	// Windows
@@ -48,19 +45,20 @@ module.exports = async function mkdirs(path, options, made = null) {
 	}
 
 	// eslint-disable-next-line no-bitwise
-	const mode = options.mode || o777 & ~process.umask();
+	const mode = options.mode || 0o0777 & ~process.umask();
 	path = resolve(path);
 
 	try {
 		await mkdir(path, mode);
-		return made || path;
+		return;
 	} catch (err) {
 		if (err.code === 'ENOENT') {
-			const madeChain = await mkdirs(dirname(path), options);
-			return mkdirs(path, options, madeChain);
+			await mkdirs(dirname(path), options);
+			await mkdirs(path, options);
+			return;
 		}
 		const myStat = await stat(path);
-		if (myStat.isDirectory()) return made;
+		if (myStat.isDirectory()) return;
 		throw err;
 	}
 };

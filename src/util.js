@@ -3,8 +3,6 @@ const { promisify } = require('util');
 const { randomBytes } = require('crypto');
 const { tmpdir } = require('os');
 
-exports.o777 = 0o0777;
-
 exports.isWindows = process.platform === 'win32';
 
 exports.setTimeoutPromise = promisify(setTimeout);
