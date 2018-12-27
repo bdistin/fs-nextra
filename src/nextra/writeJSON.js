@@ -34,6 +34,9 @@ const writeFileAtomic = require('./writeFileAtomic');
  */
 module.exports = async function writeJSON(file, object, options = {}, atomic = false) {
 	if (typeof options === 'boolean') [atomic, options] = [options, {}];
+
 	const str = `${JSON.stringify(object, options.replacer, options.spaces || null)}\n`;
-	return atomic ? writeFileAtomic(file, str, options) : writeFile(file, str, options);
+
+	if (atomic) await writeFileAtomic(file, str, options);
+	else await writeFile(file, str, options);
 };

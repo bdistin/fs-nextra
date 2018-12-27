@@ -24,8 +24,8 @@ const pathExists = require('./pathExists');
  */
 module.exports = async function createFile(file, atomic = false) {
 	if (await pathExists(file)) return;
-	const dir = dirname(file);
-	if (!await pathExists(dir)) await mkdirs(dir);
+
+	await mkdirs(dirname(file));
 
 	if (atomic) await writeFileAtomic(file, '');
 	else await writeFile(file, '');

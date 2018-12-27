@@ -2,7 +2,6 @@ const { dirname } = require('path');
 
 const writeJSON = require('./writeJSON');
 const mkdirs = require('./mkdirs');
-const pathExists = require('./pathExists');
 
 
 /**
@@ -26,11 +25,9 @@ const pathExists = require('./pathExists');
  * @returns {Promise<void>}
  */
 module.exports = async function outputJSON(file, data, options, atomic = false) {
-	if (typeof options === 'boolean') {
-		atomic = options;
-		options = {};
-	}
-	const dir = dirname(file);
-	if (!await pathExists(dir)) await mkdirs(dir);
+	if (typeof options === 'boolean') [atomic, options] = [options, {}];
+
+	await mkdirs(dirname(file));
+
 	return writeJSON(file, data, options, atomic);
 };

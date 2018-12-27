@@ -27,8 +27,8 @@ const pathExists = require('./pathExists');
 module.exports = async function createLink(source, destination, atomic = false) {
 	if (await pathExists(destination)) return;
 	await lstat(source);
-	const dir = dirname(destination);
-	if (!await pathExists(dir)) await mkdirs(dir);
+
+	await mkdirs(dirname(destination));
 
 	if (atomic) await linkAtomic(source, destination);
 	else await link(source, destination);
