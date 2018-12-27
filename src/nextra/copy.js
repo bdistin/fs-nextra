@@ -29,7 +29,7 @@ module.exports = async function copy(source, destination, options = {}) {
 	options = resolveCopyOptions(source, destination, options);
 
 	if (resolve(source) === resolve(destination)) {
-		if (options.errorOnExist) throw new Error('Source and destination must not be the same.');
+		if (options.errorOnExist) throw new Error('FS-NEXTRA: Source and destination must not be the same.');
 		return access(source);
 	}
 

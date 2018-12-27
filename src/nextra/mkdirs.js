@@ -42,7 +42,7 @@ module.exports = async function mkdirs(path, options, made = null) {
 	// Windows
 	/* istanbul ignore next */
 	if (isWindows && invalidWin32Path(path)) {
-		const errInval = new Error(`${path} contains invalid WIN32 path characters.`);
+		const errInval = new Error(`FS-NEXTRA: ${path} contains invalid WIN32 path characters.`);
 		errInval.code = 'EINVAL';
 		throw errInval;
 	}

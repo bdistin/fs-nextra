@@ -18,7 +18,7 @@ const { lstat, unlink, rmdir, chmod, readdir } = require('../fs');
  * @returns {Promise<void>}
  */
 const remove = module.exports = async function remove(path, options = {}) {
-	if (typeof path !== 'string') throw new Error('Path should be a string');
+	if (typeof path !== 'string') throw new Error('FS-NEXTRA: Path should be a string');
 	options.maxBusyTries = typeof options.maxBusyTries === 'undefined' ? 3 : options.maxBusyTries;
 
 	for (let buysTries = 0; buysTries < options.maxBusyTries; buysTries++) {
