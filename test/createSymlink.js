@@ -54,9 +54,9 @@ ava('New File w/ Non-Existent Directories', async test => {
 ava('Relative Source', async test => {
 	test.plan(2);
 
-	const file = tempFile();
+	const file = './test/createSymlink.js';
 	const newFile = tempFileLoc();
-	const retVal = await nextra.createSymlink(relative(process.cwd(), file), newFile);
+	const retVal = await nextra.createSymlink(file, newFile);
 	const stats = await fs.lstatAsync(newFile);
 
 	test.is(retVal, undefined);
