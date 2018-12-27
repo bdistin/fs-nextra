@@ -52,7 +52,6 @@ module.exports = async function mkdirs(path, options) {
 
 	try {
 		await mkdir(path, mode);
-		return;
 	} catch (err) {
 		if (err.code === 'ENOENT') {
 			await mkdirs(dirname(path), options);
