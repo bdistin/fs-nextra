@@ -64,8 +64,12 @@ module.exports = async function mkdirs(path, options) {
 };
 
 const check = async (path) => {
-	const myStat = await stat(path);
-	return myStat.isDirectory();
+	try {
+		const myStat = await stat(path);
+		return myStat.isDirectory();
+	} catch (err) {
+		return false;
+	}
 };
 
 // Windows
