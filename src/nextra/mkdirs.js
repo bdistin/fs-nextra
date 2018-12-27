@@ -34,8 +34,6 @@ const { stat, mkdir } = require('../fs');
  * @returns {Promise<void>}
  */
 module.exports = async function mkdirs(path, options) {
-	if (await check(path)) return;
-
 	if (!options || typeof options !== 'object') options = { mode: options };
 
 	// Windows
@@ -58,16 +56,9 @@ module.exports = async function mkdirs(path, options) {
 			await mkdirs(path, options);
 			return;
 		}
-		throw err;
-	}
-};
-
-const check = async (path) => {
-	try {
 		const myStat = await stat(path);
-		return myStat.isDirectory();
-	} catch (err) {
-		return false;
+		if (myStat.isDirectory()) return;
+		throw err;
 	}
 };
 
