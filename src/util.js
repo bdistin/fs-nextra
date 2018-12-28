@@ -7,7 +7,7 @@ exports.isWindows = process.platform === 'win32';
 
 exports.setTimeoutPromise = promisify(setTimeout);
 
-exports.replaceEsc = (str) => str.replace(/\$/g, '$$');
+exports.replaceEsc = str => str.replace(/\$/g, '$$');
 
 exports.isSrcKid = (source, destination) => {
 	const sourceArray = resolve(source).split(sep);

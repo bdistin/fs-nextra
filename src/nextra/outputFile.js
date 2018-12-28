@@ -20,6 +20,6 @@ module.exports = async function outputFile(file, data, options, atomic = false) 
 
 	await mkdirs(dirname(file));
 
-	if (atomic) await writeFileAtomic(file, data, options);
-	else await writeFile(file, data, options);
+	const writeMethod = atomic ? writeFileAtomic : writeFile;
+	await writeMethod(file, data, options);
 };

@@ -28,11 +28,10 @@ const mkdirs = require('./mkdirs');
 module.exports = async function createFileCopy(source, destination, options, atomic = false) {
 	if (resolve(source) === resolve(destination)) {
 		await access(source);
-		return;
+	} else {
+		await mkdirs(dirname(destination));
+
+		const copyMethod = atomic ? copyFileAtomic : copyFile;
+		await copyMethod(source, destination, options);
 	}
-
-	await mkdirs(dirname(destination));
-
-	if (atomic) await copyFileAtomic(source, destination, options);
-	else await copyFile(source, destination, options);
 };

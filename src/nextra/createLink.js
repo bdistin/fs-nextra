@@ -30,6 +30,6 @@ module.exports = async function createLink(source, destination, atomic = false) 
 
 	await mkdirs(dirname(destination));
 
-	if (atomic) await linkAtomic(source, destination);
-	else await link(source, destination);
+	const linkMethod = atomic ? linkAtomic : link;
+	await linkMethod(source, destination);
 };

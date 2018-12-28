@@ -1,5 +1,5 @@
-/** @namespace fsn/nextra */
-const nextra = {
+module.exports = {
+	...require('./fs'),
 	copy: require('./nextra/copy'),
 	copyFileAtomic: require('./nextra/copyFileAtomic'),
 	createFile: require('./nextra/createFile'),
@@ -43,5 +43,3 @@ const nextra = {
 	writeJson: require('./nextra/writeJSON'),
 	writeJsonAtomic: require('./nextra/writeJSONAtomic')
 };
-
-module.exports = Object.assign(require('./fs'), nextra);

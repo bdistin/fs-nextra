@@ -14,5 +14,5 @@ const move = require('./move');
 module.exports = async function copyFileAtomic(source, destination, options) {
 	const tempPath = tempFile();
 	await copyFile(source, tempPath, options);
-	return move(tempPath, destination, { overwrite: true });
+	await move(tempPath, destination, { overwrite: true });
 };

@@ -27,6 +27,6 @@ module.exports = async function createFile(file, atomic = false) {
 
 	await mkdirs(dirname(file));
 
-	if (atomic) await writeFileAtomic(file, '');
-	else await writeFile(file, '');
+	const writeMethod = atomic ? writeFileAtomic : writeFile;
+	await writeMethod(file, '');
 };

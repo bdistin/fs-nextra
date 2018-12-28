@@ -24,5 +24,5 @@ const move = require('./move');
 module.exports = async function symlinkAtomic(source, destination, type) {
 	const tempPath = tempFile();
 	await symlink(source, tempPath, type);
-	return move(tempPath, destination, { overwrite: false });
+	await move(tempPath, destination, { overwrite: false });
 };

@@ -30,11 +30,11 @@ module.exports = async function copy(source, destination, options = {}) {
 
 	if (resolve(source) === resolve(destination)) {
 		if (options.errorOnExist) throw new Error('FS-NEXTRA: Source and destination must not be the same.');
-		return access(source);
+		await access(source);
+	} else {
+		await mkdirs(dirname(destination));
+		await startCopy(source, options);
 	}
-
-	await mkdirs(dirname(destination));
-	return startCopy(source, options);
 };
 
 const resolveCopyOptions = (source, destination, options) => {

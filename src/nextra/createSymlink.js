@@ -32,8 +32,8 @@ module.exports = async function createSymlink(source, destination, type, atomic 
 	await mkdirs(dirname(destination));
 	const relativePath = await symlinkPaths(source, destination);
 
-	if (atomic) await symlinkAtomic(relativePath.toDst, destination, type || await symlinkType(relativePath.toCwd));
-	else await symlink(relativePath.toDst, destination, type || await symlinkType(relativePath.toCwd));
+	const symlinkMethod = atomic ? symlinkAtomic : symlink;
+	await symlinkMethod(relativePath.toDst, destination, type || await symlinkType(relativePath.toCwd));
 };
 
 const symlinkPaths = async (srcpath, dstpath) => {
