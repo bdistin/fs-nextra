@@ -22,5 +22,5 @@ const move = require('./move');
 module.exports = async function writeFileAtomic(file, data, options) {
 	const tempPath = tempFile();
 	await writeFile(tempPath, data, options);
-	return move(tempPath, file, { overwrite: true });
+	await move(tempPath, file, { overwrite: true });
 };

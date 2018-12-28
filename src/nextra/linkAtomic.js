@@ -14,5 +14,5 @@ const move = require('./move');
 module.exports = async function linkAtomic(source, destination) {
 	const tempPath = tempFile();
 	await link(source, tempPath);
-	return move(tempPath, destination, { overwrite: true });
+	await move(tempPath, destination, { overwrite: true });
 };
