@@ -1,6 +1,6 @@
 const ava = require('ava');
 const { fs, tempFileLoc, tempDirLoc, tempFile, tempDir } = require('./lib');
-const nextra = require('../src');
+const nextra = require('../dist');
 
 // #region Success
 

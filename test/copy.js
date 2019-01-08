@@ -1,7 +1,7 @@
 const ava = require('ava');
 const { join, basename } = require('path');
 const { fs, tempFile, tempFileLoc, tempDir, tempDirLoc, tempSymlink } = require('./lib');
-const nextra = require('../src');
+const nextra = require('../dist');
 
 // #region Success
 

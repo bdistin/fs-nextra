@@ -1,23 +1,25 @@
-const { join } = require('path');
+import { join } from 'path';
 
-const { isWindows, setTimeoutPromise } = require('../util');
-const { lstat, unlink, rmdir, chmod, readdir } = require('../fs');
+import { isWindows, setTimeoutPromise } from '../util';
+import { lstat, unlink, rmdir, chmod, readdir } from '../fs';
 
 /**
  * @typedef {Object} RemoveOptions
  * @memberof fsn/nextra
  * @property {number} [maxBusyTries = 3] The number of times fs-nextra should retry removing a busy file.
  */
+interface RemoveOptions {
+	maxBusyTries?: number;
+}
 
 /**
  * Removes a single file or single directory with no children.
  * @function remove
  * @memberof fsn/nextra
- * @param {string} path The path to remove
- * @param {RemoveOptions} [options = {}] {description}
- * @returns {Promise<void>}
+ * @param path The path to remove
+ * @param options The remove options
  */
-const remove = module.exports = async function remove(path, options = {}) {
+export default async function remove(path: string, options: RemoveOptions = {}): Promise<void> {
 	if (typeof path !== 'string') throw new Error('FS-NEXTRA: Path should be a string');
 	options.maxBusyTries = typeof options.maxBusyTries === 'undefined' ? 3 : options.maxBusyTries;
 
@@ -38,7 +40,7 @@ const remove = module.exports = async function remove(path, options = {}) {
 			else throw err;
 		}
 	}
-};
+}
 
 const rimraf = async (myPath, options) => {
 	try {

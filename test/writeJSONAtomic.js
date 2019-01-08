@@ -1,6 +1,6 @@
 const ava = require('ava');
 const { fs, tempFile, tempFileLoc } = require('./lib');
-const nextra = require('../src');
+const nextra = require('../dist');
 
 ava('Standard Usage', async test => {
 	test.plan(2);
