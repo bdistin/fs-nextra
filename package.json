@@ -5,12 +5,12 @@
   "main": "dist/index.js",
   "scripts": {
     "test": "npx tsc && npx ava test/*.js",
-    "test:lint": "npx eslint src test && npx tslint 'src/*.ts'",
+    "test:lint": "npx eslint src test && npx tslint './src/*.ts'",
     "test:coverage": "npm run coverage && npx nyc check-coverage --lines 60 --functions 60 --branches 60",
     "coverage": "npx nyc npm test",
     "coveralls": "npx nyc report --reporter=text-lcov | npx coveralls",
     "docs": "npx jsdoc -c ./.docstrap.json -R README.md",
-    "lint": "npx eslint --fix src test && npx tslint --fix 'src/*.ts'"
+    "lint": "npx eslint --fix src test && npx tslint --fix './src/*.ts'"
   },
   "keywords": [
     "atomics",
