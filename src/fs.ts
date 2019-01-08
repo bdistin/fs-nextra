@@ -1,4 +1,4 @@
-const fs = require('fs');
+import * as fs from 'fs';
 
 // Node 10/11 in else
 /* istanbul ignore if */

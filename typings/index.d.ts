@@ -12,7 +12,7 @@ declare module 'fs-nextra' {
 
 	// FS NAMESPACE
 
-	export { constants };
+	export { constants, Stats };
 
 	export function access(path: PathLike, mode?: number): Promise<void>;
 	export function appendFile(file: PathLike | number, data: any, options?: { encoding?: string | null, mode?: string | number, flag?: string } | string | null): Promise<void>;

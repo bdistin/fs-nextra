@@ -1,6 +1,6 @@
-const { writeFile } = require('../fs');
+import { writeFile } from '../fs';
 
-const writeFileAtomic = require('./writeFileAtomic');
+import writeFileAtomic from './writeFileAtomic';
 
 /**
  * @typedef {Object} JsonOptions
@@ -11,6 +11,13 @@ const writeFileAtomic = require('./writeFileAtomic');
  * @property {number} [mode = 0o666] The chmod
  * @property {string} [flag = 'w'] The flag
  */
+export interface JsonOptions {
+	replacer?: (key: string, value: any) => any;
+	spaces?: string | number;
+	encoding?: string;
+	mode?: number;
+	flag?: string;
+}
 
 /**
  * Writes a Javascript Object to file as JSON.
@@ -32,9 +39,9 @@ const writeFileAtomic = require('./writeFileAtomic');
  * @param {boolean} [atomic = false] Whether the operation should run atomically
  * @returns {Promise<void>}
  */
-module.exports = async function writeJSON(file, object, options = {}, atomic = false) {
+export default async function writeJSON(file: string, object: any, options: JsonOptions = {}, atomic: boolean = false) {
 	if (typeof options === 'boolean') [atomic, options] = [options, {}];
 
 	const writeMethod = atomic ? writeFileAtomic : writeFile;
-	await writeMethod(file, `${JSON.stringify(object, options.replacer, options.spaces || null)}\n`, options);
-};
+	await writeMethod(file, `${JSON.stringify(object, options.replacer, options.spaces)}\n`, options);
+}

@@ -1,6 +1,6 @@
 const ava = require('ava');
 const { tempFile, tempFileLoc, tempDir, tempDirLoc } = require('./lib');
-const nextra = require('../src');
+const nextra = require('../dist');
 
 ava('File Exists', async test => {
 	test.true(await nextra.pathExists(tempFile()));

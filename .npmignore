@@ -4,6 +4,7 @@ node_modules/
 test/
 docs/
 scripts/
+src/
 .docstrap.json
 .eslintrc.json
 tslint.json
