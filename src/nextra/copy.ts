@@ -1,10 +1,11 @@
 import { resolve, dirname, join, basename } from 'path';
 
 import { replaceEsc, isSrcKid } from '../util';
-import { access, readlink, mkdir, symlink, copyFile, lstat, stat, chmod, readdir, Stats } from '../fs';
+import { access, readlink, mkdir, symlink, copyFile, lstat, stat, chmod, readdir } from '../fs';
 
 import mkdirs from './mkdirs';
 import remove from './remove';
+import { Stats } from 'fs';
 
 type copyFilter = (source: string, target: string) => boolean;
 

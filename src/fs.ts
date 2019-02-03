@@ -5,7 +5,7 @@ import * as fs from 'fs';
 if (fs.promises) {
 	const otherMethods = {};
 	for (const [key, value] of Object.entries(fs)) if (!key.includes('Sync') && !(`${key}Sync` in fs)) otherMethods[key] = value;
-	module.exports = { ...fs.promises, ...otherMethods };
+	exports = { ...fs.promises, ...otherMethods };
 } else {
 	const { promisify } = require('util');
 
@@ -15,6 +15,48 @@ if (fs.promises) {
 		else exports[key] = value;
 	}
 }
+
+export const { access } = exports;
+export const { copyFile } = exports;
+export const { open } = exports;
+export const { rename } = exports;
+export const { truncate } = exports;
+export const { rmdir } = exports;
+export const { mkdir } = exports;
+export const { readdir } = exports;
+export const { readlink } = exports;
+export const { symlink } = exports;
+export const { lstat } = exports;
+export const { stat } = exports;
+export const { link } = exports;
+export const { unlink } = exports;
+export const { chmod } = exports;
+export const { lchmod } = exports;
+export const { lchown } = exports;
+export const { chown } = exports;
+export const { utimes } = exports;
+export const { realpath } = exports;
+export const { mkdtemp } = exports;
+export const { writeFile } = exports;
+export const { appendFile } = exports;
+export const { readFile } = exports;
+export const { createReadStream } = exports;
+export const { createWriteStream } = exports;
+export const { unwatchFile } = exports;
+export const { watch } = exports;
+export const { watchFile } = exports;
+export const { Dirent } = exports;
+export const { Stats } = exports;
+export const { ReadStream } = exports;
+export const { WriteStream } = exports;
+export const { FileReadStream } = exports;
+export const { FileWriteStream } = exports;
+export const { _toUnixTimestamp } = exports;
+export const { F_OK } = exports;
+export const { R_OK } = exports;
+export const { W_OK } = exports;
+export const { X_OK } = exports;
+export const { constants } = exports;
 
 /* eslint-disable max-len */
 

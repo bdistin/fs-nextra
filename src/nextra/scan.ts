@@ -1,5 +1,6 @@
 import { resolve, join } from 'path';
-import { lstat, readdir, Stats } from '../fs';
+import { lstat, readdir } from '../fs';
+import { Stats } from 'fs';
 
 /**
  * @typedef {Object} ScanOptions
