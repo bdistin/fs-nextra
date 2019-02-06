@@ -466,8 +466,8 @@ atob@^2.1.1:
   resolved "https://registry.yarnpkg.com/atob/-/atob-2.1.2.tgz#6d9517eb9e030d2436666651e86bd9f6f13533c9"
 
 ava@^1.0.1:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/ava/-/ava-1.2.0.tgz#dbd087623199f985fcf2c2a52f83c402cc9ab628"
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/ava/-/ava-1.2.1.tgz#c9b55fda5663fbfad88df37d5cdac56f29347c1b"
   dependencies:
     "@ava/babel-preset-stage-4" "^2.0.0"
     "@ava/babel-preset-transform-test-files" "^4.0.1"
