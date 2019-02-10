@@ -10,7 +10,7 @@
 		"types": ["node"],
         "declaration": true,
         "noUnusedLocals": true,
-        "removeComments": true,
+        "removeComments": false,
         "target": "esnext"
 	},
 	"exclude": [
