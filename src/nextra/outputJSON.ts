@@ -22,7 +22,7 @@ import mkdirs from './mkdirs';
  * @param options The write options or the encoding string.
  * @param atomic If the operation should be done atomically
  */
-export default async function outputJSON(file: string, data: any, options?: JsonOptions, atomic: boolean = false): Promise<void> {
+export default async function outputJSON(file: string, data: any, options?: JsonOptions | boolean, atomic: boolean = false): Promise<void> {
 	if (typeof options === 'boolean') [atomic, options] = [options, {}];
 
 	await mkdirs(dirname(file));

@@ -14,7 +14,7 @@ import mkdirs from './mkdirs';
  * @param options The write options or the encoding string.
  * @param atomic {description}
  */
-export default async function outputFile(file: string, data: string | Buffer | Uint8Array, options?: WriteOptions | string, atomic: boolean = false): Promise<void> {
+export default async function outputFile(file: string, data: string | Buffer | Uint8Array, options?: WriteOptions | string | boolean, atomic: boolean = false): Promise<void> {
 	if (typeof options === 'boolean') [atomic, options] = [options, {}];
 
 	await mkdirs(dirname(file));

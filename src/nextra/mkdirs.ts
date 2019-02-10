@@ -59,7 +59,7 @@ export default async function mkdirs(path: string, options?: MkdirsOptions | num
 		if (myStat.isDirectory()) return;
 		throw err;
 	}
-};
+}
 
 const resolveOptions = (options: MkdirsOptions | number = {}): MkdirsOptions => {
 	return {
