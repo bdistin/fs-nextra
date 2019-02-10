@@ -1,6 +1,7 @@
 const ava = require('ava');
-const { fs, tempFileLoc, tempDirLoc, tempFile, tempDir } = require('./lib');
-const nextra = require('../src');
+const { promises: fs } = require('fs');
+const { tempFileLoc, tempDirLoc, tempFile, tempDir } = require('./lib');
+const nextra = require('../dist');
 
 // #region Success
 
@@ -12,8 +13,8 @@ ava('Standard Usage', async test => {
 	const retVal = await nextra.move(existing, move);
 
 	test.is(retVal, undefined);
-	await test.notThrowsAsync(fs.accessAsync(move));
-	await test.throwsAsync(fs.accessAsync(existing));
+	await test.notThrowsAsync(fs.access(move));
+	await test.throwsAsync(fs.access(existing));
 });
 
 ava('Self', async test => {
@@ -23,7 +24,7 @@ ava('Self', async test => {
 	const retVal = await nextra.move(existing, existing, { overwrite: true });
 
 	test.is(retVal, undefined);
-	await test.notThrowsAsync(fs.accessAsync(existing));
+	await test.notThrowsAsync(fs.access(existing));
 });
 
 ava('Overwrite Existing File', async test => {
@@ -34,8 +35,8 @@ ava('Overwrite Existing File', async test => {
 	const retVal = await nextra.move(existing, move, { overwrite: true });
 
 	test.is(retVal, undefined);
-	await test.notThrowsAsync(fs.accessAsync(move));
-	await test.throwsAsync(fs.accessAsync(existing));
+	await test.notThrowsAsync(fs.access(move));
+	await test.throwsAsync(fs.access(existing));
 });
 
 ava('No Overwrite Non-Existent File', async test => {
@@ -46,8 +47,8 @@ ava('No Overwrite Non-Existent File', async test => {
 	const retVal = await nextra.move(existing, move, { overwrite: false });
 
 	test.is(retVal, undefined);
-	await test.notThrowsAsync(fs.accessAsync(move));
-	await test.throwsAsync(fs.accessAsync(existing));
+	await test.notThrowsAsync(fs.access(move));
+	await test.throwsAsync(fs.access(existing));
 });
 
 ava('Deep Destination', async test => {
@@ -58,8 +59,8 @@ ava('Deep Destination', async test => {
 	const retVal = await nextra.move(existing, move);
 
 	test.is(retVal, undefined);
-	await test.notThrowsAsync(fs.accessAsync(move));
-	await test.throwsAsync(fs.accessAsync(existing));
+	await test.notThrowsAsync(fs.access(move));
+	await test.throwsAsync(fs.access(existing));
 });
 
 ava('Overwrite Full Directory', async test => {
@@ -72,8 +73,8 @@ ava('Overwrite Full Directory', async test => {
 	const retVal = await nextra.move(existing, move, { overwrite: true });
 
 	test.is(retVal, undefined);
-	await test.notThrowsAsync(fs.accessAsync(move));
-	await test.throwsAsync(fs.accessAsync(existing));
+	await test.notThrowsAsync(fs.access(move));
+	await test.throwsAsync(fs.access(existing));
 });
 
 // #endregion Success

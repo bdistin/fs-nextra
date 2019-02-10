@@ -1,28 +1,30 @@
-const { resolve, dirname } = require('path');
+import { resolve, dirname } from 'path';
 
-const { isSrcKid } = require('../util');
-const { access, rename, stat } = require('../fs');
+import { isSrcKid } from '../util';
+import { access, rename, stat } from '../fs';
 
-const remove = require('./remove');
-const mkdirs = require('./mkdirs');
-const pathExists = require('./pathExists');
-const copy = require('./copy');
+import remove from './remove';
+import mkdirs from './mkdirs';
+import pathExists from './pathExists';
+import copy from './copy';
 
 /**
  * @typedef {Object} MoveOptions
  * @memberof fsn/nextra
  * @property {boolean} [overwrite = false] Should the move overwrite an identical file at the destination path
  */
+interface MoveOptions {
+	overwrite?: boolean;
+}
 
 /**
  * @function move
  * @memberof fsn/nextra
- * @param {string} source The source path of the file
- * @param {string} destination The destination path of the file
- * @param {MoveOptions} [options={}] The options for the move
- * @returns {Promise<void>}
+ * @param source The source path of the file
+ * @param destination The destination path of the file
+ * @param options The options for the move
  */
-module.exports = async function move(source, destination, options = {}) {
+export default async function move(source: string, destination: string, options: MoveOptions = {}): Promise<void> {
 	const overwrite = options.overwrite || false;
 	if (resolve(source) === resolve(destination)) return access(source);
 
@@ -58,4 +60,4 @@ module.exports = async function move(source, destination, options = {}) {
 		/* istanbul ignore next */
 		throw err;
 	}
-};
+}

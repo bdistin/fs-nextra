@@ -1,13 +1,14 @@
 const ava = require('ava');
-const { fs, tempDirLoc, tempDir, tempFile } = require('./lib');
-const nextra = require('../src');
+const { promises: fs } = require('fs');
+const { tempDirLoc, tempDir, tempFile } = require('./lib');
+const nextra = require('../dist');
 
 ava('Pre-Existing Directory', async test => {
 	test.plan(2);
 
 	const dir = tempDir();
 	const retVal = await nextra.ensureDir(dir);
-	const stats = await fs.statAsync(dir);
+	const stats = await fs.stat(dir);
 
 	test.is(retVal, undefined);
 	test.true(stats.isDirectory());
@@ -18,10 +19,23 @@ ava('Standard Usage', async test => {
 
 	const newDir = tempDirLoc();
 	const retVal = await nextra.ensureDir(newDir);
-	const stats = await fs.statAsync(newDir);
+	const stats = await fs.stat(newDir);
 
 	test.is(retVal, undefined);
 	test.true(stats.isDirectory());
+});
+
+ava('Standard Usage with full permissions', async test => {
+	test.plan(3);
+
+	const newDir = tempDirLoc();
+	const retVal = await nextra.ensureDir(newDir, 0o0666);
+	const stats = await fs.stat(newDir);
+
+	test.is(retVal, undefined);
+	test.true(stats.isDirectory());
+	// eslint-disable-next-line no-bitwise
+	test.is(stats.mode & 0o0777, 0o0666 & ~process.umask());
 });
 
 ava('Recursive', async test => {
@@ -29,7 +43,7 @@ ava('Recursive', async test => {
 
 	const deepDir = tempDirLoc(tempDirLoc());
 	const retVal = await nextra.ensureDir(deepDir);
-	const stats = await fs.statAsync(deepDir);
+	const stats = await fs.stat(deepDir);
 
 	test.is(retVal, undefined);
 	test.true(stats.isDirectory());

@@ -1,9 +1,7 @@
-const tsubaki = require('tsubaki');
 const { tmpdir } = require('os');
 const { randomBytes } = require('crypto');
 const { join } = require('path');
-
-exports.fs = tsubaki.promisifyAll(require('fs'));
+const fs = require('fs');
 
 exports.uuid = () => {
 	const id = randomBytes(32).toString('hex');
@@ -14,19 +12,19 @@ exports.dir = tmpdir();
 
 exports.tempFile = dir => {
 	const path = this.tempFileLoc(dir);
-	this.fs.writeFileSync(path, '');
+	fs.writeFileSync(path, '');
 	return path;
 };
 
 exports.tempDir = dir => {
 	const path = this.tempDirLoc(dir);
-	this.fs.mkdirSync(path);
+	fs.mkdirSync(path);
 	return path;
 };
 
 exports.tempSymlink = dir => {
 	const path = this.tempFileLoc(dir);
-	this.fs.symlinkSync(this.tempFile(), path);
+	fs.symlinkSync(this.tempFile(), path);
 	return path;
 };
 

@@ -1,20 +1,33 @@
-const fs = require('fs');
+import * as fs from 'fs';
 
-// Node 10/11 in else
-/* istanbul ignore if */
-if (fs.promises) {
-	const otherMethods = {};
-	for (const [key, value] of Object.entries(fs)) if (!key.includes('Sync') && !(`${key}Sync` in fs)) otherMethods[key] = value;
-	module.exports = { ...fs.promises, ...otherMethods };
-} else {
-	const { promisify } = require('util');
+export const {
+	access,
+	copyFile,
+	open,
+	rename,
+	truncate,
+	rmdir,
+	mkdir,
+	readdir,
+	readlink,
+	symlink,
+	lstat,
+	stat,
+	link,
+	unlink,
+	chmod,
+	lchmod,
+	lchown,
+	chown,
+	utimes,
+	realpath,
+	mkdtemp,
+	writeFile,
+	appendFile,
+	readFile
+} = fs.promises;
 
-	for (const [key, value] of Object.entries(fs)) {
-		if (key.includes('Sync')) continue;
-		if (`${key}Sync` in fs) exports[key] = promisify(value);
-		else exports[key] = value;
-	}
-}
+export { createReadStream, createWriteStream, unwatchFile, watch, watchFile, Dirent, Stats, ReadStream, WriteStream, constants } from 'fs';
 
 /* eslint-disable max-len */
 

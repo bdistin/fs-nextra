@@ -1,17 +1,16 @@
-const { access } = require('../fs');
+import { access } from '../fs';
 
 /**
  * Checks if a path exists.
  * @function pathExists
  * @memberof fsn/nextra
- * @param {string} path The path to check
- * @returns {Promise<boolean>}
+ * @param path The path to check
  */
-module.exports = async function pathExists(path) {
+export default async function pathExists(path: string): Promise<boolean> {
 	try {
 		await access(path);
 		return true;
 	} catch (err) {
 		return false;
 	}
-};
+}
