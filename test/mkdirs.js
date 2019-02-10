@@ -25,6 +25,18 @@ ava('Standard Usage', async test => {
 	test.true(stats.isDirectory());
 });
 
+ava('Standard Usage with full permissions', async test => {
+	test.plan(3);
+
+	const newDir = tempDirLoc();
+	const retVal = await nextra.ensureDir(newDir, 0o0777);
+	const stats = await fs.stat(newDir);
+
+	test.is(retVal, undefined);
+	test.true(stats.isDirectory());
+	test.is(stats.mode, 0o0777);
+});
+
 ava('Recursive', async test => {
 	test.plan(2);
 
