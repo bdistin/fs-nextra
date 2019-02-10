@@ -20,4 +20,4 @@ export const uuid = (): string => {
 	return (Array(32).join('0') + id).slice(-32).replace(/^.{8}|.{4}(?!$)/g, '$&-');
 };
 
-export const tempFile = (ext?: string): string => join(tmpdir(), this.uuid() + (ext || ''));
+export const tempFile = (ext?: string): string => join(tmpdir(), uuid() + (ext || ''));
