@@ -1,8 +1,8 @@
-const ava = require('ava');
-const { relative } = require('path');
-const { promises: fs } = require('fs');
-const { tempFile, tempDir, tempSymlink, tempFileLoc, tempDirLoc } = require('./lib');
-const nextra = require('../dist');
+import ava from 'ava';
+import { relative } from 'path';
+import { promises as fs } from 'fs';
+import { tempFile, tempDir, tempSymlink, tempFileLoc, tempDirLoc } from './lib';
+import * as nextra from '../dist';
 
 ava('New File (Standard Usage)', async test => {
 	test.plan(2);
@@ -55,7 +55,7 @@ ava('New File w/ Non-Existent Directories', async test => {
 ava('Relative Source', async test => {
 	test.plan(2);
 
-	const file = './test/createSymlink.js';
+	const file = './test/createSymlink.ts';
 	const newFile = tempFileLoc();
 	const retVal = await nextra.createSymlink(file, newFile);
 	const stats = await fs.lstat(newFile);

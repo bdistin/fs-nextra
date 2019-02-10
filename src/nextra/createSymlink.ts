@@ -39,7 +39,7 @@ interface SymLinkPaths {
  * @param type The type of symlink you are creating
  * @param atomic Whether the operation should run atomically
  */
-export default async function createSymlink(source: string, destination: string, type?: SymLinkType, atomic: boolean = false): Promise<void> {
+export default async function createSymlink(source: string, destination: string, type?: SymLinkType | boolean, atomic: boolean = false): Promise<void> {
 	if (await pathExists(destination)) return;
 	if (typeof type === 'boolean') [atomic, type] = [type, undefined];
 
@@ -47,7 +47,7 @@ export default async function createSymlink(source: string, destination: string,
 	const relativePath = await symlinkPaths(source, destination);
 
 	const symlinkMethod = atomic ? symlinkAtomic : symlink;
-	await symlinkMethod(relativePath.toDst, destination, type || await symlinkType(relativePath.toCwd));
+	await symlinkMethod(relativePath.toDst, destination, type as SymLinkType || await symlinkType(relativePath.toCwd));
 }
 
 const symlinkPaths = async (srcpath: string, dstPath: string): Promise<SymLinkPaths> => {

@@ -1,7 +1,7 @@
-const ava = require('ava');
-const { promises: fs } = require('fs');
-const { tempFileLoc } = require('./lib');
-const nextra = require('../dist');
+import ava from 'ava';
+import { promises as fs } from 'fs';
+import { tempFileLoc } from './lib';
+import * as nextra from '../dist';
 
 ava('Standard Usage', async test => {
 	const file = tempFileLoc();

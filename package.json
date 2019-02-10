@@ -1,17 +1,17 @@
 {
   "name": "fs-nextra",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Node.js native fs promises with next-generation extra methods.",
   "main": "dist/index.js",
   "scripts": {
-    "build": "npx tsc",
-    "test": "npm run build && npx ava test/*.js",
-    "test:lint": "npx eslint test && npx tslint 'src/*.ts'",
-    "test:coverage": "npm run coverage && npx nyc check-coverage --lines 60 --functions 60 --branches 60",
+    "build": "tsc",
+    "test": "yarn build && ava test/*.ts",
+    "test:lint": "tslint '{test,src}/**/*.ts'",
+    "test:coverage": "yarn coverage && nyc check-coverage --lines 60 --functions 60 --branches 60",
     "coverage": "npx nyc npm test",
     "coveralls": "npx nyc report --reporter=text-lcov | npx coveralls",
-    "docs": "npx typedoc --mode file --out ./docs/ ./src/",
-    "lint": "npx eslint --fix test && npx tslint --fix 'src/*.ts'"
+    "docs": "typedoc --mode file --out ./docs/ ./src/",
+    "lint": "tslint --fix '{test,src}/**/*.ts'"
   },
   "keywords": [
     "atomics",
@@ -42,11 +42,21 @@
     "eslint-config-klasa": "github:dirigeants/klasa-lint",
     "nyc": "^13.0.1",
     "tslint": "^5.7.0",
+    "ts-node": "8.0.2",
     "typedoc": "^0.14.2",
     "typescript": "^3.0.1"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/bdistin/fs-nextra"
+  },
+  "ava": {
+    "compileEnhancements": false,
+    "extensions": [
+      "ts"
+    ],
+    "require": [
+      "ts-node/register"
+    ]
   }
 }

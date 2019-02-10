@@ -20,7 +20,6 @@ interface RemoveOptions {
  * @param options The remove options
  */
 export default async function remove(path: string, options: RemoveOptions = {}): Promise<void> {
-	if (typeof path !== 'string') throw new Error('FS-NEXTRA: Path should be a string');
 	options.maxBusyTries = typeof options.maxBusyTries === 'undefined' ? 3 : options.maxBusyTries;
 
 	for (let buysTries = 0; buysTries < options.maxBusyTries; buysTries++) {
