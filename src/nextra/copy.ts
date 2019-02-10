@@ -6,7 +6,7 @@ import { access, readlink, mkdir, symlink, copyFile, lstat, stat, chmod, readdir
 import mkdirs from './mkdirs';
 import remove from './remove';
 
-type copyFilter = (source: string, target: string) => boolean;
+type CopyFilter = (source: string, target: string) => boolean;
 
 /**
  * @typedef {Object} CopyOptions
@@ -17,7 +17,7 @@ type copyFilter = (source: string, target: string) => boolean;
  * @property [errorOnExist = false] Whether or not to error if the destination exists
  */
 export interface CopyOptions {
-	filter?: copyFilter;
+	filter?: CopyFilter;
 	overwrite?: boolean;
 	preserveTimestamps?: boolean;
 	errorOnExist?: boolean;
@@ -37,7 +37,7 @@ interface CopyData extends CopyOptions {
  * @param destination The destination path
  * @param options Options for the copy, or a filter function
  */
-export default async function copy(source: string, destination: string, options: CopyOptions | copyFilter = {}): Promise<void> {
+export default async function copy(source: string, destination: string, options: CopyOptions | CopyFilter = {}): Promise<void> {
 	const copyOptions = resolveCopyOptions(source, destination, options);
 
 	if (resolve(source) === resolve(destination)) {
@@ -49,7 +49,7 @@ export default async function copy(source: string, destination: string, options:
 	}
 }
 
-const resolveCopyOptions = (source: string, destination: string, options: CopyOptions | copyFilter): CopyData => {
+const resolveCopyOptions = (source: string, destination: string, options: CopyOptions | CopyFilter): CopyData => {
 	if (typeof options === 'function') options = { filter: options };
 
 	return {
