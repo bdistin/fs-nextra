@@ -1,234 +1,421 @@
-<!DOCTYPE html>
-
-<html lang="en">
+<!doctype html>
+<html class="default no-js">
 <head>
 	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width">
-	<title>FS-Nextra Index</title>
-
-	<!--[if lt IE 9]>
-	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
-	<link type="text/css" rel="stylesheet" href="styles/sunlight.dark.css">
-
-	<link type="text/css" rel="stylesheet" href="styles/site.united.css">
-
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>fs-nextra</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="assets/css/main.css">
 </head>
-
 <body>
-
-<div class="navbar navbar-default navbar-fixed-top navbar-inverse">
-<div class="container">
-	<div class="navbar-header">
-		<a class="navbar-brand" href="index.html">FS-Nextra</a>
-		<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#topNavigation">
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-        </button>
-	</div>
-	<div class="navbar-collapse collapse" id="topNavigation">
-		<ul class="nav navbar-nav">
-			
-			<li class="dropdown">
-				<a href="namespaces.list.html" class="dropdown-toggle" data-toggle="dropdown">Namespaces<b class="caret"></b></a>
-				<ul class="dropdown-menu ">
-					<li><a href="fsn_fs.html">fsn/fs</a></li>
-				</ul>
-			</li>
-			
-			<li class="dropdown">
-				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
-				<ul class="dropdown-menu ">
-					<li><a href="FSWatcher.html">FSWatcher</a></li><li><a href="ReadStream.html">ReadStream</a></li><li><a href="Stats.html">Stats</a></li><li><a href="WriteStream.html">WriteStream</a></li>
-				</ul>
-			</li>
-			
-			<li class="dropdown">
-				<a href="events.list.html" class="dropdown-toggle" data-toggle="dropdown">Events<b class="caret"></b></a>
-				<ul class="dropdown-menu ">
-					<li><a href="FSWatcher.html#event:change">FSWatcher#event:change</a></li><li><a href="FSWatcher.html#event:error">FSWatcher#event:error</a></li><li><a href="ReadStream.html#event:close">ReadStream#event:close</a></li><li><a href="ReadStream.html#event:open">ReadStream#event:open</a></li><li><a href="WriteStream.html#event:close">WriteStream#event:close</a></li><li><a href="WriteStream.html#event:open">WriteStream#event:open</a></li>
-				</ul>
-			</li>
-			
-		</ul>
-        
-	</div>
-
-</div>
-</div>
-
-
-<div class="container" id="toc-content">
-<div class="row">
-
-	
-	<div class="col-md-8">
-	
-		<div id="main">
-			
-
-	
-	
-
-
-
-
-
-
-
-
-
-
-
-	
-	
-
-
-
-
-
-    <section class="readme-section">
-        <article><h2>FS-Nextra</h2>
-<p><a href="https://nodei.co/npm/fs-nextra/"><img src="https://nodei.co/npm/fs-nextra.png?downloads=true&amp;stars=true" alt="npm"></a></p>
-<p><a href="https://www.npmjs.com/package/fs-nextra"><img src="https://img.shields.io/npm/v/fs-nextra.svg?maxAge=3600" alt="npm"></a>
-<a href="https://www.npmjs.com/package/fs-nextra"><img src="https://img.shields.io/npm/dt/fs-nextra.svg?maxAge=3600" alt="npm"></a></p>
-<p><a href="https://lgtm.com/projects/g/bdistin/fs-nextra/context:javascript"><img src="https://img.shields.io/lgtm/grade/javascript/g/bdistin/fs-nextra.svg?logo=lgtm&amp;logoWidth=18" alt="Language grade: JavaScript"></a>
-<a href="https://coveralls.io/github/bdistin/fs-nextra?branch=master"><img src="https://coveralls.io/repos/github/bdistin/fs-nextra/badge.svg?branch=master" alt="Coverage Status"></a>
-<a href="https://travis-ci.com/bdistin/fs-nextra"><img src="https://travis-ci.com/bdistin/fs-nextra.svg?branch=master" alt="travis-ci"></a></p>
-<p><a href="https://dependabot.com"><img src="https://api.dependabot.com/badges/status?host=github&amp;repo=bdistin/fs-nextra" alt="Dependabot Status"></a>
-<a href="https://david-dm.org/bdistin/fs-nextra"><img src="https://david-dm.org/bdistin/fs-nextra.svg" alt="david"></a>
-<a href="https://david-dm.org/bdistin/fs-nextra?type=dev"><img src="https://david-dm.org/bdistin/fs-nextra/dev-status.svg" alt="david"></a></p>
-<p>Node.js V8 native fs, enhanced with util.promisify and standard extra methods. Written in full ES2017, sans every sync method. <em>Async is the future!</em></p>
-<h2>Docs</h2>
-<p>All <code>fs</code> methods which return a callback, return a promise instead. All <code>fs-extra</code> methods return a promise exclusively. No sync methods are included from either <code>fs</code> or <code>fs-extra</code>. Requires minimum Node.js v8.5.0.</p>
-<blockquote>
-<p>Note: If your node version is high enough, fs-nextra will automatically use fs/promises instead of util.promisify-ing fs.</p>
-</blockquote>
-<p>The full documentation can be found here: <a href="https://fs-nextra.js.org/">fs-nextra.js.org</a>.</p>
-<h2>Credit</h2>
-<p><code>fs-nextra</code> is heavily based on <code>fs-extra</code>, this module wouldn't be possible without it's author:</p>
-<ul>
-<li><a href="https://github.com/jprichardson">JP Richardson</a></li>
-</ul>
-<h2>License</h2>
-<p>Licensed under MIT</p>
-<p>Copyright (c) 2017 <a href="https://github.com/bdistin">BDISTIN</a></p></article>
-    </section>
-
-
-
-
-
-
-
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.js" data-base=".">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="index.html" class="title">fs-nextra</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+							<input type="checkbox" id="tsd-filter-only-exported" />
+							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
 		</div>
 	</div>
-
-	<div class="clearfix"></div>
-
-	
-		<div class="col-md-3">
-			<div id="toc" class="col-md-3 hidden-xs hidden-sm hidden-md"></div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="globals.html">Globals</a>
+				</li>
+			</ul>
+			<h1> fs-nextra</h1>
 		</div>
-	
-
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<div class="tsd-panel tsd-typography">
+				<h2 id="fs-nextra">FS-Nextra</h2>
+				<p><a href="https://nodei.co/npm/fs-nextra/"><img src="https://nodei.co/npm/fs-nextra.png?downloads=true&stars=true" alt="npm"></a></p>
+				<p><a href="https://www.npmjs.com/package/fs-nextra"><img src="https://img.shields.io/npm/v/fs-nextra.svg?maxAge=3600" alt="npm"></a>
+				<a href="https://www.npmjs.com/package/fs-nextra"><img src="https://img.shields.io/npm/dt/fs-nextra.svg?maxAge=3600" alt="npm"></a></p>
+				<p><a href="https://lgtm.com/projects/g/bdistin/fs-nextra/context:javascript"><img src="https://img.shields.io/lgtm/grade/javascript/g/bdistin/fs-nextra.svg?logo=lgtm&logoWidth=18" alt="Language grade: JavaScript"></a>
+					<a href="https://coveralls.io/github/bdistin/fs-nextra?branch=master"><img src="https://coveralls.io/repos/github/bdistin/fs-nextra/badge.svg?branch=master" alt="Coverage Status"></a>
+				<a href="https://travis-ci.com/bdistin/fs-nextra"><img src="https://travis-ci.com/bdistin/fs-nextra.svg?branch=master" alt="travis-ci"></a></p>
+				<p><a href="https://dependabot.com"><img src="https://api.dependabot.com/badges/status?host=github&repo=bdistin/fs-nextra" alt="Dependabot Status"></a>
+					<a href="https://david-dm.org/bdistin/fs-nextra"><img src="https://david-dm.org/bdistin/fs-nextra.svg" alt="david"></a>
+				<a href="https://david-dm.org/bdistin/fs-nextra?type=dev"><img src="https://david-dm.org/bdistin/fs-nextra/dev-status.svg" alt="david"></a></p>
+				<p>Node.js V8 native fs.promises. Written in TypeScript, sans every sync method. <em>Async is the future!</em></p>
+				<h2 id="docs">Docs</h2>
+				<p>All <code>fs</code> methods which return a callback, return a promise instead. All <code>nextra</code> methods return a promise exclusively. No sync methods are included from either <code>fs</code> or <code>fs-nextra</code>. Requires minimum Node.js v10.0.0.</p>
+				<p>The full documentation can be found here: <a href="https://fs-nextra.js.org/">fs-nextra.js.org</a>.</p>
+				<h2 id="credit">Credit</h2>
+				<p><code>fs-nextra</code> is heavily based on <code>fs-extra</code>, this module wouldn&#39;t be possible without it&#39;s author:</p>
+				<ul>
+					<li><a href="https://github.com/jprichardson">JP Richardson</a></li>
+				</ul>
+				<h2 id="license">License</h2>
+				<p>Licensed under MIT</p>
+				<p>Copyright (c) 2017 <a href="https://github.com/bdistin">BDISTIN</a></p>
+			</div>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="globals.html"><em>Globals</em></a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+					<li class=" tsd-kind-interface tsd-is-not-exported">
+						<a href="interfaces/copydata.html" class="tsd-kind-icon">Copy<wbr>Data</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/copyoptions.html" class="tsd-kind-icon">Copy<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/jsonoptions.html" class="tsd-kind-icon">Json<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-is-not-exported">
+						<a href="interfaces/mkdirsoptions.html" class="tsd-kind-icon">Mkdirs<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-is-not-exported">
+						<a href="interfaces/moveoptions.html" class="tsd-kind-icon">Move<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-is-not-exported">
+						<a href="interfaces/readjsonoptions.html" class="tsd-kind-icon">ReadJSONOptions</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-is-not-exported">
+						<a href="interfaces/removeoptions.html" class="tsd-kind-icon">Remove<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-is-not-exported">
+						<a href="interfaces/scanoptions.html" class="tsd-kind-icon">Scan<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-is-not-exported">
+						<a href="interfaces/symlinkpaths.html" class="tsd-kind-icon">Sym<wbr>Link<wbr>Paths</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/writeoptions.html" class="tsd-kind-icon">Write<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="globals.html#symlinktype" class="tsd-kind-icon">Sym<wbr>Link<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-is-not-exported">
+						<a href="globals.html#copyfilter" class="tsd-kind-icon">copy<wbr>Filter</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#access" class="tsd-kind-icon">access</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#appendfile" class="tsd-kind-icon">append<wbr>File</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#chmod" class="tsd-kind-icon">chmod</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#chown" class="tsd-kind-icon">chown</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#copyfile" class="tsd-kind-icon">copy<wbr>File</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#iswindows" class="tsd-kind-icon">is<wbr>Windows</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#lchmod" class="tsd-kind-icon">lchmod</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#lchown" class="tsd-kind-icon">lchown</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#link" class="tsd-kind-icon">link</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#lstat" class="tsd-kind-icon">lstat</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#mkdir" class="tsd-kind-icon">mkdir</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#mkdtemp" class="tsd-kind-icon">mkdtemp</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#open" class="tsd-kind-icon">open</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#readfile" class="tsd-kind-icon">read<wbr>File</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#readdir" class="tsd-kind-icon">readdir</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#readlink" class="tsd-kind-icon">readlink</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#realpath" class="tsd-kind-icon">realpath</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#rename" class="tsd-kind-icon">rename</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#rmdir" class="tsd-kind-icon">rmdir</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#settimeoutpromise" class="tsd-kind-icon">set<wbr>Timeout<wbr>Promise</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#stat" class="tsd-kind-icon">stat</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#symlink" class="tsd-kind-icon">symlink</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#truncate" class="tsd-kind-icon">truncate</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#unlink" class="tsd-kind-icon">unlink</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#utimes" class="tsd-kind-icon">utimes</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#writefile" class="tsd-kind-icon">write<wbr>File</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#copy" class="tsd-kind-icon">copy</a>
+					</li>
+					<li class=" tsd-kind-function tsd-is-not-exported">
+						<a href="globals.html#copydirectory" class="tsd-kind-icon">copy<wbr>Directory</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#copyfileatomic" class="tsd-kind-icon">copy<wbr>File<wbr>Atomic</a>
+					</li>
+					<li class=" tsd-kind-function tsd-is-not-exported">
+						<a href="globals.html#copyother" class="tsd-kind-icon">copy<wbr>Other</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#createfile" class="tsd-kind-icon">create<wbr>File</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#createfileatomic" class="tsd-kind-icon">create<wbr>File<wbr>Atomic</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#createfilecopy" class="tsd-kind-icon">create<wbr>File<wbr>Copy</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#createfilecopyatomic" class="tsd-kind-icon">create<wbr>File<wbr>Copy<wbr>Atomic</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#createlink" class="tsd-kind-icon">create<wbr>Link</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#createlinkatomic" class="tsd-kind-icon">create<wbr>Link<wbr>Atomic</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#createsymlink" class="tsd-kind-icon">create<wbr>Symlink</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#createsymlinkatomic" class="tsd-kind-icon">create<wbr>Symlink<wbr>Atomic</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#emptydir" class="tsd-kind-icon">empty<wbr>Dir</a>
+					</li>
+					<li class=" tsd-kind-function tsd-is-not-exported">
+						<a href="globals.html#fixwineperm" class="tsd-kind-icon">fix<wbr>WinEPERM</a>
+					</li>
+					<li class=" tsd-kind-function tsd-is-not-exported">
+						<a href="globals.html#invalidwin32path" class="tsd-kind-icon">invalid<wbr>Win32<wbr>Path</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#issrckid" class="tsd-kind-icon">is<wbr>Src<wbr>Kid</a>
+					</li>
+					<li class=" tsd-kind-function tsd-is-not-exported">
+						<a href="globals.html#iswritable" class="tsd-kind-icon">is<wbr>Writable</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#linkatomic" class="tsd-kind-icon">link<wbr>Atomic</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#mkdirs" class="tsd-kind-icon">mkdirs</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#move" class="tsd-kind-icon">move</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#outputfile" class="tsd-kind-icon">output<wbr>File</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#outputfileatomic" class="tsd-kind-icon">output<wbr>File<wbr>Atomic</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#outputjson" class="tsd-kind-icon">outputJSON</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#outputjsonatomic" class="tsd-kind-icon">outputJSONAtomic</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#pathexists" class="tsd-kind-icon">path<wbr>Exists</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#readjson" class="tsd-kind-icon">readJSON</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#remove" class="tsd-kind-icon">remove</a>
+					</li>
+					<li class=" tsd-kind-function tsd-is-not-exported">
+						<a href="globals.html#removedir" class="tsd-kind-icon">remove<wbr>Dir</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#replaceesc" class="tsd-kind-icon">replace<wbr>Esc</a>
+					</li>
+					<li class=" tsd-kind-function tsd-is-not-exported">
+						<a href="globals.html#resolvecopyoptions" class="tsd-kind-icon">resolve<wbr>Copy<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-function tsd-is-not-exported">
+						<a href="globals.html#resolveoptions" class="tsd-kind-icon">resolve<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-function tsd-is-not-exported">
+						<a href="globals.html#rimraf" class="tsd-kind-icon">rimraf</a>
+					</li>
+					<li class=" tsd-kind-function tsd-is-not-exported">
+						<a href="globals.html#rmkids" class="tsd-kind-icon">rmkids</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#scan" class="tsd-kind-icon">scan</a>
+					</li>
+					<li class=" tsd-kind-function tsd-is-not-exported">
+						<a href="globals.html#scandeep" class="tsd-kind-icon">scan<wbr>Deep</a>
+					</li>
+					<li class=" tsd-kind-function tsd-is-not-exported">
+						<a href="globals.html#startcopy" class="tsd-kind-icon">start<wbr>Copy</a>
+					</li>
+					<li class=" tsd-kind-function tsd-is-not-exported">
+						<a href="globals.html#stripbom" class="tsd-kind-icon">strip<wbr>Bom</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#symlinkatomic" class="tsd-kind-icon">symlink<wbr>Atomic</a>
+					</li>
+					<li class=" tsd-kind-function tsd-is-not-exported">
+						<a href="globals.html#symlinkpaths" class="tsd-kind-icon">symlink<wbr>Paths</a>
+					</li>
+					<li class=" tsd-kind-function tsd-is-not-exported">
+						<a href="globals.html#symlinktype" class="tsd-kind-icon">symlink<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#tempfile" class="tsd-kind-icon">temp<wbr>File</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#uuid" class="tsd-kind-icon">uuid</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#writefileatomic" class="tsd-kind-icon">write<wbr>File<wbr>Atomic</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#writejson" class="tsd-kind-icon">writeJSON</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#writejsonatomic" class="tsd-kind-icon">writeJSONAtomic</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
 </div>
-</div>
-
-
-
-<footer>
-
-	Async is the Future: <a href="https://github.com/bdistin/fs-nextra">Fork me on Github</a>
-
-
-	<!-- <span class="copyright">
-		<a href="https://github.com/bdistin/fs-nextra">Fork me on Github</a>
-	</span> -->
-
-<!-- <span class="jsdoc-message">
-	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.0-dev</a>
-	
-	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
-</span> -->
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-module"><span class="tsd-kind-icon">Module</span></li>
+				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
+				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
+				<li class="tsd-kind-enum-member"><span class="tsd-kind-icon">Enumeration member</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-enum"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-enum"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-interface"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-interface"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-class"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li>
+				<li class="tsd-kind-call-signature tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
+			</ul>
+		</div>
+	</div>
 </footer>
-
-<script src="scripts/docstrap.lib.js"></script>
-<script src="scripts/toc.js"></script>
-
-
-<script>
-$( function () {
-	$( "[id*='$']" ).each( function () {
-		var $this = $( this );
-
-		$this.attr( "id", $this.attr( "id" ).replace( "$", "__" ) );
-	} );
-
-	$( ".tutorial-section pre, .readme-section pre, pre.prettyprint.source" ).each( function () {
-		var $this = $( this );
-
-		var example = $this.find( "code" );
-		exampleText = example.html();
-		var lang = /{@lang (.*?)}/.exec( exampleText );
-		if ( lang && lang[1] ) {
-			exampleText = exampleText.replace( lang[0], "" );
-			example.html( exampleText );
-			lang = lang[1];
-		} else {
-			var langClassMatch = example.parent()[0].className.match(/lang\-(\S+)/);
-			lang = langClassMatch ? langClassMatch[1] : "javascript";
-		}
-
-		if ( lang ) {
-
-			$this
-			.addClass( "sunlight-highlight-" + lang )
-			.addClass( "linenums" )
-			.html( example.html() );
-
-		}
-	} );
-
-	Sunlight.highlightAll( {
-		lineNumbers : true,
-		showMenu : true,
-		enableDoclinks : true
-	} );
-
-	$.catchAnchorLinks( {
-        navbarOffset: 10
-	} );
-	$( "#toc" ).toc( {
-		anchorName  : function ( i, heading, prefix ) {
-			return $( heading ).attr( "id" ) || ( prefix + i );
-		},
-		selectors   : "#toc-content h1,#toc-content h2,#toc-content h3,#toc-content h4",
-		showAndHide : false,
-		smoothScrolling: true
-	} );
-
-	$( "#main span[id^='toc']" ).addClass( "toc-shim" );
-	$( '.dropdown-toggle' ).dropdown();
-
-    $( "table" ).each( function () {
-      var $this = $( this );
-      $this.addClass('table');
-    } );
-
-} );
-</script>
-
-
-
-<!--Navigation and Symbol Display-->
-
-
-<!--Google Analytics-->
-
-
-
-
+<div class="container tsd-generator">
+	<p>Generated using <a href="http://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="assets/js/main.js"></script>
+<script>if (location.protocol == 'file:') document.write('<script src="assets/js/search.js"><' + '/script>');</script>
 </body>
 </html>
