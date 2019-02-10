@@ -1,7 +1,7 @@
 {
   "name": "fs-nextra",
   "version": "0.3.8",
-  "description": "Node.js V8 native fs enhanced with util.promisify and standard extra methods.",
+  "description": "Node.js native fs promises with next-generation extra methods.",
   "main": "dist/index.js",
   "scripts": {
     "build": "npx tsc",
