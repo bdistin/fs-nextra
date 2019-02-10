@@ -6,12 +6,12 @@
   "scripts": {
     "build": "npx tsc",
     "test": "npm run build && npx ava test/*.ts",
-    "test:lint": "npx eslint test && npx tslint 'src/*.ts'",
+    "test:lint": "npx tslint test && npx tslint 'src/*.ts'",
     "test:coverage": "npm run coverage && npx nyc check-coverage --lines 60 --functions 60 --branches 60",
     "coverage": "npx nyc npm test",
     "coveralls": "npx nyc report --reporter=text-lcov | npx coveralls",
     "docs": "npx typedoc --mode file --out ./docs/ ./src/",
-    "lint": "npx eslint --fix test && npx tslint --fix 'src/*.ts'"
+    "lint": "npx tslint --fix test && npx tslint --fix 'src/*.ts'"
   },
   "keywords": [
     "atomics",
