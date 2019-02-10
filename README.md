@@ -14,7 +14,7 @@ FS-Nextra
 [![david](https://david-dm.org/bdistin/fs-nextra.svg)](https://david-dm.org/bdistin/fs-nextra)
 [![david](https://david-dm.org/bdistin/fs-nextra/dev-status.svg)](https://david-dm.org/bdistin/fs-nextra?type=dev)
 
-Node.js V8 native fs.promises. Written in ts, sans every sync method. *Async is the future!*
+Node.js V8 native fs.promises. Written in TypeScript, sans every sync method. *Async is the future!*
 
 Docs
 ------
