@@ -45,12 +45,10 @@ export default async function mkdirs(path: string, options?: MkdirsOptions | num
 		throw errInval;
 	}
 
-	// eslint-disable-next-line no-bitwise
-	const mode = dirOptions.mode || 0o0777 & ~process.umask();
 	path = resolve(path);
 
 	try {
-		await mkdir(path, mode);
+		await mkdir(path, dirOptions.mode);
 	} catch (err) {
 		if (err.code === 'ENOENT') {
 			await mkdirs(dirname(path), dirOptions);
