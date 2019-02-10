@@ -14,14 +14,12 @@ FS-Nextra
 [![david](https://david-dm.org/bdistin/fs-nextra.svg)](https://david-dm.org/bdistin/fs-nextra)
 [![david](https://david-dm.org/bdistin/fs-nextra/dev-status.svg)](https://david-dm.org/bdistin/fs-nextra?type=dev)
 
-Node.js V8 native fs, enhanced with util.promisify and standard extra methods. Written in full ES2017, sans every sync method. *Async is the future!*
+Node.js V8 native fs.promises. Written in full ts, sans every sync method. *Async is the future!*
 
 Docs
 ------
 
-All `fs` methods which return a callback, return a promise instead. All `fs-extra` methods return a promise exclusively. No sync methods are included from either `fs` or `fs-extra`. Requires minimum Node.js v8.5.0.
-
-> Note: If your node version is high enough, fs-nextra will automatically use fs/promises instead of util.promisify-ing fs.
+All `fs` methods which return a callback, return a promise instead. All `nextra` methods return a promise exclusively. No sync methods are included from either `fs` or `fs-nextra`. Requires minimum Node.js v10.0.0.
 
 The full documentation can be found here: [fs-nextra.js.org](https://fs-nextra.js.org/).
 
