@@ -1,6 +1,6 @@
-const ava = require('ava');
-const { tempFile, tempFileLoc, tempDir, tempDirLoc } = require('./lib');
-const nextra = require('../dist');
+import ava from 'ava';
+import { tempFile, tempFileLoc, tempDir, tempDirLoc } from './lib';
+import * as nextra from '../dist';
 
 ava('File', async test => {
 	const file = tempFile();

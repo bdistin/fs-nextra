@@ -1,7 +1,7 @@
-const ava = require('ava');
-const { promises: fs } = require('fs');
-const { tempFileLoc, tempDirLoc, tempFile, tempDir } = require('./lib');
-const nextra = require('../dist');
+import ava from 'ava';
+import { promises as fs } from 'fs';
+import { tempFileLoc, tempDirLoc, tempFile, tempDir } from './lib';
+import * as nextra from '../dist';
 
 // #region Success
 

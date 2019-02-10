@@ -1,7 +1,7 @@
-const ava = require('ava');
-const { promises: fs } = require('fs');
-const { tempFile, tempFileLoc, tempDir, tempDirLoc } = require('./lib');
-const nextra = require('../dist');
+import ava from 'ava';
+import { promises as fs } from 'fs';
+import { tempFile, tempFileLoc, tempDir, tempDirLoc } from './lib';
+import * as nextra from '../dist';
 
 ava('File', async test => {
 	test.plan(2);
@@ -40,8 +40,4 @@ ava('Non-Existent File', async test => {
 
 ava('Non-Existent Directory', async test => {
 	await test.notThrowsAsync(nextra.remove(tempDirLoc()));
-});
-
-ava('Bad Input', async test => {
-	await test.throwsAsync(nextra.remove({}));
 });
