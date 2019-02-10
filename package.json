@@ -10,7 +10,7 @@
     "test:coverage": "npm run coverage && npx nyc check-coverage --lines 60 --functions 60 --branches 60",
     "coverage": "npx nyc npm test",
     "coveralls": "npx nyc report --reporter=text-lcov | npx coveralls",
-    "docs": "npx jsdoc -c ./.docstrap.json -R README.md",
+    "docs": "npx typedoc --mode modules --out ./docs/ ./src/",
     "lint": "npx eslint --fix test && npx tslint --fix 'src/*.ts'"
   },
   "keywords": [
@@ -40,10 +40,9 @@
     "coveralls": "^3.0.2",
     "eslint": "^5.2.0",
     "eslint-config-klasa": "github:dirigeants/klasa-lint",
-    "ink-docstrap": "github:bdistin/docstrap",
-    "jsdoc": "github:jsdoc3/jsdoc",
     "nyc": "^13.0.1",
     "tslint": "^5.7.0",
+    "typedoc": "^0.14.2",
     "typescript": "^3.0.1"
   },
   "repository": {
