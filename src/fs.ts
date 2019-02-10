@@ -1,18 +1,33 @@
-const fs = require('fs');
+import * as fs from 'fs';
 
-if (fs.promises) {
-	const otherMethods = {};
-	for (const [key, value] of Object.entries(fs)) if (!key.includes('Sync') && !(`${key}Sync` in fs)) otherMethods[key] = value;
-	module.exports = { ...fs.promises, ...otherMethods };
-} else {
-	const { promisify } = require('util');
+export const {
+	access,
+	copyFile,
+	open,
+	rename,
+	truncate,
+	rmdir,
+	mkdir,
+	readdir,
+	readlink,
+	symlink,
+	lstat,
+	stat,
+	link,
+	unlink,
+	chmod,
+	lchmod,
+	lchown,
+	chown,
+	utimes,
+	realpath,
+	mkdtemp,
+	writeFile,
+	appendFile,
+	readFile
+} = fs.promises;
 
-	for (const [key, value] of Object.entries(fs)) {
-		if (key.includes('Sync')) continue;
-		if (`${key}Sync` in fs) exports[key] = promisify(value);
-		else exports[key] = value;
-	}
-}
+export { createReadStream, createWriteStream, unwatchFile, watch, watchFile, Dirent, Stats, ReadStream, WriteStream, constants } from 'fs';
 
 /* eslint-disable max-len */
 
@@ -167,15 +182,15 @@ if (fs.promises) {
  */
 
 /**
- * Emitted when the readstream closes.
+ * Emitted when the ReadStream closes.
  * @event ReadStream#close
  * @instance
  */
 
 /**
- * Emitted when the readstream's file is opened.
+ * Emitted when the ReadStream's file is opened.
  * @event ReadStream#open
- * @property {number} fd The file discriptor.
+ * @property {number} fd The file descriptor.
  * @instance
  */
 
@@ -189,15 +204,15 @@ if (fs.promises) {
  */
 
 /**
- * Emitted when the readstream closes.
+ * Emitted when the ReadStream closes.
  * @event WriteStream#close
  * @instance
  */
 
 /**
- * Emitted when the readstream's file is opened.
+ * Emitted when the ReadStream's file is opened.
  * @event WriteStream#open
- * @property {number} fd The file discriptor.
+ * @property {number} fd The file descriptor.
  * @instance
  */
 
@@ -415,15 +430,15 @@ if (fs.promises) {
 /**
  * @typedef {Object} EncodingOptions
  * @memberof fsn/fs
- * @property {string} [encoding = 'utf8'] The encoding for the temperary directory
+ * @property {string} [encoding = 'utf8'] The encoding for the temporary directory
  */
 
 /**
  * Identical to {@link https://nodejs.org/api/fs.html#fs_fs_mkdtemp_prefix_options_callback|fs.mkdtemp} but returns a promise instead.
  * @function mkdtemp
  * @memberof fsn/fs
- * @param {string} prefix The prefix of the temperary folder to create
- * @param {EncodingOptions|string} [options = 'utf8'] The temperary directory options, or encoding
+ * @param {string} prefix The prefix of the temporary folder to create
+ * @param {EncodingOptions|string} [options = 'utf8'] The temporary directory options, or encoding
  * @returns {Promise<string>} The folder path
  */
 
@@ -440,7 +455,7 @@ if (fs.promises) {
 /**
  * @typedef {Object} ReadObject
  * @memberof fsn/fs
- * @property {number} bytesRead The numberof bytes read
+ * @property {number} bytesRead The number of bytes read
  * @property {Buffer|Uint8Array} buffer The buffer containing the data read
  */
 
@@ -451,8 +466,8 @@ if (fs.promises) {
  * @param {number} fd The file descriptor
  * @param {Buffer|Uint8Array} buffer The buffer that he data will be written to.
  * @param {number} offset The offset in the buffer to start writing at
- * @param {number} length The thenumber of bytes to read
- * @param {number} position The the postition to begin reading from the file
+ * @param {number} length The the number of bytes to read
+ * @param {number} position The the postilion to begin reading from the file
  * @returns {Promise<ReadObject>}
  */
 
@@ -599,7 +614,7 @@ if (fs.promises) {
  * @param {Buffer|Uint8Array} buffer The buffer to write to file
  * @param {number} [offset] The offset in the buffer to start reading at
  * @param {number} [length] The the number of bytes to write
- * @param {number} [position] The the postition to begin writing to the file
+ * @param {number} [position] The the position to begin writing to the file
  * @returns {Promise<void>}
  */
 

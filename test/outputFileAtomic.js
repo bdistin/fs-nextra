@@ -1,24 +1,34 @@
 const ava = require('ava');
-const { fs, tempFile, tempFileLoc, tempDirLoc } = require('./lib');
-const nextra = require('../src');
+const { promises: fs } = require('fs');
+const { tempFile, tempFileLoc, tempDirLoc } = require('./lib');
+const nextra = require('../dist');
 
-ava('pre-existing', async test => {
+ava('Pre-Existing', async test => {
+	test.plan(2);
+
 	const file = tempFile();
-	await nextra.outputFileAtomic(file, 'pass');
+	const retVal = await nextra.outputFileAtomic(file, 'pass');
 
-	test.is(await fs.readFileAsync(file, 'utf8'), 'pass');
+	test.is(retVal, undefined);
+	test.is(await fs.readFile(file, 'utf8'), 'pass');
 });
 
-ava('new', async test => {
+ava('New', async test => {
+	test.plan(2);
+
 	const file = tempFileLoc();
-	await nextra.outputFileAtomic(file, 'pass');
+	const retVal = await nextra.outputFileAtomic(file, 'pass');
 
-	test.is(await fs.readFileAsync(file, 'utf8'), 'pass');
+	test.is(retVal, undefined);
+	test.is(await fs.readFile(file, 'utf8'), 'pass');
 });
 
-ava('new recursive', async test => {
-	const deepDir = tempDirLoc(tempFileLoc());
-	await nextra.outputFileAtomic(deepDir, 'pass');
+ava('New Recursive', async test => {
+	test.plan(2);
 
-	test.is(await fs.readFileAsync(deepDir, 'utf8'), 'pass');
+	const deepDir = tempDirLoc(tempFileLoc());
+	const retVal = await nextra.outputFileAtomic(deepDir, 'pass');
+
+	test.is(retVal, undefined);
+	test.is(await fs.readFile(deepDir, 'utf8'), 'pass');
 });

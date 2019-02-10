@@ -1,21 +1,28 @@
 const ava = require('ava');
-const { fs, tempFile, tempFileLoc, tempDir, tempDirLoc } = require('./lib');
-const nextra = require('../src');
+const { promises: fs } = require('fs');
+const { tempFile, tempFileLoc, tempDir, tempDirLoc } = require('./lib');
+const nextra = require('../dist');
 
-ava('file', async test => {
+ava('File', async test => {
+	test.plan(2);
+
 	const file = tempFile();
-	const newfile = tempFileLoc();
-	await nextra.symlinkAtomic(file, newfile);
+	const newFile = tempFileLoc();
+	const retVal = await nextra.symlinkAtomic(file, newFile);
+	const stats = await fs.lstat(newFile);
 
-	const stats = await fs.lstatAsync(newfile);
+	test.is(retVal, undefined);
 	test.true(stats.isSymbolicLink());
 });
 
-ava('directory', async test => {
+ava('Directory', async test => {
+	test.plan(2);
+
 	const dir = tempDir();
 	const newDir = tempDirLoc();
-	await nextra.symlinkAtomic(dir, newDir);
+	const retVal = await nextra.symlinkAtomic(dir, newDir);
+	const stats = await fs.lstat(newDir);
 
-	const stats = await fs.lstatAsync(newDir);
+	test.is(retVal, undefined);
 	test.true(stats.isSymbolicLink());
 });

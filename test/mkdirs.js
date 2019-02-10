@@ -1,27 +1,55 @@
 const ava = require('ava');
-const { fs, tempDirLoc, tempDir } = require('./lib');
-const nextra = require('../src');
+const { promises: fs } = require('fs');
+const { tempDirLoc, tempDir, tempFile } = require('./lib');
+const nextra = require('../dist');
 
-ava('pre-existing', async test => {
+ava('Pre-Existing Directory', async test => {
+	test.plan(2);
+
 	const dir = tempDir();
-	await nextra.ensureDir(dir);
+	const retVal = await nextra.ensureDir(dir);
+	const stats = await fs.stat(dir);
 
-	const stats = await fs.statAsync(dir);
+	test.is(retVal, undefined);
 	test.true(stats.isDirectory());
 });
 
-ava('standard usage', async test => {
+ava('Standard Usage', async test => {
+	test.plan(2);
+
 	const newDir = tempDirLoc();
-	await nextra.ensureDir(newDir);
+	const retVal = await nextra.ensureDir(newDir);
+	const stats = await fs.stat(newDir);
 
-	const stats = await fs.statAsync(newDir);
+	test.is(retVal, undefined);
 	test.true(stats.isDirectory());
 });
 
-ava('recursive', async test => {
-	const deepDir = tempDirLoc(tempDirLoc());
-	await nextra.ensureDir(deepDir);
+ava('Standard Usage with full permissions', async test => {
+	test.plan(3);
 
-	const stats = await fs.statAsync(deepDir);
+	const newDir = tempDirLoc();
+	const retVal = await nextra.ensureDir(newDir, 0o0666);
+	const stats = await fs.stat(newDir);
+
+	test.is(retVal, undefined);
 	test.true(stats.isDirectory());
+	// eslint-disable-next-line no-bitwise
+	test.is(stats.mode & 0o0777, 0o0666 & ~process.umask());
+});
+
+ava('Recursive', async test => {
+	test.plan(2);
+
+	const deepDir = tempDirLoc(tempDirLoc());
+	const retVal = await nextra.ensureDir(deepDir);
+	const stats = await fs.stat(deepDir);
+
+	test.is(retVal, undefined);
+	test.true(stats.isDirectory());
+});
+
+ava('Pre-Existing File', async test => {
+	const dir = tempFile();
+	await test.throwsAsync(nextra.ensureDir(dir));
 });

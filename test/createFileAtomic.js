@@ -1,27 +1,37 @@
 const ava = require('ava');
-const { fs, tempFile, tempFileLoc, tempDirLoc } = require('./lib');
-const nextra = require('../src');
+const { promises: fs } = require('fs');
+const { tempFile, tempFileLoc, tempDirLoc } = require('./lib');
+const nextra = require('../dist');
 
-ava('new file (standard usage)', async test => {
+ava('New File (Standard Usage)', async test => {
+	test.plan(2);
+
 	const file = tempFileLoc();
-	await nextra.createFileAtomic(file);
+	const retVal = await nextra.createFileAtomic(file);
+	const stats = await fs.stat(file);
 
-	const stats = await fs.statAsync(file);
+	test.is(retVal, undefined);
 	test.true(stats.isFile());
 });
 
-ava('pre-existing file', async test => {
+ava('Pre-Existing File', async test => {
+	test.plan(2);
+
 	const file = tempFile();
-	await nextra.createFileAtomic(file);
+	const retVal = await nextra.createFileAtomic(file);
+	const stats = await fs.stat(file);
 
-	const stats = await fs.statAsync(file);
+	test.is(retVal, undefined);
 	test.true(stats.isFile());
 });
 
-ava('new file with non-existant directories', async test => {
-	const file = tempDirLoc(tempFileLoc());
-	await nextra.createFileAtomic(file);
+ava('New File w/ Non-Existent Directories', async test => {
+	test.plan(2);
 
-	const stats = await fs.statAsync(file);
+	const file = tempDirLoc(tempFileLoc());
+	const retVal = await nextra.createFileAtomic(file);
+	const stats = await fs.stat(file);
+
+	test.is(retVal, undefined);
 	test.true(stats.isFile());
 });

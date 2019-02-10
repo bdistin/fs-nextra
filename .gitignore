@@ -4,3 +4,5 @@ package-lock.json
 out/
 coverage/
 .nyc_output/
+dist/
+docs/

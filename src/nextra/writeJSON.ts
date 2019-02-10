@@ -1,6 +1,6 @@
-const { writeFile } = require('../fs');
+import { writeFile } from '../fs';
 
-const writeFileAtomic = require('./writeFileAtomic');
+import writeFileAtomic from './writeFileAtomic';
 
 /**
  * @typedef {Object} JsonOptions
@@ -11,6 +11,13 @@ const writeFileAtomic = require('./writeFileAtomic');
  * @property {number} [mode = 0o666] The chmod
  * @property {string} [flag = 'w'] The flag
  */
+export interface JsonOptions {
+	replacer?: (key: string, value: any) => any;
+	spaces?: string | number;
+	encoding?: string;
+	mode?: number;
+	flag?: string;
+}
 
 /**
  * Writes a Javascript Object to file as JSON.
@@ -19,7 +26,7 @@ const writeFileAtomic = require('./writeFileAtomic');
  * @param {string} file The path to the file you want to create
  * @param {Object} object The javascript object you would like to write to file
  * @param {JsonOptions} [options = {}] The options to pass JSON.stringify and writeFile
- * @param {boolean} [atomic = false] Whether the operation should run atomicly
+ * @param {boolean} [atomic = false] Whether the operation should run atomically
  * @returns {Promise<void>}
  */
 /**
@@ -29,14 +36,12 @@ const writeFileAtomic = require('./writeFileAtomic');
  * @param {string} file The path to the file you want to create
  * @param {Object} object The javascript object you would like to write to file
  * @param {JsonOptions} [options = {}] The options to pass JSON.stringify and writeFile
- * @param {boolean} [atomic = false] Whether the operation should run atomicly
+ * @param {boolean} [atomic = false] Whether the operation should run atomically
  * @returns {Promise<void>}
  */
-module.exports = async function writeJSON(file, object, options = {}, atomic = false) {
-	if (typeof options === 'boolean') {
-		atomic = options;
-		options = {};
-	}
-	const str = `${JSON.stringify(object, options.replacer, options.spaces || null)}\n`;
-	return atomic ? writeFileAtomic(file, str, options) : writeFile(file, str, options);
-};
+export default async function writeJSON(file: string, object: any, options: JsonOptions = {}, atomic: boolean = false) {
+	if (typeof options === 'boolean') [atomic, options] = [options, {}];
+
+	const writeMethod = atomic ? writeFileAtomic : writeFile;
+	await writeMethod(file, `${JSON.stringify(object, options.replacer, options.spaces)}\n`, options);
+}

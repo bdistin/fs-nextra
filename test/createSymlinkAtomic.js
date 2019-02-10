@@ -1,30 +1,40 @@
 const ava = require('ava');
-const { fs, tempFile, tempSymlink, tempFileLoc, tempDirLoc } = require('./lib');
-const nextra = require('../src');
+const { promises: fs } = require('fs');
+const { tempFile, tempSymlink, tempFileLoc, tempDirLoc } = require('./lib');
+const nextra = require('../dist');
 
-ava('new file (standard usage)', async test => {
+ava('New File (Standard Usage)', async test => {
+	test.plan(2);
+
 	const file = tempFile();
-	const newfile = tempFileLoc();
-	await nextra.createSymlinkAtomic(file, newfile);
+	const newFile = tempFileLoc();
+	const retVal = await nextra.createSymlinkAtomic(file, newFile);
+	const stats = await fs.lstat(newFile);
 
-	const stats = await fs.lstatAsync(newfile);
+	test.is(retVal, undefined);
 	test.true(stats.isSymbolicLink());
 });
 
-ava('pre-existing symlink', async test => {
-	const file = tempFile();
-	const newfile = tempSymlink();
-	await nextra.createSymlinkAtomic(file, newfile);
+ava('Pre-Existing Symlink', async test => {
+	test.plan(2);
 
-	const stats = await fs.lstatAsync(newfile);
+	const file = tempFile();
+	const newFile = tempSymlink();
+	const retVal = await nextra.createSymlinkAtomic(file, newFile);
+	const stats = await fs.lstat(newFile);
+
+	test.is(retVal, undefined);
 	test.true(stats.isSymbolicLink());
 });
 
-ava('new file with non-existant directories', async test => {
-	const file = tempFile();
-	const newfile = tempDirLoc(tempFileLoc());
-	await nextra.createSymlinkAtomic(file, newfile);
+ava('New File w/ Non-Existent Directories', async test => {
+	test.plan(2);
 
-	const stats = await fs.lstatAsync(newfile);
+	const file = tempFile();
+	const newFile = tempDirLoc(tempFileLoc());
+	const retVal = await nextra.createSymlinkAtomic(file, newFile);
+	const stats = await fs.lstat(newFile);
+
+	test.is(retVal, undefined);
 	test.true(stats.isSymbolicLink());
 });

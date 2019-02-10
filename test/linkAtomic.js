@@ -1,11 +1,15 @@
 const ava = require('ava');
-const { fs, tempFile, tempFileLoc } = require('./lib');
-const nextra = require('../src');
+const { promises: fs } = require('fs');
+const { tempFile, tempFileLoc } = require('./lib');
+const nextra = require('../dist');
 
 ava('Standard Usage', async test => {
-	const newFile = tempFileLoc();
-	await nextra.linkAtomic(tempFile(), newFile);
+	test.plan(2);
 
-	const stats = await fs.statAsync(newFile);
+	const newFile = tempFileLoc();
+	const retVal = await nextra.linkAtomic(tempFile(), newFile);
+	const stats = await fs.stat(newFile);
+
+	test.is(retVal, undefined);
 	test.true(stats.isFile());
 });

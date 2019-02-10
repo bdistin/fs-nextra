@@ -1,27 +1,37 @@
 const ava = require('ava');
-const { fs, tempFile, tempFileLoc, tempDirLoc } = require('./lib');
-const nextra = require('../src');
+const { promises: fs } = require('fs');
+const { tempFile, tempFileLoc, tempDirLoc } = require('./lib');
+const nextra = require('../dist');
 
-ava('pre-existing', async test => {
+ava('Pre-Existing', async test => {
+	test.plan(2);
+
 	const file = tempFile();
 	const obj = { test: 'passed' };
-	await nextra.outputJSONAtomic(file, obj);
+	const retVal = await nextra.outputJSONAtomic(file, obj);
 
-	test.deepEqual(JSON.parse(await fs.readFileAsync(file, 'utf8')), obj);
+	test.is(retVal, undefined);
+	test.deepEqual(JSON.parse(await fs.readFile(file, 'utf8')), obj);
 });
 
-ava('new', async test => {
+ava('New', async test => {
+	test.plan(2);
+
 	const newDir = tempFileLoc();
 	const obj = { test: 'passed' };
-	await nextra.outputJSONAtomic(newDir, obj);
+	const retVal = await nextra.outputJSONAtomic(newDir, obj);
 
-	test.deepEqual(JSON.parse(await fs.readFileAsync(newDir, 'utf8')), obj);
+	test.is(retVal, undefined);
+	test.deepEqual(JSON.parse(await fs.readFile(newDir, 'utf8')), obj);
 });
 
-ava('new recursive', async test => {
+ava('New Recursive', async test => {
+	test.plan(2);
+
 	const deepDir = tempFileLoc(tempDirLoc());
 	const obj = { test: 'passed' };
-	await nextra.outputJSONAtomic(deepDir, obj);
+	const retVal = await nextra.outputJSONAtomic(deepDir, obj);
 
-	test.deepEqual(JSON.parse(await fs.readFileAsync(deepDir, 'utf8')), obj);
+	test.is(retVal, undefined);
+	test.deepEqual(JSON.parse(await fs.readFile(deepDir, 'utf8')), obj);
 });

@@ -1,28 +1,38 @@
 const ava = require('ava');
-const { fs, tempFile, tempDir, tempDirLoc } = require('./lib');
-const nextra = require('../src');
+const { promises: fs } = require('fs');
+const { tempFile, tempDir, tempDirLoc } = require('./lib');
+const nextra = require('../dist');
 
-ava('nonexistent', async test => {
+ava('Non-Existent', async test => {
+	test.plan(2);
+
 	const dir = tempDirLoc();
-	await nextra.emptyDir(dir);
+	const retVal = await nextra.emptyDir(dir);
+	const contents = await fs.readdir(dir);
 
-	const contents = await fs.readdirAsync(dir);
+	test.is(retVal, undefined);
 	test.true(contents.length === 0);
 });
 
-ava('empty', async test => {
+ava('Empty Directory', async test => {
+	test.plan(2);
+
 	const dir = tempDir();
-	await nextra.emptyDir(dir);
+	const retVal = await nextra.emptyDir(dir);
+	const contents = await fs.readdir(dir);
 
-	const contents = await fs.readdirAsync(dir);
+	test.is(retVal, undefined);
 	test.true(contents.length === 0);
 });
 
-ava('full', async test => {
+ava('Full Directory', async test => {
+	test.plan(2);
+
 	const dir = tempDir();
 	tempFile(dir);
-	await nextra.emptyDir(dir);
+	const retVal = await nextra.emptyDir(dir);
+	const contents = await fs.readdir(dir);
 
-	const contents = await fs.readdirAsync(dir);
+	test.is(retVal, undefined);
 	test.true(contents.length === 0);
 });

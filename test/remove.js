@@ -1,30 +1,47 @@
 const ava = require('ava');
-const { fs, tempFile, tempFileLoc, tempDir, tempDirLoc } = require('./lib');
-const nextra = require('../src');
+const { promises: fs } = require('fs');
+const { tempFile, tempFileLoc, tempDir, tempDirLoc } = require('./lib');
+const nextra = require('../dist');
 
-ava('file', async test => {
+ava('File', async test => {
+	test.plan(2);
+
 	const file = tempFile();
-	await nextra.remove(file);
-	await test.throwsAsync(fs.accessAsync(file));
+	const retVal = await nextra.remove(file);
+
+	test.is(retVal, undefined);
+	await test.throwsAsync(fs.access(file));
 });
 
-ava('non-existant file', async test => {
-	test.true(await nextra.remove(tempFileLoc()) === null);
-});
+ava('Empty Directory', async test => {
+	test.plan(2);
 
-ava('empty directory', async test => {
 	const dir = tempDir();
-	await nextra.remove(dir);
-	await test.throwsAsync(fs.accessAsync(dir));
+	const retVal = await nextra.remove(dir);
+
+	test.is(retVal, undefined);
+	await test.throwsAsync(fs.access(dir));
 });
 
-ava('full directory', async test => {
+ava('Full Directory', async test => {
+	test.plan(2);
+
 	const dir = tempDir();
 	tempFile(dir);
-	await nextra.remove(dir);
-	await test.throwsAsync(fs.accessAsync(dir));
+	const retVal = await nextra.remove(dir);
+
+	test.is(retVal, undefined);
+	await test.throwsAsync(fs.access(dir));
 });
 
-ava('non-existant directory', async test => {
-	test.true(await nextra.remove(tempDirLoc()) === null);
+ava('Non-Existent File', async test => {
+	await test.notThrowsAsync(nextra.remove(tempFileLoc()));
+});
+
+ava('Non-Existent Directory', async test => {
+	await test.notThrowsAsync(nextra.remove(tempDirLoc()));
+});
+
+ava('Bad Input', async test => {
+	await test.throwsAsync(nextra.remove({}));
 });
