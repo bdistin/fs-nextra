@@ -4,7 +4,8 @@
   "description": "Node.js V8 native fs enhanced with util.promisify and standard extra methods.",
   "main": "dist/index.js",
   "scripts": {
-    "test": "npx tsc && npx ava test/*.js",
+    "build": "npx tsc",
+    "test": "npm run build && npx ava test/*.js",
     "test:lint": "npx eslint test && npx tslint 'src/*.ts'",
     "test:coverage": "npm run coverage && npx nyc check-coverage --lines 60 --functions 60 --branches 60",
     "coverage": "npx nyc npm test",
@@ -31,7 +32,7 @@
   "author": "BDISTIN",
   "license": "MIT",
   "engines": {
-    "node": ">=8.6.0"
+    "node": ">=10.0.0"
   },
   "devDependencies": {
     "@types/node": "^10.1.3",
@@ -43,7 +44,6 @@
     "jsdoc": "github:jsdoc3/jsdoc",
     "nyc": "^13.0.1",
     "tslint": "^5.7.0",
-    "tsubaki": "^1.2.0",
     "typescript": "^3.0.1"
   },
   "repository": {

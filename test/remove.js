@@ -1,5 +1,6 @@
 const ava = require('ava');
-const { fs, tempFile, tempFileLoc, tempDir, tempDirLoc } = require('./lib');
+const { promises: fs } = require('fs');
+const { tempFile, tempFileLoc, tempDir, tempDirLoc } = require('./lib');
 const nextra = require('../dist');
 
 ava('File', async test => {
@@ -9,7 +10,7 @@ ava('File', async test => {
 	const retVal = await nextra.remove(file);
 
 	test.is(retVal, undefined);
-	await test.throwsAsync(fs.accessAsync(file));
+	await test.throwsAsync(fs.access(file));
 });
 
 ava('Empty Directory', async test => {
@@ -19,7 +20,7 @@ ava('Empty Directory', async test => {
 	const retVal = await nextra.remove(dir);
 
 	test.is(retVal, undefined);
-	await test.throwsAsync(fs.accessAsync(dir));
+	await test.throwsAsync(fs.access(dir));
 });
 
 ava('Full Directory', async test => {
@@ -30,7 +31,7 @@ ava('Full Directory', async test => {
 	const retVal = await nextra.remove(dir);
 
 	test.is(retVal, undefined);
-	await test.throwsAsync(fs.accessAsync(dir));
+	await test.throwsAsync(fs.access(dir));
 });
 
 ava('Non-Existent File', async test => {

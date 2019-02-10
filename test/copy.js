@@ -1,6 +1,7 @@
 const ava = require('ava');
 const { join, basename } = require('path');
-const { fs, tempFile, tempFileLoc, tempDir, tempDirLoc, tempSymlink } = require('./lib');
+const { promises: fs } = require('fs');
+const { tempFile, tempFileLoc, tempDir, tempDirLoc, tempSymlink } = require('./lib');
 const nextra = require('../dist');
 
 // #region Success
@@ -11,7 +12,7 @@ ava('File to New File Location', async test => {
 	const newFile = tempFileLoc();
 	const file = tempFile();
 	const retVal = await nextra.copy(file, newFile);
-	const stats = await fs.statAsync(newFile);
+	const stats = await fs.stat(newFile);
 
 	test.is(retVal, undefined);
 	test.true(stats.isFile());
@@ -23,7 +24,7 @@ ava('File to Existing File', async test => {
 	const newFile = tempFile();
 	const file = tempFile();
 	const retVal = await nextra.copy(file, newFile);
-	const stats = await fs.statAsync(newFile);
+	const stats = await fs.stat(newFile);
 
 	test.is(retVal, undefined);
 	test.true(stats.isFile());
@@ -35,7 +36,7 @@ ava('File to Empty Directory', async test => {
 	const emptyDir = tempDir();
 	const file = tempFile();
 	const retVal = await nextra.copy(file, emptyDir);
-	const stats = await fs.statAsync(join(emptyDir, basename(file)));
+	const stats = await fs.stat(join(emptyDir, basename(file)));
 
 	test.is(retVal, undefined);
 	test.true(stats.isFile());
@@ -48,7 +49,7 @@ ava('Directory to Empty Directory', async test => {
 	const emptyDir = tempDir();
 	const file = tempFile(fullDir);
 	const retVal = await nextra.copy(fullDir, emptyDir);
-	const stats = await fs.statAsync(join(emptyDir, basename(file)));
+	const stats = await fs.stat(join(emptyDir, basename(file)));
 
 	test.is(retVal, undefined);
 	test.true(stats.isFile());
@@ -61,7 +62,7 @@ ava('Directory to new Deep Directory', async test => {
 	const emptyDir = tempDirLoc(tempDirLoc());
 	const file = tempFile(fullDir);
 	const retVal = await nextra.copy(fullDir, emptyDir);
-	const stats = await fs.statAsync(join(emptyDir, basename(file)));
+	const stats = await fs.stat(join(emptyDir, basename(file)));
 
 	test.is(retVal, undefined);
 	test.true(stats.isFile());
@@ -73,7 +74,7 @@ ava('Symlink to Empty Directory', async test => {
 	const emptyDir = tempDir();
 	const symlink = tempSymlink();
 	const retVal = await nextra.copy(symlink, emptyDir);
-	const stats = await fs.lstatAsync(join(emptyDir, basename(symlink)));
+	const stats = await fs.lstat(join(emptyDir, basename(symlink)));
 
 	test.is(retVal, undefined);
 	test.true(stats.isSymbolicLink());
@@ -85,7 +86,7 @@ ava('Symlink to Existing Symlink', async test => {
 	const newFile = tempSymlink();
 	const symlink = tempSymlink();
 	const retVal = await nextra.copy(symlink, newFile);
-	const stats = await fs.lstatAsync(newFile);
+	const stats = await fs.lstat(newFile);
 
 	test.is(retVal, undefined);
 	test.true(stats.isSymbolicLink());
@@ -96,7 +97,7 @@ ava('Duplicated File (no error on exist)', async test => {
 
 	const file = tempFile();
 	const retVal = await nextra.copy(file, file);
-	const stats = await fs.statAsync(file);
+	const stats = await fs.stat(file);
 
 	test.is(retVal, undefined);
 	test.true(stats.isFile());
@@ -108,7 +109,7 @@ ava('filter shortcut', async test => {
 	const emptyDir = tempDir();
 	const file = tempFile();
 	const retVal = await nextra.copy(file, emptyDir, () => true);
-	const stats = await fs.statAsync(join(emptyDir, basename(file)));
+	const stats = await fs.stat(join(emptyDir, basename(file)));
 
 	test.is(retVal, undefined);
 	test.true(stats.isFile());
@@ -129,7 +130,7 @@ ava('character device', async test => {
 
 		const file = tempFileLoc();
 		const retVal = await nextra.copy('/dev/null', file);
-		const stats = await fs.statAsync(file);
+		const stats = await fs.stat(file);
 
 		test.is(retVal, undefined);
 		test.true(stats.isFile());
@@ -169,7 +170,7 @@ ava('filter everything', async test => {
 	const retVal = await nextra.copy(file, emptyDir, () => false);
 
 	test.is(retVal, undefined);
-	await test.throwsAsync(fs.statAsync(join(emptyDir, basename(file))));
+	await test.throwsAsync(fs.stat(join(emptyDir, basename(file))));
 });
 
 // #endregion Throws

@@ -1,5 +1,6 @@
 const ava = require('ava');
-const { fs, tempFile, tempFileLoc, tempDirLoc } = require('./lib');
+const { promises: fs } = require('fs');
+const { tempFile, tempFileLoc, tempDirLoc } = require('./lib');
 const nextra = require('../dist');
 
 ava('Pre-Existing', async test => {
@@ -9,7 +10,7 @@ ava('Pre-Existing', async test => {
 	const retVal = await nextra.outputFile(file, 'pass');
 
 	test.is(retVal, undefined);
-	test.is(await fs.readFileAsync(file, 'utf8'), 'pass');
+	test.is(await fs.readFile(file, 'utf8'), 'pass');
 });
 
 ava('New', async test => {
@@ -19,7 +20,7 @@ ava('New', async test => {
 	const retVal = await nextra.outputFile(file, 'pass');
 
 	test.is(retVal, undefined);
-	test.is(await fs.readFileAsync(file, 'utf8'), 'pass');
+	test.is(await fs.readFile(file, 'utf8'), 'pass');
 });
 
 ava('New Recursive', async test => {
@@ -29,7 +30,7 @@ ava('New Recursive', async test => {
 	const retVal = await nextra.outputFile(deepDir, 'pass');
 
 	test.is(retVal, undefined);
-	test.is(await fs.readFileAsync(deepDir, 'utf8'), 'pass');
+	test.is(await fs.readFile(deepDir, 'utf8'), 'pass');
 });
 
 ava('Atomic Shortcut', async test => {
@@ -39,5 +40,5 @@ ava('Atomic Shortcut', async test => {
 	const retVal = await nextra.outputFile(file, 'pass', true);
 
 	test.is(retVal, undefined);
-	test.is(await fs.readFileAsync(file, 'utf8'), 'pass');
+	test.is(await fs.readFile(file, 'utf8'), 'pass');
 });
