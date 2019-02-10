@@ -4,14 +4,14 @@
   "description": "Node.js native fs promises with next-generation extra methods.",
   "main": "dist/index.js",
   "scripts": {
-    "build": "npx tsc",
-    "test": "npm run build && npx ava test/*.ts",
-    "test:lint": "npx tslint 'test/*.ts' && npx tslint 'src/*.ts'",
-    "test:coverage": "npm run coverage && npx nyc check-coverage --lines 60 --functions 60 --branches 60",
-    "coverage": "npx nyc npm test",
-    "coveralls": "npx nyc report --reporter=text-lcov | npx coveralls",
-    "docs": "npx typedoc --mode file --out ./docs/ ./src/",
-    "lint": "npx tslint --fix 'test/*.ts' && npx tslint --fix 'src/*.ts'"
+    "build": "yarn run tsc",
+    "test": "yarn run build && yarn run ava test/*.ts",
+    "test:lint": "yarn run tslint 'test/*.ts' && yarn run tslint 'src/*.ts'",
+    "test:coverage": "yarn run coverage && yarn run nyc check-coverage --lines 60 --functions 60 --branches 60",
+    "coverage": "yarn run nyc yarn test",
+    "coveralls": "yarn run nyc report --reporter=text-lcov | yarn run coveralls",
+    "docs": "yarn run typedoc --mode file --out ./docs/ ./src/",
+    "lint": "yarn run tslint --fix 'test/*.ts' && yarn run tslint --fix 'src/*.ts'"
   },
   "keywords": [
     "atomics",
