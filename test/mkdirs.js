@@ -29,13 +29,13 @@ ava('Standard Usage with full permissions', async test => {
 	test.plan(3);
 
 	const newDir = tempDirLoc();
-	const retVal = await nextra.ensureDir(newDir, 0o0777);
+	const retVal = await nextra.ensureDir(newDir, 0o0542);
 	const stats = await fs.stat(newDir);
 
 	test.is(retVal, undefined);
 	test.true(stats.isDirectory());
 	// eslint-disable-next-line no-bitwise
-	test.is(stats.mode & 0o0777, 0o0777 & ~process.umask());
+	test.is(stats.mode & 0o0777, 0o0542 & ~process.umask());
 });
 
 ava('Recursive', async test => {
