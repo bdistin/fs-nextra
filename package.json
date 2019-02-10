@@ -8,8 +8,8 @@
     "test": "yarn build && ava test/*.ts",
     "test:lint": "tslint '{test,src}/**/*.ts'",
     "test:coverage": "yarn coverage && nyc check-coverage --lines 60 --functions 60 --branches 60",
-    "coverage": "nyc yarn test",
-    "coveralls": "nyc report --reporter=text-lcov | coveralls",
+    "coverage": "npx nyc npm test",
+    "coveralls": "npx nyc report --reporter=text-lcov | npx coveralls",
     "docs": "typedoc --mode file --out ./docs/ ./src/",
     "lint": "tslint --fix '{test,src}/**/*.ts'"
   },
