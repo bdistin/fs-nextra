@@ -1,33 +1,43 @@
 import * as fs from 'fs';
 
 export const {
-	access,
-	copyFile,
-	open,
-	rename,
-	truncate,
-	rmdir,
-	mkdir,
-	readdir,
-	readlink,
-	symlink,
-	lstat,
-	stat,
-	link,
-	unlink,
-	chmod,
-	lchmod,
-	lchown,
-	chown,
-	utimes,
-	realpath,
-	mkdtemp,
-	writeFile,
-	appendFile,
-	readFile
-} = fs.promises;
-
-export { createReadStream, createWriteStream, unwatchFile, watch, watchFile, Dirent, Stats, ReadStream, WriteStream, constants } from 'fs';
+	promises: {
+		access,
+		copyFile,
+		open,
+		rename,
+		truncate,
+		rmdir,
+		mkdir,
+		readdir,
+		readlink,
+		symlink,
+		lstat,
+		stat,
+		link,
+		unlink,
+		chmod,
+		lchmod,
+		lchown,
+		chown,
+		utimes,
+		realpath,
+		mkdtemp,
+		writeFile,
+		appendFile,
+		readFile
+	},
+	createReadStream,
+	createWriteStream,
+	unwatchFile,
+	watch,
+	watchFile,
+	Dirent,
+	Stats,
+	ReadStream,
+	WriteStream,
+	constants
+} = fs;
 
 /* eslint-disable max-len */
 
