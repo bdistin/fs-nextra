@@ -34,7 +34,8 @@ ava('Standard Usage with full permissions', async test => {
 
 	test.is(retVal, undefined);
 	test.true(stats.isDirectory());
-	test.is(stats.mode, 0o0777);
+	// eslint-disable-next-line no-bitwise
+	test.is(0o0777 & ~stats.mode, 0o0777);
 });
 
 ava('Recursive', async test => {
