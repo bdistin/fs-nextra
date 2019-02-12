@@ -334,13 +334,9 @@
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/@types/minimatch/-/minimatch-3.0.3.tgz#3dca0e3f33b200fc7d1139c0cd96c1268cadfd9d"
 
-"@types/node@*":
+"@types/node@*", "@types/node@^10.1.3":
   version "10.12.24"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-10.12.24.tgz#b13564af612a22a20b5d95ca40f1bffb3af315cf"
-
-"@types/node@^10.1.3":
-  version "10.12.23"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.12.23.tgz#308a3acdc5d1c842aeadc50b867d99c46cfae868"
 
 "@types/shelljs@^0.8.0":
   version "0.8.2"
@@ -1242,7 +1238,8 @@ escape-string-regexp@^1.0.2, escape-string-regexp@^1.0.4, escape-string-regexp@^
 
 "eslint-config-klasa@github:dirigeants/klasa-lint":
   version "0.0.1"
-  resolved "https://codeload.github.com/dirigeants/klasa-lint/tar.gz/7095d9d809d52c0fbf26e0725d9197ac5b94644e"
+  uid e0c5945b8894bc8e7ff7acbcf5d21b5ff4eff225
+  resolved "https://codeload.github.com/dirigeants/klasa-lint/tar.gz/e0c5945b8894bc8e7ff7acbcf5d21b5ff4eff225"
 
 eslint-scope@^4.0.0:
   version "4.0.0"

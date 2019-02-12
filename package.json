@@ -1,6 +1,6 @@
 {
   "name": "fs-nextra",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "description": "Node.js native fs promises with next-generation extra methods.",
   "main": "dist/index.js",
   "scripts": {
@@ -32,7 +32,7 @@
   "author": "BDISTIN",
   "license": "MIT",
   "engines": {
-    "node": ">=10.0.0"
+    "node": ">=10.1.0"
   },
   "devDependencies": {
     "@types/node": "^10.1.3",
