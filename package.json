@@ -4,6 +4,7 @@
   "description": "Node.js native fs promises with next-generation extra methods.",
   "main": "dist/index.js",
   "scripts": {
+    "prepublishOnly": "yarn build",
     "build": "tsc",
     "test": "yarn build && ava test/*.ts",
     "test:lint": "tslint '{test,src}/**/*.ts'",
