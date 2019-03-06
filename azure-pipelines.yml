@@ -6,18 +6,38 @@
 trigger:
 - master
 
+strategy:
+  matrix:
+    linux:
+      imageName: 'ubuntu-16.04'
+      matrix:
+        node_10:
+          nodeVersion: '10.x'
+        node_11:
+          nodeVersion: '11.x'
+    mac:
+      imageName: 'macos-10.13'
+      matrix:
+        node_10:
+          nodeVersion: '10.x'
+        node_11:
+          nodeVersion: '11.x'
+    windows:
+      imageName: 'vs2017-win2016'
+      matrix:
+        node_10:
+          nodeVersion: '10.x'
+        node_11:
+          nodeVersion: '11.x'
+
 pool:
-  vmImage: 'Ubuntu-16.04'
+  vmImage: $(imageName)
 
 steps:
 - task: NodeTool@0
   inputs:
-    versionSpec: '10.x'
+    versionSpec: $(nodeVersion)
   displayName: 'Install Node.js'
 
-- script: |
-    yarn
-    yarn build
-  displayName: 'yarn install and build'
-
+- script: yarn
 - script: yarn test
