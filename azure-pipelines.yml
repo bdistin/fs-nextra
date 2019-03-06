@@ -6,38 +6,66 @@
 trigger:
 - master
 
-strategy:
-  matrix:
-    linux:
-      imageName: 'ubuntu-16.04'
-      matrix:
-        node_10:
-          nodeVersion: '10.x'
-        node_11:
-          nodeVersion: '11.x'
-    mac:
-      imageName: 'macos-10.13'
-      matrix:
-        node_10:
-          nodeVersion: '10.x'
-        node_11:
-          nodeVersion: '11.x'
-    windows:
-      imageName: 'vs2017-win2016'
+jobs:
+  - job: "Linux"
+
+    strategy:
       matrix:
         node_10:
           nodeVersion: '10.x'
         node_11:
           nodeVersion: '11.x'
 
-pool:
-  vmImage: $(imageName)
+    pool:
+      vmImage: "Ubuntu-16.04"
 
-steps:
-- task: NodeTool@0
-  inputs:
-    versionSpec: $(nodeVersion)
-  displayName: 'Install Node.js'
+    steps:
+      - task: NodeTool@0
+        inputs:
+          versionSpec: $(nodeVersion)
+        displayName: 'Install Node.js'
 
-- script: yarn
-- script: yarn test
+      - script: yarn
+      - script: yarn test
+
+  - job: "Mac"
+
+    strategy:
+      matrix:
+        node_10:
+          nodeVersion: '10.x'
+        node_11:
+          nodeVersion: '11.x'
+
+    pool:
+      vmImage: "macOS-10.13"
+
+    steps:
+      - task: NodeTool@0
+        inputs:
+          versionSpec: $(nodeVersion)
+        displayName: 'Install Node.js'
+
+      - script: yarn
+      - script: yarn test
+
+  - job: "Windows"
+
+    strategy:
+      matrix:
+        node_10:
+          nodeVersion: '10.x'
+        node_11:
+          nodeVersion: '11.x'
+
+    pool:
+      vmImage: "vs2017-win2016"
+
+    steps:
+      - task: NodeTool@0
+        inputs:
+          versionSpec: $(nodeVersion)
+        displayName: 'Install Node.js'
+
+      - script: yarn
+      - script: yarn test
