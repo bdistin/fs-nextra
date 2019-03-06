@@ -11,9 +11,9 @@ jobs:
 
     strategy:
       matrix:
-        node_10:
+        Node 10:
           nodeVersion: '10.x'
-        node_11:
+        Node 11:
           nodeVersion: '11.x'
 
     pool:
@@ -32,9 +32,9 @@ jobs:
 
     strategy:
       matrix:
-        node_10:
+        Node 10:
           nodeVersion: '10.x'
-        node_11:
+        Node 11:
           nodeVersion: '11.x'
 
     pool:
@@ -53,9 +53,9 @@ jobs:
 
     strategy:
       matrix:
-        node_10:
+        Node 10:
           nodeVersion: '10.x'
-        node_11:
+        Node 11:
           nodeVersion: '11.x'
 
     pool:
