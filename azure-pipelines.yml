@@ -30,6 +30,7 @@ jobs:
     parameters:
       ghRef: 'github.com/bdistin/fs-nextra'
       targetBranch: 'gh-pages'
+      masterOnly: 'true'
       dependsOn:
         - Linux
         - Mac
