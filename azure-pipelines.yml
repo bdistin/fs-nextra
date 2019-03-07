@@ -1,0 +1,77 @@
+trigger:
+- master
+
+jobs:
+  - job: "Lint"
+    pool:
+      vmImage: 'ubuntu-16.04'
+    steps:
+      - task: NodeTool@0
+        inputs:
+          versionSpec: '10.x'
+        displayName: 'Install Node.js'
+      - script: yarn
+      - script: 'yarn test:lint'
+
+  - template: scripts/.azure-test-template.yml
+    parameters:
+      name: Linux
+      vmImage: 'ubuntu-16.04'
+
+  - template: scripts/.azure-test-template.yml
+    parameters:
+      name: Mac
+      vmImage: 'macOS-10.13'
+
+  - template: scripts/.azure-test-template.yml
+    parameters:
+      name: Windows
+      vmImage: 'vs2017-win2016'
+
+  - job: "Documentation"
+    dependsOn:
+      - Linux
+      - Mac
+      - Windows
+    condition: succeeded()
+    pool:
+      vmImage: 'ubuntu-16.04'
+    steps:
+      - task: NodeTool@0
+        inputs:
+          versionSpec: '10.x'
+        displayName: 'Install Node.js'
+      - script: yarn
+      - bash: |
+          set -e
+          
+          if [ "$BRANCH" != "master" -o "$BUILD_REASON" != "IndividualCI" ]; then
+            echo -e "Not building for a non master branch push - building without deploying."
+            yarn run docs
+            exit 0
+          fi
+
+          echo -e "Building for a master branch push - building and deploying."
+
+          REPO=$(git config remote.origin.url)
+          SHA=$(git rev-parse --verify HEAD)
+
+          TARGET_BRANCH="gh-pages"
+          git clone $REPO dist -b $TARGET_BRANCH
+
+          yarn run docs
+
+          rsync -vau docs/ dist/
+
+          cd dist
+          git add --all .
+          git config user.name "Travis CI"
+          git config user.email "${COMMIT_EMAIL}"
+          git commit -m "Docs build: ${SHA}" || true
+          git push "https://${GH_TOKEN}@${GH_REF}" $TARGET_BRANCH
+        env:
+          BRANCH: $(Build.SourceBranchName)
+          BUILD_REASON: $(Build.Reason)
+          COMMIT_EMAIL: $(commitEmail)
+          GH_TOKEN: $(ghToken)
+          GH_REF: $(ghRef)
