@@ -1,3 +1,4 @@
+#!/bin/bash
 set -e
 
 if [ "$BRANCH" != "master" -o "$BUILD_REASON" != "IndividualCI" ]; then

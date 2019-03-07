@@ -41,7 +41,7 @@ jobs:
         inputs:
           versionSpec: '10.x'
         displayName: 'Install Node.js'
-      - bash: ./scripts/.azure-deploy.sh
+      - bash: scripts/.azure-deploy.sh
         env:
           BRANCH: $(Build.SourceBranchName)
           BUILD_REASON: $(Build.Reason)

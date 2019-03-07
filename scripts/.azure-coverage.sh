@@ -1,3 +1,4 @@
+#!/bin/bash
 set -e
 
 # For Node != 8, do nothing
