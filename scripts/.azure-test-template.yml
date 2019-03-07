@@ -1,0 +1,26 @@
+parameters:
+  name: ''
+  vmImage: ''
+
+strategy:
+  matrix:
+    Node 10:
+      nodeVersion: '10.x'
+    Node 11:
+      nodeVersion: '11.x'
+
+jobs:
+- job: ${{ parameters.name }}
+  dependsOn: Lint
+  condition: succeeded()
+  pool: 
+    vmImage: ${{ parameters.vmImage }}
+  steps:
+    - task: NodeTool@0
+      inputs:
+        versionSpec: $(nodeVersion)
+      displayName: 'Install Node.js'
+    - bash: ./.azure-coverage.sh
+      env:
+        NODE_VERSION: $(nodeVersion)
+        PLATFORM: $({ parameters.name })

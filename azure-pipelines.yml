@@ -1,71 +1,47 @@
-# Node.js
-# Build a general Node.js project with npm.
-# Add steps that analyze code, save build artifacts, deploy, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
-
 trigger:
 - master
 
 jobs:
-  - job: "Linux"
-
-    strategy:
-      matrix:
-        Node 10:
-          nodeVersion: '10.x'
-        Node 11:
-          nodeVersion: '11.x'
-
+  - job: Lint
     pool:
-      vmImage: "Ubuntu-16.04"
-
+      vmImage: 'ubuntu-16.04'
     steps:
       - task: NodeTool@0
         inputs:
-          versionSpec: $(nodeVersion)
+          versionSpec: '10.x'
         displayName: 'Install Node.js'
-
       - script: yarn
-      - script: yarn test
+      - script: 'yarn test:lint'
 
-  - job: "Mac"
+  - template: scripts/.azure-test-template.yml
+    parameters:
+      name: Linux
+      vmImage: 'ubuntu-16.04'
 
-    strategy:
-      matrix:
-        Node 10:
-          nodeVersion: '10.x'
-        Node 11:
-          nodeVersion: '11.x'
+  - template: scripts/.azure-test-template.yml
+    parameters:
+      name: Mac
+      vmImage: 'macOS-10.13'
 
+  - template: scripts/.azure-test-template.yml
+    parameters:
+      name: Windows
+      vmImage: 'vs2017-win2016'
+
+  - job: "Documentation"
+    dependsOn:
+      - Linux
+      - Mac
+      - Windows
+    condition: succeeded()
     pool:
-      vmImage: "macOS-10.13"
-
+      vmImage: 'ubuntu-16.04'
     steps:
       - task: NodeTool@0
         inputs:
-          versionSpec: $(nodeVersion)
+          versionSpec: '10.x'
         displayName: 'Install Node.js'
-
-      - script: yarn
-      - script: yarn test
-
-  - job: "Windows"
-
-    strategy:
-      matrix:
-        Node 10:
-          nodeVersion: '10.x'
-        Node 11:
-          nodeVersion: '11.x'
-
-    pool:
-      vmImage: "vs2017-win2016"
-
-    steps:
-      - task: NodeTool@0
-        inputs:
-          versionSpec: $(nodeVersion)
-        displayName: 'Install Node.js'
-
-      - script: yarn
-      - script: yarn test
+      - script: bash ./scripts/.azure-deploy.sh
+          env:
+            BRANCH: $(Build.SourceBranchName)
+            BUILD_REASON: $(Build.Reason)
