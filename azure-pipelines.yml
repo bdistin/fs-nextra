@@ -72,3 +72,6 @@ jobs:
         env:
           BRANCH: $(Build.SourceBranchName)
           BUILD_REASON: $(Build.Reason)
+          COMMIT_EMAIL: $(commitEmail)
+          GH_TOKEN: $(ghToken)
+          GH_REF: $(ghRef)
