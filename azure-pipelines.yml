@@ -34,13 +34,12 @@ jobs:
       name: Windows
       vmImage: 'vs2017-win2016'
 
-  - job: "Documentation"
+  - template: docs.yml@templates
+    parameters:
+      ghRef: 'github.com/bdistin/fs-nextra'
+      targetBranch: 'gh-pages'
     dependsOn:
       - Linux
       - Mac
       - Windows
     condition: succeeded()
-    - template: docs.yml@templates
-      parameters:
-        ghRef: 'github.com/bdistin/fs-nextra'
-        targetBranch: 'gh-pages'
