@@ -56,7 +56,6 @@ jobs:
           REPO=$(git config remote.origin.url)
           SHA=$(git rev-parse --verify HEAD)
 
-          TARGET_BRANCH="gh-pages"
           git clone $REPO dist -b $TARGET_BRANCH
 
           yarn run docs
@@ -75,3 +74,4 @@ jobs:
           COMMIT_EMAIL: $(commitEmail)
           GH_TOKEN: $(ghToken)
           GH_REF: $(ghRef)
+          TARGET_BRANCH: 'gh-pages'
