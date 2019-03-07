@@ -44,6 +44,8 @@ jobs:
       - script: yarn
       - bash: |
           set -e
+          
+          echo -e "${BRANCH}, ${BUILD_REASON}"
 
           if [ "$BRANCH" != "master" -o "$BUILD_REASON" != "IndividualCI" ]; then
             echo -e "Not building for a non master branch push - building without deploying."
@@ -70,5 +72,5 @@ jobs:
           git commit -m "Docs build: ${SHA}" || true
           git push "https://${GH_TOKEN}@${GH_REF}" $TARGET_BRANCH
         env:
-          BRANCH: $(Build.SourceBranchName)
-          BUILD_REASON: $(Build.Reason)
+          BRANCH: $({ Build.SourceBranchName })
+          BUILD_REASON: $({ Build.Reason })
