@@ -1,6 +1,6 @@
 import ava from 'ava';
 import { promises as fs } from 'fs';
-import { tempFile, tempDir, tempFileLoc, tempDirLoc } from './lib';
+import { tempFile, tempFileLoc, tempDirLoc } from './lib';
 import * as nextra from '../dist';
 
 ava('New File (Standard Usage)', async test => {
