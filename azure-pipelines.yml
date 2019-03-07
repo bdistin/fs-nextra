@@ -9,16 +9,7 @@ trigger:
 - master
 
 jobs:
-  - job: "Lint"
-    pool:
-      vmImage: 'ubuntu-16.04'
-    steps:
-      - task: NodeTool@0
-        inputs:
-          versionSpec: '10.x'
-        displayName: 'Install Node.js'
-      - script: yarn
-      - script: 'yarn test:lint'
+  - template: lint.yml@templates
 
   - template: scripts/.azure-test-template.yml
     parameters:

@@ -35,5 +35,4 @@ License
 
 Licensed under MIT
 
-Copyright (c) 2017 [BDISTIN](https://github.com/bdistin)
-/
+Copyright (c) 2017-2019 [BDISTIN](https://github.com/bdistin)
