@@ -26,3 +26,4 @@ jobs:
       inputs:
         codeCoverageTool: 'cobertura'
         summaryFileLocation: $(System.DefaultWorkingDirectory)/coverage/cobertura-coverage.xml
+        reportDirectory: $(System.DefaultWorkingDirectory)/coverage
