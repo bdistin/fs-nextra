@@ -1,6 +1,3 @@
-#!/bin/bash
-# Based on https://github.com/hydrabolt/discord.js-site/blob/master/deploy/deploy.sh
-
 set -e
 
 if [ "$BRANCH" != "master" -o "$BUILD_REASON" != "IndividualCI" ]; then
