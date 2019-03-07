@@ -10,7 +10,6 @@
     "test:lint": "tslint '{test,src}/**/*.ts'",
     "test:coverage": "yarn coverage && nyc check-coverage --lines 60 --functions 60 --branches 60",
     "coverage": "npx nyc npm test",
-    "coveralls": "npx nyc report --reporter=text-lcov | npx coveralls",
     "coverage:azure": "npx nyc report --reporter=cobertura",
     "docs": "typedoc --mode file --out ./docs/ ./src/",
     "lint": "tslint --fix '{test,src}/**/*.ts'"
@@ -39,7 +38,6 @@
   "devDependencies": {
     "@types/node": "^11.9.6",
     "ava": "^1.0.1",
-    "coveralls": "^3.0.2",
     "eslint": "^5.2.0",
     "eslint-config-klasa": "github:dirigeants/klasa-lint",
     "nyc": "^13.0.1",

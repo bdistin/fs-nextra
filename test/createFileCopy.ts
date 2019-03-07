@@ -49,9 +49,3 @@ ava('New File (Atomic Shortcut)', async test => {
 	test.is(retVal, undefined);
 	test.true(stats.isFile());
 });
-
-ava('Directory', async test => {
-	const dir = tempDir();
-	const newFile = tempFileLoc();
-	await test.throwsAsync(nextra.createFileCopy(dir, newFile));
-});

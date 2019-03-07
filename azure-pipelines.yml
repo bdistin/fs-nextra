@@ -18,10 +18,10 @@ jobs:
       name: Linux
       vmImage: 'ubuntu-16.04'
 
-  #- template: scripts/.azure-test-template.yml
-    #parameters:
-      #name: Mac
-      #vmImage: 'macOS-10.13'
+  - template: scripts/.azure-test-template.yml
+    parameters:
+      name: Mac
+      vmImage: 'macOS-10.13'
 
   - template: scripts/.azure-test-template.yml
     parameters:
@@ -31,7 +31,7 @@ jobs:
   - job: "Documentation"
     dependsOn:
       - Linux
-      #- Mac
+      - Mac
       - Windows
     condition: succeeded()
     pool:
