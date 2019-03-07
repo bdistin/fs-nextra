@@ -19,7 +19,7 @@ jobs:
       inputs:
         versionSpec: $(nodeVersion)
       displayName: 'Install Node.js'
-    - bash: ./.azure-coverage.sh
+    - bash: ./scripts/.azure-coverage.sh
       env:
         NODE_VERSION: $(nodeVersion)
         PLATFORM: $({ parameters.name })
