@@ -43,4 +43,3 @@ jobs:
         - Linux
         - Mac
         - Windows
-      condition: success()
