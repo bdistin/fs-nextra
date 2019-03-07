@@ -36,5 +36,7 @@ jobs:
 
         yarn run coveralls
       env:
-        NODE_VERSION: $(nodeVersion)
         PLATFORM: ${{ parameters.name }}
+        NODE_VERSION: $(nodeVersion)
+        COVERALLS_SERVICE_NAME: 'Azure Pipelines'
+        COVERALLS_REPO_TOKEN: $(coverallsRepoToken)
