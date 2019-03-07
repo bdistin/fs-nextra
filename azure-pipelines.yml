@@ -45,8 +45,6 @@ jobs:
       - bash: |
           set -e
           
-          echo -e "${GH_TOKEN}, ${GH_REF}, ${COMMIT_EMAIL}"
-
           if [ "$BRANCH" != "master" -o "$BUILD_REASON" != "IndividualCI" ]; then
             echo -e "Not building for a non master branch push - building without deploying."
             yarn run docs
