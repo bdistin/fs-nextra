@@ -42,7 +42,7 @@
     "eslint-config-klasa": "github:dirigeants/klasa-lint",
     "nyc": "^13.0.1",
     "tslint": "^5.7.0",
-    "ts-node": "8.0.2",
+    "ts-node": "8.0.3",
     "typedoc": "^0.14.2",
     "typescript": "^3.0.1"
   },
