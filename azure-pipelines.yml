@@ -10,9 +10,8 @@ jobs:
         inputs:
           versionSpec: '10.x'
         displayName: 'Install Node.js'
-      - script: |
-        yarn
-        yarn test:lint
+      - script: yarn
+      - script: 'yarn test:lint'
 
   - template: scripts/.azure-test-template.yml
     parameters:
