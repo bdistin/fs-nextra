@@ -2,19 +2,18 @@ parameters:
   name: ''
   vmImage: ''
 
-strategy:
-  matrix:
-    Node 10:
-      nodeVersion: '10.x'
-    Node 11:
-      nodeVersion: '11.x'
-
 jobs:
 - job: ${{ parameters.name }}
   dependsOn: Lint
   condition: succeeded()
   pool: 
     vmImage: ${{ parameters.vmImage }}
+  strategy:
+    matrix:
+      Node 10:
+        nodeVersion: '10.x'
+      Node 11:
+        nodeVersion: '11.x'
   steps:
     - task: NodeTool@0
       inputs:
