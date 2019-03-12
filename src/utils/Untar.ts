@@ -14,7 +14,7 @@ export default class Untar extends Stream {
 		if (data) return this.write(data, encoding);
 	}
 
-	public async write(data?: string | string[] | Buffer, encoding?: string) {
+	public async write(data?: string | Buffer | any[] , encoding?: string) {
 		let buf;
 		let tBuf;
 		let bytesBuffer;
