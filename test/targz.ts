@@ -29,3 +29,30 @@ ava('Directory', async test => {
 	test.is(retVal, undefined);
 	test.true(stats.isFile());
 });
+
+ava('File (Atomic Shortcut)', async test => {
+	test.plan(2);
+
+	const file = tempFileLoc();
+	await nextra.writeFile(file, 'test', 'utf8');
+	const fileName = `${tempFileLoc()}.tar.gz`;
+	const retVal = await nextra.targz(fileName, file, true);
+	const stats = await fs.stat(fileName);
+
+	test.is(retVal, undefined);
+	test.true(stats.isFile());
+});
+
+ava('Directory (Atomic Shortcut)', async test => {
+	test.plan(2);
+
+	const dir = tempDir();
+	await nextra.writeFile(tempFileLoc(dir), 'file1', 'utf8');
+	await nextra.writeFile(tempFileLoc(dir), 'file2', 'utf8');
+	const fileName = `${tempFileLoc()}.tar.gz`;
+	const retVal = await nextra.targz(fileName, dir, true);
+	const stats = await fs.stat(fileName);
+
+	test.is(retVal, undefined);
+	test.true(stats.isFile());
+});
