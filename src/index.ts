@@ -37,6 +37,7 @@ export { default as readJson } from './nextra/readJSON';
 export { default as remove } from './nextra/remove';
 export { default as scan } from './nextra/scan';
 export { default as symlinkAtomic } from './nextra/symlinkAtomic';
+export { default as targz } from './nextra/targz';
 export { default as writeFileAtomic } from './nextra/writeFileAtomic';
 export { default as writeJSON } from './nextra/writeJSON';
 export { default as writeJSONAtomic } from './nextra/writeJSONAtomic';

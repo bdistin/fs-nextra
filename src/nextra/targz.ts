@@ -22,6 +22,8 @@ export default async function targz(fileName: string, inputFiles: string | strin
 
 	const tar = await loadTar(inputFiles);
 
+	tar.close();
+
 	if (atomic) {
 		const tempPath = tempFile();
 		await pipeline(

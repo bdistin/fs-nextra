@@ -112,7 +112,7 @@ export function formatHeader(data: HeaderFormat): Buffer {
 		gid: pad(data.gid, 7),
 		size: pad(data.size, 11),
 		mtime: pad(data.mtime, 11),
-		checksum: data.checksum,
+		checksum: '        ',
 		type: data.type,
 		ustar: data.ustar,
 		owner: data.owner,

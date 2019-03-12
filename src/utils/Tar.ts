@@ -19,7 +19,7 @@ export interface AppendOptions {
 	allowPipe?: boolean;
 }
 
-export default class Tar extends Stream {
+export default class Tar extends Readable {
 
 	private written: number = 0;
 	private consolidate: boolean;
@@ -33,23 +33,24 @@ export default class Tar extends Stream {
 		super();
 
 		this.blockSize = (options.recordsPerBlock || 20) * this.recordSize;
-
 		this.consolidate = 'consolidate' in options ? options.consolidate : false;
 		this.normalize = 'normalize' in options ? options.normalize : true;
-
-		this.on('end', () => {
-			this.emit('data',  Buffer.alloc(this.blockSize - (this.written % this.blockSize)));
-			this.written += this.blockSize - (this.written % this.blockSize);
-		});
 
 		if (options.output) this.pipe(options.output);
 	}
 
-	close() {
-		this.emit('end');
+	public _read() {
+		// idk
 	}
 
-	createHeader(data: HeaderFormat) {
+	public close(): this {
+		this.push(Buffer.alloc(this.blockSize - (this.written % this.blockSize)));
+		this.written += this.blockSize - (this.written % this.blockSize);
+		this.push(null);
+		return this;
+	}
+
+	private createHeader(data: HeaderFormat) {
 		if (this.normalize && !this.consolidate) data.filename = normalize(data.filename);
 
 		const headerBuf = formatHeader(data);
@@ -66,18 +67,18 @@ export default class Tar extends Stream {
 		return headerBuf;
 	}
 
-	async writeData(head: Buffer, input: string | Buffer | Readable, size: number) {
+	private async writeData(head: Buffer, input: string | Buffer | Readable, size: number) {
 		let extraBytes;
 
-		this.emit('data', head);
+		this.push(head);
 		this.written += head.length;
 
 		if (typeof input === 'string' || input instanceof Buffer) {
-			this.emit('data', input);
+			this.push(input);
 			this.written += input.length;
 
 			extraBytes = this.recordSize - (size % this.recordSize || this.recordSize);
-			this.emit('data', Buffer.alloc(extraBytes));
+			this.push(Buffer.alloc(extraBytes));
 			this.written += extraBytes;
 
 			return;
@@ -86,12 +87,12 @@ export default class Tar extends Stream {
 		this.processing = true;
 
 		for await (const chunk of input) {
-			this.emit('data', chunk);
+			this.push(chunk);
 			this.written += chunk.length;
 		}
 
 		extraBytes = this.recordSize - (size % this.recordSize || this.recordSize);
-		this.emit('data', Buffer.alloc(extraBytes));
+		this.push(Buffer.alloc(extraBytes));
 		this.written += extraBytes;
 
 		this.processing = false;
@@ -107,7 +108,7 @@ export default class Tar extends Stream {
 		}
 	}
 
-	async append(filepath: string, input: string | Readable | Buffer, options: AppendOptions = {}) {
+	public async append(filepath: string, input: string | Readable | Buffer, options: AppendOptions = {}) {
 		if (this.processing || this.queue.length) {
 			if (typeof input === 'object' && input instanceof Stream) input.pause();
 
@@ -133,7 +134,6 @@ export default class Tar extends Stream {
 			gid,
 			size,
 			mtime,
-			checksum: 256,
 			type: '0',
 			ustar: 'ustar ',
 			owner: '',
