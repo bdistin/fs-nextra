@@ -1,13 +1,13 @@
-import { normalize, basename } from 'path';
+import { normalize, relative } from 'path';
 import { Stream, Writable, Readable } from 'stream';
 import { formatHeader, HeaderFormat } from './header';
 import { pad, readAll } from './util';
 
 export interface TarOptions {
 	recordsPerBlock?: number;
-	consolidate?: boolean;
 	normalize?: boolean;
 	output?: Writable;
+	base?: string;
 }
 
 export interface AppendOptions {
@@ -22,19 +22,19 @@ export interface AppendOptions {
 export default class Tar extends Readable {
 
 	private written: number = 0;
-	private consolidate: boolean;
 	private normalize: boolean;
 	private blockSize: number;
 	private queue: Array<any> = [];
 	private recordSize = 512;
 	private processing: boolean = false;
+	private base: string;
 
 	constructor(options: TarOptions = {}) {
 		super();
 
 		this.blockSize = (options.recordsPerBlock || 20) * this.recordSize;
-		this.consolidate = 'consolidate' in options ? options.consolidate : false;
 		this.normalize = 'normalize' in options ? options.normalize : true;
+		this.base = options.base;
 
 		if (options.output) this.pipe(options.output);
 	}
@@ -51,7 +51,7 @@ export default class Tar extends Readable {
 	}
 
 	private createHeader(data: HeaderFormat) {
-		if (this.normalize && !this.consolidate) data.filename = normalize(data.filename);
+		if (this.normalize && !this.base) data.filename = normalize(data.filename);
 
 		const headerBuf = formatHeader(data);
 
@@ -128,7 +128,7 @@ export default class Tar extends Readable {
 			input instanceof Buffer || typeof input === 'string' ? input.length : undefined;
 
 		const data: HeaderFormat = {
-			filename: this.consolidate ? basename(filepath) : filepath,
+			filename: this.base ? relative(this.base, filepath) : filepath,
 			mode,
 			uid,
 			gid,

@@ -6,7 +6,7 @@ import { readdir, stat, createWriteStream, createReadStream } from '../fs';
 import Tar from '../utils/Tar';
 import { tempFile } from '../utils/util';
 import move from './move';
-import { resolve } from 'path';
+import { resolve, dirname } from 'path';
 
 const pipeline = promisify(stream.pipeline);
 
@@ -42,7 +42,7 @@ export default async function targz(fileName: string, inputFiles: string | strin
 	);
 }
 
-async function loadTar(inputFiles: string[], accumilator: Tar = new Tar({ consolidate: true })): Promise<Tar> {
+async function loadTar(inputFiles: string[], accumilator: Tar = new Tar({ base: dirname(inputFiles[0]) })): Promise<Tar> {
 	if (!inputFiles.length) return accumilator;
 
 	const file = inputFiles.shift();
