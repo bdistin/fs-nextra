@@ -76,7 +76,7 @@ export default class Tar extends Stream {
 			this.emit('data', input);
 			this.written += input.length;
 
-			extraBytes = recordSize - (size % recordSize || recordSize);
+			extraBytes = this.recordSize - (size % this.recordSize || this.recordSize);
 			this.emit('data', Buffer.alloc(extraBytes));
 			this.written += extraBytes;
 
@@ -90,7 +90,7 @@ export default class Tar extends Stream {
 			this.written += chunk.length;
 		}
 
-		extraBytes = recordSize - (size % recordSize || recordSize);
+		extraBytes = this.recordSize - (size % this.recordSize || this.recordSize);
 		this.emit('data', Buffer.alloc(extraBytes));
 		this.written += extraBytes;
 
@@ -128,12 +128,12 @@ export default class Tar extends Stream {
 
 		const data: HeaderFormat = {
 			filename: this.consolidate ? basename(filepath) : filepath,
-			mode: pad(mode, 7),
-			uid: pad(uid, 7),
-			gid: pad(gid, 7),
-			size: pad(size, 11),
-			mtime: pad(mtime, 11),
-			checksum: '        ',
+			mode,
+			uid,
+			gid,
+			size,
+			mtime,
+			checksum: 256,
 			type: '0',
 			ustar: 'ustar ',
 			owner: '',
@@ -148,7 +148,7 @@ export default class Tar extends Stream {
 			this.processing = false;
 
 			size = buf.length;
-			data.size = pad(size, 11);
+			data.size = size;
 			return this.writeData(this.createHeader(data), buf, size);
 		}
 

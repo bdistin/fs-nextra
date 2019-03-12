@@ -1,3 +1,5 @@
+import { pad } from './util';
+
 export const headerFormat = [
 	{
 		field: 'filename',
@@ -82,12 +84,12 @@ export const headerFormat = [
 
 export interface HeaderFormat {
 	filename?: string;
-	mode?: string;
-	uid?: string;
-	gid?: string;
-	size?: string;
-	mtime?: string;
-	checksum?: string;
+	mode?: number;
+	uid?: number;
+	gid?: number;
+	size?: number;
+	mtime?: number;
+	checksum?: number;
 	type?: string;
 	linkName?: string;
 	ustar?: string;
@@ -103,8 +105,22 @@ export function formatHeader(data: HeaderFormat): Buffer {
 	const buffer = Buffer.alloc(512);
 	let offset = 0;
 
+	const formatted = {
+		filename: data.filename,
+		mode: pad(data.mode, 7),
+		uid: pad(data.uid, 7),
+		gid: pad(data.gid, 7),
+		size: pad(data.size, 11),
+		mtime: pad(data.mtime, 11),
+		checksum: data.checksum,
+		type: data.type,
+		ustar: data.ustar,
+		owner: data.owner,
+		group: data.group
+	};
+
 	for (const { field, length } of headerFormat) {
-		buffer.write(data[field] || '', offset);
+		buffer.write(formatted[field] || '', offset);
 		offset += length;
 	}
 
