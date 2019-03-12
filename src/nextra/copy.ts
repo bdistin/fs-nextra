@@ -1,6 +1,6 @@
 import { resolve, dirname, join, basename } from 'path';
 
-import { replaceEsc, isSrcKid } from '../util';
+import { replaceEsc, isSrcKid } from '../utils/util';
 import { access, readlink, mkdir, symlink, copyFile, lstat, stat, chmod, readdir, Stats } from '../fs';
 
 import mkdirs from './mkdirs';

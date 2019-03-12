@@ -2,6 +2,7 @@ import { sep, resolve, join } from 'path';
 import { promisify } from 'util';
 import { randomBytes } from 'crypto';
 import { tmpdir } from 'os';
+import { Readable } from 'stream';
 
 export const isWindows: boolean = process.platform === 'win32';
 
@@ -21,3 +22,17 @@ export const uuid = (): string => {
 };
 
 export const tempFile = (ext?: string): string => join(tmpdir(), uuid() + (ext || ''));
+
+export const pad = (num: number, bytes: number, base: number = 8): string => num.toString(base).padStart(bytes, '0');
+
+export const readAll = async (stream: Readable): Promise<Buffer> => {
+	const buffers = [];
+	let size = 0;
+
+	for await (const datum of stream) {
+		buffers.push(datum);
+		size += datum.length;
+	}
+
+	return Buffer.concat(buffers, size);
+};
