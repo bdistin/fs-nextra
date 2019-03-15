@@ -6,47 +6,61 @@ export default class Untar extends Writable {
 	private header: HeaderFormat = null;
 	private file: Buffer = Buffer.alloc(0);
 	private leftToRead: number;
+	private totalRead: number = 0;
 	private recordSize: number = 512;
 
-	public constructor(...args) {
-		super(...args);
-		this.cork();
-	}
-
-	public _write(data: string | Buffer | any[], encoding?: string) {
+	public _write(data: string | Buffer | any[], encoding: string, next: Function) {
 		data = this.resolveBuffer(data, encoding);
 		this.file = Buffer.concat([this.file, data], this.file.length + data.length);
 
-		if (this.file.length === 0) return;
+		if (this.file.length === 0) return next();
 
 		if (this.leftToRead) {
 			if (this.file.length >= this.leftToRead) {
 				this.emit('file', this.header, this.file.slice(0, this.header.size));
 				this.file = this.file.slice(this.header.size);
+				this.totalRead += this.leftToRead;
 				this.leftToRead = 0;
-				return;
+				return next();
 			}
 
 			this.leftToRead -= data.length;
-			return;
+			this.totalRead += data.length;
+			return next();
 		}
 
-		if (this.file.length < this.recordSize) return;
+		// Remove extra bits between files
+
+		if (this.totalRead % this.recordSize) {
+			const bytesBuffer = this.recordSize - (this.totalRead % this.recordSize);
+
+			if (this.file.length < bytesBuffer) return next();
+
+			this.file = this.file.slice(bytesBuffer);
+			this.totalRead += bytesBuffer;
+		}
+
+		if (this.file.length < this.recordSize) return next();
 
 		// New File
 
 		this.header = decodeHeader(this.file);
 
+		this.totalRead += this.recordSize;
 		this.file = this.file.slice(this.recordSize);
 
 		if (this.file.length >= this.header.size) {
 			this.emit('file', this.header, this.file);
+			this.totalRead += this.header.size;
 			this.file = this.file.slice(this.header.size);
 			this.header = null;
-			return;
+			return next();
 		}
 
 		this.leftToRead = this.header.size - this.file.length;
+		this.totalRead += this.file.length;
+
+		return next();
 	}
 
 	private resolveBuffer(data: string | Buffer | any[], encoding?: string): Buffer {
@@ -78,7 +92,6 @@ export default class Untar extends Writable {
 	}
 
 	public async *files(): AsyncIterableIterator<{ header: HeaderFormat, file: Buffer }> {
-		this.uncork();
 		let file: { header: HeaderFormat, file: Buffer };
 
 		while (file = await this.next()) yield file;
