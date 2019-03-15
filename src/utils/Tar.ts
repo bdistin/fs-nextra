@@ -11,7 +11,6 @@ export default class Tar extends Readable {
 	private recordSize = 512;
 	private base: string;
 	private queue: Array<{ header: Buffer, file: Readable, size: number }> = [];
-	private reading: boolean = false;
 
 	constructor(base: string, recordsPerBlock: number = 20) {
 		super();
@@ -21,9 +20,6 @@ export default class Tar extends Readable {
 	}
 
 	public async _read(): Promise<void> {
-		if (this.reading) return;
-		this.reading = true;
-
 		if (!this.queue.length) {
 			this.push(Buffer.alloc(this.blockSize - (this.written % this.blockSize)));
 			this.written += this.blockSize - (this.written % this.blockSize);
@@ -32,21 +28,23 @@ export default class Tar extends Readable {
 		}
 
 		const { header, file, size } = this.queue.shift();
+		const { written } = this;
 
-		this.push(header);
 		this.written += header.length;
 
+		const fileChunks = [];
+
 		for await (const chunk of file) {
-			this.push(chunk);
+			fileChunks.push(chunk);
 			this.written += chunk.length;
 		}
 
 		// Hard to produce, requires a size perfectibly divisible by the recordSize
 		/* istanbul ignore next */
 		const extraBytes = this.recordSize - (size % this.recordSize || this.recordSize);
-		this.push(Buffer.alloc(extraBytes));
 		this.written += extraBytes;
-		this.reading = false;
+
+		this.push(Buffer.concat([header, ...fileChunks, Buffer.alloc(extraBytes)], this.written - written));
 	}
 
 	public append(filepath: string, stats: Stats): void {
