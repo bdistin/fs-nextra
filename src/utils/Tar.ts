@@ -4,11 +4,6 @@ import { formatHeader, HeaderFormat } from './header';
 import { pad } from './util';
 import { createReadStream, Stats } from '../fs';
 
-export interface TarOptions {
-	recordsPerBlock?: number;
-	base?: string;
-}
-
 export default class Tar extends Readable {
 
 	private written: number = 0;
@@ -46,6 +41,8 @@ export default class Tar extends Readable {
 			this.written += chunk.length;
 		}
 
+		// Hard to produce, requires a size perfectibly divisible by the recordSize
+		/* istanbul ignore next */
 		const extraBytes = this.recordSize - (size % this.recordSize || this.recordSize);
 		this.push(Buffer.alloc(extraBytes));
 		this.written += extraBytes;
@@ -55,7 +52,7 @@ export default class Tar extends Readable {
 	public append(filepath: string, stats: Stats): void {
 		this.queue.push({
 			header: this.createHeader({
-				filename: this.base ? relative(this.base, filepath) : filepath,
+				filename: relative(this.base, filepath),
 				mode: stats.mode,
 				uid: stats.uid,
 				gid: stats.gid,
