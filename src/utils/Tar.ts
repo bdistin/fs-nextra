@@ -6,10 +6,10 @@ import { createReadStream, Stats } from '../fs';
 
 export default class Tar extends Readable {
 
-	private written: number = 0;
 	private blockSize: number;
-	private recordSize = 512;
 	private base: string;
+	private written: number = 0;
+	private recordSize = 512;
 	private queue: Array<{ header: Buffer, file: Readable, size: number }> = [];
 
 	constructor(base: string, recordsPerBlock: number = 20) {
