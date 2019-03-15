@@ -25,4 +25,3 @@ export const uuid = (): string => {
 
 export const tempFile = (ext?: string): string => join(tmpdir(), uuid() + (ext || ''));
 
-export const pad = (num: number, bytes: number, base: number = 8): string => num.toString(base).padStart(bytes, '0');

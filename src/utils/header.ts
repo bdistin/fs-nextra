@@ -1,6 +1,4 @@
-import { pad } from './util';
-
-export const headerFormat = [
+const headerFormat = [
 	{
 		field: 'filename',
 		length: 100,
@@ -82,6 +80,19 @@ export const headerFormat = [
 	}
 ];
 
+const pad = (num: number, bytes: number, base: number = 8): string => num.toString(base).padStart(bytes, '0');
+
+const readInt = (value: string) => parseInt(value, 8) || 0;
+
+const readString = (buffer: Buffer) => {
+	for (let i = 0, length = buffer.length; i < length; i ++) if (buffer[i] === 0) return buffer.toString('utf8', 0, i);
+};
+
+const updateChecksum = (value: string, checksum: number): number => {
+	for (let i = 0, length = value.length; i < length; i++) checksum += value.charCodeAt(i);
+	return checksum;
+};
+
 export interface HeaderFormat {
 	filename?: string;
 	mode?: number;
@@ -101,8 +112,8 @@ export interface HeaderFormat {
 	padding?: any;
 }
 
-export function formatHeader(data: HeaderFormat): Buffer {
-	const buffer = Buffer.alloc(512);
+export function encodeHeader(data: HeaderFormat): Buffer {
+	const header = Buffer.alloc(512);
 	let offset = 0;
 
 	const formatted = {
@@ -120,9 +131,45 @@ export function formatHeader(data: HeaderFormat): Buffer {
 	};
 
 	for (const { field, length } of headerFormat) {
-		buffer.write(formatted[field] || '', offset);
+		header.write(formatted[field] || '', offset);
 		offset += length;
 	}
 
-	return buffer;
+	let chksum = 0;
+	for (let i = 0, { length } = header; i < length; i++) chksum += header[i];
+
+	const checksum = pad(chksum, 6);
+	for (let i = 0, length = 6; i < length; i++) header[i + 148] = checksum.charCodeAt(i);
+
+	header[154] = 0;
+	header[155] = 0x20;
+
+	return header;
+}
+
+export function decodeHeader(data: Buffer): HeaderFormat {
+	const header: HeaderFormat = {};
+	let offset = 0;
+	let checksum = 0;
+
+	for (const field of headerFormat) {
+		const tBuf = data.slice(offset, offset + field.length);
+		const tString = tBuf.toString();
+
+		offset += field.length;
+
+		if (field.field === 'ustar' && !/ustar/.test(tString)) {
+			break;
+		} else if (field.field === 'checksum') {
+			checksum = updateChecksum('        ', checksum);
+		} else {
+			checksum = updateChecksum(tString, checksum);
+		}
+
+		if (field.type === 'string') header[field.field] = readString(tBuf);
+		else if (field.type === 'number') header[field.field] = readInt(tString);
+	}
+
+	if (checksum !== header.checksum) throw new Error(`Checksum not equal: ${checksum} != ${header.checksum}`);
+	return header;
 }

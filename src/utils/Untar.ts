@@ -1,140 +1,87 @@
-import { Stream, Readable } from 'stream';
-import { headerFormat, HeaderFormat } from './header';
+import { Writable } from 'stream';
+import { decodeHeader, HeaderFormat } from './header';
 
-export default class Untar extends Stream {
+export default class Untar extends Writable {
 
-	private buffer: Buffer;
-	private totalRead: number = 0;
-	private recordSize: number = 512;
-	private fileStream: Readable;
+	private header: HeaderFormat = null;
+	private file: Buffer = Buffer.alloc(0);
 	private leftToRead: number;
+	private recordSize: number = 512;
 
-	public end(data, encoding) {
-		if (data) return this.write(data, encoding);
+	public constructor(...args) {
+		super(...args);
+		this.cork();
 	}
 
-	public async write(data?: string | Buffer | any[] , encoding?: string) {
-		let buf;
-		let tBuf;
-		let bytesBuffer;
+	public _write(data: string | Buffer | any[], encoding?: string) {
+		data = this.resolveBuffer(data, encoding);
+		this.file = Buffer.concat([this.file, data], this.file.length + data.length);
 
-		if (typeof data === 'string') {
-			buf = Buffer.from(data, encoding);
-		} else if (Array.isArray(data)) {
-			buf = Buffer.from(data);
-		} else {
-			buf = data;
-		}
+		if (this.file.length === 0) return;
 
-		if (!buf) {
-			tBuf = this.buffer;
-		} else if (this.buffer) {
-			tBuf = Buffer.alloc(this.buffer.length + buf.length);
-			this.buffer.copy(tBuf);
-			buf.copy(tBuf, this.buffer.length);
-		} else {
-			tBuf = buf;
-		}
-
-		this.buffer = undefined;
-
-		if (!tBuf || tBuf.length === 0) return;
-
-		if (this.fileStream) {
-			if (tBuf.length >= this.leftToRead) {
-				this.fileStream.emit('data', tBuf.slice(0, this.leftToRead));
-				this.fileStream.emit('end');
-				this.fileStream = undefined;
-
-				this.buffer = tBuf.slice(this.leftToRead);
-				this.totalRead += this.leftToRead;
+		if (this.leftToRead) {
+			if (this.file.length >= this.leftToRead) {
+				this.emit('file', this.header, this.file.slice(0, this.header.size));
+				this.file = this.file.slice(this.header.size);
 				this.leftToRead = 0;
 				return;
 			}
 
-			this.fileStream.emit('data', tBuf);
-			this.leftToRead -= tBuf.length;
-			this.totalRead += tBuf.length;
+			this.leftToRead -= data.length;
 			return;
 		}
 
-		if (this.totalRead % this.recordSize) {
-			bytesBuffer = this.recordSize - (this.totalRead % this.recordSize);
+		if (this.file.length < this.recordSize) return;
 
-			if (tBuf.length < bytesBuffer) {
-				this.totalRead += bytesBuffer;
-				return;
-			}
+		// New File
 
-			tBuf = tBuf.slice(bytesBuffer);
-			this.totalRead += bytesBuffer;
-		}
+		this.header = decodeHeader(this.file);
 
-		if (tBuf.length < this.recordSize) {
-			this.buffer = tBuf;
+		this.file = this.file.slice(this.recordSize);
+
+		if (this.file.length >= this.header.size) {
+			this.emit('file', this.header, this.file);
+			this.file = this.file.slice(this.header.size);
+			this.header = null;
 			return;
 		}
 
-		const newData = await this.doHeader(tBuf);
-
-		this.totalRead += this.recordSize;
-		this.buffer = tBuf.slice(this.recordSize);
-
-		this.fileStream = new Readable();
-
-		if (this.buffer.length >= newData.size) {
-			this.fileStream.push(this.buffer.slice(0, newData.size));
-			this.fileStream.push(null);
-			this.totalRead += newData.size;
-			this.buffer = this.buffer.slice(newData.size);
-
-			this.fileStream = undefined;
-
-			return this.write();
-		}
-
-		this.leftToRead = newData.size - this.buffer.length;
-		this.fileStream.push(this.buffer);
-		this.totalRead += this.buffer.length;
-		this.buffer = undefined;
+		this.leftToRead = this.header.size - this.file.length;
 	}
 
-	private async doHeader(buf) {
-		const data: HeaderFormat = {};
-		let offset = 0;
-		let checksum = 0;
+	private resolveBuffer(data: string | Buffer | any[], encoding?: string): Buffer {
+		return typeof data === 'string' ?
+			Buffer.from(data, encoding) :
+			Array.isArray(data) ? Buffer.from(data) : data;
+	}
 
-		for (const field of headerFormat) {
-			const tBuf = buf.slice(offset, offset + field.length);
-			const tString = tBuf.toString();
+	private next(): Promise<{ header: HeaderFormat, file: Buffer }> {
+		return new Promise((resolve) => {
+			const onFile = (header: HeaderFormat, file: Buffer) => {
+				cleanup();
+				resolve({ header, file });
+			};
 
-			offset += field.length;
+			const onfinish = () => {
+				cleanup();
+				resolve(null);
+			};
 
-			if (field.field === 'ustar' && !/ustar/.test(tString)) {
-				break;
-			} else if (field.field === 'checksum') {
-				checksum = updateChecksum('        ', checksum);
-			} else {
-				checksum = updateChecksum(tString, checksum);
-			}
+			const cleanup = () => {
+				this.removeListener('file', onFile);
+				this.removeListener('finish', onfinish);
+			};
 
-			if (field.type === 'string') data[field.field] = readString(tBuf);
-			else if (field.type === 'number') data[field.field] = readInt(tString);
-		}
+			this.on('file', onFile);
+			this.on('finish', onfinish);
+		});
+	}
 
-		if (checksum !== data.checksum) throw new Error(`Checksum not equal: ${checksum} != ${data.checksum}`);
-		return data;
+	public async *files(): AsyncIterableIterator<{ header: HeaderFormat, file: Buffer }> {
+		this.uncork();
+		let file: { header: HeaderFormat, file: Buffer };
+
+		while (file = await this.next()) yield file;
 	}
 
 }
-
-const readInt = (value: string) => parseInt(value, 8) || 0;
-
-const readString = (buffer: Buffer) => {
-	for (let i = 0, length = buffer.length; i < length; i ++) if (buffer[i] === 0) return buffer.toString('utf8', 0, i);
-};
-
-const updateChecksum = (value: string, checksum: number): number => {
-	for (let i = 0, length = value.length; i < length; i++) checksum += value.charCodeAt(i);
-	return checksum;
-};

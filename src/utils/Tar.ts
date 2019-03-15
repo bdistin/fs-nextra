@@ -1,7 +1,6 @@
 import { relative } from 'path';
 import { Readable } from 'stream';
-import { formatHeader, HeaderFormat } from './header';
-import { pad } from './util';
+import { encodeHeader } from './header';
 import { createReadStream, Stats } from '../fs';
 
 export default class Tar extends Readable {
@@ -49,7 +48,7 @@ export default class Tar extends Readable {
 
 	public append(filepath: string, stats: Stats): void {
 		this.queue.push({
-			header: this.createHeader({
+			header: encodeHeader({
 				filename: relative(this.base, filepath),
 				mode: stats.mode,
 				uid: stats.uid,
@@ -64,21 +63,6 @@ export default class Tar extends Readable {
 			file: createReadStream(filepath),
 			size: stats.size
 		});
-	}
-
-	private createHeader(data: HeaderFormat): Buffer {
-		const headerBuf = formatHeader(data);
-
-		let chksum = 0;
-		for (let i = 0, { length } = headerBuf; i < length; i++) chksum += headerBuf[i];
-
-		const checksum = pad(chksum, 6);
-		for (let i = 0, length = 6; i < length; i++) headerBuf[i + 148] = checksum.charCodeAt(i);
-
-		headerBuf[154] = 0;
-		headerBuf[155] = 0x20;
-
-		return headerBuf;
 	}
 
 }

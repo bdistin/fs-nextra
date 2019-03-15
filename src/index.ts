@@ -43,6 +43,8 @@ export { default as scan } from './nextra/scan';
 export { default as symlinkAtomic } from './nextra/symlinkAtomic';
 export { default as targz } from './nextra/targz';
 export { default as targzAtomic } from './nextra/targzAtomic';
+export { default as unTargz } from './nextra/unTargz';
+export { default as unTargzAtomic } from './nextra/unTargzAtomic';
 export { default as writeFileAtomic } from './nextra/writeFileAtomic';
 export { default as writeJSON } from './nextra/writeJSON';
 export { default as writeJSONAtomic } from './nextra/writeJSONAtomic';
