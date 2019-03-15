@@ -2,7 +2,7 @@ import { relative } from 'path';
 import { Readable } from 'stream';
 import { formatHeader, HeaderFormat } from './header';
 import { pad } from './util';
-import { createReadStream, stat, Stats } from '../fs';
+import { createReadStream, Stats } from '../fs';
 
 export interface TarOptions {
 	recordsPerBlock?: number;

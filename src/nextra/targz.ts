@@ -1,6 +1,6 @@
 import { createGzip } from 'zlib';
 
-import { readdir, stat, createWriteStream, createReadStream } from '../fs';
+import { readdir, stat, createWriteStream } from '../fs';
 import Tar from '../utils/Tar';
 import { tempFile, pipelinePromise } from '../utils/util';
 import move from './move';
