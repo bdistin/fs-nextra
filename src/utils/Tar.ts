@@ -64,7 +64,7 @@ export default class Tar extends Readable {
 			this.written += chunk.length;
 		}
 
-		const extraBytes = this.recordSize - (stats.size % this.recordSize || this.recordSize)
+		const extraBytes = this.recordSize - (stats.size % this.recordSize || this.recordSize);
 		this.push(Buffer.alloc(extraBytes));
 		this.written += extraBytes;
 	}
