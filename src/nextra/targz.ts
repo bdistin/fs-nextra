@@ -5,6 +5,7 @@ import Tar from '../utils/Tar';
 import { tempFile, pipelinePromise } from '../utils/util';
 import move from './move';
 import { resolve, dirname } from 'path';
+import scan from './scan';
 
 
 /**
@@ -18,7 +19,12 @@ import { resolve, dirname } from 'path';
 export default async function targz(fileName: string, inputFiles: string | string[], atomic: boolean = false): Promise<void> {
 	if (!Array.isArray(inputFiles)) inputFiles = [inputFiles];
 
-	const tar = await loadTar(inputFiles);
+	const tar = new Tar(dirname(inputFiles[0]));
+
+	for (const input of inputFiles) {
+		const files = await scan(input, { filter: stats => stats.isFile() });
+		for (const [file, stats] of files) await tar.append(file, stats);
+	}
 
 	if (atomic) {
 		const tempPath = tempFile();
@@ -35,16 +41,4 @@ export default async function targz(fileName: string, inputFiles: string | strin
 		createGzip(),
 		createWriteStream(fileName)
 	);
-}
-
-async function loadTar(inputFiles: string[], accumilator: Tar = new Tar({ base: dirname(inputFiles[0]) })): Promise<Tar> {
-	if (!inputFiles.length) return accumilator;
-
-	const file = inputFiles.shift();
-	const stats = await stat(file);
-
-	if (stats.isDirectory()) await loadTar((await readdir(file)).map(subFile => resolve(file, subFile)), accumilator);
-	else await accumilator.append(file, stats);
-
-	return loadTar(inputFiles, accumilator);
 }

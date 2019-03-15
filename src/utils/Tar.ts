@@ -13,27 +13,18 @@ export default class Tar extends Readable {
 
 	private written: number = 0;
 	private blockSize: number;
-	private queue: Array<[string, Stats]> = [];
 	private recordSize = 512;
-	private processing: boolean = false;
 	private base: string;
 
-	constructor(options: TarOptions = {}) {
+	constructor(base: string, recordsPerBlock: number = 20) {
 		super();
 
-		this.blockSize = (options.recordsPerBlock || 20) * this.recordSize;
-		this.base = options.base;
+		this.blockSize = recordsPerBlock * this.recordSize;
+		this.base = base;
 	}
 
 	public _read() {
 		// idk
-	}
-
-	public close(): this {
-		this.push(Buffer.alloc(this.blockSize - (this.written % this.blockSize)));
-		this.written += this.blockSize - (this.written % this.blockSize);
-		this.push(null);
-		return this;
 	}
 
 	private createHeader(data: HeaderFormat) {
@@ -51,43 +42,8 @@ export default class Tar extends Readable {
 		return headerBuf;
 	}
 
-	private async writeData(head: Buffer, input: string | Buffer | Readable, size: number) {
-		let extraBytes;
-
-		this.push(head);
-		this.written += head.length;
-
-		if (typeof input === 'string' || input instanceof Buffer) {
-			this.push(input);
-			this.written += input.length;
-
-			extraBytes = this.recordSize - (size % this.recordSize || this.recordSize);
-			this.push(Buffer.alloc(extraBytes));
-			this.written += extraBytes;
-
-			return;
-		}
-
-		this.processing = true;
-
-		for await (const chunk of input) {
-			this.push(chunk);
-			this.written += chunk.length;
-		}
-
-		extraBytes = this.recordSize - (size % this.recordSize || this.recordSize);
-		this.push(Buffer.alloc(extraBytes));
-		this.written += extraBytes;
-
-		this.processing = false;
-
-		if (this.queue.length > 0) await this.append(...this.queue.shift());
-	}
-
 	public async append(filepath: string, stats: Stats) {
-		if (this.processing || this.queue.length) return this.queue.push([ filepath, stats ]);
-
-		return this.writeData(this.createHeader({
+		const header = this.createHeader({
 			filename: this.base ? relative(this.base, filepath) : filepath,
 			mode: stats.mode,
 			uid: stats.uid,
@@ -98,7 +54,26 @@ export default class Tar extends Readable {
 			ustar: 'ustar ',
 			owner: '',
 			group: ''
-		}), createReadStream(filepath), stats.size);
+		});
+
+		this.push(header);
+		this.written += header.length;
+
+		for await (const chunk of createReadStream(filepath)) {
+			this.push(chunk);
+			this.written += chunk.length;
+		}
+
+		const extraBytes = this.recordSize - (stats.size % this.recordSize || this.recordSize)
+		this.push(Buffer.alloc(extraBytes));
+		this.written += extraBytes;
+	}
+
+	public close(): this {
+		this.push(Buffer.alloc(this.blockSize - (this.written % this.blockSize)));
+		this.written += this.blockSize - (this.written % this.blockSize);
+		this.push(null);
+		return this;
 	}
 
 }
