@@ -1,4 +1,6 @@
 import gunzip from './gunzip';
+import move from './move';
+import { tempFile } from '../utils/util';
 
 /**
  * Un-Gzips a file atomically.
@@ -8,5 +10,7 @@ import gunzip from './gunzip';
  * @param inputFile The filepath of the archive
  */
 export default async function gzipAtomic(fileName: string, inputFile: string): Promise<void> {
-	return gunzip(fileName, inputFile, true);
+	const tempPath = tempFile();
+	await gunzip(tempPath, inputFile);
+	return move(tempPath, fileName, { overwrite: true });
 }

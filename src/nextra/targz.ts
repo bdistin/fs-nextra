@@ -2,10 +2,10 @@ import { createGzip } from 'zlib';
 
 import { createWriteStream } from '../fs';
 import Tar from '../utils/Tar';
-import { tempFile, pipelinePromise } from '../utils/util';
-import move from './move';
+import { pipelinePromise } from '../utils/util';
 import { dirname } from 'path';
 import scan from './scan';
+import targzAtomic from './targzAtomic';
 
 
 /**
@@ -17,6 +17,7 @@ import scan from './scan';
  * @param options The options for this .tar.gz
  */
 export default async function targz(fileName: string, inputFiles: string | string[], atomic: boolean = false): Promise<void> {
+	if (atomic) return targzAtomic(fileName, inputFiles);
 	if (!Array.isArray(inputFiles)) inputFiles = [inputFiles];
 
 	const tar = new Tar(dirname(inputFiles[0]));
@@ -24,16 +25,6 @@ export default async function targz(fileName: string, inputFiles: string | strin
 	for (const input of inputFiles) {
 		const files = await scan(input, { filter: stats => stats.isFile() });
 		for (const [file, stats] of files) tar.append(file, stats);
-	}
-
-	if (atomic) {
-		const tempPath = tempFile();
-		await pipelinePromise(
-			tar,
-			createGzip(),
-			createWriteStream(tempPath)
-		);
-		return move(tempPath, fileName, { overwrite: true });
 	}
 
 	return pipelinePromise(

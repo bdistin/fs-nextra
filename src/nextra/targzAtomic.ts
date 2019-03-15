@@ -1,4 +1,6 @@
 import targz from './targz';
+import move from './move';
+import { tempFile } from '../utils/util';
 
 /**
  * Tar/Gzips a directory or array of files.
@@ -8,5 +10,7 @@ import targz from './targz';
  * @param inputFiles The directory or array of filepaths to .tar.gz
  */
 export default async function targzAtomic(fileName: string, inputFiles: string | string[]): Promise<void> {
-	return targz(fileName, inputFiles, true);
+	const tempPath = tempFile();
+	await targz(tempPath, inputFiles);
+	return move(tempPath, fileName, { overwrite: true });
 }
