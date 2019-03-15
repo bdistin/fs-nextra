@@ -23,13 +23,13 @@ export default async function targz(fileName: string, inputFiles: string | strin
 
 	for (const input of inputFiles) {
 		const files = await scan(input, { filter: stats => stats.isFile() });
-		for (const [file, stats] of files) await tar.append(file, stats);
+		for (const [file, stats] of files) tar.append(file, stats);
 	}
 
 	if (atomic) {
 		const tempPath = tempFile();
 		await pipelinePromise(
-			tar.close(),
+			tar,
 			createGzip(),
 			createWriteStream(tempPath)
 		);
@@ -37,7 +37,7 @@ export default async function targz(fileName: string, inputFiles: string | strin
 	}
 
 	return pipelinePromise(
-		tar.close(),
+		tar,
 		createGzip(),
 		createWriteStream(fileName)
 	);
