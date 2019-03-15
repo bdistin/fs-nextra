@@ -27,7 +27,7 @@ export default class Tar extends Readable {
 		// idk
 	}
 
-	private createHeader(data: HeaderFormat) {
+	private createHeader(data: HeaderFormat): Buffer {
 		const headerBuf = formatHeader(data);
 
 		let chksum = 0;
@@ -42,7 +42,7 @@ export default class Tar extends Readable {
 		return headerBuf;
 	}
 
-	public async append(filepath: string, stats: Stats) {
+	public async append(filepath: string, stats: Stats): Promise<void> {
 		const header = this.createHeader({
 			filename: this.base ? relative(this.base, filepath) : filepath,
 			mode: stats.mode,
