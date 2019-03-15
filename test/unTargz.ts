@@ -8,7 +8,7 @@ ava('File', async test => {
 	test.plan(3);
 
 	const file = tempFileLoc();
-	await nextra.writeFile(file, 'something obvious', 'utf8');
+	await nextra.writeFile(file, 'test', 'utf8');
 	const fileName = `${tempFileLoc()}.tar.gz`;
 	await nextra.targz(fileName, file);
 	const outputDirectory = tempDir();
@@ -18,76 +18,112 @@ ava('File', async test => {
 
 	test.is(retVal, undefined);
 	test.true(stats.isFile());
-	test.is(await fs.readFile(newFile, 'utf8'), 'something obvious');
+	test.is(await fs.readFile(newFile, 'utf8'), 'test');
 });
 
-ava.skip('Files', async test => {
-	test.plan(2);
+ava('Files', async test => {
+	test.plan(5);
 
 	const file1 = tempFileLoc();
 	await nextra.writeFile(file1, 'test1', 'utf8');
 	const file2 = tempFileLoc();
 	await nextra.writeFile(file2, 'test2', 'utf8');
 	const fileName = `${tempFileLoc()}.tar.gz`;
-	const retVal = await nextra.targz(fileName, [file1, file2]);
-	const stats = await fs.stat(fileName);
+	await nextra.targz(fileName, [file1, file2]);
+	const outputDirectory = tempDir();
+	const retVal = await nextra.unTargz(outputDirectory, fileName);
+	const newFile1 = resolve(outputDirectory, basename(file1));
+	const newFile2 = resolve(outputDirectory, basename(file2));
+	const [stats1, stats2] = await Promise.all([fs.stat(newFile1), fs.stat(newFile2)]);
 
 	test.is(retVal, undefined);
-	test.true(stats.isFile());
+	test.true(stats1.isFile());
+	test.true(stats2.isFile());
+	test.is(await fs.readFile(newFile1, 'utf8'), 'test1');
+	test.is(await fs.readFile(newFile2, 'utf8'), 'test1');
 });
 
-ava.skip('Directory', async test => {
-	test.plan(2);
+ava('Directory', async test => {
+	test.plan(5);
 
 	const dir = tempDir();
-	await nextra.writeFile(tempFileLoc(dir), 'file1', 'utf8');
-	await nextra.writeFile(tempFileLoc(dir), 'file2', 'utf8');
+	const file1 = tempFileLoc();
+	const file2 = tempFileLoc();
+	await nextra.writeFile(file1, 'file1', 'utf8');
+	await nextra.writeFile(file2, 'file2', 'utf8');
 	const fileName = `${tempFileLoc()}.tar.gz`;
-	const retVal = await nextra.targz(fileName, dir);
-	const stats = await fs.stat(fileName);
+	await nextra.targz(fileName, dir);
+	const outputDirectory = tempDir();
+	const retVal = await nextra.unTargz(outputDirectory, fileName);
+	const newFile1 = resolve(outputDirectory, basename(dir), basename(file1));
+	const newFile2 = resolve(outputDirectory, basename(dir), basename(file2));
+	const [stats1, stats2] = await Promise.all([fs.stat(newFile1), fs.stat(newFile2)]);
 
 	test.is(retVal, undefined);
-	test.true(stats.isFile());
+	test.true(stats1.isFile());
+	test.true(stats2.isFile());
+	test.is(await fs.readFile(newFile1, 'utf8'), 'file1');
+	test.is(await fs.readFile(newFile2, 'utf8'), 'file2');
 });
 
-ava.skip('File (Atomic Shortcut)', async test => {
-	test.plan(2);
+ava('File (Atomic Shortcut)', async test => {
+	test.plan(3);
 
 	const file = tempFileLoc();
 	await nextra.writeFile(file, 'test', 'utf8');
 	const fileName = `${tempFileLoc()}.tar.gz`;
-	const retVal = await nextra.targz(fileName, file, true);
-	const stats = await fs.stat(fileName);
+	await nextra.targz(fileName, file);
+	const outputDirectory = tempDir();
+	const retVal = await nextra.unTargz(outputDirectory, fileName, true);
+	const newFile = resolve(outputDirectory, basename(file));
+	const stats = await fs.stat(newFile);
 
 	test.is(retVal, undefined);
 	test.true(stats.isFile());
+	test.is(await fs.readFile(newFile, 'utf8'), 'test');
 });
 
-ava.skip('Files (Atomic Shortcut)', async test => {
-	test.plan(2);
+ava('Files (Atomic Shortcut)', async test => {
+	test.plan(5);
 
 	const file1 = tempFileLoc();
 	await nextra.writeFile(file1, 'test1', 'utf8');
 	const file2 = tempFileLoc();
 	await nextra.writeFile(file2, 'test2', 'utf8');
 	const fileName = `${tempFileLoc()}.tar.gz`;
-	const retVal = await nextra.targz(fileName, [file1, file2], true);
-	const stats = await fs.stat(fileName);
+	await nextra.targz(fileName, [file1, file2]);
+	const outputDirectory = tempDir();
+	const retVal = await nextra.unTargz(outputDirectory, fileName, true);
+	const newFile1 = resolve(outputDirectory, basename(file1));
+	const newFile2 = resolve(outputDirectory, basename(file2));
+	const [stats1, stats2] = await Promise.all([fs.stat(newFile1), fs.stat(newFile2)]);
 
 	test.is(retVal, undefined);
-	test.true(stats.isFile());
+	test.true(stats1.isFile());
+	test.true(stats2.isFile());
+	test.is(await fs.readFile(newFile1, 'utf8'), 'test1');
+	test.is(await fs.readFile(newFile2, 'utf8'), 'test1');
 });
 
-ava.skip('Directory (Atomic Shortcut)', async test => {
-	test.plan(2);
+ava('Directory (Atomic Shortcut)', async test => {
+	test.plan(5);
 
 	const dir = tempDir();
-	await nextra.writeFile(tempFileLoc(dir), 'file1', 'utf8');
-	await nextra.writeFile(tempFileLoc(dir), 'file2', 'utf8');
+	const file1 = tempFileLoc();
+	const file2 = tempFileLoc();
+	await nextra.writeFile(file1, 'file1', 'utf8');
+	await nextra.writeFile(file2, 'file2', 'utf8');
 	const fileName = `${tempFileLoc()}.tar.gz`;
-	const retVal = await nextra.targz(fileName, dir, true);
-	const stats = await fs.stat(fileName);
+	await nextra.targz(fileName, dir);
+	const outputDirectory = tempDir();
+	const retVal = await nextra.unTargz(outputDirectory, fileName, true);
+	const newFile1 = resolve(outputDirectory, basename(dir), basename(file1));
+	const newFile2 = resolve(outputDirectory, basename(dir), basename(file2));
+	const [stats1, stats2] = await Promise.all([fs.stat(newFile1), fs.stat(newFile2)]);
 
 	test.is(retVal, undefined);
-	test.true(stats.isFile());
+	test.true(stats1.isFile());
+	test.true(stats2.isFile());
+	test.is(await fs.readFile(newFile1, 'utf8'), 'file1');
+	test.is(await fs.readFile(newFile2, 'utf8'), 'file2');
 });
