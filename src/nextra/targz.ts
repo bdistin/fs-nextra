@@ -46,7 +46,7 @@ async function loadTar(inputFiles: string[], accumilator: Tar = new Tar({ base: 
 	const stats = await stat(file);
 
 	if (stats.isDirectory()) await loadTar((await readdir(file)).map(subFile => resolve(file, subFile)), accumilator);
-	else await accumilator.append(file, createReadStream(file), { allowPipe: true });
+	else await accumilator.append(file, createReadStream(file), { mode: stats.mode, mtime: Math.trunc(stats.mtime.valueOf() / 1000), uid: stats.uid, gid: stats.gid, size: stats.size });
 
 	return loadTar(inputFiles, accumilator);
 }
