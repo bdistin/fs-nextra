@@ -158,13 +158,9 @@ export function decodeHeader(data: Buffer): HeaderFormat {
 
 		offset += field.length;
 
-		if (field.field === 'ustar' && !/ustar/.test(tString)) {
-			break;
-		} else if (field.field === 'checksum') {
-			checksum = updateChecksum('        ', checksum);
-		} else {
-			checksum = updateChecksum(tString, checksum);
-		}
+		if (field.field === 'ustar' && !/ustar/.test(tString)) break;
+
+		checksum = updateChecksum(field.field === 'checksum' ? '        ' : tString, checksum);
 
 		if (field.type === 'string') header[field.field] = readString(tBuf);
 		else if (field.type === 'number') header[field.field] = readInt(tString);

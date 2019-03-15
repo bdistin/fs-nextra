@@ -1,7 +1,7 @@
 import ava from 'ava';
 import { promises as fs } from 'fs';
-import { basename, resolve } from 'path';
-import { tempFileLoc, tempDir } from './lib';
+import { basename, resolve, relative } from 'path';
+import { tempFileLoc, tempDir, dir } from './lib';
 import * as nextra from '../dist';
 
 ava('File', async test => {
@@ -46,17 +46,17 @@ ava('Files', async test => {
 ava('Directory', async test => {
 	test.plan(5);
 
-	const dir = tempDir();
-	const file1 = tempFileLoc();
-	const file2 = tempFileLoc();
+	const directory = tempDir();
+	const file1 = tempFileLoc(directory);
+	const file2 = tempFileLoc(directory);
 	await nextra.writeFile(file1, 'file1', 'utf8');
 	await nextra.writeFile(file2, 'file2', 'utf8');
 	const fileName = `${tempFileLoc()}.tar.gz`;
-	await nextra.targz(fileName, dir);
+	await nextra.targz(fileName, directory);
 	const outputDirectory = tempDir();
 	const retVal = await nextra.unTargz(outputDirectory, fileName);
-	const newFile1 = resolve(outputDirectory, basename(dir), basename(file1));
-	const newFile2 = resolve(outputDirectory, basename(dir), basename(file2));
+	const newFile1 = resolve(outputDirectory, relative(dir, file1));
+	const newFile2 = resolve(outputDirectory, relative(dir, file2));
 	const [stats1, stats2] = await Promise.all([fs.stat(newFile1), fs.stat(newFile2)]);
 
 	test.is(retVal, undefined);
@@ -108,17 +108,17 @@ ava('Files (Atomic Shortcut)', async test => {
 ava('Directory (Atomic Shortcut)', async test => {
 	test.plan(5);
 
-	const dir = tempDir();
-	const file1 = tempFileLoc();
-	const file2 = tempFileLoc();
+	const directory = tempDir();
+	const file1 = tempFileLoc(directory);
+	const file2 = tempFileLoc(directory);
 	await nextra.writeFile(file1, 'file1', 'utf8');
 	await nextra.writeFile(file2, 'file2', 'utf8');
 	const fileName = `${tempFileLoc()}.tar.gz`;
-	await nextra.targz(fileName, dir);
+	await nextra.targz(fileName, directory);
 	const outputDirectory = tempDir();
 	const retVal = await nextra.unTargz(outputDirectory, fileName, true);
-	const newFile1 = resolve(outputDirectory, basename(dir), basename(file1));
-	const newFile2 = resolve(outputDirectory, basename(dir), basename(file2));
+	const newFile1 = resolve(outputDirectory, relative(dir, file1));
+	const newFile2 = resolve(outputDirectory, relative(dir, file2));
 	const [stats1, stats2] = await Promise.all([fs.stat(newFile1), fs.stat(newFile2)]);
 
 	test.is(retVal, undefined);
