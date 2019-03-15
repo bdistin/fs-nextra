@@ -1,30 +1,19 @@
-import { normalize, relative } from 'path';
-import { Stream, Writable, Readable } from 'stream';
+import { relative } from 'path';
+import { Readable } from 'stream';
 import { formatHeader, HeaderFormat } from './header';
-import { pad, readAll } from './util';
+import { pad } from './util';
+import { createReadStream, stat, Stats } from '../fs';
 
 export interface TarOptions {
 	recordsPerBlock?: number;
-	normalize?: boolean;
-	output?: Writable;
 	base?: string;
-}
-
-export interface AppendOptions {
-	mode?: number;
-	mtime?: number;
-	uid?: number;
-	gid?: number;
-	size?: number;
-	allowPipe?: boolean;
 }
 
 export default class Tar extends Readable {
 
 	private written: number = 0;
-	private normalize: boolean;
 	private blockSize: number;
-	private queue: Array<any> = [];
+	private queue: Array<[string, Stats]> = [];
 	private recordSize = 512;
 	private processing: boolean = false;
 	private base: string;
@@ -33,10 +22,7 @@ export default class Tar extends Readable {
 		super();
 
 		this.blockSize = (options.recordsPerBlock || 20) * this.recordSize;
-		this.normalize = 'normalize' in options ? options.normalize : true;
 		this.base = options.base;
-
-		if (options.output) this.pipe(options.output);
 	}
 
 	public _read() {
@@ -51,8 +37,6 @@ export default class Tar extends Readable {
 	}
 
 	private createHeader(data: HeaderFormat) {
-		if (this.normalize && !this.base) data.filename = normalize(data.filename);
-
 		const headerBuf = formatHeader(data);
 
 		let chksum = 0;
@@ -97,62 +81,24 @@ export default class Tar extends Readable {
 
 		this.processing = false;
 
-		if (this.queue.length > 0) {
-			const job = this.queue.shift();
-
-			if (typeof job.input === 'object' && typeof job.input.resume === 'function') {
-				job.input.resume();
-			}
-
-			await this.append(job.filepath, job.input, job.opts);
-		}
+		if (this.queue.length > 0) await this.append(...this.queue.shift());
 	}
 
-	public async append(filepath: string, input: string | Readable | Buffer, options: AppendOptions = {}) {
-		if (this.processing || this.queue.length) {
-			if (typeof input === 'object' && input instanceof Stream) input.pause();
+	public async append(filepath: string, stats: Stats) {
+		if (this.processing || this.queue.length) return this.queue.push([ filepath, stats ]);
 
-			this.queue.push({
-				filepath,
-				input,
-				options
-			});
-		}
-
-		const mode = typeof options.mode === 'number' ? options.mode : 0o777 & 0xfff;
-		const mtime = typeof options.mtime === 'number' ? options.mtime : Math.trunc(new Date().valueOf() / 1000);
-		const uid = typeof options.uid === 'number' ? options.uid : 0;
-		const gid = typeof options.gid === 'number' ? options.gid : 0;
-		let size = typeof options.size === 'number' ?
-			options.size :
-			input instanceof Buffer || typeof input === 'string' ? input.length : undefined;
-
-		const data: HeaderFormat = {
+		return this.writeData(this.createHeader({
 			filename: this.base ? relative(this.base, filepath) : filepath,
-			mode,
-			uid,
-			gid,
-			size,
-			mtime,
+			mode: stats.mode,
+			uid: stats.uid,
+			gid: stats.gid,
+			size: stats.size,
+			mtime: Math.trunc(stats.mtime.valueOf() / 1000),
 			type: '0',
 			ustar: 'ustar ',
 			owner: '',
 			group: ''
-		};
-
-		if (input instanceof Stream && (typeof size !== 'number' || size < 0)) {
-			if (!options.allowPipe) throw new Error('Streams must supply the total size of the stream if allowPipe is not set.');
-
-			this.processing = true;
-			const buf = await readAll(input);
-			this.processing = false;
-
-			size = buf.length;
-			data.size = size;
-			return this.writeData(this.createHeader(data), buf, size);
-		}
-
-		return this.writeData(this.createHeader(data), input, size);
+		}), createReadStream(filepath), stats.size);
 	}
 
 }
