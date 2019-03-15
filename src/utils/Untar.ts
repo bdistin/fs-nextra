@@ -8,7 +8,6 @@ export default class Untar extends Writable {
 	private leftToRead: number;
 	private totalRead: number = 0;
 	private recordSize: number = 512;
-	private finished: boolean = false;
 
 	public _write(data: string | Buffer | any[], encoding: string, next: Function) {
 		data = this.resolveBuffer(data, encoding);
@@ -64,11 +63,6 @@ export default class Untar extends Writable {
 		return next();
 	}
 
-	public _final(next: Function) {
-		this.finished = true;
-		return next();
-	}
-
 	private resolveBuffer(data: string | Buffer | any[], encoding?: string): Buffer {
 		return typeof data === 'string' ?
 			Buffer.from(data, encoding) :
@@ -77,30 +71,25 @@ export default class Untar extends Writable {
 
 	private next(): Promise<{ header: HeaderFormat, file: Buffer }> {
 		return new Promise((resolve) => {
+			if (!this.writable) resolve(null);
+
 			const onFile = (header: HeaderFormat, file: Buffer) => {
 				cleanup();
 				resolve({ header, file });
 			};
 
-			const onfinish = () => {
-				cleanup();
-				resolve(null);
-			};
-
 			const cleanup = () => {
 				this.removeListener('file', onFile);
-				this.removeListener('finish', onfinish);
 			};
 
 			this.on('file', onFile);
-			this.on('finish', onfinish);
 		});
 	}
 
 	public async *files(): AsyncIterableIterator<{ header: HeaderFormat, file: Buffer }> {
 		let file: { header: HeaderFormat, file: Buffer };
 
-		while (!this.finished && (file = await this.next())) yield file;
+		while (file = await this.next()) yield file;
 	}
 
 }
