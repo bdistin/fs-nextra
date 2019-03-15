@@ -9,6 +9,6 @@ import unTargz from './unTargz';
  * @param inputFile The archive file
  * @param atomic The if the writes should be atomic
  */
-export default async function targz(outputDirectory: string, inputFile: string): Promise<void> {
+export default async function unTargzAtomic(outputDirectory: string, inputFile: string): Promise<void> {
 	return unTargz(outputDirectory, inputFile, true);
 }
