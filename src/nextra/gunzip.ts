@@ -13,7 +13,7 @@ import gunzipAtomic from './gunzipAtomic';
  * @param atomic If the unzip file should be created atomically
  */
 export default async function gzip(fileName: string, inputFile: string, atomic: boolean = false): Promise<void> {
-	if (atomic) gunzipAtomic(fileName, inputFile);
+	if (atomic) return gunzipAtomic(fileName, inputFile);
 
 	return pipelinePromise(
 		createReadStream(inputFile),
