@@ -12,7 +12,7 @@ export default class Tar extends Readable {
 	private recordSize = 512;
 	private queue: Array<{ header: Buffer, file: Readable, size: number }> = [];
 
-	constructor(base: string, recordsPerBlock: number = 20) {
+	public constructor(base: string, recordsPerBlock: number = 20) {
 		super();
 
 		this.blockSize = recordsPerBlock * this.recordSize;
