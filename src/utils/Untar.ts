@@ -1,13 +1,12 @@
-import { Stream } from 'stream';
+import { Stream, Readable } from 'stream';
 import { headerFormat, HeaderFormat } from './header';
 
 export default class Untar extends Stream {
 
-	public writable: boolean = true;
 	private buffer: Buffer;
 	private totalRead: number = 0;
 	private recordSize: number = 512;
-	private fileStream: Stream;
+	private fileStream: Readable;
 	private leftToRead: number;
 
 	public end(data, encoding) {
@@ -81,11 +80,11 @@ export default class Untar extends Stream {
 		this.totalRead += this.recordSize;
 		this.buffer = tBuf.slice(this.recordSize);
 
-		this.fileStream = new Stream();
+		this.fileStream = new Readable();
 
 		if (this.buffer.length >= newData.size) {
-			this.fileStream.emit('data', this.buffer.slice(0, newData.size));
-			this.fileStream.emit('end');
+			this.fileStream.push(this.buffer.slice(0, newData.size));
+			this.fileStream.push(null);
 			this.totalRead += newData.size;
 			this.buffer = this.buffer.slice(newData.size);
 
@@ -95,7 +94,7 @@ export default class Untar extends Stream {
 		}
 
 		this.leftToRead = newData.size - this.buffer.length;
-		this.fileStream.emit('data', this.buffer);
+		this.fileStream.push(this.buffer);
 		this.totalRead += this.buffer.length;
 		this.buffer = undefined;
 	}

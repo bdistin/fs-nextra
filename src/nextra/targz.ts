@@ -1,14 +1,11 @@
 import { createGzip } from 'zlib';
-import * as stream from 'stream';
-import { promisify } from 'util';
 
 import { readdir, stat, createWriteStream, createReadStream } from '../fs';
 import Tar from '../utils/Tar';
-import { tempFile } from '../utils/util';
+import { tempFile, pipelinePromise } from '../utils/util';
 import move from './move';
 import { resolve, dirname } from 'path';
 
-const pipeline = promisify(stream.pipeline);
 
 /**
  * Tar/Gzips a directory or array of files.
@@ -27,7 +24,7 @@ export default async function targz(fileName: string, inputFiles: string | strin
 
 	if (atomic) {
 		const tempPath = tempFile();
-		await pipeline(
+		await pipelinePromise(
 			tar,
 			createGzip(),
 			createWriteStream(tempPath)
@@ -35,7 +32,7 @@ export default async function targz(fileName: string, inputFiles: string | strin
 		return move(tempPath, fileName, { overwrite: true });
 	}
 
-	return pipeline(
+	return pipelinePromise(
 		tar,
 		createGzip(),
 		createWriteStream(fileName)
