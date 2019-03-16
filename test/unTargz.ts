@@ -21,6 +21,25 @@ ava('File', async test => {
 	test.is(await fs.readFile(newFile, 'utf8'), 'test');
 });
 
+ava('Big File', async test => {
+	test.plan(3);
+
+	const content = `${'big'.repeat(1000000)}file!`;
+
+	const file = tempFileLoc();
+	await nextra.writeFile(file, content, 'utf8');
+	const fileName = `${tempFileLoc()}.tar.gz`;
+	await nextra.targz(fileName, file);
+	const outputDirectory = tempDir();
+	const retVal = await nextra.unTargz(outputDirectory, fileName);
+	const newFile = resolve(outputDirectory, basename(file));
+	const stats = await fs.stat(newFile);
+
+	test.is(retVal, undefined);
+	test.true(stats.isFile());
+	test.is(await fs.readFile(newFile, 'utf8'), content);
+});
+
 ava('Files', async test => {
 	test.plan(5);
 
