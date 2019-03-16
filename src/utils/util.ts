@@ -2,10 +2,13 @@ import { sep, resolve, join } from 'path';
 import { promisify } from 'util';
 import { randomBytes } from 'crypto';
 import { tmpdir } from 'os';
+import { pipeline } from 'stream';
 
 export const isWindows: boolean = process.platform === 'win32';
 
 export const setTimeoutPromise: typeof setTimeout.__promisify__ = promisify(setTimeout);
+
+export const pipelinePromise: typeof pipeline.__promisify__ = promisify(pipeline);
 
 export const replaceEsc = (str: string): string => str.replace(/\$/g, '$$');
 
@@ -21,3 +24,4 @@ export const uuid = (): string => {
 };
 
 export const tempFile = (ext?: string): string => join(tmpdir(), uuid() + (ext || ''));
+

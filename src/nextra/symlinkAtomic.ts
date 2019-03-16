@@ -1,4 +1,4 @@
-import { tempFile } from '../util';
+import { tempFile } from '../utils/util';
 import { symlink } from '../fs';
 import { SymLinkType } from './createSymlink';
 

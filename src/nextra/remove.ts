@@ -1,6 +1,6 @@
 import { join } from 'path';
 
-import { isWindows, setTimeoutPromise } from '../util';
+import { isWindows, setTimeoutPromise } from '../utils/util';
 import { lstat, unlink, rmdir, chmod, readdir } from '../fs';
 
 /**
