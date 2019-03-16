@@ -68,10 +68,18 @@
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
+							<h3>Classes</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-class"><a href="classes/tar.html" class="tsd-kind-icon">Tar</a></li>
+								<li class="tsd-kind-class"><a href="classes/untar.html" class="tsd-kind-icon">Untar</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
 							<h3>Interfaces</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-interface tsd-is-not-exported"><a href="interfaces/copydata.html" class="tsd-kind-icon">Copy<wbr>Data</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/copyoptions.html" class="tsd-kind-icon">Copy<wbr>Options</a></li>
+								<li class="tsd-kind-interface"><a href="interfaces/headerformat.html" class="tsd-kind-icon">Header<wbr>Format</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/jsonoptions.html" class="tsd-kind-icon">Json<wbr>Options</a></li>
 								<li class="tsd-kind-interface tsd-is-not-exported"><a href="interfaces/mkdirsoptions.html" class="tsd-kind-icon">Mkdirs<wbr>Options</a></li>
 								<li class="tsd-kind-interface tsd-is-not-exported"><a href="interfaces/moveoptions.html" class="tsd-kind-icon">Move<wbr>Options</a></li>
@@ -97,6 +105,7 @@
 								<li class="tsd-kind-variable"><a href="globals.html#chmod" class="tsd-kind-icon">chmod</a></li>
 								<li class="tsd-kind-variable"><a href="globals.html#chown" class="tsd-kind-icon">chown</a></li>
 								<li class="tsd-kind-variable"><a href="globals.html#copyfile" class="tsd-kind-icon">copy<wbr>File</a></li>
+								<li class="tsd-kind-variable tsd-is-not-exported"><a href="globals.html#headerformat" class="tsd-kind-icon">header<wbr>Format</a></li>
 								<li class="tsd-kind-variable"><a href="globals.html#iswindows" class="tsd-kind-icon">is<wbr>Windows</a></li>
 								<li class="tsd-kind-variable"><a href="globals.html#lchmod" class="tsd-kind-icon">lchmod</a></li>
 								<li class="tsd-kind-variable"><a href="globals.html#lchown" class="tsd-kind-icon">lchown</a></li>
@@ -105,6 +114,7 @@
 								<li class="tsd-kind-variable"><a href="globals.html#mkdir" class="tsd-kind-icon">mkdir</a></li>
 								<li class="tsd-kind-variable"><a href="globals.html#mkdtemp" class="tsd-kind-icon">mkdtemp</a></li>
 								<li class="tsd-kind-variable"><a href="globals.html#open" class="tsd-kind-icon">open</a></li>
+								<li class="tsd-kind-variable"><a href="globals.html#pipelinepromise" class="tsd-kind-icon">pipeline<wbr>Promise</a></li>
 								<li class="tsd-kind-variable"><a href="globals.html#readfile" class="tsd-kind-icon">read<wbr>File</a></li>
 								<li class="tsd-kind-variable"><a href="globals.html#readdir" class="tsd-kind-icon">readdir</a></li>
 								<li class="tsd-kind-variable"><a href="globals.html#readlink" class="tsd-kind-icon">readlink</a></li>
@@ -135,8 +145,12 @@
 								<li class="tsd-kind-function"><a href="globals.html#createlinkatomic" class="tsd-kind-icon">create<wbr>Link<wbr>Atomic</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#createsymlink" class="tsd-kind-icon">create<wbr>Symlink</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#createsymlinkatomic" class="tsd-kind-icon">create<wbr>Symlink<wbr>Atomic</a></li>
+								<li class="tsd-kind-function"><a href="globals.html#decodeheader" class="tsd-kind-icon">decode<wbr>Header</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#emptydir" class="tsd-kind-icon">empty<wbr>Dir</a></li>
+								<li class="tsd-kind-function"><a href="globals.html#encodeheader" class="tsd-kind-icon">encode<wbr>Header</a></li>
 								<li class="tsd-kind-function tsd-is-not-exported"><a href="globals.html#fixwineperm" class="tsd-kind-icon">fix<wbr>WinEPERM</a></li>
+								<li class="tsd-kind-function"><a href="globals.html#gzip" class="tsd-kind-icon">gzip</a></li>
+								<li class="tsd-kind-function"><a href="globals.html#gzipatomic" class="tsd-kind-icon">gzip<wbr>Atomic</a></li>
 								<li class="tsd-kind-function tsd-is-not-exported"><a href="globals.html#invalidwin32path" class="tsd-kind-icon">invalid<wbr>Win32<wbr>Path</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#issrckid" class="tsd-kind-icon">is<wbr>Src<wbr>Kid</a></li>
 								<li class="tsd-kind-function tsd-is-not-exported"><a href="globals.html#iswritable" class="tsd-kind-icon">is<wbr>Writable</a></li>
@@ -147,8 +161,11 @@
 								<li class="tsd-kind-function"><a href="globals.html#outputfileatomic" class="tsd-kind-icon">output<wbr>File<wbr>Atomic</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#outputjson" class="tsd-kind-icon">outputJSON</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#outputjsonatomic" class="tsd-kind-icon">outputJSONAtomic</a></li>
+								<li class="tsd-kind-function tsd-is-not-exported"><a href="globals.html#pad" class="tsd-kind-icon">pad</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#pathexists" class="tsd-kind-icon">path<wbr>Exists</a></li>
+								<li class="tsd-kind-function tsd-is-not-exported"><a href="globals.html#readint" class="tsd-kind-icon">read<wbr>Int</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#readjson" class="tsd-kind-icon">readJSON</a></li>
+								<li class="tsd-kind-function tsd-is-not-exported"><a href="globals.html#readstring" class="tsd-kind-icon">read<wbr>String</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#remove" class="tsd-kind-icon">remove</a></li>
 								<li class="tsd-kind-function tsd-is-not-exported"><a href="globals.html#removedir" class="tsd-kind-icon">remove<wbr>Dir</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#replaceesc" class="tsd-kind-icon">replace<wbr>Esc</a></li>
@@ -163,7 +180,12 @@
 								<li class="tsd-kind-function"><a href="globals.html#symlinkatomic" class="tsd-kind-icon">symlink<wbr>Atomic</a></li>
 								<li class="tsd-kind-function tsd-is-not-exported"><a href="globals.html#symlinkpaths" class="tsd-kind-icon">symlink<wbr>Paths</a></li>
 								<li class="tsd-kind-function tsd-is-not-exported"><a href="globals.html#symlinktype" class="tsd-kind-icon">symlink<wbr>Type</a></li>
+								<li class="tsd-kind-function"><a href="globals.html#targz" class="tsd-kind-icon">targz</a></li>
+								<li class="tsd-kind-function"><a href="globals.html#targzatomic" class="tsd-kind-icon">targz<wbr>Atomic</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#tempfile" class="tsd-kind-icon">temp<wbr>File</a></li>
+								<li class="tsd-kind-function"><a href="globals.html#untargz" class="tsd-kind-icon">un<wbr>Targz</a></li>
+								<li class="tsd-kind-function"><a href="globals.html#untargzatomic" class="tsd-kind-icon">un<wbr>Targz<wbr>Atomic</a></li>
+								<li class="tsd-kind-function tsd-is-not-exported"><a href="globals.html#updatechecksum" class="tsd-kind-icon">update<wbr>Checksum</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#uuid" class="tsd-kind-icon">uuid</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#writefileatomic" class="tsd-kind-icon">write<wbr>File<wbr>Atomic</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#writejson" class="tsd-kind-icon">writeJSON</a></li>
@@ -181,7 +203,7 @@
 					<div class="tsd-signature tsd-kind-icon">Copy<wbr>Filter<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/b029458/src/nextra/copy.ts#L9">nextra/copy.ts:9</a></li>
+							<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/8114b55/src/nextra/copy.ts#L9">nextra/copy.ts:9</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -215,7 +237,7 @@
 					<div class="tsd-signature tsd-kind-icon">Sym<wbr>Link<wbr>Type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"dir"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"file"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"junction"</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/b029458/src/nextra/createSymlink.ts#L17">nextra/createSymlink.ts:17</a></li>
+							<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/8114b55/src/nextra/createSymlink.ts#L17">nextra/createSymlink.ts:17</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -246,7 +268,7 @@
 					<div class="tsd-signature tsd-kind-icon">access<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">access</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/b029458/src/fs.ts#L4">fs.ts:4</a></li>
+							<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/8114b55/src/fs.ts#L4">fs.ts:4</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -256,7 +278,7 @@
 					<div class="tsd-signature tsd-kind-icon">append<wbr>File<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">appendFile</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/b029458/src/fs.ts#L26">fs.ts:26</a></li>
+							<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/8114b55/src/fs.ts#L26">fs.ts:26</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -266,7 +288,7 @@
 					<div class="tsd-signature tsd-kind-icon">chmod<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">chmod</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/b029458/src/fs.ts#L18">fs.ts:18</a></li>
+							<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/8114b55/src/fs.ts#L18">fs.ts:18</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -276,7 +298,7 @@
 					<div class="tsd-signature tsd-kind-icon">chown<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">chown</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/b029458/src/fs.ts#L21">fs.ts:21</a></li>
+							<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/8114b55/src/fs.ts#L21">fs.ts:21</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -286,7 +308,17 @@
 					<div class="tsd-signature tsd-kind-icon">copy<wbr>File<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">copyFile</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/b029458/src/fs.ts#L5">fs.ts:5</a></li>
+							<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/8114b55/src/fs.ts#L5">fs.ts:5</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-is-not-exported">
+					<a name="headerformat" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> header<wbr>Format</h3>
+					<div class="tsd-signature tsd-kind-icon">header<wbr>Format<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[{field: &#x27;filename&#x27;,length: 100,type: &#x27;string&#x27;},{field: &#x27;mode&#x27;,length: 8,type: &#x27;number&#x27;},{field: &#x27;uid&#x27;,length: 8,type: &#x27;number&#x27;},{field: &#x27;gid&#x27;,length: 8,type: &#x27;number&#x27;},{field: &#x27;size&#x27;,length: 12,type: &#x27;number&#x27;},{field: &#x27;mtime&#x27;,length: 12,type: &#x27;number&#x27;},{field: &#x27;checksum&#x27;,length: 8,type: &#x27;number&#x27;},{field: &#x27;type&#x27;,length: 1,type: &#x27;number&#x27;},{field: &#x27;linkName&#x27;,length: 100,type: &#x27;string&#x27;},{field: &#x27;ustar&#x27;,length: 8,type: &#x27;string&#x27;},{field: &#x27;owner&#x27;,length: 32,type: &#x27;string&#x27;},{field: &#x27;group&#x27;,length: 32,type: &#x27;string&#x27;},{field: &#x27;majorNumber&#x27;,length: 8,type: &#x27;number&#x27;},{field: &#x27;minorNumber&#x27;,length: 8,type: &#x27;number&#x27;},{field: &#x27;filenamePrefix&#x27;,length: 155,type: &#x27;string&#x27;},{field: &#x27;padding&#x27;,length: 12}]</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/8114b55/src/utils/header.ts#L1">utils/header.ts:1</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -296,7 +328,7 @@
 					<div class="tsd-signature tsd-kind-icon">is<wbr>Windows<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;process.platform &#x3D;&#x3D;&#x3D; &#x27;win32&#x27;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/b029458/src/util.ts#L6">util.ts:6</a></li>
+							<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/8114b55/src/utils/util.ts#L7">utils/util.ts:7</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -306,7 +338,7 @@
 					<div class="tsd-signature tsd-kind-icon">lchmod<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">lchmod</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/b029458/src/fs.ts#L19">fs.ts:19</a></li>
+							<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/8114b55/src/fs.ts#L19">fs.ts:19</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -316,7 +348,7 @@
 					<div class="tsd-signature tsd-kind-icon">lchown<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">lchown</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/b029458/src/fs.ts#L20">fs.ts:20</a></li>
+							<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/8114b55/src/fs.ts#L20">fs.ts:20</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -326,7 +358,7 @@
 					<div class="tsd-signature tsd-kind-icon">link<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">link</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/b029458/src/fs.ts#L16">fs.ts:16</a></li>
+							<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/8114b55/src/fs.ts#L16">fs.ts:16</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -336,7 +368,7 @@
 					<div class="tsd-signature tsd-kind-icon">lstat<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">lstat</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/b029458/src/fs.ts#L14">fs.ts:14</a></li>
+							<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/8114b55/src/fs.ts#L14">fs.ts:14</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -346,7 +378,7 @@
 					<div class="tsd-signature tsd-kind-icon">mkdir<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">mkdir</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/b029458/src/fs.ts#L10">fs.ts:10</a></li>
+							<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/8114b55/src/fs.ts#L10">fs.ts:10</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -356,7 +388,7 @@
 					<div class="tsd-signature tsd-kind-icon">mkdtemp<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">mkdtemp</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/b029458/src/fs.ts#L24">fs.ts:24</a></li>
+							<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/8114b55/src/fs.ts#L24">fs.ts:24</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -366,7 +398,17 @@
 					<div class="tsd-signature tsd-kind-icon">open<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">open</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/b029458/src/fs.ts#L6">fs.ts:6</a></li>
+							<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/8114b55/src/fs.ts#L6">fs.ts:6</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable">
+					<a name="pipelinepromise" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> pipeline<wbr>Promise</h3>
+					<div class="tsd-signature tsd-kind-icon">pipeline<wbr>Promise<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">__promisify__</span><span class="tsd-signature-symbol"> =&nbsp;promisify(pipeline)</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/8114b55/src/utils/util.ts#L11">utils/util.ts:11</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -376,7 +418,7 @@
 					<div class="tsd-signature tsd-kind-icon">read<wbr>File<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">readFile</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/b029458/src/fs.ts#L27">fs.ts:27</a></li>
+							<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/8114b55/src/fs.ts#L27">fs.ts:27</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -386,7 +428,7 @@
 					<div class="tsd-signature tsd-kind-icon">readdir<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">readdir</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/b029458/src/fs.ts#L11">fs.ts:11</a></li>
+							<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/8114b55/src/fs.ts#L11">fs.ts:11</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -396,7 +438,7 @@
 					<div class="tsd-signature tsd-kind-icon">readlink<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">readlink</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/b029458/src/fs.ts#L12">fs.ts:12</a></li>
+							<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/8114b55/src/fs.ts#L12">fs.ts:12</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -406,7 +448,7 @@
 					<div class="tsd-signature tsd-kind-icon">realpath<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">realpath</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/b029458/src/fs.ts#L23">fs.ts:23</a></li>
+							<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/8114b55/src/fs.ts#L23">fs.ts:23</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -416,7 +458,7 @@
 					<div class="tsd-signature tsd-kind-icon">rename<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">rename</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/b029458/src/fs.ts#L7">fs.ts:7</a></li>
+							<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/8114b55/src/fs.ts#L7">fs.ts:7</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -426,7 +468,7 @@
 					<div class="tsd-signature tsd-kind-icon">rmdir<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">rmdir</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/b029458/src/fs.ts#L9">fs.ts:9</a></li>
+							<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/8114b55/src/fs.ts#L9">fs.ts:9</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -436,7 +478,7 @@
 					<div class="tsd-signature tsd-kind-icon">set<wbr>Timeout<wbr>Promise<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">__promisify__</span><span class="tsd-signature-symbol"> =&nbsp;promisify(setTimeout)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/b029458/src/util.ts#L8">util.ts:8</a></li>
+							<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/8114b55/src/utils/util.ts#L9">utils/util.ts:9</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -446,7 +488,7 @@
 					<div class="tsd-signature tsd-kind-icon">stat<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">stat</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/b029458/src/fs.ts#L15">fs.ts:15</a></li>
+							<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/8114b55/src/fs.ts#L15">fs.ts:15</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -456,7 +498,7 @@
 					<div class="tsd-signature tsd-kind-icon">symlink<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">symlink</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/b029458/src/fs.ts#L13">fs.ts:13</a></li>
+							<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/8114b55/src/fs.ts#L13">fs.ts:13</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -466,7 +508,7 @@
 					<div class="tsd-signature tsd-kind-icon">truncate<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">truncate</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/b029458/src/fs.ts#L8">fs.ts:8</a></li>
+							<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/8114b55/src/fs.ts#L8">fs.ts:8</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -476,7 +518,7 @@
 					<div class="tsd-signature tsd-kind-icon">unlink<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">unlink</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/b029458/src/fs.ts#L17">fs.ts:17</a></li>
+							<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/8114b55/src/fs.ts#L17">fs.ts:17</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -486,7 +528,7 @@
 					<div class="tsd-signature tsd-kind-icon">utimes<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">utimes</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/b029458/src/fs.ts#L22">fs.ts:22</a></li>
+							<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/8114b55/src/fs.ts#L22">fs.ts:22</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -496,7 +538,7 @@
 					<div class="tsd-signature tsd-kind-icon">write<wbr>File<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">writeFile</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/b029458/src/fs.ts#L25">fs.ts:25</a></li>
+							<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/8114b55/src/fs.ts#L25">fs.ts:25</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -513,7 +555,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/b029458/src/nextra/copy.ts#L40">nextra/copy.ts:40</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/8114b55/src/nextra/copy.ts#L40">nextra/copy.ts:40</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -565,7 +607,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/b029458/src/nextra/copy.ts#L83">nextra/copy.ts:83</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/8114b55/src/nextra/copy.ts#L83">nextra/copy.ts:83</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -597,7 +639,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/b029458/src/nextra/copyFileAtomic.ts#L13">nextra/copyFileAtomic.ts:13</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/8114b55/src/nextra/copyFileAtomic.ts#L13">nextra/copyFileAtomic.ts:13</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -639,7 +681,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/b029458/src/nextra/copy.ts#L93">nextra/copy.ts:93</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/8114b55/src/nextra/copy.ts#L93">nextra/copy.ts:93</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -671,7 +713,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/b029458/src/nextra/createFile.ts#L23">nextra/createFile.ts:23</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/8114b55/src/nextra/createFile.ts#L23">nextra/createFile.ts:23</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -716,7 +758,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/b029458/src/nextra/createFileAtomic.ts#L15">nextra/createFileAtomic.ts:15</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/8114b55/src/nextra/createFileAtomic.ts#L15">nextra/createFileAtomic.ts:15</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -755,7 +797,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/b029458/src/nextra/createFileCopy.ts#L24">nextra/createFileCopy.ts:24</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/8114b55/src/nextra/createFileCopy.ts#L24">nextra/createFileCopy.ts:24</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -806,7 +848,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/b029458/src/nextra/createFileCopyAtomic.ts#L17">nextra/createFileCopyAtomic.ts:17</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/8114b55/src/nextra/createFileCopyAtomic.ts#L17">nextra/createFileCopyAtomic.ts:17</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -851,7 +893,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/b029458/src/nextra/createLink.ts#L25">nextra/createLink.ts:25</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/8114b55/src/nextra/createLink.ts#L25">nextra/createLink.ts:25</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -902,7 +944,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/b029458/src/nextra/createLinkAtomic.ts#L17">nextra/createLinkAtomic.ts:17</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/8114b55/src/nextra/createLinkAtomic.ts#L17">nextra/createLinkAtomic.ts:17</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -948,7 +990,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/b029458/src/nextra/createSymlink.ts#L42">nextra/createSymlink.ts:42</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/8114b55/src/nextra/createSymlink.ts#L42">nextra/createSymlink.ts:42</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -990,7 +1032,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/b029458/src/nextra/createSymlink.ts#L43">nextra/createSymlink.ts:43</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/8114b55/src/nextra/createSymlink.ts#L43">nextra/createSymlink.ts:43</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1022,7 +1064,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/b029458/src/nextra/createSymlinkAtomic.ts#L21">nextra/createSymlinkAtomic.ts:21</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/8114b55/src/nextra/createSymlinkAtomic.ts#L21">nextra/createSymlinkAtomic.ts:21</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1064,6 +1106,29 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-function">
+					<a name="decodeheader" class="tsd-anchor"></a>
+					<h3>decode<wbr>Header</h3>
+					<ul class="tsd-signatures tsd-kind-function">
+						<li class="tsd-signature tsd-kind-icon">decode<wbr>Header<span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Buffer</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="interfaces/headerformat.html" class="tsd-signature-type">HeaderFormat</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/8114b55/src/utils/header.ts#L150">utils/header.ts:150</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>data: <span class="tsd-signature-type">Buffer</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="interfaces/headerformat.html" class="tsd-signature-type">HeaderFormat</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function">
 					<a name="emptydir" class="tsd-anchor"></a>
 					<h3>empty<wbr>Dir</h3>
 					<ul class="tsd-signatures tsd-kind-function">
@@ -1073,7 +1138,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/b029458/src/nextra/emptyDir.ts#L20">nextra/emptyDir.ts:20</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/8114b55/src/nextra/emptyDir.ts#L20">nextra/emptyDir.ts:20</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1102,6 +1167,29 @@
 						</li>
 					</ul>
 				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function">
+					<a name="encodeheader" class="tsd-anchor"></a>
+					<h3>encode<wbr>Header</h3>
+					<ul class="tsd-signatures tsd-kind-function">
+						<li class="tsd-signature tsd-kind-icon">encode<wbr>Header<span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">: </span><a href="interfaces/headerformat.html" class="tsd-signature-type">HeaderFormat</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Buffer</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/8114b55/src/utils/header.ts#L115">utils/header.ts:115</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>data: <a href="interfaces/headerformat.html" class="tsd-signature-type">HeaderFormat</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Buffer</span></h4>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-is-not-exported">
 					<a name="fixwineperm" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> fix<wbr>WinEPERM</h3>
@@ -1112,7 +1200,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/b029458/src/nextra/remove.ts#L70">nextra/remove.ts:70</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/8114b55/src/nextra/remove.ts#L70">nextra/remove.ts:70</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1128,6 +1216,112 @@
 						</li>
 					</ul>
 				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function">
+					<a name="gzip" class="tsd-anchor"></a>
+					<h3>gzip</h3>
+					<ul class="tsd-signatures tsd-kind-function">
+						<li class="tsd-signature tsd-kind-icon">gzip<span class="tsd-signature-symbol">(</span>fileName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, inputFile<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, atomic<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/8114b55/src/nextra/gunzip.ts#L15">nextra/gunzip.ts:15</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Un-Gzips a file</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>function</dt>
+									<dd><p>gunzip</p>
+									</dd>
+									<dt>memberof</dt>
+									<dd><p>fsn/nextra</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>fileName: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>The filename of the archive</p>
+										</div>
+									</div>
+								</li>
+								<li>
+									<h5>inputFile: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>The filepath of the input file</p>
+										</div>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> atomic: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>If the gzip file should be created</p>
+										</div>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function">
+					<a name="gzipatomic" class="tsd-anchor"></a>
+					<h3>gzip<wbr>Atomic</h3>
+					<ul class="tsd-signatures tsd-kind-function">
+						<li class="tsd-signature tsd-kind-icon">gzip<wbr>Atomic<span class="tsd-signature-symbol">(</span>fileName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, inputFile<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/8114b55/src/nextra/gunzipAtomic.ts#L12">nextra/gunzipAtomic.ts:12</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Un-Gzips a file atomically.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>function</dt>
+									<dd><p>gunzipAtomic</p>
+									</dd>
+									<dt>memberof</dt>
+									<dd><p>fsn/nextra</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>fileName: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>The filename of the archive</p>
+										</div>
+									</div>
+								</li>
+								<li>
+									<h5>inputFile: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>The filepath of the input file</p>
+										</div>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-is-not-exported">
 					<a name="invalidwin32path" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> invalid<wbr>Win32<wbr>Path</h3>
@@ -1138,7 +1332,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/b029458/src/nextra/mkdirs.ts#L72">nextra/mkdirs.ts:72</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/8114b55/src/nextra/mkdirs.ts#L72">nextra/mkdirs.ts:72</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1161,7 +1355,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/b029458/src/util.ts#L12">util.ts:12</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/8114b55/src/utils/util.ts#L15">utils/util.ts:15</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1187,7 +1381,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/b029458/src/nextra/copy.ts#L65">nextra/copy.ts:65</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/8114b55/src/nextra/copy.ts#L65">nextra/copy.ts:65</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1210,7 +1404,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/b029458/src/nextra/linkAtomic.ts#L13">nextra/linkAtomic.ts:13</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/8114b55/src/nextra/linkAtomic.ts#L13">nextra/linkAtomic.ts:13</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1255,7 +1449,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/b029458/src/nextra/mkdirs.ts#L36">nextra/mkdirs.ts:36</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/8114b55/src/nextra/mkdirs.ts#L36">nextra/mkdirs.ts:36</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1300,7 +1494,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/b029458/src/nextra/move.ts#L27">nextra/move.ts:27</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/8114b55/src/nextra/move.ts#L27">nextra/move.ts:27</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1349,7 +1543,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/b029458/src/nextra/outputFile.ts#L17">nextra/outputFile.ts:17</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/8114b55/src/nextra/outputFile.ts#L17">nextra/outputFile.ts:17</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1390,7 +1584,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/b029458/src/nextra/outputFile.ts#L18">nextra/outputFile.ts:18</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/8114b55/src/nextra/outputFile.ts#L18">nextra/outputFile.ts:18</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1422,7 +1616,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/b029458/src/nextra/outputFileAtomic.ts#L13">nextra/outputFileAtomic.ts:13</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/8114b55/src/nextra/outputFileAtomic.ts#L13">nextra/outputFileAtomic.ts:13</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1474,7 +1668,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/b029458/src/nextra/outputJSON.ts#L25">nextra/outputJSON.ts:25</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/8114b55/src/nextra/outputJSON.ts#L25">nextra/outputJSON.ts:25</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1516,7 +1710,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/b029458/src/nextra/outputJSON.ts#L26">nextra/outputJSON.ts:26</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/8114b55/src/nextra/outputJSON.ts#L26">nextra/outputJSON.ts:26</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1548,7 +1742,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/b029458/src/nextra/outputJSONAtomic.ts#L20">nextra/outputJSONAtomic.ts:20</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/8114b55/src/nextra/outputJSONAtomic.ts#L20">nextra/outputJSONAtomic.ts:20</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1589,6 +1783,35 @@
 						</li>
 					</ul>
 				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-is-not-exported">
+					<a name="pad" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> pad</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">pad<span class="tsd-signature-symbol">(</span>num<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, bytes<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, base<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/8114b55/src/utils/header.ts#L83">utils/header.ts:83</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>num: <span class="tsd-signature-type">number</span></h5>
+								</li>
+								<li>
+									<h5>bytes: <span class="tsd-signature-type">number</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> base: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;8</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-function">
 					<a name="pathexists" class="tsd-anchor"></a>
 					<h3>path<wbr>Exists</h3>
@@ -1599,7 +1822,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/b029458/src/nextra/pathExists.ts#L9">nextra/pathExists.ts:9</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/8114b55/src/nextra/pathExists.ts#L9">nextra/pathExists.ts:9</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1628,6 +1851,29 @@
 						</li>
 					</ul>
 				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-is-not-exported">
+					<a name="readint" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> read<wbr>Int</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">read<wbr>Int<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/8114b55/src/utils/header.ts#L85">utils/header.ts:85</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>value: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-function">
 					<a name="readjson" class="tsd-anchor"></a>
 					<h3>readJSON</h3>
@@ -1638,7 +1884,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/b029458/src/nextra/readJSON.ts#L31">nextra/readJSON.ts:31</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/8114b55/src/nextra/readJSON.ts#L31">nextra/readJSON.ts:31</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1670,6 +1916,29 @@
 						</li>
 					</ul>
 				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-is-not-exported">
+					<a name="readstring" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> read<wbr>String</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">read<wbr>String<span class="tsd-signature-symbol">(</span>buffer<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Buffer</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/8114b55/src/utils/header.ts#L87">utils/header.ts:87</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>buffer: <span class="tsd-signature-type">Buffer</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-function">
 					<a name="remove" class="tsd-anchor"></a>
 					<h3>remove</h3>
@@ -1680,7 +1949,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/b029458/src/nextra/remove.ts#L22">nextra/remove.ts:22</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/8114b55/src/nextra/remove.ts#L22">nextra/remove.ts:22</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1725,7 +1994,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/b029458/src/nextra/remove.ts#L75">nextra/remove.ts:75</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/8114b55/src/nextra/remove.ts#L75">nextra/remove.ts:75</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1754,7 +2023,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/b029458/src/util.ts#L10">util.ts:10</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/8114b55/src/utils/util.ts#L13">utils/util.ts:13</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1777,7 +2046,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/b029458/src/nextra/copy.ts#L52">nextra/copy.ts:52</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/8114b55/src/nextra/copy.ts#L52">nextra/copy.ts:52</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1806,7 +2075,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/b029458/src/nextra/mkdirs.ts#L64">nextra/mkdirs.ts:64</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/8114b55/src/nextra/mkdirs.ts#L64">nextra/mkdirs.ts:64</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1829,7 +2098,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/b029458/src/nextra/remove.ts#L44">nextra/remove.ts:44</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/8114b55/src/nextra/remove.ts#L44">nextra/remove.ts:44</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1855,7 +2124,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/b029458/src/nextra/remove.ts#L87">nextra/remove.ts:87</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/8114b55/src/nextra/remove.ts#L87">nextra/remove.ts:87</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1881,7 +2150,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/b029458/src/nextra/scan.ts#L21">nextra/scan.ts:21</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/8114b55/src/nextra/scan.ts#L21">nextra/scan.ts:21</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1926,7 +2195,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/b029458/src/nextra/scan.ts#L25">nextra/scan.ts:25</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/8114b55/src/nextra/scan.ts#L25">nextra/scan.ts:25</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1958,7 +2227,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/b029458/src/nextra/copy.ts#L74">nextra/copy.ts:74</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/8114b55/src/nextra/copy.ts#L74">nextra/copy.ts:74</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1984,7 +2253,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/b029458/src/nextra/readJSON.ts#L37">nextra/readJSON.ts:37</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/8114b55/src/nextra/readJSON.ts#L37">nextra/readJSON.ts:37</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2007,7 +2276,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/b029458/src/nextra/symlinkAtomic.ts#L15">nextra/symlinkAtomic.ts:15</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/8114b55/src/nextra/symlinkAtomic.ts#L15">nextra/symlinkAtomic.ts:15</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2058,7 +2327,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/b029458/src/nextra/createSymlink.ts#L55">nextra/createSymlink.ts:55</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/8114b55/src/nextra/createSymlink.ts#L55">nextra/createSymlink.ts:55</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2084,7 +2353,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/b029458/src/nextra/createSymlink.ts#L67">nextra/createSymlink.ts:67</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/8114b55/src/nextra/createSymlink.ts#L67">nextra/createSymlink.ts:67</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2098,6 +2367,99 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-function">
+					<a name="targz" class="tsd-anchor"></a>
+					<h3>targz</h3>
+					<ul class="tsd-signatures tsd-kind-function">
+						<li class="tsd-signature tsd-kind-icon">targz<span class="tsd-signature-symbol">(</span>fileName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, inputFiles<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span>, atomic<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/8114b55/src/nextra/targz.ts#L19">nextra/targz.ts:19</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Tar/Gzips a directory or array of files.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>function</dt>
+									<dd><p>targz</p>
+									</dd>
+									<dt>memberof</dt>
+									<dd><p>fsn/nextra</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>fileName: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The filename of the archive</p>
+									</div>
+								</li>
+								<li>
+									<h5>inputFiles: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The directory or array of filepaths to .tar.gz</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> atomic: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function">
+					<a name="targzatomic" class="tsd-anchor"></a>
+					<h3>targz<wbr>Atomic</h3>
+					<ul class="tsd-signatures tsd-kind-function">
+						<li class="tsd-signature tsd-kind-icon">targz<wbr>Atomic<span class="tsd-signature-symbol">(</span>fileName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, inputFiles<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/8114b55/src/nextra/targzAtomic.ts#L12">nextra/targzAtomic.ts:12</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Tar/Gzips a directory or array of files.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>function</dt>
+									<dd><p>targzAtomic</p>
+									</dd>
+									<dt>memberof</dt>
+									<dd><p>fsn/nextra</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>fileName: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The filename of the archive</p>
+									</div>
+								</li>
+								<li>
+									<h5>inputFiles: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The directory or array of filepaths to .tar.gz</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function">
 					<a name="tempfile" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> temp<wbr>File</h3>
 					<ul class="tsd-signatures tsd-kind-function">
@@ -2107,7 +2469,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/b029458/src/util.ts#L23">util.ts:23</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/8114b55/src/utils/util.ts#L26">utils/util.ts:26</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2121,6 +2483,128 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-function">
+					<a name="untargz" class="tsd-anchor"></a>
+					<h3>un<wbr>Targz</h3>
+					<ul class="tsd-signatures tsd-kind-function">
+						<li class="tsd-signature tsd-kind-icon">un<wbr>Targz<span class="tsd-signature-symbol">(</span>outputDirectory<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, inputFile<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, atomic<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/8114b55/src/nextra/unTargz.ts#L18">nextra/unTargz.ts:18</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Extracts files from .tar.gz archives.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>function</dt>
+									<dd><p>unTargz</p>
+									</dd>
+									<dt>memberof</dt>
+									<dd><p>fsn/nextra</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>outputDirectory: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The directory to extract to</p>
+									</div>
+								</li>
+								<li>
+									<h5>inputFile: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The archive file</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> atomic: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The if the writes should be atomic</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function">
+					<a name="untargzatomic" class="tsd-anchor"></a>
+					<h3>un<wbr>Targz<wbr>Atomic</h3>
+					<ul class="tsd-signatures tsd-kind-function">
+						<li class="tsd-signature tsd-kind-icon">un<wbr>Targz<wbr>Atomic<span class="tsd-signature-symbol">(</span>outputDirectory<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, inputFile<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/8114b55/src/nextra/unTargzAtomic.ts#L12">nextra/unTargzAtomic.ts:12</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Extracts files from .tar.gz archives and writes them atomically.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>function</dt>
+									<dd><p>unTargzAtomic</p>
+									</dd>
+									<dt>memberof</dt>
+									<dd><p>fsn/nextra</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>outputDirectory: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The directory to extract to</p>
+									</div>
+								</li>
+								<li>
+									<h5>inputFile: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The archive file</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-is-not-exported">
+					<a name="updatechecksum" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> update<wbr>Checksum</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">update<wbr>Checksum<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, checksum<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/8114b55/src/utils/header.ts#L91">utils/header.ts:91</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>value: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>checksum: <span class="tsd-signature-type">number</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function">
 					<a name="uuid" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> uuid</h3>
 					<ul class="tsd-signatures tsd-kind-function">
@@ -2130,7 +2614,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/b029458/src/util.ts#L18">util.ts:18</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/8114b55/src/utils/util.ts#L21">utils/util.ts:21</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -2147,7 +2631,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/b029458/src/nextra/writeFileAtomic.ts#L26">nextra/writeFileAtomic.ts:26</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/8114b55/src/nextra/writeFileAtomic.ts#L26">nextra/writeFileAtomic.ts:26</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2196,7 +2680,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/b029458/src/nextra/writeJSON.ts#L42">nextra/writeJSON.ts:42</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/8114b55/src/nextra/writeJSON.ts#L42">nextra/writeJSON.ts:42</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2235,7 +2719,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/b029458/src/nextra/writeJSON.ts#L43">nextra/writeJSON.ts:43</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/8114b55/src/nextra/writeJSON.ts#L43">nextra/writeJSON.ts:43</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2267,7 +2751,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/b029458/src/nextra/writeJSONAtomic.ts#L19">nextra/writeJSONAtomic.ts:19</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/8114b55/src/nextra/writeJSONAtomic.ts#L19">nextra/writeJSONAtomic.ts:19</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2320,11 +2804,20 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-class">
+						<a href="classes/tar.html" class="tsd-kind-icon">Tar</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/untar.html" class="tsd-kind-icon">Untar</a>
+					</li>
 					<li class=" tsd-kind-interface tsd-is-not-exported">
 						<a href="interfaces/copydata.html" class="tsd-kind-icon">Copy<wbr>Data</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/copyoptions.html" class="tsd-kind-icon">Copy<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/headerformat.html" class="tsd-kind-icon">Header<wbr>Format</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/jsonoptions.html" class="tsd-kind-icon">Json<wbr>Options</a>
@@ -2371,6 +2864,9 @@
 					<li class=" tsd-kind-variable">
 						<a href="globals.html#copyfile" class="tsd-kind-icon">copy<wbr>File</a>
 					</li>
+					<li class=" tsd-kind-variable tsd-is-not-exported">
+						<a href="globals.html#headerformat" class="tsd-kind-icon">header<wbr>Format</a>
+					</li>
 					<li class=" tsd-kind-variable">
 						<a href="globals.html#iswindows" class="tsd-kind-icon">is<wbr>Windows</a>
 					</li>
@@ -2394,6 +2890,9 @@
 					</li>
 					<li class=" tsd-kind-variable">
 						<a href="globals.html#open" class="tsd-kind-icon">open</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#pipelinepromise" class="tsd-kind-icon">pipeline<wbr>Promise</a>
 					</li>
 					<li class=" tsd-kind-variable">
 						<a href="globals.html#readfile" class="tsd-kind-icon">read<wbr>File</a>
@@ -2471,10 +2970,22 @@
 						<a href="globals.html#createsymlinkatomic" class="tsd-kind-icon">create<wbr>Symlink<wbr>Atomic</a>
 					</li>
 					<li class=" tsd-kind-function">
+						<a href="globals.html#decodeheader" class="tsd-kind-icon">decode<wbr>Header</a>
+					</li>
+					<li class=" tsd-kind-function">
 						<a href="globals.html#emptydir" class="tsd-kind-icon">empty<wbr>Dir</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#encodeheader" class="tsd-kind-icon">encode<wbr>Header</a>
 					</li>
 					<li class=" tsd-kind-function tsd-is-not-exported">
 						<a href="globals.html#fixwineperm" class="tsd-kind-icon">fix<wbr>WinEPERM</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#gzip" class="tsd-kind-icon">gzip</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#gzipatomic" class="tsd-kind-icon">gzip<wbr>Atomic</a>
 					</li>
 					<li class=" tsd-kind-function tsd-is-not-exported">
 						<a href="globals.html#invalidwin32path" class="tsd-kind-icon">invalid<wbr>Win32<wbr>Path</a>
@@ -2506,11 +3017,20 @@
 					<li class=" tsd-kind-function">
 						<a href="globals.html#outputjsonatomic" class="tsd-kind-icon">outputJSONAtomic</a>
 					</li>
+					<li class=" tsd-kind-function tsd-is-not-exported">
+						<a href="globals.html#pad" class="tsd-kind-icon">pad</a>
+					</li>
 					<li class=" tsd-kind-function">
 						<a href="globals.html#pathexists" class="tsd-kind-icon">path<wbr>Exists</a>
 					</li>
+					<li class=" tsd-kind-function tsd-is-not-exported">
+						<a href="globals.html#readint" class="tsd-kind-icon">read<wbr>Int</a>
+					</li>
 					<li class=" tsd-kind-function">
 						<a href="globals.html#readjson" class="tsd-kind-icon">readJSON</a>
+					</li>
+					<li class=" tsd-kind-function tsd-is-not-exported">
+						<a href="globals.html#readstring" class="tsd-kind-icon">read<wbr>String</a>
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="globals.html#remove" class="tsd-kind-icon">remove</a>
@@ -2555,7 +3075,22 @@
 						<a href="globals.html#symlinktype" class="tsd-kind-icon">symlink<wbr>Type</a>
 					</li>
 					<li class=" tsd-kind-function">
+						<a href="globals.html#targz" class="tsd-kind-icon">targz</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#targzatomic" class="tsd-kind-icon">targz<wbr>Atomic</a>
+					</li>
+					<li class=" tsd-kind-function">
 						<a href="globals.html#tempfile" class="tsd-kind-icon">temp<wbr>File</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#untargz" class="tsd-kind-icon">un<wbr>Targz</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#untargzatomic" class="tsd-kind-icon">un<wbr>Targz<wbr>Atomic</a>
+					</li>
+					<li class=" tsd-kind-function tsd-is-not-exported">
+						<a href="globals.html#updatechecksum" class="tsd-kind-icon">update<wbr>Checksum</a>
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="globals.html#uuid" class="tsd-kind-icon">uuid</a>
