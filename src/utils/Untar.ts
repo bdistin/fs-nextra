@@ -9,8 +9,7 @@ export default class Untar extends Writable {
 	private recordSize: number = 512;
 	private queue: Array<{ header: HeaderFormat, file: Buffer }> = [];
 
-	public _write(data: string | Buffer | any[], encoding: string, next: Function) {
-		data = this.resolveBuffer(data, encoding);
+	public _write(data: Buffer, encoding: string, next: Function) {
 		this.file = Buffer.concat([this.file, data], this.file.length + data.length);
 
 		if (this.file.length === 0) return next();
@@ -32,6 +31,8 @@ export default class Untar extends Writable {
 			return this._write(Buffer.alloc(0), encoding, next);
 		}
 
+		// Hard to test, requires the leftover of a chunk to be less than the size of a header block
+		/* istanbul ignore next */
 		if (this.file.length < this.recordSize) return next();
 
 		// New Header
@@ -52,12 +53,6 @@ export default class Untar extends Writable {
 		if (this.listenerCount('file')) this.emit('file', this.header, this.slice(this.header.size));
 		else this.queue.push({ header: this.header, file: this.slice(this.header.size) });
 		this.header = null;
-	}
-
-	private resolveBuffer(data: string | Buffer | any[], encoding?: string): Buffer {
-		return typeof data === 'string' ?
-			Buffer.from(data, encoding) :
-			Array.isArray(data) ? Buffer.from(data) : data;
 	}
 
 	private next(): Promise<{ header: HeaderFormat, file: Buffer }> {
