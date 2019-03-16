@@ -1,6 +1,6 @@
 import ava from 'ava';
 import { promises as fs } from 'fs';
-import { tempFile, tempDir, tempFileLoc, tempDirLoc } from './lib';
+import { tempFile, tempFileLoc, tempDirLoc } from './lib';
 import * as nextra from '../dist';
 
 ava('New File (Standard Usage)', async test => {
@@ -48,10 +48,4 @@ ava('New File (Atomic Shortcut)', async test => {
 
 	test.is(retVal, undefined);
 	test.true(stats.isFile());
-});
-
-ava('Directory', async test => {
-	const dir = tempDir();
-	const newFile = tempFileLoc();
-	await test.throwsAsync(nextra.createFileCopy(dir, newFile));
 });

@@ -1,4 +1,4 @@
-import { tempFile } from '../util';
+import { tempFile } from '../utils/util';
 import { link } from '../fs';
 
 import move from './move';
