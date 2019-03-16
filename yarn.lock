@@ -1170,9 +1170,8 @@ escape-string-regexp@^1.0.2, escape-string-regexp@^1.0.4, escape-string-regexp@^
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/escape-string-regexp/-/escape-string-regexp-1.0.5.tgz#1b61c0562190a8dff6ae3bb2cf0200ca130b86d4"
 
-"eslint-config-klasa@github:dirigeants/klasa-lint":
+eslint-config-klasa@dirigeants/klasa-lint:
   version "0.0.1"
-  uid d24af720607fe149a7689c03cfd0e50c8284be15
   resolved "https://codeload.github.com/dirigeants/klasa-lint/tar.gz/d24af720607fe149a7689c03cfd0e50c8284be15"
 
 eslint-scope@^4.0.2:

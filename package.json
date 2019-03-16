@@ -36,13 +36,13 @@
     "node": ">=10.1.0"
   },
   "devDependencies": {
-    "@types/node": "^11.9.6",
+    "@types/node": "^11.11.0",
     "ava": "^1.0.1",
     "eslint": "^5.2.0",
-    "eslint-config-klasa": "github:dirigeants/klasa-lint",
+    "eslint-config-klasa": "dirigeants/klasa-lint",
     "nyc": "^13.0.1",
-    "tslint": "^5.7.0",
     "ts-node": "^8.0.3",
+    "tslint": "^5.7.0",
     "typedoc": "^0.14.2",
     "typescript": "^3.0.1"
   },

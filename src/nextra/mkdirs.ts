@@ -1,6 +1,6 @@
 import { resolve, dirname, normalize, sep } from 'path';
 
-import { isWindows } from '../util';
+import { isWindows } from '../utils/util';
 import { stat, mkdir } from '../fs';
 
 /**

@@ -1,6 +1,6 @@
 import { resolve, dirname } from 'path';
 
-import { isSrcKid } from '../util';
+import { isSrcKid } from '../utils/util';
 import { access, rename, stat } from '../fs';
 
 import remove from './remove';

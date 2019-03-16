@@ -20,8 +20,11 @@ jobs:
         versionSpec: $(nodeVersion)
       displayName: 'Install Node.js'
     - script: 'yarn'
+      displayName: 'Install Dependencies'
     - script: 'yarn run test:coverage'
+      displayName: 'Run Tests'
     - script: 'yarn run coverage:azure'
+      displayName: 'Generate Reports'
     - task: PublishCodeCoverageResults@1
       inputs:
         codeCoverageTool: 'cobertura'
