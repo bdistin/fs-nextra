@@ -40,7 +40,7 @@ ava('Files', async test => {
 	test.true(stats1.isFile());
 	test.true(stats2.isFile());
 	test.is(await fs.readFile(newFile1, 'utf8'), 'test1');
-	test.is(await fs.readFile(newFile2, 'utf8'), 'test1');
+	test.is(await fs.readFile(newFile2, 'utf8'), 'test2');
 });
 
 ava('Directory', async test => {

@@ -5,23 +5,19 @@ import { createReadStream, Stats } from '../fs';
 
 export default class Tar extends Readable {
 
-	private blockSize: number;
 	private base: string;
 	private written: number = 0;
 	private recordSize = 512;
 	private queue: Array<{ header: Buffer, file: Readable, size: number }> = [];
 
-	public constructor(base: string, recordsPerBlock: number = 20) {
+	public constructor(base: string) {
 		super();
 
-		this.blockSize = recordsPerBlock * this.recordSize;
 		this.base = base;
 	}
 
 	public async _read(): Promise<void> {
 		if (!this.queue.length) {
-			this.push(Buffer.alloc(this.blockSize - (this.written % this.blockSize)));
-			this.written += this.blockSize - (this.written % this.blockSize);
 			this.push(null);
 			return;
 		}
