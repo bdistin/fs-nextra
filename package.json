@@ -1,6 +1,6 @@
 {
   "name": "fs-nextra",
-  "version": "0.4.3",
+  "version": "0.4.4",
   "description": "Node.js native fs promises with next-generation extra methods.",
   "main": "dist/index.js",
   "scripts": {
@@ -8,7 +8,7 @@
     "build": "tsc",
     "test": "yarn build && ava test/*.ts",
     "test:lint": "tslint '{test,src}/**/*.ts'",
-    "test:coverage": "yarn coverage && nyc check-coverage --lines 60 --functions 60 --branches 60",
+    "test:coverage": "yarn coverage && nyc check-coverage --lines 90 --functions 90 --branches 90",
     "coverage": "npx nyc npm test",
     "coverage:azure": "npx nyc report --reporter=cobertura --reporter=html",
     "docs": "typedoc --mode file --out ./dist/ ./src/",
