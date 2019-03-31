@@ -1,12 +1,13 @@
+// Types and Docs for fs-promises, should not test
+/* istanbul ignore file */
+// Types and Docs for fs-promises, should not require coverage
+
 import * as fs from 'fs';
 import { URL } from 'url';
 
 export { createReadStream, createWriteStream, unwatchFile, watch, watchFile, Dirent, Stats, ReadStream, WriteStream, constants } from 'fs';
 
 /* eslint-disable max-len */
-
-// Types and Docs for fs-promises, should not test
-/* istanbul ignore file */
 
 /**
  * Valid types for path values in 'fs'.
