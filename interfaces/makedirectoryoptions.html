@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>WriteOptions | fs-nextra</title>
+	<title>MakeDirectoryOptions | fs-nextra</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,42 +54,21 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="writeoptions.html">WriteOptions</a>
+					<a href="makedirectoryoptions.html">MakeDirectoryOptions</a>
 				</li>
 			</ul>
-			<h1>Interface WriteOptions</h1>
+			<h1>Interface MakeDirectoryOptions</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-comment">
-				<div class="tsd-comment tsd-typography">
-					<dl class="tsd-comment-tags">
-						<dt>typedef</dt>
-						<dd><p>{Object} WriteOptions</p>
-						</dd>
-						<dt>memberof</dt>
-						<dd><p>fsn/nextra</p>
-						</dd>
-						<dt>property</dt>
-						<dd><p>{string} [encoding = &#39;utf8&#39;] The file encoding</p>
-						</dd>
-						<dt>property</dt>
-						<dd><p>{number} [mode = 0o666] The chmod</p>
-						</dd>
-						<dt>property</dt>
-						<dd><p>{string} [flag = &#39;w&#39;] The flag</p>
-						</dd>
-					</dl>
-				</div>
-			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">WriteOptions</span>
+						<span class="target">MakeDirectoryOptions</span>
 					</li>
 				</ul>
 			</section>
@@ -100,9 +79,8 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="writeoptions.html#encoding" class="tsd-kind-icon">encoding</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="writeoptions.html#flag" class="tsd-kind-icon">flag</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="writeoptions.html#mode" class="tsd-kind-icon">mode</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="makedirectoryoptions.html#mode" class="tsd-kind-icon">mode</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="makedirectoryoptions.html#recursive" class="tsd-kind-icon">recursive</a></li>
 							</ul>
 						</section>
 					</div>
@@ -111,34 +89,44 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="encoding" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> encoding</h3>
-					<div class="tsd-signature tsd-kind-icon">encoding<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/ec65739/src/nextra/writeFileAtomic.ts#L14">nextra/writeFileAtomic.ts:14</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="flag" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> flag</h3>
-					<div class="tsd-signature tsd-kind-icon">flag<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/ec65739/src/nextra/writeFileAtomic.ts#L16">nextra/writeFileAtomic.ts:16</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="mode" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> mode</h3>
 					<div class="tsd-signature tsd-kind-icon">mode<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/ec65739/src/nextra/writeFileAtomic.ts#L15">nextra/writeFileAtomic.ts:15</a></li>
+							<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/ec65739/src/fs.ts#L27">fs.ts:27</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>A file mode. If a string is passed, it is parsed as an octal integer. If not specified</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>default</dt>
+							<dd><p>0o777.</p>
+							</dd>
+						</dl>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="recursive" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> recursive</h3>
+					<div class="tsd-signature tsd-kind-icon">recursive<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/ec65739/src/fs.ts#L22">fs.ts:22</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Indicates whether parent folders should be created.</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>default</dt>
+							<dd><p>false</p>
+							</dd>
+						</dl>
+					</div>
 				</section>
 			</section>
 		</div>
@@ -155,16 +143,13 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface">
-						<a href="writeoptions.html" class="tsd-kind-icon">Write<wbr>Options</a>
+						<a href="makedirectoryoptions.html" class="tsd-kind-icon">Make<wbr>Directory<wbr>Options</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="writeoptions.html#encoding" class="tsd-kind-icon">encoding</a>
+								<a href="makedirectoryoptions.html#mode" class="tsd-kind-icon">mode</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="writeoptions.html#flag" class="tsd-kind-icon">flag</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="writeoptions.html#mode" class="tsd-kind-icon">mode</a>
+								<a href="makedirectoryoptions.html#recursive" class="tsd-kind-icon">recursive</a>
 							</li>
 						</ul>
 					</li>
