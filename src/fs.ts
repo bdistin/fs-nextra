@@ -5,6 +5,9 @@ export { createReadStream, createWriteStream, unwatchFile, watch, watchFile, Dir
 
 /* eslint-disable max-len */
 
+// Types and Docs for fs-promises, should not test
+/* istanbul ignore file */
+
 /**
  * Valid types for path values in 'fs'.
  */
@@ -505,7 +508,7 @@ export function appendFile(path: PathLike | FileHandle, data: any, options?: { e
  * If a flag is not provided, it defaults to `'r'`.
  */
 export function readFile(path: PathLike | FileHandle, options?: { encoding?: null, flag?: string | number } | null): Promise<Buffer>;
-export function readFile(path: PathLike | FileHandle, options: { encoding: BufferEncoding, flag?: string | number } | BufferEncoding): Promise<string>;
+export function readFile(path: PathLike | FileHandle, options?: { encoding?: BufferEncoding, flag?: string | number } | BufferEncoding): Promise<string>;
 export function readFile(path: PathLike | FileHandle, options?: { encoding?: string | null, flag?: string | number } | string | null): Promise<string | Buffer> {
 	return fs.promises.readFile(path, options);
 }

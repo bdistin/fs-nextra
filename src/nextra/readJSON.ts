@@ -9,7 +9,7 @@ export type BufferEncoding = 'ascii' | 'utf8' | 'utf16le' | 'ucs2' | 'base64' | 
  * @property {Function} [reviver] The reviver function to pass to JSON.parse()
  */
 interface ReadJSONOptions {
-	encoding: BufferEncoding;
+	encoding?: BufferEncoding;
 	reviver?: (key: any, value: any) => any;
 	flag?: string | number;
 }
@@ -30,7 +30,7 @@ interface ReadJSONOptions {
  * @param {ReadJSONOptions|string} [options = {}] The options for reading json or the encoding string
  * @returns {Promise<Object>}
  */
-export default async function readJSON(file: string, options: ReadJSONOptions | BufferEncoding = { encoding: 'utf8', flag: 'r' }): Promise<any> {
+export default async function readJSON(file: string, options: ReadJSONOptions | BufferEncoding = { flag: 'r' }): Promise<any> {
 	if (typeof options === 'string') options = { encoding: options, flag: 'r' };
 	const content = await readFile(file, options);
 	return JSON.parse(stripBom(content), options.reviver);
