@@ -11,7 +11,7 @@
     "test:coverage": "yarn coverage && nyc check-coverage --lines 90 --functions 90 --branches 90",
     "coverage": "npx nyc npm test",
     "coverage:azure": "npx nyc report --reporter=cobertura --reporter=html",
-    "docs": "typedoc --excludeNotExported --exclude ./src/utils/** --mode file --out ./dist/ ./src/",
+    "docs": "typedoc --excludeNotExported --exclude ./src/utils/**/*.ts --mode file --out ./dist/ ./src/",
     "lint": "tslint --fix '{test,src}/**/*.ts'"
   },
   "keywords": [
