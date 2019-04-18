@@ -23,7 +23,7 @@ export default async function targz(fileName: string, inputFiles: string | strin
 	const tar = new Tar(dirname(inputFiles[0]));
 
 	for (const input of inputFiles) {
-		const files = await scan(input, { filter: stats => stats.isFile() });
+		const files = await scan(input, { filter: (stats): boolean => stats.isFile() });
 		for (const [file, stats] of files) tar.append(file, stats);
 	}
 

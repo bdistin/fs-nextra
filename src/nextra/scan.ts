@@ -11,6 +11,16 @@ interface ScanOptions {
 	filter?: (stats: Stats, dir: string) => boolean;
 	depthLimit?: number;
 }
+
+const scanDeep = async (dir: string, results: Map<string, Stats>, level: number, options: ScanOptions): Promise<Map<string, Stats>> => {
+	const stats = await lstat(dir);
+	if (!options.filter || options.filter(stats, dir)) results.set(dir, stats);
+	if (stats.isDirectory() && (typeof options.depthLimit === 'undefined' || level < options.depthLimit)) {
+		await Promise.all((await readdir(dir)).map((part): Promise<Map<string, Stats>> => scanDeep(join(dir, part), results, ++level, options)));
+	}
+	return results;
+};
+
 /**
  * Recursively scans a directory, returning a map of stats keyed on the full path to the item.
  * @function scan
@@ -21,12 +31,3 @@ interface ScanOptions {
 export default function scan(root: string, options: ScanOptions = {}): Promise<Map<string, Stats>> {
 	return scanDeep(resolve(root), new Map(), -1, options);
 }
-
-const scanDeep = async (dir: string, results: Map<string, Stats>, level: number, options: ScanOptions): Promise<Map<string, Stats>> => {
-	const stats = await lstat(dir);
-	if (!options.filter || options.filter(stats, dir)) results.set(dir, stats);
-	if (stats.isDirectory() && (typeof options.depthLimit === 'undefined' || level < options.depthLimit)) {
-		await Promise.all((await readdir(dir)).map(part => scanDeep(join(dir, part), results, ++level, options)));
-	}
-	return results;
-};

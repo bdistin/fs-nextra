@@ -7,12 +7,12 @@
     "prepublishOnly": "yarn build",
     "build": "tsc",
     "test": "yarn build && ava test/*.ts",
-    "test:lint": "tslint '{test,src}/**/*.ts'",
+    "test:lint": "eslint --ext ts src test",
     "test:coverage": "yarn coverage && nyc check-coverage --lines 90 --functions 90 --branches 90",
     "coverage": "npx nyc npm test",
     "coverage:azure": "npx nyc report --reporter=cobertura --reporter=html",
     "docs": "typedoc --excludeNotExported --exclude ./src/utils/**/*.ts --mode file --out ./dist/ ./src/",
-    "lint": "tslint --fix '{test,src}/**/*.ts'"
+    "lint": "eslint --fix --ext ts src test"
   },
   "keywords": [
     "atomics",
@@ -41,12 +41,13 @@
   },
   "devDependencies": {
     "@types/node": "^11.11.0",
+    "@typescript-eslint/eslint-plugin": "^1.6.0",
+    "@typescript-eslint/parser": "^1.6.0",
     "ava": "^1.0.1",
     "eslint": "^5.2.0",
     "eslint-config-klasa": "dirigeants/klasa-lint",
     "nyc": "^14.0.0",
     "ts-node": "^8.0.3",
-    "tslint": "^5.7.0",
     "typedoc": "^0.14.2",
     "typescript": "^3.0.1"
   },

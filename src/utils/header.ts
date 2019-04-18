@@ -82,14 +82,15 @@ const headerFormat = [
 
 const pad = (num: number, bytes: number, base: number = 8): string => num.toString(base).padStart(bytes, '0');
 
-const readInt = (value: string) => parseInt(value, 8) || 0;
+const readInt = (value: string): number => parseInt(value, 8) || 0;
 
-const readString = (buffer: Buffer) => {
-	for (let i = 0, length = buffer.length; i < length; i ++) if (buffer[i] === 0) return buffer.toString('utf8', 0, i);
+// eslint-disable-next-line consistent-return
+const readString = (buffer: Buffer): string | undefined => {
+	for (let i = 0, { length } = buffer; i < length; i++) if (buffer[i] === 0) return buffer.toString('utf8', 0, i);
 };
 
 const updateChecksum = (value: string, checksum: number): number => {
-	for (let i = 0, length = value.length; i < length; i++) checksum += value.charCodeAt(i);
+	for (let i = 0, { length } = value; i < length; i++) checksum += value.charCodeAt(i);
 	return checksum;
 };
 

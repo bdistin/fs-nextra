@@ -8,7 +8,7 @@ export default class Tar extends Readable {
 	private base: string;
 	private written: number = 0;
 	private recordSize = 512;
-	private queue: Array<{ header: Buffer, file: Readable, size: number }> = [];
+	private queue: ({ header: Buffer, file: Readable, size: number })[] = [];
 
 	public constructor(base: string) {
 		super();

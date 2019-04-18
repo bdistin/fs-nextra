@@ -3,7 +3,7 @@ import { promises as fs } from 'fs';
 import { tempFile, tempFileLoc, tempDir, tempDirLoc } from './lib';
 import * as nextra from '../dist';
 
-ava('File', async test => {
+ava('File', async (test): Promise<void> => {
 	test.plan(2);
 
 	const file = tempFile();
@@ -15,7 +15,7 @@ ava('File', async test => {
 	test.true(stats.isSymbolicLink());
 });
 
-ava('Directory', async test => {
+ava('Directory', async (test): Promise<void> => {
 	test.plan(2);
 
 	const dir = tempDir();

@@ -3,7 +3,7 @@ import { promises as fs } from 'fs';
 import { tempFile, tempFileLoc } from './lib';
 import * as nextra from '../dist';
 
-ava('Standard Usage', async test => {
+ava('Standard Usage', async (test): Promise<void> => {
 	test.plan(2);
 
 	const file = tempFileLoc();
@@ -14,7 +14,7 @@ ava('Standard Usage', async test => {
 	test.deepEqual(JSON.parse(await fs.readFile(file, 'utf8')), obj);
 });
 
-ava('Existing', async test => {
+ava('Existing', async (test): Promise<void> => {
 	test.plan(2);
 
 	const file = tempFile();
@@ -26,7 +26,7 @@ ava('Existing', async test => {
 });
 
 
-ava('Atomic Shortcut', async test => {
+ava('Atomic Shortcut', async (test): Promise<void> => {
 	test.plan(2);
 
 	const file = tempFileLoc();

@@ -5,7 +5,7 @@ import * as nextra from '../dist';
 
 // #region Success
 
-ava('Standard Usage', async test => {
+ava('Standard Usage', async (test): Promise<void> => {
 	test.plan(3);
 
 	const existing = tempFile();
@@ -17,7 +17,7 @@ ava('Standard Usage', async test => {
 	await test.throwsAsync(fs.access(existing));
 });
 
-ava('Self', async test => {
+ava('Self', async (test): Promise<void> => {
 	test.plan(2);
 
 	const existing = tempFile();
@@ -27,7 +27,7 @@ ava('Self', async test => {
 	await test.notThrowsAsync(fs.access(existing));
 });
 
-ava('Overwrite Existing File', async test => {
+ava('Overwrite Existing File', async (test): Promise<void> => {
 	test.plan(3);
 
 	const existing = tempFile();
@@ -39,7 +39,7 @@ ava('Overwrite Existing File', async test => {
 	await test.throwsAsync(fs.access(existing));
 });
 
-ava('No Overwrite Non-Existent File', async test => {
+ava('No Overwrite Non-Existent File', async (test): Promise<void> => {
 	test.plan(3);
 
 	const existing = tempFile();
@@ -51,7 +51,7 @@ ava('No Overwrite Non-Existent File', async test => {
 	await test.throwsAsync(fs.access(existing));
 });
 
-ava('Deep Destination', async test => {
+ava('Deep Destination', async (test): Promise<void> => {
 	test.plan(3);
 
 	const existing = tempFile();
@@ -63,7 +63,7 @@ ava('Deep Destination', async test => {
 	await test.throwsAsync(fs.access(existing));
 });
 
-ava('Overwrite Full Directory', async test => {
+ava('Overwrite Full Directory', async (test): Promise<void> => {
 	test.plan(3);
 
 	const existing = tempDir();
@@ -81,19 +81,19 @@ ava('Overwrite Full Directory', async test => {
 
 // #region Throws
 
-ava('Directory to Child Directory', async test => {
+ava('Directory to Child Directory', async (test): Promise<void> => {
 	const parent = tempDir();
 	const child = tempDir(parent);
 	await test.throwsAsync(nextra.move(parent, child));
 });
 
-ava('No Overwrite Existing File', async test => {
+ava('No Overwrite Existing File', async (test): Promise<void> => {
 	const existing = tempFile();
 	const move = tempFile();
 	await test.throwsAsync(nextra.move(existing, move, { overwrite: false }));
 });
 
-ava('No Overwrite Full Directory', async test => {
+ava('No Overwrite Full Directory', async (test): Promise<void> => {
 	const existing = tempDir();
 	tempFile(existing);
 	const move = tempDir();

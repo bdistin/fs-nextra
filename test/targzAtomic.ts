@@ -3,7 +3,7 @@ import { promises as fs } from 'fs';
 import { tempFileLoc, tempDir } from './lib';
 import * as nextra from '../dist';
 
-ava('File', async test => {
+ava('File', async (test): Promise<void> => {
 	test.plan(2);
 
 	const file = tempFileLoc();
@@ -16,7 +16,7 @@ ava('File', async test => {
 	test.true(stats.isFile());
 });
 
-ava('Files', async test => {
+ava('Files', async (test): Promise<void> => {
 	test.plan(2);
 
 	const file1 = tempFileLoc();
@@ -31,7 +31,7 @@ ava('Files', async test => {
 	test.true(stats.isFile());
 });
 
-ava('Directory', async test => {
+ava('Directory', async (test): Promise<void> => {
 	test.plan(2);
 
 	const dir = tempDir();

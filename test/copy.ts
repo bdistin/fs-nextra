@@ -6,7 +6,7 @@ import * as nextra from '../dist';
 
 // #region Success
 
-ava('File to New File Location', async test => {
+ava('File to New File Location', async (test): Promise<void> => {
 	test.plan(2);
 
 	const newFile = tempFileLoc();
@@ -18,7 +18,7 @@ ava('File to New File Location', async test => {
 	test.true(stats.isFile());
 });
 
-ava('File to Existing File', async test => {
+ava('File to Existing File', async (test): Promise<void> => {
 	test.plan(2);
 
 	const newFile = tempFile();
@@ -30,7 +30,7 @@ ava('File to Existing File', async test => {
 	test.true(stats.isFile());
 });
 
-ava('File to Empty Directory', async test => {
+ava('File to Empty Directory', async (test): Promise<void> => {
 	test.plan(2);
 
 	const emptyDir = tempDir();
@@ -42,7 +42,7 @@ ava('File to Empty Directory', async test => {
 	test.true(stats.isFile());
 });
 
-ava('Directory to Empty Directory', async test => {
+ava('Directory to Empty Directory', async (test): Promise<void> => {
 	test.plan(2);
 
 	const fullDir = tempDir();
@@ -55,7 +55,7 @@ ava('Directory to Empty Directory', async test => {
 	test.true(stats.isFile());
 });
 
-ava('Directory to new Deep Directory', async test => {
+ava('Directory to new Deep Directory', async (test): Promise<void> => {
 	test.plan(2);
 
 	const fullDir = tempDir();
@@ -68,7 +68,7 @@ ava('Directory to new Deep Directory', async test => {
 	test.true(stats.isFile());
 });
 
-ava('Symlink to Empty Directory', async test => {
+ava('Symlink to Empty Directory', async (test): Promise<void> => {
 	test.plan(2);
 
 	const emptyDir = tempDir();
@@ -80,7 +80,7 @@ ava('Symlink to Empty Directory', async test => {
 	test.true(stats.isSymbolicLink());
 });
 
-ava('Symlink to Existing Symlink', async test => {
+ava('Symlink to Existing Symlink', async (test): Promise<void> => {
 	test.plan(2);
 
 	const newFile = tempSymlink();
@@ -92,7 +92,7 @@ ava('Symlink to Existing Symlink', async test => {
 	test.true(stats.isSymbolicLink());
 });
 
-ava('Duplicated File (no error on exist)', async test => {
+ava('Duplicated File (no error on exist)', async (test): Promise<void> => {
 	test.plan(2);
 
 	const file = tempFile();
@@ -103,26 +103,26 @@ ava('Duplicated File (no error on exist)', async test => {
 	test.true(stats.isFile());
 });
 
-ava('filter shortcut', async test => {
+ava('filter shortcut', async (test): Promise<void> => {
 	test.plan(2);
 
 	const emptyDir = tempDir();
 	const file = tempFile();
-	const retVal = await nextra.copy(file, emptyDir, () => true);
+	const retVal = await nextra.copy(file, emptyDir, (): boolean => true);
 	const stats = await fs.stat(join(emptyDir, basename(file)));
 
 	test.is(retVal, undefined);
 	test.true(stats.isFile());
 });
 
-ava('File to Existing File w/o errorOnExist', async test => {
+ava('File to Existing File w/o errorOnExist', async (test): Promise<void> => {
 	const newFile = tempFile();
 	const file = tempFile();
 
 	await test.notThrowsAsync(nextra.copy(file, newFile, { overwrite: false, errorOnExist: false }));
 });
 
-ava('character device', async test => {
+ava('character device', async (test): Promise<void> => {
 	if (process.platform === 'win32') {
 		test.pass();
 	} else {
@@ -141,33 +141,33 @@ ava('character device', async test => {
 
 // #region Throws
 
-ava('File to Existing File w/ errorOnExist', async test => {
+ava('File to Existing File w/ errorOnExist', async (test): Promise<void> => {
 	const newFile = tempFile();
 	const file = tempFile();
 
 	await test.throwsAsync(nextra.copy(file, newFile, { overwrite: false, errorOnExist: true }));
 });
 
-ava('Directory to Child Directory', async test => {
+ava('Directory to Child Directory', async (test): Promise<void> => {
 	const parent = tempDir();
 	const child = tempDir(parent);
 
 	await test.throwsAsync(nextra.copy(parent, child));
 });
 
-ava('Duplicated Directories (error on exist)', async test => {
+ava('Duplicated Directories (error on exist)', async (test): Promise<void> => {
 	const dir = tempDir();
 	tempFile(dir);
 
 	await test.throwsAsync(nextra.copy(dir, dir, { errorOnExist: true }));
 });
 
-ava('filter everything', async test => {
+ava('filter everything', async (test): Promise<void> => {
 	test.plan(2);
 
 	const emptyDir = tempDir();
 	const file = tempFile();
-	const retVal = await nextra.copy(file, emptyDir, () => false);
+	const retVal = await nextra.copy(file, emptyDir, (): boolean => false);
 
 	test.is(retVal, undefined);
 	await test.throwsAsync(fs.stat(join(emptyDir, basename(file))));

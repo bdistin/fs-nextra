@@ -55,7 +55,7 @@ const resolveCopyOptions = (source: string, destination: string, options: CopyOp
 	return {
 		currentPath: resolve(source),
 		targetPath: resolve(destination),
-		filter: typeof options.filter === 'function' ? options.filter : () => true,
+		filter: typeof options.filter === 'function' ? options.filter : (): boolean => true,
 		overwrite: 'overwrite' in options ? Boolean(options.overwrite) : true,
 		preserveTimestamps: Boolean(options.preserveTimestamps),
 		errorOnExist: Boolean(options.errorOnExist)
@@ -87,7 +87,7 @@ const copyDirectory = async (mySource: string, stats: Stats, target: string, opt
 		await chmod(target, stats.mode);
 	}
 	const items = await readdir(mySource);
-	await Promise.all(items.map(item => startCopy(join(mySource, item), options)));
+	await Promise.all(items.map((item): Promise<void> => startCopy(join(mySource, item), options)));
 };
 
 const copyOther = async (mySource: string, stats: Stats, target: string, options: CopyData): Promise<void> => {

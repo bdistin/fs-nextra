@@ -7,9 +7,9 @@ export default class Untar extends Writable {
 	private file: Buffer = Buffer.alloc(0);
 	private totalRead: number = 0;
 	private recordSize: number = 512;
-	private queue: Array<{ header: HeaderFormat, file: Buffer }> = [];
+	private queue: ({ header: HeaderFormat, file: Buffer })[] = [];
 
-	public _write(data: Buffer, encoding: string, next: Function) {
+	public _write(data: Buffer, encoding: string, next: Function): Function {
 		this.file = Buffer.concat([this.file, data], this.file.length + data.length);
 
 		if (this.file.length === 0) return next();
@@ -49,7 +49,7 @@ export default class Untar extends Writable {
 		return buffer;
 	}
 
-	private send() {
+	private send(): void {
 		if (this.listenerCount('file')) this.emit('file', this.header, this.slice(this.header.size));
 		else this.queue.push({ header: this.header, file: this.slice(this.header.size) });
 		this.header = null;
@@ -58,8 +58,8 @@ export default class Untar extends Writable {
 	private next(): Promise<{ header: HeaderFormat, file: Buffer }> {
 		if (this.queue.length) return Promise.resolve(this.queue.shift());
 		if (!this.writable) return Promise.resolve(null);
-		return new Promise((resolve) => {
-			this.once('file', (header: HeaderFormat, file: Buffer) => {
+		return new Promise((resolve): void => {
+			this.once('file', (header: HeaderFormat, file: Buffer): void => {
 				resolve({ header, file });
 			});
 		});
@@ -68,7 +68,10 @@ export default class Untar extends Writable {
 	public async *files(): AsyncIterableIterator<{ header: HeaderFormat, file: Buffer }> {
 		let file: { header: HeaderFormat, file: Buffer };
 
-		while (file = await this.next()) yield file;
+		while (file) {
+			yield file;
+			file = await this.next();
+		}
 	}
 
 }

@@ -3,7 +3,7 @@ import { promises as fs } from 'fs';
 import { tempFile, tempDir, tempDirLoc } from './lib';
 import * as nextra from '../dist';
 
-ava('Non-Existent', async test => {
+ava('Non-Existent', async (test): Promise<void> => {
 	test.plan(2);
 
 	const dir = tempDirLoc();
@@ -14,7 +14,7 @@ ava('Non-Existent', async test => {
 	test.true(contents.length === 0);
 });
 
-ava('Empty Directory', async test => {
+ava('Empty Directory', async (test): Promise<void> => {
 	test.plan(2);
 
 	const dir = tempDir();
@@ -25,7 +25,7 @@ ava('Empty Directory', async test => {
 	test.true(contents.length === 0);
 });
 
-ava('Full Directory', async test => {
+ava('Full Directory', async (test): Promise<void> => {
 	test.plan(2);
 
 	const dir = tempDir();

@@ -3,7 +3,7 @@ import { promises as fs } from 'fs';
 import { tempFile, tempFileLoc, tempDirLoc } from './lib';
 import * as nextra from '../dist';
 
-ava('Pre-Existing', async test => {
+ava('Pre-Existing', async (test): Promise<void> => {
 	test.plan(2);
 
 	const file = tempFile();
@@ -13,7 +13,7 @@ ava('Pre-Existing', async test => {
 	test.is(await fs.readFile(file, 'utf8'), 'pass');
 });
 
-ava('New', async test => {
+ava('New', async (test): Promise<void> => {
 	test.plan(2);
 
 	const file = tempFileLoc();
@@ -23,7 +23,7 @@ ava('New', async test => {
 	test.is(await fs.readFile(file, 'utf8'), 'pass');
 });
 
-ava('New Recursive', async test => {
+ava('New Recursive', async (test): Promise<void> => {
 	test.plan(2);
 
 	const deepDir = tempDirLoc(tempFileLoc());
@@ -33,7 +33,7 @@ ava('New Recursive', async test => {
 	test.is(await fs.readFile(deepDir, 'utf8'), 'pass');
 });
 
-ava('Atomic Shortcut', async test => {
+ava('Atomic Shortcut', async (test): Promise<void> => {
 	test.plan(2);
 
 	const file = tempFileLoc();

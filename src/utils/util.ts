@@ -15,7 +15,7 @@ export const replaceEsc = (str: string): string => str.replace(/\$/g, '$$');
 export const isSrcKid = (source: string, destination: string): boolean => {
 	const sourceArray = resolve(source).split(sep);
 	const destinationArray = resolve(destination).split(sep);
-	return sourceArray.every((current, i) => destinationArray[i] === current);
+	return sourceArray.every((current, i): boolean => destinationArray[i] === current);
 };
 
 export const uuid = (): string => {

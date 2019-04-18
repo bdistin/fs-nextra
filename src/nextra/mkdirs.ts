@@ -61,11 +61,10 @@ export default async function mkdirs(path: string, options?: MkdirsOptions | num
 	}
 }
 
-const resolveOptions = (options: MkdirsOptions | number = {}): MkdirsOptions => {
-	return {
-		mode: typeof options === 'number' ? options : options.mode || 0o0777 & ~process.umask()
-	};
-};
+const resolveOptions = (options: MkdirsOptions | number = {}): MkdirsOptions => ({
+	// eslint-disable-next-line no-bitwise
+	mode: typeof options === 'number' ? options : options.mode || 0o0777 & ~process.umask()
+});
 
 // Windows
 /* istanbul ignore next */

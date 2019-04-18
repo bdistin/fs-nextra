@@ -3,7 +3,7 @@ import { promises as fs } from 'fs';
 import { tempDirLoc, tempDir, tempFile } from './lib';
 import * as nextra from '../dist';
 
-ava('Pre-Existing Directory', async test => {
+ava('Pre-Existing Directory', async (test): Promise<void> => {
 	test.plan(2);
 
 	const dir = tempDir();
@@ -14,7 +14,7 @@ ava('Pre-Existing Directory', async test => {
 	test.true(stats.isDirectory());
 });
 
-ava('Standard Usage', async test => {
+ava('Standard Usage', async (test): Promise<void> => {
 	test.plan(2);
 
 	const newDir = tempDirLoc();
@@ -25,7 +25,7 @@ ava('Standard Usage', async test => {
 	test.true(stats.isDirectory());
 });
 
-ava('Standard Usage with full permissions', async test => {
+ava('Standard Usage with full permissions', async (test): Promise<void> => {
 	test.plan(3);
 
 	const newDir = tempDirLoc();
@@ -38,7 +38,7 @@ ava('Standard Usage with full permissions', async test => {
 	test.is(stats.mode & 0o0777, 0o0666 & ~process.umask());
 });
 
-ava('Recursive', async test => {
+ava('Recursive', async (test): Promise<void> => {
 	test.plan(2);
 
 	const deepDir = tempDirLoc(tempDirLoc());
@@ -49,7 +49,7 @@ ava('Recursive', async test => {
 	test.true(stats.isDirectory());
 });
 
-ava('Pre-Existing File', async test => {
+ava('Pre-Existing File', async (test): Promise<void> => {
 	const dir = tempFile();
 	await test.throwsAsync(nextra.ensureDir(dir));
 });
