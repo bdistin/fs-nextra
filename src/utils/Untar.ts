@@ -66,7 +66,7 @@ export default class Untar extends Writable {
 	}
 
 	public async *files(): AsyncIterableIterator<{ header: HeaderFormat, file: Buffer }> {
-		let file: { header: HeaderFormat, file: Buffer };
+		let file: { header: HeaderFormat, file: Buffer } = await this.next();
 
 		while (file) {
 			yield file;
