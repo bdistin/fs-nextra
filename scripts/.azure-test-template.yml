@@ -14,6 +14,8 @@ jobs:
         nodeVersion: '10.x'
       Node 11:
         nodeVersion: '11.x'
+      Node 12:
+        nodeVersion: '12.x'
   steps:
     - task: NodeTool@0
       inputs:
