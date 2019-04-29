@@ -1,6 +1,10 @@
 import { Writable } from 'stream';
 import { decodeHeader, HeaderFormat } from './header';
 
+function breakSync(next: Function): void {
+	setImmediate(() => next());
+}
+
 export default class Untar extends Writable {
 
 	private header: HeaderFormat = null;
@@ -9,10 +13,10 @@ export default class Untar extends Writable {
 	private recordSize: number = 512;
 	private queue: ({ header: HeaderFormat, file: Buffer })[] = [];
 
-	public _write(data: Buffer, encoding: string, next: Function): Function {
+	public _write(data: Buffer, encoding: string, next: Function): void {
 		this.file = Buffer.concat([this.file, data], this.file.length + data.length);
 
-		if (this.file.length === 0) return next();
+		if (this.file.length === 0) return breakSync(next);
 
 		// file
 
@@ -21,7 +25,7 @@ export default class Untar extends Writable {
 				this.send();
 				return this._write(Buffer.alloc(0), encoding, next);
 			}
-			return next();
+			return breakSync(next);
 		}
 
 		// Remove extra bits between files
@@ -33,7 +37,7 @@ export default class Untar extends Writable {
 
 		// Hard to test, requires the leftover of a chunk to be less than the size of a header block
 		/* istanbul ignore next */
-		if (this.file.length < this.recordSize) return next();
+		if (this.file.length < this.recordSize) return breakSync(next);
 
 		// New Header
 
@@ -57,7 +61,7 @@ export default class Untar extends Writable {
 
 	private next(): Promise<{ header: HeaderFormat, file: Buffer }> {
 		if (this.queue.length) return Promise.resolve(this.queue.shift());
-		if (!this.writable) return Promise.resolve(null);
+		if (!this.writable) return Promise.reject(null);
 		return new Promise((resolve): void => {
 			this.once('file', (header: HeaderFormat, file: Buffer): void => {
 				resolve({ header, file });
@@ -66,12 +70,7 @@ export default class Untar extends Writable {
 	}
 
 	public async *files(): AsyncIterableIterator<{ header: HeaderFormat, file: Buffer }> {
-		let file: { header: HeaderFormat, file: Buffer } = await this.next();
-
-		while (file) {
-			yield file;
-			file = await this.next();
-		}
+		while (this.queue.length || this.writable) yield this.next();
 	}
 
 }
