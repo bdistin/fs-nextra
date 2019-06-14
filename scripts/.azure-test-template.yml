@@ -28,6 +28,7 @@ jobs:
     - script: 'yarn run coverage:azure'
       displayName: 'Generate Reports'
     - task: PublishCodeCoverageResults@1
-      inputs:
-        codeCoverageTool: 'cobertura'
-        summaryFileLocation: $(System.DefaultWorkingDirectory)/coverage/cobertura-coverage.xml
+      inputs: 
+        codeCoverageTool: Cobertura
+        summaryFileLocation: '$(System.DefaultWorkingDirectory)/**/*coverage.xml'
+        reportDirectory: '$(System.DefaultWorkingDirectory)/**/coverage'
