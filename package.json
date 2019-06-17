@@ -6,7 +6,7 @@
   "scripts": {
     "prepublishOnly": "yarn build",
     "build": "tsc",
-    "test": "yarn build && ava **/test/*.ts",
+    "test": "yarn build && ava test/*.ts",
     "test:lint": "eslint --ext ts src test",
     "test:coverage": "yarn coverage && nyc check-coverage --lines 90 --functions 90 --branches 90",
     "coverage": "npx nyc npm test",
