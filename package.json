@@ -6,7 +6,7 @@
   "scripts": {
     "prepublishOnly": "yarn build",
     "build": "tsc",
-    "test": "yarn build && ava test/*.ts",
+    "test": "yarn build && ava",
     "test:lint": "eslint --ext ts src test",
     "test:coverage": "yarn coverage && nyc check-coverage --lines 90 --functions 90 --branches 90",
     "coverage": "npx nyc npm test",
@@ -43,7 +43,7 @@
     "@types/node": "^12.0.0",
     "@typescript-eslint/eslint-plugin": "^1.6.0",
     "@typescript-eslint/parser": "^1.6.0",
-    "ava": "^1.0.1",
+    "ava": "^2.1.0",
     "eslint": "^5.2.0",
     "eslint-config-klasa": "dirigeants/klasa-lint",
     "nyc": "^14.0.0",
@@ -59,6 +59,10 @@
     "compileEnhancements": false,
     "extensions": [
       "ts"
+    ],
+    "files": [
+      "test/**/*.ts",
+      "!test/lib"
     ],
     "require": [
       "ts-node/register"
