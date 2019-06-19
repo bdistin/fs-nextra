@@ -15,8 +15,8 @@ interface ScanOptions {
 const scanDeep = async (dir: string, results: Map<string, Stats>, level: number, options: ScanOptions): Promise<Map<string, Stats>> => {
 	const stats = await lstat(dir);
 	if (!options.filter || options.filter(stats, dir)) results.set(dir, stats);
-	if (stats.isDirectory() && (typeof options.depthLimit === 'undefined' || level < options.depthLimit)) {
-		await Promise.all((await readdir(dir)).map((part): Promise<Map<string, Stats>> => scanDeep(join(dir, part), results, ++level, options)));
+	if (stats.isDirectory() && (typeof options.depthLimit === 'undefined' || ++level <= options.depthLimit)) {
+		await Promise.all((await readdir(dir)).map((part): Promise<Map<string, Stats>> => scanDeep(join(dir, part), results, level, options)));
 	}
 	return results;
 };
@@ -29,5 +29,5 @@ const scanDeep = async (dir: string, results: Map<string, Stats>, level: number,
  * @param options The options for the scan
  */
 export default function scan(root: string, options: ScanOptions = {}): Promise<Map<string, Stats>> {
-	return scanDeep(resolve(root), new Map(), -1, options);
+	return scanDeep(resolve(root), new Map(), 0, options);
 }
