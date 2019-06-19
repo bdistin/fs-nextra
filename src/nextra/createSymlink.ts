@@ -59,6 +59,8 @@ const symlinkPaths = async (srcpath: string, dstPath: string): Promise<SymLinkPa
 	}
 	const dstDir = dirname(dstPath);
 	const relativeToDst = join(dstDir, srcpath);
+	// Doesn't get tested on all OSs
+	/* istanbul ignore next */
 	if (await pathExists(relativeToDst)) return { toCwd: relativeToDst, toDst: srcpath };
 	await lstat(srcpath);
 	return { toCwd: srcpath, toDst: relative(dstDir, srcpath) };
