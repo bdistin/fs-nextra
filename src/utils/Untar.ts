@@ -61,7 +61,7 @@ export default class Untar extends Writable {
 
 	private next(): Promise<{ header: HeaderFormat, file: Buffer }> {
 		if (this.queue.length) return Promise.resolve(this.queue.shift());
-	    // Hard to produce in a testing env.
+		// Hard to produce in a testing env.
 		/* istanbul ignore next */
 		if (!this.writable) return Promise.reject(null);
 		return new Promise((resolve): void => {
