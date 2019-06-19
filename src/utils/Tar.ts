@@ -34,8 +34,7 @@ export default class Tar extends Readable {
 			this.written += chunk.length;
 		}
 
-		// Hard to produce, requires a size perfectibly divisible by the recordSize
-		/* istanbul ignore next */
+		/* istanbul ignore next: Hard to produce, requires a size perfectibly divisible by the recordSize */
 		const extraBytes = this.recordSize - (size % this.recordSize || this.recordSize);
 		this.written += extraBytes;
 

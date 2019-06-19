@@ -159,8 +159,7 @@ export function decodeHeader(data: Buffer): HeaderFormat {
 
 		offset += field.length;
 
-		// No plans to test, requires a tar generated outside of this lib
-		/* istanbul ignore next */
+		/* istanbul ignore next: No plans to test, requires a tar generated outside of this lib */
 		if (field.field === 'ustar' && !/ustar/.test(tString)) break;
 
 		checksum = updateChecksum(field.field === 'checksum' ? '        ' : tString, checksum);
@@ -169,8 +168,7 @@ export function decodeHeader(data: Buffer): HeaderFormat {
 		else if (field.type === 'number') header[field.field] = readInt(tString);
 	}
 
-	// No plans to test, requires a tar with a bad checksum (generated outside of this lib)
-	/* istanbul ignore next */
+	/* istanbul ignore next: No plans to test, requires a tar with a bad checksum (generated outside of this lib) */
 	if (checksum !== header.checksum) throw new Error(`Checksum not equal: ${checksum} != ${header.checksum}`);
 	return header;
 }

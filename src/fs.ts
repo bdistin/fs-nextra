@@ -1,6 +1,4 @@
-// Types and Docs for fs-promises, should not test
-/* istanbul ignore file */
-// Types and Docs for fs-promises, should not require coverage
+/* istanbul ignore file: Types and Docs for fs-promises, should not test or require coverage */
 
 import * as fs from 'fs';
 import { URL } from 'url';

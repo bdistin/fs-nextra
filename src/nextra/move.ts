@@ -44,8 +44,7 @@ export default async function move(source: string, destination: string, options:
 	try {
 		return await rename(source, destination);
 	} catch (err) {
-		// Cross network moving: Can't test via travis
-		/* istanbul ignore next */
+		/* istanbul ignore next: Can't test via CI */
 		if (err.code === 'EXDEV') {
 			const opts = {
 				overwrite,
@@ -56,8 +55,7 @@ export default async function move(source: string, destination: string, options:
 			return remove(source);
 		}
 
-		// Hard to produce, such as ENOMEM (Kernel running out of memory): Can't test via travis
-		/* istanbul ignore next */
+		/* istanbul ignore next: Hard to produce, such as ENOMEM (Kernel running out of memory). Can't test via CI */
 		throw err;
 	}
 }

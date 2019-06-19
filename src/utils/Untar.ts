@@ -35,8 +35,7 @@ export default class Untar extends Writable {
 			return this._write(Buffer.alloc(0), encoding, next);
 		}
 
-		// Hard to test, requires the leftover of a chunk to be less than the size of a header block
-		/* istanbul ignore next */
+		/* istanbul ignore next: Hard to test, requires the leftover of a chunk to be less than the size of a header block */
 		if (this.file.length < this.recordSize) return breakSync(next);
 
 		// New Header
@@ -61,8 +60,7 @@ export default class Untar extends Writable {
 
 	private next(): Promise<{ header: HeaderFormat, file: Buffer }> {
 		if (this.queue.length) return Promise.resolve(this.queue.shift());
-		// Hard to produce in a testing env.
-		/* istanbul ignore next */
+		/* istanbul ignore next: Hard to produce in CI */
 		if (!this.writable) return Promise.reject(null);
 		return new Promise((resolve): void => {
 			this.once('file', (header: HeaderFormat, file: Buffer): void => {

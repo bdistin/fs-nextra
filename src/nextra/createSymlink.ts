@@ -59,8 +59,7 @@ const symlinkPaths = async (srcpath: string, dstPath: string): Promise<SymLinkPa
 	}
 	const dstDir = dirname(dstPath);
 	const relativeToDst = join(dstDir, srcpath);
-	// Doesn't get tested on all OSs
-	/* istanbul ignore next */
+	/* istanbul ignore next: Doesn't get tested on all OSs */
 	if (await pathExists(relativeToDst)) return { toCwd: relativeToDst, toDst: srcpath };
 	await lstat(srcpath);
 	return { toCwd: srcpath, toDst: relative(dstDir, srcpath) };
@@ -71,8 +70,7 @@ const symlinkType = async (srcpath: string): Promise<SymLinkType> => {
 		const stats = await lstat(srcpath);
 		return stats.isDirectory() ? 'dir' : 'file';
 	} catch (err) {
-		// Windows
-		/* istanbul ignore next */
+		/* istanbul ignore next: Windows */
 		return 'file';
 	}
 };
