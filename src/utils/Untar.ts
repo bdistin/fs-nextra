@@ -2,7 +2,7 @@ import { Writable } from 'stream';
 import { decodeHeader, HeaderFormat } from './header';
 
 function breakSync(next: Function): void {
-	setImmediate(() => next());
+	setImmediate((): void => next());
 }
 
 export default class Untar extends Writable {
