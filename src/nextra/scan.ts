@@ -7,7 +7,7 @@ import { lstat, readdir, Stats } from '../fs';
  * @property {Function} [filter] A filter function receiving (stats, path) to determine if the returned map should include a given entry
  * @property {number} [depthLimit] How many directories deep the scan should go (0 is just the children of the passed root directory, no subdirectory files)
  */
-interface ScanOptions {
+export interface ScanOptions {
 	filter?: (stats: Stats, dir: string) => boolean;
 	depthLimit?: number;
 }
