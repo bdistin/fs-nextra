@@ -13,7 +13,7 @@ import copy from './copy';
  * @memberof fsn/nextra
  * @property {boolean} [overwrite = false] Should the move overwrite an identical file at the destination path
  */
-interface MoveOptions {
+export interface MoveOptions {
 	overwrite?: boolean;
 }
 

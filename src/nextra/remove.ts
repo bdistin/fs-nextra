@@ -8,7 +8,7 @@ import { lstat, unlink, rmdir, chmod, readdir } from '../fs';
  * @memberof fsn/nextra
  * @property {number} [maxBusyTries = 3] The number of times fs-nextra should retry removing a busy file.
  */
-interface RemoveOptions {
+export interface RemoveOptions {
 	maxBusyTries?: number;
 }
 

@@ -8,7 +8,7 @@ export type BufferEncoding = 'ascii' | 'utf8' | 'utf16le' | 'ucs2' | 'base64' | 
  * @property {string} [encoding] The file encoding to use while reading
  * @property {Function} [reviver] The reviver function to pass to JSON.parse()
  */
-interface ReadJSONOptions {
+export interface ReadJSONOptions {
 	encoding?: BufferEncoding;
 	reviver?: (key: any, value: any) => any;
 	flag?: string | number;
