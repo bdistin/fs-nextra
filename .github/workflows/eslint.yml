@@ -15,4 +15,4 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Run ESLint
-      uses: gimenete/eslint-action@1.0
+      uses: discordjs/action-eslint@v1
