@@ -14,6 +14,8 @@ jobs:
     
     steps:
     - uses: actions/checkout@v1
+    - name: Install Deps
+      run: yarn
     - name: Run ESLint
       uses: discordjs/action-eslint@v1
       env:
