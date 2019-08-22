@@ -25,137 +25,6 @@ export interface MakeDirectoryOptions {
 	mode?: number;
 }
 
-interface FileHandle {
-	/**
-	 * Gets the file descriptor for this file handle.
-	 */
-	readonly fd: number;
-
-	/**
-	 * Asynchronously append data to a file, creating the file if it does not exist. The underlying file will _not_ be closed automatically.
-	 * The `FileHandle` must have been opened for appending.
-	 * @param data The data to write. If something other than a `Buffer` or `Uint8Array` is provided, the value is coerced to a string.
-	 * @param options Either the encoding for the file, or an object optionally specifying the encoding, file mode, and flag.
-	 * If `encoding` is not supplied, the default of `'utf8'` is used.
-	 * If `mode` is not supplied, the default of `0o666` is used.
-	 * If `mode` is a string, it is parsed as an octal integer.
-	 * If `flag` is not supplied, the default of `'a'` is used.
-	 */
-	appendFile(data: any, options?: { encoding?: string | null, mode?: string | number, flag?: string | number } | string | null): Promise<void>;
-
-	/**
-	 * Asynchronous fchown(2) - Change ownership of a file.
-	 */
-	chown(uid: number, gid: number): Promise<void>;
-
-	/**
-	 * Asynchronous fchmod(2) - Change permissions of a file.
-	 * @param mode A file mode. If a string is passed, it is parsed as an octal integer.
-	 */
-	chmod(mode: string | number): Promise<void>;
-
-	/**
-	 * Asynchronous fdatasync(2) - synchronize a file's in-core state with storage device.
-	 */
-	datasync(): Promise<void>;
-
-	/**
-	 * Asynchronous fsync(2) - synchronize a file's in-core state with the underlying storage device.
-	 */
-	sync(): Promise<void>;
-
-	/**
-	 * Asynchronously reads data from the file.
-	 * The `FileHandle` must have been opened for reading.
-	 * @param buffer The buffer that the data will be written to.
-	 * @param offset The offset in the buffer at which to start writing.
-	 * @param length The number of bytes to read.
-	 * @param position The offset from the beginning of the file from which data should be read. If `null`, data will be read from the current position.
-	 */
-	read<TBuffer extends Buffer | Uint8Array>(buffer: TBuffer, offset?: number | null, length?: number | null, position?: number | null): Promise<{ bytesRead: number, buffer: TBuffer }>;
-
-	/**
-	 * Asynchronously reads the entire contents of a file. The underlying file will _not_ be closed automatically.
-	 * The `FileHandle` must have been opened for reading.
-	 * @param options An object that may contain an optional flag.
-	 * If a flag is not provided, it defaults to `'r'`.
-	 */
-	readFile(options?: { encoding?: null, flag?: string | number } | null): Promise<Buffer>;
-
-	/**
-	 * Asynchronously reads the entire contents of a file. The underlying file will _not_ be closed automatically.
-	 * The `FileHandle` must have been opened for reading.
-	 * @param options An object that may contain an optional flag.
-	 * If a flag is not provided, it defaults to `'r'`.
-	 */
-	readFile(options: { encoding: BufferEncoding, flag?: string | number } | BufferEncoding): Promise<string>;
-
-	/**
-	 * Asynchronously reads the entire contents of a file. The underlying file will _not_ be closed automatically.
-	 * The `FileHandle` must have been opened for reading.
-	 * @param options An object that may contain an optional flag.
-	 * If a flag is not provided, it defaults to `'r'`.
-	 */
-	readFile(options?: { encoding?: string | null, flag?: string | number } | string | null): Promise<string | Buffer>;
-
-	/**
-	 * Asynchronous fstat(2) - Get file status.
-	 */
-	stat(): Promise<fs.Stats>;
-
-	/**
-	 * Asynchronous ftruncate(2) - Truncate a file to a specified length.
-	 * @param len If not specified, defaults to `0`.
-	 */
-	truncate(len?: number): Promise<void>;
-
-	/**
-	 * Asynchronously change file timestamps of the file.
-	 * @param atime The last access time. If a string is provided, it will be coerced to number.
-	 * @param mtime The last modified time. If a string is provided, it will be coerced to number.
-	 */
-	utimes(atime: string | number | Date, mtime: string | number | Date): Promise<void>;
-
-	/**
-	 * Asynchronously writes `buffer` to the file.
-	 * The `FileHandle` must have been opened for writing.
-	 * @param buffer The buffer that the data will be written to.
-	 * @param offset The part of the buffer to be written. If not supplied, defaults to `0`.
-	 * @param length The number of bytes to write. If not supplied, defaults to `buffer.length - offset`.
-	 * @param position The offset from the beginning of the file where this data should be written. If not supplied, defaults to the current position.
-	 */
-	write<TBuffer extends Buffer | Uint8Array>(buffer: TBuffer, offset?: number | null, length?: number | null, position?: number | null): Promise<{ bytesWritten: number, buffer: TBuffer }>;
-
-	/**
-	 * Asynchronously writes `string` to the file.
-	 * The `FileHandle` must have been opened for writing.
-	 * It is unsafe to call `write()` multiple times on the same file without waiting for the `Promise`
-	 * to be resolved (or rejected). For this scenario, `fs.createWriteStream` is strongly recommended.
-	 * @param string A string to write. If something other than a string is supplied it will be coerced to a string.
-	 * @param position The offset from the beginning of the file where this data should be written. If not supplied, defaults to the current position.
-	 * @param encoding The expected string encoding.
-	 */
-	write(data: any, position?: number | null, encoding?: string | null): Promise<{ bytesWritten: number, buffer: string }>;
-
-	/**
-	 * Asynchronously writes data to a file, replacing the file if it already exists. The underlying file will _not_ be closed automatically.
-	 * The `FileHandle` must have been opened for writing.
-	 * It is unsafe to call `writeFile()` multiple times on the same file without waiting for the `Promise` to be resolved (or rejected).
-	 * @param data The data to write. If something other than a `Buffer` or `Uint8Array` is provided, the value is coerced to a string.
-	 * @param options Either the encoding for the file, or an object optionally specifying the encoding, file mode, and flag.
-	 * If `encoding` is not supplied, the default of `'utf8'` is used.
-	 * If `mode` is not supplied, the default of `0o666` is used.
-	 * If `mode` is a string, it is parsed as an octal integer.
-	 * If `flag` is not supplied, the default of `'w'` is used.
-	 */
-	writeFile(data: any, options?: { encoding?: string | null, mode?: string | number, flag?: string | number } | string | null): Promise<void>;
-
-	/**
-	 * Asynchronous close(2) - close a `FileHandle`.
-	 */
-	close(): Promise<void>;
-}
-
 /**
  * [fs.promises] Asynchronously tests a user's permissions for the file specified by path.
  * @param path A path to a file or directory. If a URL is provided, it must use the `file:` protocol.
@@ -182,7 +51,7 @@ export function copyFile(src: PathLike, dest: PathLike, flags?: number): Promise
  * @param mode A file mode. If a string is passed, it is parsed as an octal integer. If not
  * supplied, defaults to `0o666`.
  */
-export function open(path: PathLike, flags: string | number, mode?: string | number): Promise<FileHandle> { return fs.promises.open(path, flags, mode); }
+export function open(path: PathLike, flags: string | number, mode?: string | number): Promise<fs.promises.FileHandle> { return fs.promises.open(path, flags, mode); }
 
 /**
  * [fs.promises] Asynchronously reads data from the file referenced by the supplied `FileHandle`.
@@ -193,13 +62,13 @@ export function open(path: PathLike, flags: string | number, mode?: string | num
  * @param position The offset from the beginning of the file from which data should be read. If
  * `null`, data will be read from the current position.
  */
-export function read<TBuffer extends Buffer | Uint8Array>(
-	handle: FileHandle,
-	buffer: TBuffer,
+export function read<Uint8Array>(
+	handle: fs.promises.FileHandle,
+	buffer: any,
 	offset?: number | null,
 	length?: number | null,
 	position?: number | null,
-): Promise<{ bytesRead: number, buffer: TBuffer }> { return fs.promises.read(handle, buffer, offset, length, position); }
+): Promise<{ bytesRead: number, buffer: Uint8Array }> { return fs.promises.read(handle, buffer, offset, length, position); }
 
 /**
  * [fs.promises] Asynchronously writes `buffer` to the file referenced by the supplied `FileHandle`.
@@ -212,7 +81,7 @@ export function read<TBuffer extends Buffer | Uint8Array>(
  * @param position The offset from the beginning of the file where this data should be written. If not supplied, defaults to the current position.
  */
 export function write<TBuffer extends Buffer | Uint8Array>(
-	handle: FileHandle,
+	handle: fs.promises.FileHandle,
 	buffer: TBuffer,
 	offset?: number | null,
 	length?: number | null,
@@ -228,12 +97,10 @@ export function write<TBuffer extends Buffer | Uint8Array>(
  * @param position The offset from the beginning of the file where this data should be written. If not supplied, defaults to the current position.
  * @param encoding The expected string encoding.
  */
-export function write(handle: FileHandle, data: any, position?: number | null, encoding?: string | null): Promise<{ bytesWritten: number, buffer: string }>;
+export function write(handle: fs.promises.FileHandle, data: any, position?: number | null, encoding?: string | null): Promise<{ bytesWritten: number, buffer: string }>;
 
-export function write<TBuffer extends Buffer | Uint8Array>(handle: FileHandle, data: TBuffer | any, offsetOrPosition?: number | null, encodingOrLength?: (TBuffer extends Buffer ? number : string) | null, position?: number | null): Promise<{ bytesWritten: number, buffer: string | TBuffer }> {
-	return data instanceof Buffer ?
-		fs.promises.write(handle, data as TBuffer, offsetOrPosition, encodingOrLength as (number | null), position) :
-		fs.promises.write(handle, data, offsetOrPosition, encodingOrLength as (string | null));
+export function write<TBuffer extends Uint8Array>(handle: fs.promises.FileHandle, data: TBuffer | any, offsetOrPosition?: number | null, encodingOrLength?: (TBuffer extends Buffer ? number : string) | null): Promise<{ bytesWritten: number, buffer: string | TBuffer }> {
+	return fs.promises.write(handle, data, offsetOrPosition, encodingOrLength as (string | null));
 }
 
 /**
@@ -261,7 +128,7 @@ export function truncate(path: PathLike, len?: number): Promise<void> {
  * @param handle A `FileHandle`.
  * @param len If not specified, defaults to `0`.
  */
-export function ftruncate(handle: FileHandle, len?: number): Promise<void> {
+export function ftruncate(handle: fs.promises.FileHandle, len?: number): Promise<void> {
 	return fs.promises.ftruncate(handle, len);
 }
 
@@ -277,7 +144,7 @@ export function rmdir(path: PathLike): Promise<void> {
  * Asynchronous fdatasync(2) - synchronize a file's in-core state with storage device.
  * @param handle A `FileHandle`.
  */
-export function fdatasync(handle: FileHandle): Promise<void> {
+export function fdatasync(handle: fs.promises.FileHandle): Promise<void> {
 	return fs.promises.fdatasync(handle);
 }
 
@@ -285,7 +152,7 @@ export function fdatasync(handle: FileHandle): Promise<void> {
  * [fs.promises] Asynchronous fsync(2) - synchronize a file's in-core state with the underlying storage device.
  * @param handle A `FileHandle`.
  */
-export function fsync(handle: FileHandle): Promise<void> {
+export function fsync(handle: fs.promises.FileHandle): Promise<void> {
 	return fs.promises.fsync(handle);
 }
 
@@ -336,7 +203,7 @@ export function symlink(target: PathLike, path: PathLike, type?: string | null):
  * [fs.promises] Asynchronous fstat(2) - Get file status.
  * @param handle A `FileHandle`.
  */
-export function fstat(handle: FileHandle): Promise<fs.Stats> {
+export function fstat(handle: fs.promises.FileHandle): Promise<fs.Stats> {
 	return fs.promises.fstat(handle);
 }
 
@@ -378,7 +245,7 @@ export function unlink(path: PathLike): Promise<void> {
  * @param handle A `FileHandle`.
  * @param mode A file mode. If a string is passed, it is parsed as an octal integer.
  */
-export function fchmod(handle: FileHandle, mode: string | number): Promise<void> {
+export function fchmod(handle: fs.promises.FileHandle, mode: string | number): Promise<void> {
 	return fs.promises.fchmod(handle, mode);
 }
 
@@ -412,7 +279,7 @@ export function lchown(path: PathLike, uid: number, gid: number): Promise<void> 
  * [fs.promises] Asynchronous fchown(2) - Change ownership of a file.
  * @param handle A `FileHandle`.
  */
-export function fchown(handle: FileHandle, uid: number, gid: number): Promise<void> {
+export function fchown(handle: fs.promises.FileHandle, uid: number, gid: number): Promise<void> {
 	return fs.promises.fchown(handle, uid, gid);
 }
 
@@ -440,7 +307,7 @@ export function utimes(path: PathLike, atime: string | number | Date, mtime: str
  * @param atime The last access time. If a string is provided, it will be coerced to number.
  * @param mtime The last modified time. If a string is provided, it will be coerced to number.
  */
-export function futimes(handle: FileHandle, atime: string | number | Date, mtime: string | number | Date): Promise<void> {
+export function futimes(handle: fs.promises.FileHandle, atime: string | number | Date, mtime: string | number | Date): Promise<void> {
 	return fs.promises.futimes(handle, atime, mtime);
 }
 
@@ -479,7 +346,7 @@ export function mkdtemp(prefix: string, options?: { encoding?: string | null } |
  * If `mode` is a string, it is parsed as an octal integer.
  * If `flag` is not supplied, the default of `'w'` is used.
  */
-export function writeFile(path: PathLike | FileHandle, data: any, options?: { encoding?: string | null, mode?: string | number, flag?: string | number } | string | null): Promise<void> {
+export function writeFile(path: PathLike | fs.promises.FileHandle, data: any, options?: { encoding?: string | null, mode?: string | number, flag?: string | number } | string | null): Promise<void> {
 	return fs.promises.writeFile(path, data, options);
 }
 
@@ -495,7 +362,7 @@ export function writeFile(path: PathLike | FileHandle, data: any, options?: { en
  * If `mode` is a string, it is parsed as an octal integer.
  * If `flag` is not supplied, the default of `'a'` is used.
  */
-export function appendFile(path: PathLike | FileHandle, data: any, options?: { encoding?: string | null, mode?: string | number, flag?: string | number } | string | null): Promise<void> {
+export function appendFile(path: PathLike | fs.promises.FileHandle, data: any, options?: { encoding?: string | null, mode?: string | number, flag?: string | number } | string | null): Promise<void> {
 	return fs.promises.appendFile(path, data, options);
 }
 
@@ -506,9 +373,9 @@ export function appendFile(path: PathLike | FileHandle, data: any, options?: { e
  * @param options An object that may contain an optional flag.
  * If a flag is not provided, it defaults to `'r'`.
  */
-export function readFile(path: PathLike | FileHandle, options?: { encoding?: null, flag?: string | number } | null): Promise<Buffer>;
-export function readFile(path: PathLike | FileHandle, options?: { encoding?: BufferEncoding, flag?: string | number } | BufferEncoding): Promise<string>;
-export function readFile(path: PathLike | FileHandle, options?: { encoding?: string | null, flag?: string | number } | string | null): Promise<string | Buffer> {
+export function readFile(path: PathLike | fs.promises.FileHandle, options?: { encoding?: null, flag?: string | number } | null): Promise<Buffer>;
+export function readFile(path: PathLike | fs.promises.FileHandle, options?: { encoding?: BufferEncoding, flag?: string | number } | BufferEncoding): Promise<string>;
+export function readFile(path: PathLike | fs.promises.FileHandle, options?: { encoding?: string | null, flag?: string | number } | string | null): Promise<string | Buffer> {
 	return fs.promises.readFile(path, options);
 }
 
