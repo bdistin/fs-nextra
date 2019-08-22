@@ -1,4 +1,4 @@
-name: Eslint
+name: ESLint
 
 on:
   push:
@@ -14,5 +14,5 @@ jobs:
     
     steps:
     - uses: actions/checkout@v1
-    - name: Run Eslint
+    - name: Run ESLint
       uses: gimenete/eslint-action@1.0
