@@ -17,6 +17,6 @@ jobs:
     - name: Install Deps
       run: yarn
     - name: Run ESLint
-      uses: discordjs/action-eslint@v1
+      uses: bdistin/action-eslint@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
