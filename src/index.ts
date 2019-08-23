@@ -1,4 +1,4 @@
-export * from './fs';
+export * from './fs'
 
 export { default as copy } from './nextra/copy';
 export { default as copyFileAtomic } from './nextra/copyFileAtomic';
