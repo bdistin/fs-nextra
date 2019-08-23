@@ -1,7 +1,7 @@
 /* istanbul ignore file: Types and Docs for fs-promises, should not test or require coverage */
 
 import * as fs from 'fs';
-import { URL } from 'url'
+import { URL } from 'url';
 
 export { createReadStream, createWriteStream, unwatchFile, watch, watchFile, Dirent, Stats, ReadStream, WriteStream, constants } from 'fs';
 
