@@ -13,10 +13,10 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-    - uses: actions/checkout@master
+    - uses: actions/checkout@v1
     - name: Install Deps
       run: yarn
     - name: Run ESLint
-      uses: bdistin/action-eslint@v1
+      uses: bdistin/action-eslint@master
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
