@@ -1,6 +1,8 @@
 #!/bin/bash
 set -euxo pipefail
 
+ls
+
 echo -e "\n# Initialise some useful variables"
 REPO="https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
 BRANCH_OR_TAG=`awk -F/ '{print $2}' <<< $GITHUB_REF`
