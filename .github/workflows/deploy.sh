@@ -13,7 +13,7 @@ else
 fi
 
 echo -e "\n# Checkout the repo in the target branch"
-TARGET_BRANCH="docs"
+TARGET_BRANCH="gh-pages"
 git clone $REPO out -b $TARGET_BRANCH
 
 echo -e "\n# Move the generated docs to the newly-checked-out repo, to be committed and pushed"
