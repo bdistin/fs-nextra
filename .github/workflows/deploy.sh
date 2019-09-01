@@ -26,5 +26,5 @@ cd out
 git add --all .
 git config user.name "${GITHUB_ACTOR}"
 git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
-git commit -m "Docs build for ${SOURCE_TYPE} ${CURRENT_BRANCH}: ${GITHUB_SHA}" || true
+git commit -m "Docs build: ${GITHUB_SHA}" || true
 git push origin $TARGET_BRANCH
