@@ -7,7 +7,7 @@ import mkdirs from './mkdirs';
 import pathExists from './pathExists';
 
 /**
- * Creates a hard file link, making all folders required to satisfy the given file path. test test test
+ * Creates a hard file link, making all folders required to satisfy the given file path.
  * @function ensureLink
  * @memberof fsn/nextra
  * @param source The source path of the file
