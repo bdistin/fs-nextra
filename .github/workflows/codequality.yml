@@ -45,7 +45,9 @@ jobs:
       run: yarn
     - name: Run Docs
       run: yarn docs
-    - name: Publish Docs ${{ github.event_name }} - ${{ github.ref }}
+    - name: test variables
+      run: echo ${{ github.event_name }} - ${{ github.ref }}
+    - name: Publish Docs
       if: github.event_name == 'push' && github.ref == 'master'
       run: bash ./.github/workflows/deploy.sh
       env:
