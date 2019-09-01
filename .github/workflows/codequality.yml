@@ -26,7 +26,7 @@ jobs:
     name: tsc
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v1-test
     - name: Install Deps
       run: yarn
     - name: Run TSC
