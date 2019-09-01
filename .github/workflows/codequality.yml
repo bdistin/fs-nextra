@@ -8,7 +8,7 @@ on:
   pull_request:
 
 jobs:
-  eslint:
+  ESLint:
     name: ESLint
     runs-on: ubuntu-latest
     steps:
@@ -20,9 +20,9 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        job-name: eslint
+        job-name: ESLint
 
-  tsc:
+  Typescript:
     name: Typescript
     runs-on: ubuntu-latest
     steps:
@@ -34,4 +34,4 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        job-name: tsc
+        job-name: Typescript
