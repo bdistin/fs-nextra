@@ -30,7 +30,7 @@ jobs:
     - name: Install Deps
       run: yarn
     - name: Run TSC
-      uses: icrawl/action-tsc@v1-test
+      uses: icrawl/action-tsc@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
