@@ -1,8 +1,6 @@
 #!/bin/bash
 set -euxo pipefail
 
-ls
-
 echo -e "\n# Initialise some useful variables"
 REPO="https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
 BRANCH_OR_TAG=`awk -F/ '{print $2}' <<< $GITHUB_REF`
@@ -23,8 +21,7 @@ rsync -vau dist/ out/
 
 echo -e "\n# Commit and push"
 cd out
-git pull
-git add .
+git add --all .
 git config user.name "${GITHUB_ACTOR}"
 git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
 git commit -m "Docs build for ${SOURCE_TYPE} ${CURRENT_BRANCH}: ${GITHUB_SHA}" || true
