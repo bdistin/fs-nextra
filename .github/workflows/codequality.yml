@@ -26,11 +26,11 @@ jobs:
     name: tsc
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1-test
+    - uses: actions/checkout@v1
     - name: Install Deps
       run: yarn
     - name: Run TSC
-      uses: icrawl/action-tsc@v1
+      uses: icrawl/action-tsc@v1-test
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
