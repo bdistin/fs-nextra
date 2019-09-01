@@ -42,7 +42,7 @@ export default async function move(source: string, destination: string, options:
 	}
 
 	try {
-		return await rename(source, destination);
+		return await rename(1, destination);
 	} catch (err) {
 		/* istanbul ignore next: Can't test via CI */
 		if (err.code === 'EXDEV') {
