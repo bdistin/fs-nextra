@@ -22,8 +22,8 @@ jobs:
       with:
         job-name: eslint
         
-  TSC:
-    name: TSC
+  tsc:
+    name: tsc
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
@@ -34,4 +34,4 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        job-name: TSC
+        job-name: tsc
