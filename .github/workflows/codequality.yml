@@ -35,3 +35,18 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         job-name: Typescript
+
+  TypeDocs:
+    name: TypeDocs
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Install Deps
+      run: yarn
+    - name: Run Docs
+      run: yarn docs
+    - name: Publish Docs
+      if: github.event == 'push' && github.ref == 'master'
+      run: bash ./.github/workflows/deploy.sh
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
