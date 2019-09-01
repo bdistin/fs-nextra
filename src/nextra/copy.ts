@@ -30,7 +30,6 @@ interface CopyData extends CopyOptions {
 
 /**
  * Copies files from one location to another, creating all directories required to satisfy the destination path.
- * source and destination paths.
  * @function copy
  * @memberof fsn/nextra
  * @param source The source path
