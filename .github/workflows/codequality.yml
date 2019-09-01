@@ -1,0 +1,35 @@
+on:
+  push:
+    branches:
+      - master
+      - stable
+  pull_request:
+
+jobs:
+  eslint:
+    name: ESLint
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Install Deps
+      run: yarn
+    - name: Run ESLint
+      uses: discordjs/action-eslint@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        job-name: eslint
+        
+  tsc:
+    name: Typescript
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Install Deps
+      run: yarn
+    - name: Run TSC
+      uses: icrawl/action-tsc@v1-release
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        job-name: tsc
