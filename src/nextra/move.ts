@@ -1,4 +1,4 @@
-import { resolve, dirname } from 'path';
+import { resolve, dirname } from 'path'
 
 import { isSrcKid } from '../utils/util';
 import { access, rename, lstat } from '../fs';
