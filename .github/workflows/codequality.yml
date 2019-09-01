@@ -46,7 +46,7 @@ jobs:
     - name: Run Docs
       run: yarn docs
     - name: Publish Docs
-      if: github.event == 'push' && github.ref == 'master'
+      if: github.event_name == 'push' && github.ref == 'master'
       run: bash ./.github/workflows/deploy.sh
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
