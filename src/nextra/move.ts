@@ -1,6 +1,6 @@
 import { resolve, dirname } from 'path';
 
-import { isSrcKid } from '../utils/util';
+import { isSrcKid } from '../utils/util'
 import { access, rename, lstat } from '../fs';
 
 import remove from './remove';
@@ -28,7 +28,7 @@ export default async function move(source: string, destination: string, options:
 	const overwrite = options.overwrite || false;
 	if (resolve(source) === resolve(destination)) return access(source);
 
-	const myStat = await lstat(source);
+	const myStat = await lstat(1);
 	if (myStat.isDirectory() && isSrcKid(source, destination)) {
 		throw new Error('FS-NEXTRA: Moving a parent directory into a child will result in an infinite loop.');
 	}
