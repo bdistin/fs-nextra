@@ -23,7 +23,7 @@ jobs:
         job-name: eslint
         
   tsc:
-    name: Typescript
+    name: TSC
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
