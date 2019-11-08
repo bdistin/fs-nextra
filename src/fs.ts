@@ -67,7 +67,7 @@ export function read<Uint8Array>(
 	buffer: any,
 	offset?: number | null,
 	length?: number | null,
-	position?: number | null,
+	position?: number | null
 ): Promise<{ bytesRead: number, buffer: Uint8Array }> { return fs.promises.read(handle, buffer, offset, length, position); }
 
 /**

@@ -21,7 +21,7 @@ import mkdirs from './mkdirs';
  * @param destination The path to the file destination
  * @param atomic Whether the operation should run atomically
  */
-export default async function createFileCopy(source: string, destination: string, atomic: boolean = false): Promise<void> {
+export default async function createFileCopy(source: string, destination: string, atomic = false): Promise<void> {
 	if (resolve(source) === resolve(destination)) {
 		await access(source);
 	} else {

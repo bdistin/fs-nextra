@@ -80,7 +80,7 @@ const headerFormat = [
 	}
 ];
 
-const pad = (num: number, bytes: number, base: number = 8): string => num.toString(base).padStart(bytes, '0');
+const pad = (num: number, bytes: number, base = 8): string => num.toString(base).padStart(bytes, '0');
 
 const readInt = (value: string): number => parseInt(value, 8) || 0;
 

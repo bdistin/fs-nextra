@@ -6,7 +6,7 @@ import { createReadStream, Stats } from '../fs';
 export default class Tar extends Readable {
 
 	private base: string;
-	private written: number = 0;
+	private written = 0;
 	private recordSize = 512;
 	private queue: ({ header: Buffer, file: Readable, size: number })[] = [];
 

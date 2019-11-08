@@ -39,6 +39,7 @@ export default async function mkdirs(path: string, options?: MkdirsOptions | num
 	/* istanbul ignore next: Windows */
 	if (isWindows && invalidWin32Path(path)) {
 		const errInval = new Error(`FS-NEXTRA: ${path} contains invalid WIN32 path characters.`);
+		// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 		// @ts-ignore
 		errInval.code = 'EINVAL';
 		throw errInval;

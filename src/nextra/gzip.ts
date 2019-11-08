@@ -12,7 +12,7 @@ import gzipAtomic from './gzipAtomic';
  * @param inputFile The filepath of the input file
  * @param atomic If the gzip file should be created
  */
-export default async function gzip(fileName: string, inputFile: string, atomic: boolean = false): Promise<void> {
+export default async function gzip(fileName: string, inputFile: string, atomic = false): Promise<void> {
 	if (atomic) return gzipAtomic(fileName, inputFile);
 
 	return pipelinePromise(

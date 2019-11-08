@@ -20,7 +20,7 @@ import pathExists from './pathExists';
  * @param file Path of the file you want to create
  * @param atomic Whether the operation should run atomically
  */
-export default async function createFile(file: string, atomic: boolean = false): Promise<void> {
+export default async function createFile(file: string, atomic = false): Promise<void> {
 	if (await pathExists(file)) return;
 
 	await mkdirs(dirname(file));

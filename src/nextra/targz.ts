@@ -16,7 +16,7 @@ import targzAtomic from './targzAtomic';
  * @param inputFiles The directory or array of filepaths to .tar.gz
  * @param options The options for this .tar.gz
  */
-export default async function targz(fileName: string, inputFiles: string | string[], atomic: boolean = false): Promise<void> {
+export default async function targz(fileName: string, inputFiles: string | string[], atomic = false): Promise<void> {
 	if (atomic) return targzAtomic(fileName, inputFiles);
 	if (!Array.isArray(inputFiles)) inputFiles = [inputFiles];
 

@@ -24,7 +24,7 @@ import mkdirs from './mkdirs';
  */
 export default async function outputJSON(file: string, data: any, atomic?: boolean): Promise<void>;
 export default async function outputJSON(file: string, data: any, options?: JsonOptions, atomic?: boolean): Promise<void>;
-export default async function outputJSON(file: string, data: any, options?: JsonOptions | boolean, atomic: boolean = false): Promise<void> {
+export default async function outputJSON(file: string, data: any, options?: JsonOptions | boolean, atomic = false): Promise<void> {
 	if (typeof options === 'boolean') [atomic, options] = [options, {}];
 
 	await mkdirs(dirname(file));
