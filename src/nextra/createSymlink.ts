@@ -41,7 +41,7 @@ interface SymLinkPaths {
  */
 export default async function createSymlink(source: string, destination: string, atomic?: boolean): Promise<void>;
 export default async function createSymlink(source: string, destination: string, type?: SymLinkType, atomic?: boolean): Promise<void>;
-export default async function createSymlink(source: string, destination: string, type?: SymLinkType | boolean, atomic: boolean = false): Promise<void> {
+export default async function createSymlink(source: string, destination: string, type?: SymLinkType | boolean, atomic = false): Promise<void> {
 	if (await pathExists(destination)) return;
 	if (typeof type === 'boolean') [atomic, type] = [type, undefined];
 
