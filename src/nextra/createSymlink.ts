@@ -1,4 +1,4 @@
-import { dirname, join, isAbsolute, relative } from 'path';
+import { dirname, join, isAbsolute, relative, resolve } from 'path';
 import { symlink, lstat } from '../fs';
 
 import pathExists from './pathExists';
@@ -49,7 +49,7 @@ export default async function createSymlink(source: string, destination: string,
 	const relativePath = await symlinkPaths(source, destination);
 
 	const symlinkMethod = atomic ? symlinkAtomic : symlink;
-	await symlinkMethod(relativePath.toDst, destination, type as SymLinkType || await symlinkType(relativePath.toCwd));
+	await symlinkMethod(relativePath.toDst, resolve(destination), type as SymLinkType || await symlinkType(relativePath.toCwd));
 }
 
 const symlinkPaths = async (srcpath: string, dstPath: string): Promise<SymLinkPaths> => {
