@@ -44,7 +44,7 @@ ava('New File w/ Non-Existent Directories', async (test): Promise<void> => {
 	test.plan(2);
 
 	const file = tempFile();
-	const newFile = tempDirLoc(tempFileLoc());
+	const newFile = tempFileLoc(tempDirLoc());
 	const retVal = await nextra.createSymlink(file, newFile);
 	const stats = await fs.lstat(newFile);
 
@@ -68,7 +68,7 @@ ava('Relative Source and Destination', async (test): Promise<void> => {
 	test.plan(2);
 
 	const file = tempFile();
-	const newFile = tempDirLoc(tempFileLoc());
+	const newFile = tempFileLoc(tempDirLoc());
 	const retVal = await nextra.createSymlink(relative(process.cwd(), file), relative(process.cwd(), newFile));
 	const stats = await fs.lstat(newFile);
 
