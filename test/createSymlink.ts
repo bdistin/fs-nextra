@@ -88,6 +88,18 @@ ava('Relative Source and Destination', async (test): Promise<void> => {
 	test.true(stats.isSymbolicLink());
 });
 
+ava('Relative Source and Deep Destination', async (test): Promise<void> => {
+	test.plan(2);
+
+	const file = tempFile();
+	const newFile = tempFileLoc(tempDirLoc());
+	const retVal = await nextra.createSymlink(relative(process.cwd(), file), relative(process.cwd(), newFile));
+	const stats = await fs.lstat(newFile);
+
+	test.is(retVal, undefined);
+	test.true(stats.isSymbolicLink());
+});
+
 ava('New File (Atomic Shortcut)', async (test): Promise<void> => {
 	test.plan(2);
 
