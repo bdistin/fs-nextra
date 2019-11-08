@@ -7,6 +7,8 @@ FS-Nextra
 [![npm](https://img.shields.io/npm/dt/fs-nextra.svg?maxAge=3600)](https://www.npmjs.com/package/fs-nextra)
 
 [![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/bdistin/fs-nextra.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/bdistin/fs-nextra/context:javascript)
+[![Code Quality](https://github.com/bdistin/fs-nextra/workflows/Code%20Quality/badge.svg)](https://github.com/bdistin/fs-nextra/actions)
+[![Unit Tests](https://github.com/bdistin/fs-nextra/workflows/Unit%20Tests/badge.svg)](https://github.com/bdistin/fs-nextra/actions)
 
 [![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=bdistin/fs-nextra)](https://dependabot.com)
 [![david](https://david-dm.org/bdistin/fs-nextra.svg)](https://david-dm.org/bdistin/fs-nextra)
