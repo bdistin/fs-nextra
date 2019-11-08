@@ -68,7 +68,7 @@ ava('Relative Source and Destination', async (test): Promise<void> => {
 	test.plan(2);
 
 	const file = tempFile();
-	const newFile = tempFileLoc(tempDirLoc());
+	const newFile = tempFileLoc();
 	const retVal = await nextra.createSymlink(relative(process.cwd(), file), relative(process.cwd(), newFile));
 	const stats = await fs.lstat(newFile);
 
