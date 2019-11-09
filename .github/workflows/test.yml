@@ -24,7 +24,7 @@ jobs:
         node-version: ${{ matrix.node_version }}
     - uses: actions/cache@v1
       with:
-        path: ${{ matrix.os == 'windows-latest' && '~/AppData/Local/Yarn/Cache' || matrix.os == 'macOS-latest' && '~/Library/Caches/Yarn' || '~/.cache/yarn' }}
+        path: node_modules
         key: ${{ runner.os }}-yarn-${{ hashFiles(matrix.os == 'windows-latest' && '**\yarn.lock' || '**/yarn.lock') }}
         restore-keys: |
           ${{ runner.os }}-yarn-
