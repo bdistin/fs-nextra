@@ -17,8 +17,6 @@ jobs:
       with:
         path: node_modules
         key: ${{ runner.os }}-10-yarn-${{ hashFiles('**/yarn.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-yarn-
     - name: Install Deps
       run: yarn
     - name: Run ESLint
@@ -37,8 +35,6 @@ jobs:
       with:
         path: node_modules
         key: ${{ runner.os }}-10-yarn-${{ hashFiles('**/yarn.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-yarn-
     - name: Install Deps
       run: yarn
     - name: Run TSC
@@ -57,8 +53,6 @@ jobs:
       with:
         path: node_modules
         key: ${{ runner.os }}-10-yarn-${{ hashFiles('**/yarn.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-yarn-
     - name: Install Deps
       run: yarn
     - name: Test Docs
