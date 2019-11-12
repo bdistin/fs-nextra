@@ -39,7 +39,7 @@ export default async function remove(path: string, options: RemoveOptions = {}):
 	}
 }
 
-const rimraf = async (myPath, options): Promise<void> => {
+const rimraf = async (myPath: string, options: RemoveOptions): Promise<void> => {
 	try {
 		const stats = await lstat(myPath);
 		if (stats.isDirectory()) return removeDir(myPath, options);
@@ -61,12 +61,12 @@ const rimraf = async (myPath, options): Promise<void> => {
 };
 
 /* istanbul ignore next: Windows */
-const fixWinEPERM = async (myPath, options): Promise<void> => {
+const fixWinEPERM = async (myPath: string, options: RemoveOptions): Promise<void> => {
 	await chmod(myPath, 0o666);
 	return rimraf(myPath, options);
 };
 
-const removeDir = async (myPath, options, originalEr = null): Promise<void> => {
+const removeDir = async (myPath: string, options: RemoveOptions, originalEr = null): Promise<void> => {
 	try {
 		return await rmdir(myPath);
 	} catch (err) {
@@ -77,7 +77,7 @@ const removeDir = async (myPath, options, originalEr = null): Promise<void> => {
 	}
 };
 
-const rmkids = async (myPath, options): Promise<void> => {
+const rmkids = async (myPath: string, options: RemoveOptions): Promise<void> => {
 	const files = await readdir(myPath);
 	await Promise.all(files.map((file): Promise<void> => remove(join(myPath, file), options)));
 	return rmdir(myPath);

@@ -22,7 +22,7 @@ export default class Tar extends Readable {
 			return;
 		}
 
-		const { header, file, size } = this.queue.shift();
+		const { header, file, size } = this.queue.shift() as { header: Buffer, file: Readable, size: number };
 		const { written } = this;
 
 		this.written += header.length;

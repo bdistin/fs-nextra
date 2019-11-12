@@ -69,6 +69,5 @@ const resolveOptions = (options: MkdirsOptions | number = {}): MkdirsOptions => 
 /* istanbul ignore next: Windows */
 const invalidWin32Path = (myPath: string): boolean => {
 	const root = normalize(resolve(myPath)).split(sep);
-	const rp = root.length > 0 ? root[0] : null;
-	return /[<>:"|?*]/.test(myPath.replace(rp, ''));
+	return /[<>:"|?*]/.test(root.length ? myPath.replace(root[0], '') : myPath);
 };

@@ -76,7 +76,8 @@ const headerFormat = [
 	},
 	{
 		field: 'padding',
-		length: 12
+		length: 12,
+		type: 'null'
 	}
 ];
 
@@ -96,11 +97,11 @@ const updateChecksum = (value: string, checksum: number): number => {
 
 export interface HeaderFormat {
 	filename?: string;
-	mode?: number;
-	uid?: number;
-	gid?: number;
-	size?: number;
-	mtime?: number;
+	mode: number;
+	uid: number;
+	gid: number;
+	size: number;
+	mtime: number;
 	checksum?: number;
 	type?: string;
 	linkName?: string;
@@ -111,6 +112,25 @@ export interface HeaderFormat {
 	minorNumber?: string;
 	filenamePrefix?: string;
 	padding?: any;
+}
+
+export interface Header {
+	filename: string;
+	mode: number;
+	uid: number;
+	gid: number;
+	size: number;
+	mtime: number;
+	checksum: number;
+	type: string;
+	linkName: string;
+	ustar: string;
+	owner: string;
+	group: string;
+	majorNumber: string;
+	minorNumber: string;
+	filenamePrefix: string;
+	padding: any;
 }
 
 export function encodeHeader(data: HeaderFormat): Buffer {
@@ -148,8 +168,8 @@ export function encodeHeader(data: HeaderFormat): Buffer {
 	return header;
 }
 
-export function decodeHeader(data: Buffer): HeaderFormat {
-	const header: HeaderFormat = {};
+export function decodeHeader(data: Buffer): Header {
+	const header = { checksum: 0 };
 	let offset = 0;
 	let checksum = 0;
 
@@ -170,5 +190,5 @@ export function decodeHeader(data: Buffer): HeaderFormat {
 
 	/* istanbul ignore next: No plans to test, requires a tar with a bad checksum (generated outside of this lib) */
 	if (checksum !== header.checksum) throw new Error(`Checksum not equal: ${checksum} != ${header.checksum}`);
-	return header;
+	return header as Header;
 }
