@@ -43,7 +43,6 @@ export default class Header {
 		this.gid = headerData.gid;
 		this.size = headerData.size;
 		this.mtime = headerData.mtime;
-		// this.checksum = headerData.checksum || '        ';
 		this.type = headerData.type || 0;
 		this.linkName = headerData.linkName || '';
 		this.ustar = headerData.ustar || '';
