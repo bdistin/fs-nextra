@@ -1,4 +1,4 @@
-import Header from './Heeder';
+import Header from './Header';
 
 import { relative } from 'path';
 import { Readable } from 'stream';
