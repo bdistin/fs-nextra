@@ -14,3 +14,7 @@ tsconfig.json
 package-lock.json
 README.md
 yarn.lock
+coverage/
+.nyc_output/
+azure-pipelines.yml
+test-results.xml

@@ -4,7 +4,7 @@ import { basename, resolve, relative } from 'path';
 import { tempFileLoc, tempDir, dir } from './lib';
 import * as nextra from '../dist';
 
-ava('File', async test => {
+ava('File', async (test): Promise<void> => {
 	test.plan(3);
 
 	const file = tempFileLoc();
@@ -21,7 +21,7 @@ ava('File', async test => {
 	test.is(await fs.readFile(newFile, 'utf8'), 'test');
 });
 
-ava('Files', async test => {
+ava('Files', async (test): Promise<void> => {
 	test.plan(5);
 
 	const file1 = tempFileLoc();
@@ -43,7 +43,7 @@ ava('Files', async test => {
 	test.is(await fs.readFile(newFile2, 'utf8'), 'test2');
 });
 
-ava('Directory', async test => {
+ava('Directory', async (test): Promise<void> => {
 	test.plan(5);
 
 	const directory = tempDir();

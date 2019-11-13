@@ -1,18 +1,23 @@
+import Header from './Header';
+
 import { Writable } from 'stream';
-import { decodeHeader, HeaderFormat } from './header';
+
+function breakSync(next: Function): void {
+	setImmediate((): void => next());
+}
 
 export default class Untar extends Writable {
 
-	private header: HeaderFormat = null;
+	private header: Header | null = null;
 	private file: Buffer = Buffer.alloc(0);
-	private totalRead: number = 0;
-	private recordSize: number = 512;
-	private queue: Array<{ header: HeaderFormat, file: Buffer }> = [];
+	private totalRead = 0;
+	private recordSize = 512;
+	private queue: ({ header: Header, file: Buffer })[] = [];
 
-	public _write(data: Buffer, encoding: string, next: Function) {
+	public _write(data: Buffer, encoding: string, next: Function): void {
 		this.file = Buffer.concat([this.file, data], this.file.length + data.length);
 
-		if (this.file.length === 0) return next();
+		if (this.file.length === 0) return breakSync(next);
 
 		// file
 
@@ -21,7 +26,7 @@ export default class Untar extends Writable {
 				this.send();
 				return this._write(Buffer.alloc(0), encoding, next);
 			}
-			return next();
+			return breakSync(next);
 		}
 
 		// Remove extra bits between files
@@ -31,13 +36,10 @@ export default class Untar extends Writable {
 			return this._write(Buffer.alloc(0), encoding, next);
 		}
 
-		// Hard to test, requires the leftover of a chunk to be less than the size of a header block
-		/* istanbul ignore next */
-		if (this.file.length < this.recordSize) return next();
+		/* istanbul ignore next: Hard to test, requires the leftover of a chunk to be less than the size of a header block */
+		if (this.file.length < this.recordSize) return breakSync(next);
 
-		// New Header
-
-		this.header = decodeHeader(this.slice(this.recordSize));
+		this.header = new Header(this.slice(this.recordSize));
 
 		return this._write(Buffer.alloc(0), encoding, next);
 	}
@@ -49,26 +51,26 @@ export default class Untar extends Writable {
 		return buffer;
 	}
 
-	private send() {
+	private send(): void {
+		if (!this.header) return;
 		if (this.listenerCount('file')) this.emit('file', this.header, this.slice(this.header.size));
 		else this.queue.push({ header: this.header, file: this.slice(this.header.size) });
 		this.header = null;
 	}
 
-	private next(): Promise<{ header: HeaderFormat, file: Buffer }> {
-		if (this.queue.length) return Promise.resolve(this.queue.shift());
-		if (!this.writable) return Promise.resolve(null);
-		return new Promise((resolve) => {
-			this.once('file', (header: HeaderFormat, file: Buffer) => {
+	private next(): Promise<{ header: Header, file: Buffer }> {
+		if (this.queue.length) return Promise.resolve(this.queue.shift() as { header: Header, file: Buffer });
+		/* istanbul ignore next: Hard to produce in CI */
+		if (!this.writable) return Promise.reject(null);
+		return new Promise((resolve): void => {
+			this.once('file', (header: Header, file: Buffer): void => {
 				resolve({ header, file });
 			});
 		});
 	}
 
-	public async *files(): AsyncIterableIterator<{ header: HeaderFormat, file: Buffer }> {
-		let file: { header: HeaderFormat, file: Buffer };
-
-		while (file = await this.next()) yield file;
+	public async *files(): AsyncIterableIterator<{ header: Header, file: Buffer }> {
+		while (this.queue.length || this.writable) yield this.next();
 	}
 
 }

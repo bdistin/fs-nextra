@@ -8,7 +8,7 @@ import { lstat, unlink, rmdir, chmod, readdir } from '../fs';
  * @memberof fsn/nextra
  * @property {number} [maxBusyTries = 3] The number of times fs-nextra should retry removing a busy file.
  */
-interface RemoveOptions {
+export interface RemoveOptions {
 	maxBusyTries?: number;
 }
 
@@ -27,27 +27,24 @@ export default async function remove(path: string, options: RemoveOptions = {}):
 			await rimraf(path, options);
 			break;
 		} catch (err) {
-			// Windows
-			/* istanbul ignore next */
+			/* istanbul ignore next: Windows */
 			if (isWindows && (err.code === 'EBUSY' || err.code === 'ENOTEMPTY' || err.code === 'EPERM')) {
 				await setTimeoutPromise(buysTries * 100);
 				continue;
 			}
-			// Hard to test via travis, such as ENOMEM (running the kernel out of memory)
-			/* istanbul ignore else */
+			/* istanbul ignore else: Hard to test via CI, such as ENOMEM (running the kernel out of memory) */
 			if (err.code === 'ENOENT') return;
 			else throw err;
 		}
 	}
 }
 
-const rimraf = async (myPath, options) => {
+const rimraf = async (myPath: string, options: RemoveOptions): Promise<void> => {
 	try {
 		const stats = await lstat(myPath);
 		if (stats.isDirectory()) return removeDir(myPath, options);
 	} catch (err) {
-		// Windows
-		/* istanbul ignore next */
+		/* istanbul ignore next: Windows */
 		if (isWindows && err.code === 'EPERM') return fixWinEPERM(myPath, options);
 		throw err;
 	}
@@ -55,37 +52,33 @@ const rimraf = async (myPath, options) => {
 	try {
 		return await unlink(myPath);
 	} catch (er) {
-		// Windows
-		/* istanbul ignore next */
+		/* istanbul ignore next: Windows */
 		if (er.code === 'EPERM') return isWindows ? fixWinEPERM(myPath, options) : removeDir(myPath, options, er);
-		// Difficult to reproduce
-		/* istanbul ignore next */
+		/* istanbul ignore next: Difficult to reproduce */
 		if (er.code === 'EISDIR') return removeDir(myPath, options, er);
 		else throw er;
 	}
 };
 
-// Windows
-/* istanbul ignore next */
-const fixWinEPERM = async (myPath, options) => {
+/* istanbul ignore next: Windows */
+const fixWinEPERM = async (myPath: string, options: RemoveOptions): Promise<void> => {
 	await chmod(myPath, 0o666);
 	return rimraf(myPath, options);
 };
 
-const removeDir = async (myPath, options, originalEr = null) => {
+const removeDir = async (myPath: string, options: RemoveOptions, originalEr = null): Promise<void> => {
 	try {
 		return await rmdir(myPath);
 	} catch (err) {
-		// Difficult to reproduce
-		/* istanbul ignore else */
+		/* istanbul ignore else: Difficult to reproduce */
 		if (['ENOTEMPTY', 'EEXIST', 'EPERM'].includes(err.code)) return rmkids(myPath, options);
 		else if (err.code === 'ENOTDIR') throw originalEr;
 		else throw err;
 	}
 };
 
-const rmkids = async (myPath, options) => {
+const rmkids = async (myPath: string, options: RemoveOptions): Promise<void> => {
 	const files = await readdir(myPath);
-	await Promise.all(files.map(file => remove(join(myPath, file), options)));
+	await Promise.all(files.map((file): Promise<void> => remove(join(myPath, file), options)));
 	return rmdir(myPath);
 };

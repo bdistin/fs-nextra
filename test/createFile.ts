@@ -3,7 +3,7 @@ import { promises as fs } from 'fs';
 import { tempFile, tempFileLoc, tempDirLoc } from './lib';
 import * as nextra from '../dist';
 
-ava('New File (Standard Usage)', async test => {
+ava('New File (Standard Usage)', async (test): Promise<void> => {
 	test.plan(2);
 
 	const file = tempFileLoc();
@@ -14,7 +14,7 @@ ava('New File (Standard Usage)', async test => {
 	test.true(stats.isFile());
 });
 
-ava('Pre-Existing File', async test => {
+ava('Pre-Existing File', async (test): Promise<void> => {
 	test.plan(2);
 
 	const file = tempFile();
@@ -25,7 +25,7 @@ ava('Pre-Existing File', async test => {
 	test.true(stats.isFile());
 });
 
-ava('New File w/ Non-Existent Directories', async test => {
+ava('New File w/ Non-Existent Directories', async (test): Promise<void> => {
 	test.plan(2);
 
 	const file = tempDirLoc(tempFileLoc());
@@ -36,7 +36,7 @@ ava('New File w/ Non-Existent Directories', async test => {
 	test.true(stats.isFile());
 });
 
-ava('New File (Atomic Shortcut)', async test => {
+ava('New File (Atomic Shortcut)', async (test): Promise<void> => {
 	test.plan(2);
 
 	const file = tempFileLoc();

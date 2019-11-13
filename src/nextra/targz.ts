@@ -16,14 +16,14 @@ import targzAtomic from './targzAtomic';
  * @param inputFiles The directory or array of filepaths to .tar.gz
  * @param options The options for this .tar.gz
  */
-export default async function targz(fileName: string, inputFiles: string | string[], atomic: boolean = false): Promise<void> {
+export default async function targz(fileName: string, inputFiles: string | string[], atomic = false): Promise<void> {
 	if (atomic) return targzAtomic(fileName, inputFiles);
 	if (!Array.isArray(inputFiles)) inputFiles = [inputFiles];
 
 	const tar = new Tar(dirname(inputFiles[0]));
 
 	for (const input of inputFiles) {
-		const files = await scan(input, { filter: stats => stats.isFile() });
+		const files = await scan(input, { filter: (stats): boolean => stats.isFile() });
 		for (const [file, stats] of files) tar.append(file, stats);
 	}
 

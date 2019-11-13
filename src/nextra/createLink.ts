@@ -22,7 +22,7 @@ import pathExists from './pathExists';
  * @param destination The destination path of the file
  * @param atomic Whether the operation should run atomically
  */
-export default async function createLink(source: string, destination: string, atomic: boolean = false): Promise<void> {
+export default async function createLink(source: string, destination: string, atomic = false): Promise<void> {
 	if (await pathExists(destination)) return;
 	await lstat(source);
 

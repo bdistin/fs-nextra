@@ -3,7 +3,7 @@ import { promises as fs } from 'fs';
 import { tempFile, tempFileLoc } from './lib';
 import * as nextra from '../dist';
 
-ava('Standard Usage', async test => {
+ava('Standard Usage', async (test): Promise<void> => {
 	test.plan(2);
 
 	const copy = tempFileLoc();

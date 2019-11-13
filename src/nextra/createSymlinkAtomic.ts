@@ -18,6 +18,6 @@ import { default as createSymlink, SymLinkType } from './createSymlink';
  * @param {SymLinkType} type The type of symlink you are creating
  * @returns {Promise<void>}
  */
-export default function createSymlinkAtomic(source: string, destination: string, type?: SymLinkType) {
+export default function createSymlinkAtomic(source: string, destination: string, type?: SymLinkType): Promise<void> {
 	return createSymlink(source, destination, type, true);
 }

@@ -4,7 +4,7 @@ import { promises as fs } from 'fs';
 import { tempFile, tempDir, tempSymlink, tempFileLoc, tempDirLoc } from './lib';
 import * as nextra from '../dist';
 
-ava('New File (Standard Usage)', async test => {
+ava('New File (Standard Usage)', async (test): Promise<void> => {
 	test.plan(2);
 
 	const file = tempFile();
@@ -16,7 +16,7 @@ ava('New File (Standard Usage)', async test => {
 	test.true(stats.isSymbolicLink());
 });
 
-ava('New Directory (Standard Usage)', async test => {
+ava('New Directory (Standard Usage)', async (test): Promise<void> => {
 	test.plan(2);
 
 	const dir = tempDir();
@@ -28,7 +28,7 @@ ava('New Directory (Standard Usage)', async test => {
 	test.true(stats.isSymbolicLink());
 });
 
-ava('Pre-Existing Symlink', async test => {
+ava('Pre-Existing Symlink', async (test): Promise<void> => {
 	test.plan(2);
 
 	const file = tempFile();
@@ -40,11 +40,11 @@ ava('Pre-Existing Symlink', async test => {
 	test.true(stats.isSymbolicLink());
 });
 
-ava('New File w/ Non-Existent Directories', async test => {
+ava('New File w/ Non-Existent Directories', async (test): Promise<void> => {
 	test.plan(2);
 
 	const file = tempFile();
-	const newFile = tempDirLoc(tempFileLoc());
+	const newFile = tempFileLoc(tempDirLoc());
 	const retVal = await nextra.createSymlink(file, newFile);
 	const stats = await fs.lstat(newFile);
 
@@ -52,7 +52,7 @@ ava('New File w/ Non-Existent Directories', async test => {
 	test.true(stats.isSymbolicLink());
 });
 
-ava('Relative Source', async test => {
+ava('Relative Source', async (test): Promise<void> => {
 	test.plan(2);
 
 	const file = './test/createSymlink.ts';
@@ -64,11 +64,23 @@ ava('Relative Source', async test => {
 	test.true(stats.isSymbolicLink());
 });
 
-ava('Relative Source and Destination', async test => {
+ava('Relative Destination', async (test): Promise<void> => {
 	test.plan(2);
 
 	const file = tempFile();
-	const newFile = tempDirLoc(tempFileLoc());
+	const newFile = tempFileLoc();
+	const retVal = await nextra.createSymlink(file, relative(process.cwd(), newFile));
+	const stats = await fs.lstat(newFile);
+
+	test.is(retVal, undefined);
+	test.true(stats.isSymbolicLink());
+});
+
+ava('Relative Source and Destination', async (test): Promise<void> => {
+	test.plan(2);
+
+	const file = tempFile();
+	const newFile = tempFileLoc();
 	const retVal = await nextra.createSymlink(relative(process.cwd(), file), relative(process.cwd(), newFile));
 	const stats = await fs.lstat(newFile);
 
@@ -76,7 +88,19 @@ ava('Relative Source and Destination', async test => {
 	test.true(stats.isSymbolicLink());
 });
 
-ava('New File (Atomic Shortcut)', async test => {
+ava('Relative Source and Deep Destination', async (test): Promise<void> => {
+	test.plan(2);
+
+	const file = tempFile();
+	const newFile = tempFileLoc(tempDirLoc());
+	const retVal = await nextra.createSymlink(relative(process.cwd(), file), relative(process.cwd(), newFile));
+	const stats = await fs.lstat(newFile);
+
+	test.is(retVal, undefined);
+	test.true(stats.isSymbolicLink());
+});
+
+ava('New File (Atomic Shortcut)', async (test): Promise<void> => {
 	test.plan(2);
 
 	const file = tempFile();

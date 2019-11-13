@@ -3,7 +3,7 @@ import { promises as fs } from 'fs';
 import { tempFile, tempFileLoc, tempDir, tempDirLoc } from './lib';
 import * as nextra from '../dist';
 
-ava('File', async test => {
+ava('File', async (test): Promise<void> => {
 	test.plan(2);
 
 	const file = tempFile();
@@ -13,7 +13,7 @@ ava('File', async test => {
 	await test.throwsAsync(fs.access(file));
 });
 
-ava('Empty Directory', async test => {
+ava('Empty Directory', async (test): Promise<void> => {
 	test.plan(2);
 
 	const dir = tempDir();
@@ -23,7 +23,7 @@ ava('Empty Directory', async test => {
 	await test.throwsAsync(fs.access(dir));
 });
 
-ava('Full Directory', async test => {
+ava('Full Directory', async (test): Promise<void> => {
 	test.plan(2);
 
 	const dir = tempDir();
@@ -34,10 +34,10 @@ ava('Full Directory', async test => {
 	await test.throwsAsync(fs.access(dir));
 });
 
-ava('Non-Existent File', async test => {
+ava('Non-Existent File', async (test): Promise<void> => {
 	await test.notThrowsAsync(nextra.remove(tempFileLoc()));
 });
 
-ava('Non-Existent Directory', async test => {
+ava('Non-Existent Directory', async (test): Promise<void> => {
 	await test.notThrowsAsync(nextra.remove(tempDirLoc()));
 });

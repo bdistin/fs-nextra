@@ -16,7 +16,7 @@ import mkdirs from './mkdirs';
  */
 export default async function outputFile(file: string, data: string | Buffer | Uint8Array, atomic?: boolean): Promise<void>;
 export default async function outputFile(file: string, data: string | Buffer | Uint8Array, options?: WriteOptions | string, atomic?: boolean): Promise<void>;
-export default async function outputFile(file: string, data: string | Buffer | Uint8Array, options?: WriteOptions | string | boolean, atomic: boolean = false): Promise<void> {
+export default async function outputFile(file: string, data: string | Buffer | Uint8Array, options?: WriteOptions | string | boolean, atomic = false): Promise<void> {
 	if (typeof options === 'boolean') [atomic, options] = [options, {}];
 
 	await mkdirs(dirname(file));

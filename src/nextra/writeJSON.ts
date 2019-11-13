@@ -41,7 +41,7 @@ export interface JsonOptions {
  */
 export default async function writeJSON(file: string, object: any, atomic?: boolean): Promise<void>;
 export default async function writeJSON(file: string, object: any, options?: JsonOptions, atomic?: boolean): Promise<void>;
-export default async function writeJSON(file: string, object: any, options: JsonOptions | boolean = {}, atomic: boolean = false): Promise<void> {
+export default async function writeJSON(file: string, object: any, options: JsonOptions | boolean = {}, atomic = false): Promise<void> {
 	if (typeof options === 'boolean') [atomic, options] = [options, {}];
 
 	const writeMethod = atomic ? writeFileAtomic : writeFile;

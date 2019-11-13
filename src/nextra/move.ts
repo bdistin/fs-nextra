@@ -1,7 +1,7 @@
 import { resolve, dirname } from 'path';
 
 import { isSrcKid } from '../utils/util';
-import { access, rename, stat } from '../fs';
+import { access, rename, lstat } from '../fs';
 
 import remove from './remove';
 import mkdirs from './mkdirs';
@@ -13,7 +13,7 @@ import copy from './copy';
  * @memberof fsn/nextra
  * @property {boolean} [overwrite = false] Should the move overwrite an identical file at the destination path
  */
-interface MoveOptions {
+export interface MoveOptions {
 	overwrite?: boolean;
 }
 
@@ -28,7 +28,7 @@ export default async function move(source: string, destination: string, options:
 	const overwrite = options.overwrite || false;
 	if (resolve(source) === resolve(destination)) return access(source);
 
-	const myStat = await stat(source);
+	const myStat = await lstat(source);
 	if (myStat.isDirectory() && isSrcKid(source, destination)) {
 		throw new Error('FS-NEXTRA: Moving a parent directory into a child will result in an infinite loop.');
 	}
@@ -44,8 +44,7 @@ export default async function move(source: string, destination: string, options:
 	try {
 		return await rename(source, destination);
 	} catch (err) {
-		// Cross network moving: Can't test via travis
-		/* istanbul ignore next */
+		/* istanbul ignore next: Can't test via CI */
 		if (err.code === 'EXDEV') {
 			const opts = {
 				overwrite,
@@ -56,8 +55,7 @@ export default async function move(source: string, destination: string, options:
 			return remove(source);
 		}
 
-		// Hard to produce, such as ENOMEM (Kernel running out of memory): Can't test via travis
-		/* istanbul ignore next */
+		/* istanbul ignore next: Hard to produce, such as ENOMEM (Kernel running out of memory). Can't test via CI */
 		throw err;
 	}
 }

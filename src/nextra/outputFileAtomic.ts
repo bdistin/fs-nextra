@@ -10,6 +10,6 @@ import { WriteOptions } from './writeFileAtomic';
  * @param options The write options or the encoding string.
  * @returns {Promise<void>}
  */
-export default function outputFileAtomic(file: string, data: string | Buffer | Uint8Array, options?: WriteOptions | string) {
+export default function outputFileAtomic(file: string, data: string | Buffer | Uint8Array, options?: WriteOptions | string): Promise<void> {
 	return outputFile(file, data, options, true);
 }

@@ -7,8 +7,8 @@ FS-Nextra
 [![npm](https://img.shields.io/npm/dt/fs-nextra.svg?maxAge=3600)](https://www.npmjs.com/package/fs-nextra)
 
 [![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/bdistin/fs-nextra.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/bdistin/fs-nextra/context:javascript)
-[![Coverage](https://img.shields.io/azure-devops/coverage/aodude/fs-nextra/1/master.svg)](https://dev.azure.com/aodude/fs-nextra/_build/latest?definitionId=1&branchName=master)
-[![Build Status](https://aodude.visualstudio.com/fs-nextra/_apis/build/status/bdistin.fs-nextra?branchName=master)](https://aodude.visualstudio.com/fs-nextra/_build/latest?definitionId=1&branchName=master)
+[![Code Quality](https://github.com/bdistin/fs-nextra/workflows/Code%20Quality/badge.svg)](https://github.com/bdistin/fs-nextra/actions)
+[![Unit Tests](https://github.com/bdistin/fs-nextra/workflows/Unit%20Tests/badge.svg)](https://github.com/bdistin/fs-nextra/actions)
 
 [![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=bdistin/fs-nextra)](https://dependabot.com)
 [![david](https://david-dm.org/bdistin/fs-nextra.svg)](https://david-dm.org/bdistin/fs-nextra)
@@ -19,7 +19,7 @@ Node.js V8 native fs.promises. Written in TypeScript, sans every sync method. *A
 Docs
 ------
 
-All `fs` methods which return a callback, return a promise instead. All `nextra` methods return a promise exclusively. No sync methods are included from either `fs` or `fs-nextra`. Requires minimum Node.js v10.0.0.
+All `fs` methods which return a callback, return a promise instead. All `nextra` methods return a promise exclusively. No sync methods are included from either `fs` or `fs-nextra`. Requires minimum Node.js v10.1.0.
 
 The full documentation can be found here: [fs-nextra.js.org](https://fs-nextra.js.org/).
 

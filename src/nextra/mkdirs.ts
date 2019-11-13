@@ -8,7 +8,7 @@ import { stat, mkdir } from '../fs';
  * @memberof fsn/nextra
  * @property {number} [mode = 0o777 & ~process.umask()] The chmod for the directories being made
  */
-interface MkdirsOptions {
+export interface MkdirsOptions {
 	mode?: number;
 }
 
@@ -36,10 +36,10 @@ interface MkdirsOptions {
 export default async function mkdirs(path: string, options?: MkdirsOptions | number): Promise<void> {
 	const dirOptions = resolveOptions(options);
 
-	// Windows
-	/* istanbul ignore next */
+	/* istanbul ignore next: Windows */
 	if (isWindows && invalidWin32Path(path)) {
 		const errInval = new Error(`FS-NEXTRA: ${path} contains invalid WIN32 path characters.`);
+		// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 		// @ts-ignore
 		errInval.code = 'EINVAL';
 		throw errInval;
@@ -61,16 +61,13 @@ export default async function mkdirs(path: string, options?: MkdirsOptions | num
 	}
 }
 
-const resolveOptions = (options: MkdirsOptions | number = {}): MkdirsOptions => {
-	return {
-		mode: typeof options === 'number' ? options : options.mode || 0o0777 & ~process.umask()
-	};
-};
+const resolveOptions = (options: MkdirsOptions | number = {}): MkdirsOptions => ({
+	// eslint-disable-next-line no-bitwise
+	mode: typeof options === 'number' ? options : options.mode || 0o0777 & ~process.umask()
+});
 
-// Windows
-/* istanbul ignore next */
+/* istanbul ignore next: Windows */
 const invalidWin32Path = (myPath: string): boolean => {
 	const root = normalize(resolve(myPath)).split(sep);
-	const rp = root.length > 0 ? root[0] : null;
-	return /[<>:"|?*]/.test(myPath.replace(rp, ''));
+	return /[<>:"|?*]/.test(root.length ? myPath.replace(root[0], '') : myPath);
 };
