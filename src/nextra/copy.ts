@@ -23,9 +23,13 @@ export interface CopyOptions {
 	errorOnExist?: boolean;
 }
 
-interface CopyData extends CopyOptions {
+interface CopyData {
 	currentPath: string;
 	targetPath: string;
+	filter: CopyFilter;
+	overwrite: boolean;
+	preserveTimestamps: boolean;
+	errorOnExist: boolean;
 }
 
 /**

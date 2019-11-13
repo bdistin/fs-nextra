@@ -7,9 +7,10 @@ ava('File', async (test): Promise<void> => {
 
 	const file = tempFile();
 	const map = await nextra.scan(file);
+	const stats = map.get(file);
 
 	test.is(map.size, 1);
-	test.true(map.get(file).isFile());
+	test.true(stats && stats.isFile());
 });
 
 
@@ -18,9 +19,10 @@ ava('Empty Directory', async (test): Promise<void> => {
 
 	const dir = tempDir();
 	const map = await nextra.scan(dir);
+	const stats = map.get(dir);
 
 	test.is(map.size, 1);
-	test.true(map.get(dir).isDirectory());
+	test.true(stats && stats.isDirectory());
 });
 
 ava('Full Directory', async (test): Promise<void> => {
