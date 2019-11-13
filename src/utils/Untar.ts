@@ -1,5 +1,6 @@
+import Header from './Heeder';
+
 import { Writable } from 'stream';
-import { decodeHeader, Header } from './header';
 
 function breakSync(next: Function): void {
 	setImmediate((): void => next());
@@ -38,9 +39,7 @@ export default class Untar extends Writable {
 		/* istanbul ignore next: Hard to test, requires the leftover of a chunk to be less than the size of a header block */
 		if (this.file.length < this.recordSize) return breakSync(next);
 
-		// New Header
-
-		this.header = decodeHeader(this.slice(this.recordSize));
+		this.header = new Header(this.slice(this.recordSize));
 
 		return this._write(Buffer.alloc(0), encoding, next);
 	}

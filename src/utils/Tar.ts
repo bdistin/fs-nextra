@@ -1,6 +1,7 @@
+import Header from './Heeder';
+
 import { relative } from 'path';
 import { Readable } from 'stream';
-import { encodeHeader } from './header';
 import { createReadStream, Stats } from '../fs';
 
 export default class Tar extends Readable {
@@ -43,18 +44,18 @@ export default class Tar extends Readable {
 
 	public append(filepath: string, stats: Stats): void {
 		this.queue.push({
-			header: encodeHeader({
+			header: new Header({
 				filename: relative(this.base, filepath),
 				mode: stats.mode,
 				uid: stats.uid,
 				gid: stats.gid,
 				size: stats.size,
 				mtime: Math.trunc(stats.mtime.valueOf() / 1000),
-				type: '0',
+				type: 0,
 				ustar: 'ustar ',
 				owner: '',
 				group: ''
-			}),
+			}).toBuffer(),
 			file: createReadStream(filepath),
 			size: stats.size
 		});
