@@ -68,6 +68,7 @@
 						<section class="tsd-index-section ">
 							<h3>Interfaces</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-interface"><a href="interfaces/copydata.html" class="tsd-kind-icon">Copy<wbr>Data</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/copyoptions.html" class="tsd-kind-icon">Copy<wbr>Options</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/jsonoptions.html" class="tsd-kind-icon">Json<wbr>Options</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/makedirectoryoptions.html" class="tsd-kind-icon">Make<wbr>Directory<wbr>Options</a></li>
@@ -76,6 +77,7 @@
 								<li class="tsd-kind-interface"><a href="interfaces/readjsonoptions.html" class="tsd-kind-icon">ReadJSONOptions</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/removeoptions.html" class="tsd-kind-icon">Remove<wbr>Options</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/scanoptions.html" class="tsd-kind-icon">Scan<wbr>Options</a></li>
+								<li class="tsd-kind-interface"><a href="interfaces/symlinkpaths.html" class="tsd-kind-icon">Sym<wbr>Link<wbr>Paths</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/writeoptions.html" class="tsd-kind-icon">Write<wbr>Options</a></li>
 							</ul>
 						</section>
@@ -83,6 +85,8 @@
 							<h3>Type aliases</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-type-alias"><a href="globals.html#bufferencoding" class="tsd-kind-icon">Buffer<wbr>Encoding</a></li>
+								<li class="tsd-kind-type-alias"><a href="globals.html#copyfilter" class="tsd-kind-icon">Copy<wbr>Filter</a></li>
+								<li class="tsd-kind-type-alias"><a href="globals.html#pathlike" class="tsd-kind-icon">Path<wbr>Like</a></li>
 								<li class="tsd-kind-type-alias"><a href="globals.html#symlinktype" class="tsd-kind-icon">Sym<wbr>Link<wbr>Type</a></li>
 							</ul>
 						</section>
@@ -94,8 +98,10 @@
 								<li class="tsd-kind-function"><a href="globals.html#chmod" class="tsd-kind-icon">chmod</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#chown" class="tsd-kind-icon">chown</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#copy" class="tsd-kind-icon">copy</a></li>
+								<li class="tsd-kind-function"><a href="globals.html#copydirectory" class="tsd-kind-icon">copy<wbr>Directory</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#copyfile" class="tsd-kind-icon">copy<wbr>File</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#copyfileatomic" class="tsd-kind-icon">copy<wbr>File<wbr>Atomic</a></li>
+								<li class="tsd-kind-function"><a href="globals.html#copyother" class="tsd-kind-icon">copy<wbr>Other</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#createfile" class="tsd-kind-icon">create<wbr>File</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#createfileatomic" class="tsd-kind-icon">create<wbr>File<wbr>Atomic</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#createfilecopy" class="tsd-kind-icon">create<wbr>File<wbr>Copy</a></li>
@@ -108,12 +114,15 @@
 								<li class="tsd-kind-function"><a href="globals.html#fchmod" class="tsd-kind-icon">fchmod</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#fchown" class="tsd-kind-icon">fchown</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#fdatasync" class="tsd-kind-icon">fdatasync</a></li>
+								<li class="tsd-kind-function"><a href="globals.html#fixwineperm" class="tsd-kind-icon">fix<wbr>WinEPERM</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#fstat" class="tsd-kind-icon">fstat</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#fsync" class="tsd-kind-icon">fsync</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#ftruncate" class="tsd-kind-icon">ftruncate</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#futimes" class="tsd-kind-icon">futimes</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#gzip" class="tsd-kind-icon">gzip</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#gzipatomic" class="tsd-kind-icon">gzip<wbr>Atomic</a></li>
+								<li class="tsd-kind-function"><a href="globals.html#invalidwin32path" class="tsd-kind-icon">invalid<wbr>Win32<wbr>Path</a></li>
+								<li class="tsd-kind-function"><a href="globals.html#iswritable" class="tsd-kind-icon">is<wbr>Writable</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#lchmod" class="tsd-kind-icon">lchmod</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#lchown" class="tsd-kind-icon">lchown</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#link" class="tsd-kind-icon">link</a></li>
@@ -136,12 +145,22 @@
 								<li class="tsd-kind-function"><a href="globals.html#readlink" class="tsd-kind-icon">readlink</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#realpath" class="tsd-kind-icon">realpath</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#remove" class="tsd-kind-icon">remove</a></li>
+								<li class="tsd-kind-function"><a href="globals.html#removedir" class="tsd-kind-icon">remove<wbr>Dir</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#rename" class="tsd-kind-icon">rename</a></li>
+								<li class="tsd-kind-function"><a href="globals.html#resolvecopyoptions" class="tsd-kind-icon">resolve<wbr>Copy<wbr>Options</a></li>
+								<li class="tsd-kind-function"><a href="globals.html#resolveoptions" class="tsd-kind-icon">resolve<wbr>Options</a></li>
+								<li class="tsd-kind-function"><a href="globals.html#rimraf" class="tsd-kind-icon">rimraf</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#rmdir" class="tsd-kind-icon">rmdir</a></li>
+								<li class="tsd-kind-function"><a href="globals.html#rmkids" class="tsd-kind-icon">rmkids</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#scan" class="tsd-kind-icon">scan</a></li>
+								<li class="tsd-kind-function"><a href="globals.html#scandeep" class="tsd-kind-icon">scan<wbr>Deep</a></li>
+								<li class="tsd-kind-function"><a href="globals.html#startcopy" class="tsd-kind-icon">start<wbr>Copy</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#stat" class="tsd-kind-icon">stat</a></li>
+								<li class="tsd-kind-function"><a href="globals.html#stripbom" class="tsd-kind-icon">strip<wbr>Bom</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#symlink" class="tsd-kind-icon">symlink</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#symlinkatomic" class="tsd-kind-icon">symlink<wbr>Atomic</a></li>
+								<li class="tsd-kind-function"><a href="globals.html#symlinkpaths" class="tsd-kind-icon">symlink<wbr>Paths</a></li>
+								<li class="tsd-kind-function"><a href="globals.html#symlinktype" class="tsd-kind-icon">symlink<wbr>Type</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#targz" class="tsd-kind-icon">targz</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#targzatomic" class="tsd-kind-icon">targz<wbr>Atomic</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#truncate" class="tsd-kind-icon">truncate</a></li>
@@ -167,9 +186,58 @@
 					<div class="tsd-signature tsd-kind-icon">Buffer<wbr>Encoding<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"ascii"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"utf8"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"utf16le"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"ucs2"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"base64"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"latin1"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"binary"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"hex"</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/15e6500/src/nextra/readJSON.ts#L3">nextra/readJSON.ts:3</a></li>
+							<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/03560dd/src/nextra/readJSON.ts#L3">nextra/readJSON.ts:3</a></li>
 						</ul>
 					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias">
+					<a name="copyfilter" class="tsd-anchor"></a>
+					<h3>Copy<wbr>Filter</h3>
+					<div class="tsd-signature tsd-kind-icon">Copy<wbr>Filter<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/03560dd/src/nextra/copy.ts#L9">nextra/copy.ts:9</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-siganture">
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-type-alias">
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>source<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, target<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+								</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<h4 class="tsd-parameters-title">Parameters</h4>
+										<ul class="tsd-parameters">
+											<li>
+												<h5>source: <span class="tsd-signature-type">string</span></h5>
+											</li>
+											<li>
+												<h5>target: <span class="tsd-signature-type">string</span></h5>
+											</li>
+										</ul>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias">
+					<a name="pathlike" class="tsd-anchor"></a>
+					<h3>Path<wbr>Like</h3>
+					<div class="tsd-signature tsd-kind-icon">Path<wbr>Like<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Buffer</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">URL</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/03560dd/src/fs.ts#L13">fs.ts:13</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Valid types for path values in &#39;fs&#39;.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-type-alias">
 					<a name="symlinktype" class="tsd-anchor"></a>
@@ -177,7 +245,7 @@
 					<div class="tsd-signature tsd-kind-icon">Sym<wbr>Link<wbr>Type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"dir"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"file"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"junction"</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/15e6500/src/nextra/createSymlink.ts#L17">nextra/createSymlink.ts:17</a></li>
+							<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/03560dd/src/nextra/createSymlink.ts#L17">nextra/createSymlink.ts:17</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -206,13 +274,13 @@
 					<a name="access" class="tsd-anchor"></a>
 					<h3>access</h3>
 					<ul class="tsd-signatures tsd-kind-function">
-						<li class="tsd-signature tsd-kind-icon">access<span class="tsd-signature-symbol">(</span>path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">PathLike</span>, mode<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">access<span class="tsd-signature-symbol">(</span>path<span class="tsd-signature-symbol">: </span><a href="globals.html#pathlike" class="tsd-signature-type">PathLike</a>, mode<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/15e6500/src/fs.ts#L33">fs.ts:33</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/03560dd/src/fs.ts#L33">fs.ts:33</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -223,7 +291,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>path: <span class="tsd-signature-type">PathLike</span></h5>
+									<h5>path: <a href="globals.html#pathlike" class="tsd-signature-type">PathLike</a></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>A path to a file or directory. If a URL is provided, it must use the <code>file:</code> protocol.
 										URL support is <em>experimental</em>.</p>
@@ -241,13 +309,13 @@
 					<a name="appendfile" class="tsd-anchor"></a>
 					<h3>append<wbr>File</h3>
 					<ul class="tsd-signatures tsd-kind-function">
-						<li class="tsd-signature tsd-kind-icon">append<wbr>File<span class="tsd-signature-symbol">(</span>path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">PathLike</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">FileHandle</span>, data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">append<wbr>File<span class="tsd-signature-symbol">(</span>path<span class="tsd-signature-symbol">: </span><a href="globals.html#pathlike" class="tsd-signature-type">PathLike</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">FileHandle</span>, data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/15e6500/src/fs.ts#L365">fs.ts:365</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/03560dd/src/fs.ts#L365">fs.ts:365</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -258,7 +326,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>path: <span class="tsd-signature-type">PathLike</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">FileHandle</span></h5>
+									<h5>path: <a href="globals.html#pathlike" class="tsd-signature-type">PathLike</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">FileHandle</span></h5>
 								</li>
 								<li>
 									<h5>data: <span class="tsd-signature-type">any</span></h5>
@@ -285,13 +353,13 @@
 					<a name="chmod" class="tsd-anchor"></a>
 					<h3>chmod</h3>
 					<ul class="tsd-signatures tsd-kind-function">
-						<li class="tsd-signature tsd-kind-icon">chmod<span class="tsd-signature-symbol">(</span>path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">PathLike</span>, mode<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">chmod<span class="tsd-signature-symbol">(</span>path<span class="tsd-signature-symbol">: </span><a href="globals.html#pathlike" class="tsd-signature-type">PathLike</a>, mode<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/15e6500/src/fs.ts#L257">fs.ts:257</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/03560dd/src/fs.ts#L257">fs.ts:257</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -302,7 +370,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>path: <span class="tsd-signature-type">PathLike</span></h5>
+									<h5>path: <a href="globals.html#pathlike" class="tsd-signature-type">PathLike</a></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>A path to a file. If a URL is provided, it must use the <code>file:</code> protocol.</p>
 									</div>
@@ -322,13 +390,13 @@
 					<a name="chown" class="tsd-anchor"></a>
 					<h3>chown</h3>
 					<ul class="tsd-signatures tsd-kind-function">
-						<li class="tsd-signature tsd-kind-icon">chown<span class="tsd-signature-symbol">(</span>path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">PathLike</span>, uid<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, gid<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">chown<span class="tsd-signature-symbol">(</span>path<span class="tsd-signature-symbol">: </span><a href="globals.html#pathlike" class="tsd-signature-type">PathLike</a>, uid<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, gid<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/15e6500/src/fs.ts#L290">fs.ts:290</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/03560dd/src/fs.ts#L290">fs.ts:290</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -339,7 +407,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>path: <span class="tsd-signature-type">PathLike</span></h5>
+									<h5>path: <a href="globals.html#pathlike" class="tsd-signature-type">PathLike</a></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>A path to a file. If a URL is provided, it must use the <code>file:</code> protocol.</p>
 									</div>
@@ -359,13 +427,13 @@
 					<a name="copy" class="tsd-anchor"></a>
 					<h3>copy</h3>
 					<ul class="tsd-signatures tsd-kind-function">
-						<li class="tsd-signature tsd-kind-icon">copy<span class="tsd-signature-symbol">(</span>source<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, destination<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, options<span class="tsd-signature-symbol">?: </span><a href="interfaces/copyoptions.html" class="tsd-signature-type">CopyOptions</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">CopyFilter</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">copy<span class="tsd-signature-symbol">(</span>source<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, destination<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, options<span class="tsd-signature-symbol">?: </span><a href="interfaces/copyoptions.html" class="tsd-signature-type">CopyOptions</a><span class="tsd-signature-symbol"> | </span><a href="globals.html#copyfilter" class="tsd-signature-type">CopyFilter</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/15e6500/src/nextra/copy.ts#L43">nextra/copy.ts:43</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/03560dd/src/nextra/copy.ts#L43">nextra/copy.ts:43</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -396,7 +464,7 @@
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> options: <a href="interfaces/copyoptions.html" class="tsd-signature-type">CopyOptions</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">CopyFilter</span><span class="tsd-signature-symbol"> =&nbsp;{}</span></h5>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> options: <a href="interfaces/copyoptions.html" class="tsd-signature-type">CopyOptions</a><span class="tsd-signature-symbol"> | </span><a href="globals.html#copyfilter" class="tsd-signature-type">CopyFilter</a><span class="tsd-signature-symbol"> =&nbsp;{}</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>Options for the copy, or a filter function</p>
 									</div>
@@ -407,16 +475,48 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-function">
-					<a name="copyfile" class="tsd-anchor"></a>
-					<h3>copy<wbr>File</h3>
+					<a name="copydirectory" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> copy<wbr>Directory</h3>
 					<ul class="tsd-signatures tsd-kind-function">
-						<li class="tsd-signature tsd-kind-icon">copy<wbr>File<span class="tsd-signature-symbol">(</span>src<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">PathLike</span>, dest<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">PathLike</span>, flags<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">copy<wbr>Directory<span class="tsd-signature-symbol">(</span>mySource<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, stats<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Stats</span>, target<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, options<span class="tsd-signature-symbol">: </span><a href="interfaces/copydata.html" class="tsd-signature-type">CopyData</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/15e6500/src/fs.ts#L46">fs.ts:46</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/03560dd/src/nextra/copy.ts#L86">nextra/copy.ts:86</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>mySource: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>stats: <span class="tsd-signature-type">Stats</span></h5>
+								</li>
+								<li>
+									<h5>target: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>options: <a href="interfaces/copydata.html" class="tsd-signature-type">CopyData</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function">
+					<a name="copyfile" class="tsd-anchor"></a>
+					<h3>copy<wbr>File</h3>
+					<ul class="tsd-signatures tsd-kind-function">
+						<li class="tsd-signature tsd-kind-icon">copy<wbr>File<span class="tsd-signature-symbol">(</span>src<span class="tsd-signature-symbol">: </span><a href="globals.html#pathlike" class="tsd-signature-type">PathLike</a>, dest<span class="tsd-signature-symbol">: </span><a href="globals.html#pathlike" class="tsd-signature-type">PathLike</a>, flags<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/03560dd/src/fs.ts#L46">fs.ts:46</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -430,13 +530,13 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>src: <span class="tsd-signature-type">PathLike</span></h5>
+									<h5>src: <a href="globals.html#pathlike" class="tsd-signature-type">PathLike</a></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>A path to the source file.</p>
 									</div>
 								</li>
 								<li>
-									<h5>dest: <span class="tsd-signature-type">PathLike</span></h5>
+									<h5>dest: <a href="globals.html#pathlike" class="tsd-signature-type">PathLike</a></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>A path to the destination file.</p>
 									</div>
@@ -464,7 +564,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/15e6500/src/nextra/copyFileAtomic.ts#L13">nextra/copyFileAtomic.ts:13</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/03560dd/src/nextra/copyFileAtomic.ts#L13">nextra/copyFileAtomic.ts:13</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -497,6 +597,38 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-function">
+					<a name="copyother" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> copy<wbr>Other</h3>
+					<ul class="tsd-signatures tsd-kind-function">
+						<li class="tsd-signature tsd-kind-icon">copy<wbr>Other<span class="tsd-signature-symbol">(</span>mySource<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, stats<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Stats</span>, target<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, options<span class="tsd-signature-symbol">: </span><a href="interfaces/copydata.html" class="tsd-signature-type">CopyData</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/03560dd/src/nextra/copy.ts#L96">nextra/copy.ts:96</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>mySource: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>stats: <span class="tsd-signature-type">Stats</span></h5>
+								</li>
+								<li>
+									<h5>target: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>options: <a href="interfaces/copydata.html" class="tsd-signature-type">CopyData</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function">
 					<a name="createfile" class="tsd-anchor"></a>
 					<h3>create<wbr>File</h3>
 					<ul class="tsd-signatures tsd-kind-function">
@@ -506,7 +638,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/15e6500/src/nextra/createFile.ts#L23">nextra/createFile.ts:23</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/03560dd/src/nextra/createFile.ts#L23">nextra/createFile.ts:23</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -551,7 +683,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/15e6500/src/nextra/createFileAtomic.ts#L15">nextra/createFileAtomic.ts:15</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/03560dd/src/nextra/createFileAtomic.ts#L15">nextra/createFileAtomic.ts:15</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -590,7 +722,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/15e6500/src/nextra/createFileCopy.ts#L24">nextra/createFileCopy.ts:24</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/03560dd/src/nextra/createFileCopy.ts#L24">nextra/createFileCopy.ts:24</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -641,7 +773,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/15e6500/src/nextra/createFileCopyAtomic.ts#L17">nextra/createFileCopyAtomic.ts:17</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/03560dd/src/nextra/createFileCopyAtomic.ts#L17">nextra/createFileCopyAtomic.ts:17</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -686,7 +818,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/15e6500/src/nextra/createLink.ts#L25">nextra/createLink.ts:25</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/03560dd/src/nextra/createLink.ts#L25">nextra/createLink.ts:25</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -737,7 +869,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/15e6500/src/nextra/createLinkAtomic.ts#L17">nextra/createLinkAtomic.ts:17</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/03560dd/src/nextra/createLinkAtomic.ts#L17">nextra/createLinkAtomic.ts:17</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -783,7 +915,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/15e6500/src/nextra/createSymlink.ts#L42">nextra/createSymlink.ts:42</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/03560dd/src/nextra/createSymlink.ts#L42">nextra/createSymlink.ts:42</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -825,7 +957,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/15e6500/src/nextra/createSymlink.ts#L43">nextra/createSymlink.ts:43</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/03560dd/src/nextra/createSymlink.ts#L43">nextra/createSymlink.ts:43</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -857,7 +989,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/15e6500/src/nextra/createSymlinkAtomic.ts#L21">nextra/createSymlinkAtomic.ts:21</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/03560dd/src/nextra/createSymlinkAtomic.ts#L21">nextra/createSymlinkAtomic.ts:21</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -908,7 +1040,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/15e6500/src/nextra/emptyDir.ts#L20">nextra/emptyDir.ts:20</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/03560dd/src/nextra/emptyDir.ts#L20">nextra/emptyDir.ts:20</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -947,7 +1079,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/15e6500/src/fs.ts#L248">fs.ts:248</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/03560dd/src/fs.ts#L248">fs.ts:248</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -984,7 +1116,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/15e6500/src/fs.ts#L282">fs.ts:282</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/03560dd/src/fs.ts#L282">fs.ts:282</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1021,7 +1153,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/15e6500/src/fs.ts#L147">fs.ts:147</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/03560dd/src/fs.ts#L147">fs.ts:147</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1043,6 +1175,32 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-function">
+					<a name="fixwineperm" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> fix<wbr>WinEPERM</h3>
+					<ul class="tsd-signatures tsd-kind-function">
+						<li class="tsd-signature tsd-kind-icon">fix<wbr>WinEPERM<span class="tsd-signature-symbol">(</span>myPath<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, options<span class="tsd-signature-symbol">: </span><a href="interfaces/removeoptions.html" class="tsd-signature-type">RemoveOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/03560dd/src/nextra/remove.ts#L64">nextra/remove.ts:64</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>myPath: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>options: <a href="interfaces/removeoptions.html" class="tsd-signature-type">RemoveOptions</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function">
 					<a name="fstat" class="tsd-anchor"></a>
 					<h3>fstat</h3>
 					<ul class="tsd-signatures tsd-kind-function">
@@ -1052,7 +1210,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/15e6500/src/fs.ts#L206">fs.ts:206</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/03560dd/src/fs.ts#L206">fs.ts:206</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1083,7 +1241,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/15e6500/src/fs.ts#L155">fs.ts:155</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/03560dd/src/fs.ts#L155">fs.ts:155</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1114,7 +1272,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/15e6500/src/fs.ts#L131">fs.ts:131</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/03560dd/src/fs.ts#L131">fs.ts:131</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1151,7 +1309,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/15e6500/src/fs.ts#L310">fs.ts:310</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/03560dd/src/fs.ts#L310">fs.ts:310</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1194,7 +1352,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/15e6500/src/nextra/gunzip.ts#L15">nextra/gunzip.ts:15</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/03560dd/src/nextra/gunzip.ts#L15">nextra/gunzip.ts:15</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1251,7 +1409,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/15e6500/src/nextra/gunzipAtomic.ts#L12">nextra/gunzipAtomic.ts:12</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/03560dd/src/nextra/gunzipAtomic.ts#L12">nextra/gunzipAtomic.ts:12</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1291,16 +1449,62 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-function">
-					<a name="lchmod" class="tsd-anchor"></a>
-					<h3>lchmod</h3>
+					<a name="invalidwin32path" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> invalid<wbr>Win32<wbr>Path</h3>
 					<ul class="tsd-signatures tsd-kind-function">
-						<li class="tsd-signature tsd-kind-icon">lchmod<span class="tsd-signature-symbol">(</span>path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">PathLike</span>, mode<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">invalid<wbr>Win32<wbr>Path<span class="tsd-signature-symbol">(</span>myPath<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/15e6500/src/fs.ts#L266">fs.ts:266</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/03560dd/src/nextra/mkdirs.ts#L70">nextra/mkdirs.ts:70</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>myPath: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function">
+					<a name="iswritable" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> is<wbr>Writable</h3>
+					<ul class="tsd-signatures tsd-kind-function">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Writable<span class="tsd-signature-symbol">(</span>myPath<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/03560dd/src/nextra/copy.ts#L68">nextra/copy.ts:68</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>myPath: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function">
+					<a name="lchmod" class="tsd-anchor"></a>
+					<h3>lchmod</h3>
+					<ul class="tsd-signatures tsd-kind-function">
+						<li class="tsd-signature tsd-kind-icon">lchmod<span class="tsd-signature-symbol">(</span>path<span class="tsd-signature-symbol">: </span><a href="globals.html#pathlike" class="tsd-signature-type">PathLike</a>, mode<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/03560dd/src/fs.ts#L266">fs.ts:266</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1311,7 +1515,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>path: <span class="tsd-signature-type">PathLike</span></h5>
+									<h5>path: <a href="globals.html#pathlike" class="tsd-signature-type">PathLike</a></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>A path to a file. If a URL is provided, it must use the <code>file:</code> protocol.</p>
 									</div>
@@ -1331,13 +1535,13 @@
 					<a name="lchown" class="tsd-anchor"></a>
 					<h3>lchown</h3>
 					<ul class="tsd-signatures tsd-kind-function">
-						<li class="tsd-signature tsd-kind-icon">lchown<span class="tsd-signature-symbol">(</span>path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">PathLike</span>, uid<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, gid<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">lchown<span class="tsd-signature-symbol">(</span>path<span class="tsd-signature-symbol">: </span><a href="globals.html#pathlike" class="tsd-signature-type">PathLike</a>, uid<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, gid<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/15e6500/src/fs.ts#L274">fs.ts:274</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/03560dd/src/fs.ts#L274">fs.ts:274</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1348,7 +1552,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>path: <span class="tsd-signature-type">PathLike</span></h5>
+									<h5>path: <a href="globals.html#pathlike" class="tsd-signature-type">PathLike</a></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>A path to a file. If a URL is provided, it must use the <code>file:</code> protocol.</p>
 									</div>
@@ -1368,13 +1572,13 @@
 					<a name="link" class="tsd-anchor"></a>
 					<h3>link</h3>
 					<ul class="tsd-signatures tsd-kind-function">
-						<li class="tsd-signature tsd-kind-icon">link<span class="tsd-signature-symbol">(</span>existingPath<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">PathLike</span>, newPath<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">PathLike</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">link<span class="tsd-signature-symbol">(</span>existingPath<span class="tsd-signature-symbol">: </span><a href="globals.html#pathlike" class="tsd-signature-type">PathLike</a>, newPath<span class="tsd-signature-symbol">: </span><a href="globals.html#pathlike" class="tsd-signature-type">PathLike</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/15e6500/src/fs.ts#L231">fs.ts:231</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/03560dd/src/fs.ts#L231">fs.ts:231</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1385,13 +1589,13 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>existingPath: <span class="tsd-signature-type">PathLike</span></h5>
+									<h5>existingPath: <a href="globals.html#pathlike" class="tsd-signature-type">PathLike</a></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>A path to a file. If a URL is provided, it must use the <code>file:</code> protocol.</p>
 									</div>
 								</li>
 								<li>
-									<h5>newPath: <span class="tsd-signature-type">PathLike</span></h5>
+									<h5>newPath: <a href="globals.html#pathlike" class="tsd-signature-type">PathLike</a></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>A path to a file. If a URL is provided, it must use the <code>file:</code> protocol.</p>
 									</div>
@@ -1411,7 +1615,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/15e6500/src/nextra/linkAtomic.ts#L13">nextra/linkAtomic.ts:13</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/03560dd/src/nextra/linkAtomic.ts#L13">nextra/linkAtomic.ts:13</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1450,13 +1654,13 @@
 					<a name="lstat" class="tsd-anchor"></a>
 					<h3>lstat</h3>
 					<ul class="tsd-signatures tsd-kind-function">
-						<li class="tsd-signature tsd-kind-icon">lstat<span class="tsd-signature-symbol">(</span>path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">PathLike</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Stats</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">lstat<span class="tsd-signature-symbol">(</span>path<span class="tsd-signature-symbol">: </span><a href="globals.html#pathlike" class="tsd-signature-type">PathLike</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Stats</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/15e6500/src/fs.ts#L214">fs.ts:214</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/03560dd/src/fs.ts#L214">fs.ts:214</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1467,7 +1671,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>path: <span class="tsd-signature-type">PathLike</span></h5>
+									<h5>path: <a href="globals.html#pathlike" class="tsd-signature-type">PathLike</a></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>A path to a file. If a URL is provided, it must use the <code>file:</code> protocol.</p>
 									</div>
@@ -1481,13 +1685,13 @@
 					<a name="mkdir" class="tsd-anchor"></a>
 					<h3>mkdir</h3>
 					<ul class="tsd-signatures tsd-kind-function">
-						<li class="tsd-signature tsd-kind-icon">mkdir<span class="tsd-signature-symbol">(</span>path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">PathLike</span>, options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><a href="interfaces/makedirectoryoptions.html" class="tsd-signature-type">MakeDirectoryOptions</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">mkdir<span class="tsd-signature-symbol">(</span>path<span class="tsd-signature-symbol">: </span><a href="globals.html#pathlike" class="tsd-signature-type">PathLike</a>, options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><a href="interfaces/makedirectoryoptions.html" class="tsd-signature-type">MakeDirectoryOptions</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/15e6500/src/fs.ts#L165">fs.ts:165</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/03560dd/src/fs.ts#L165">fs.ts:165</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1498,7 +1702,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>path: <span class="tsd-signature-type">PathLike</span></h5>
+									<h5>path: <a href="globals.html#pathlike" class="tsd-signature-type">PathLike</a></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>A path to a file. If a URL is provided, it must use the <code>file:</code> protocol.</p>
 									</div>
@@ -1525,7 +1729,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/15e6500/src/nextra/mkdirs.ts#L36">nextra/mkdirs.ts:36</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/03560dd/src/nextra/mkdirs.ts#L36">nextra/mkdirs.ts:36</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1571,7 +1775,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/15e6500/src/fs.ts#L330">fs.ts:330</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/03560dd/src/fs.ts#L330">fs.ts:330</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1597,7 +1801,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/15e6500/src/fs.ts#L331">fs.ts:331</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/03560dd/src/fs.ts#L331">fs.ts:331</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1623,7 +1827,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/15e6500/src/nextra/move.ts#L27">nextra/move.ts:27</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/03560dd/src/nextra/move.ts#L27">nextra/move.ts:27</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1665,13 +1869,13 @@
 					<a name="open" class="tsd-anchor"></a>
 					<h3>open</h3>
 					<ul class="tsd-signatures tsd-kind-function">
-						<li class="tsd-signature tsd-kind-icon">open<span class="tsd-signature-symbol">(</span>path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">PathLike</span>, flags<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span>, mode<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">FileHandle</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">open<span class="tsd-signature-symbol">(</span>path<span class="tsd-signature-symbol">: </span><a href="globals.html#pathlike" class="tsd-signature-type">PathLike</a>, flags<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span>, mode<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">FileHandle</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/15e6500/src/fs.ts#L54">fs.ts:54</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/03560dd/src/fs.ts#L54">fs.ts:54</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1682,7 +1886,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>path: <span class="tsd-signature-type">PathLike</span></h5>
+									<h5>path: <a href="globals.html#pathlike" class="tsd-signature-type">PathLike</a></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>A path to a file. If a URL is provided, it must use the <code>file:</code> protocol.</p>
 									</div>
@@ -1713,7 +1917,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/15e6500/src/nextra/outputFile.ts#L17">nextra/outputFile.ts:17</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/03560dd/src/nextra/outputFile.ts#L17">nextra/outputFile.ts:17</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1754,7 +1958,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/15e6500/src/nextra/outputFile.ts#L18">nextra/outputFile.ts:18</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/03560dd/src/nextra/outputFile.ts#L18">nextra/outputFile.ts:18</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1786,7 +1990,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/15e6500/src/nextra/outputFileAtomic.ts#L13">nextra/outputFileAtomic.ts:13</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/03560dd/src/nextra/outputFileAtomic.ts#L13">nextra/outputFileAtomic.ts:13</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1838,7 +2042,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/15e6500/src/nextra/outputJSON.ts#L25">nextra/outputJSON.ts:25</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/03560dd/src/nextra/outputJSON.ts#L25">nextra/outputJSON.ts:25</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1880,7 +2084,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/15e6500/src/nextra/outputJSON.ts#L26">nextra/outputJSON.ts:26</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/03560dd/src/nextra/outputJSON.ts#L26">nextra/outputJSON.ts:26</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1912,7 +2116,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/15e6500/src/nextra/outputJSONAtomic.ts#L20">nextra/outputJSONAtomic.ts:20</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/03560dd/src/nextra/outputJSONAtomic.ts#L20">nextra/outputJSONAtomic.ts:20</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1963,7 +2167,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/15e6500/src/nextra/pathExists.ts#L9">nextra/pathExists.ts:9</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/03560dd/src/nextra/pathExists.ts#L9">nextra/pathExists.ts:9</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2002,7 +2206,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/15e6500/src/fs.ts#L65">fs.ts:65</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/03560dd/src/fs.ts#L65">fs.ts:65</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2058,14 +2262,14 @@
 					<a name="readfile" class="tsd-anchor"></a>
 					<h3>read<wbr>File</h3>
 					<ul class="tsd-signatures tsd-kind-function">
-						<li class="tsd-signature tsd-kind-icon">read<wbr>File<span class="tsd-signature-symbol">(</span>path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">PathLike</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">FileHandle</span>, options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Buffer</span><span class="tsd-signature-symbol">&gt;</span></li>
-						<li class="tsd-signature tsd-kind-icon">read<wbr>File<span class="tsd-signature-symbol">(</span>path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">PathLike</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">FileHandle</span>, options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> | </span><a href="globals.html#bufferencoding" class="tsd-signature-type">BufferEncoding</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">read<wbr>File<span class="tsd-signature-symbol">(</span>path<span class="tsd-signature-symbol">: </span><a href="globals.html#pathlike" class="tsd-signature-type">PathLike</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">FileHandle</span>, options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Buffer</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">read<wbr>File<span class="tsd-signature-symbol">(</span>path<span class="tsd-signature-symbol">: </span><a href="globals.html#pathlike" class="tsd-signature-type">PathLike</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">FileHandle</span>, options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> | </span><a href="globals.html#bufferencoding" class="tsd-signature-type">BufferEncoding</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/15e6500/src/fs.ts#L376">fs.ts:376</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/03560dd/src/fs.ts#L376">fs.ts:376</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2076,7 +2280,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>path: <span class="tsd-signature-type">PathLike</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">FileHandle</span></h5>
+									<h5>path: <a href="globals.html#pathlike" class="tsd-signature-type">PathLike</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">FileHandle</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>A path to a file. If a URL is provided, it must use the <code>file:</code> protocol.
 										If a <code>FileHandle</code> is provided, the underlying file will <em>not</em> be closed automatically.</p>
@@ -2095,13 +2299,13 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/15e6500/src/fs.ts#L377">fs.ts:377</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/03560dd/src/fs.ts#L377">fs.ts:377</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>path: <span class="tsd-signature-type">PathLike</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">FileHandle</span></h5>
+									<h5>path: <a href="globals.html#pathlike" class="tsd-signature-type">PathLike</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">FileHandle</span></h5>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> options: <span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> | </span><a href="globals.html#bufferencoding" class="tsd-signature-type">BufferEncoding</a></h5>
@@ -2121,7 +2325,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/15e6500/src/nextra/readJSON.ts#L33">nextra/readJSON.ts:33</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/03560dd/src/nextra/readJSON.ts#L33">nextra/readJSON.ts:33</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2157,14 +2361,14 @@
 					<a name="readdir" class="tsd-anchor"></a>
 					<h3>readdir</h3>
 					<ul class="tsd-signatures tsd-kind-function">
-						<li class="tsd-signature tsd-kind-icon">readdir<span class="tsd-signature-symbol">(</span>path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">PathLike</span>, options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> | </span><a href="globals.html#bufferencoding" class="tsd-signature-type">BufferEncoding</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
-						<li class="tsd-signature tsd-kind-icon">readdir<span class="tsd-signature-symbol">(</span>path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">PathLike</span>, options<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"buffer"</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Buffer</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">readdir<span class="tsd-signature-symbol">(</span>path<span class="tsd-signature-symbol">: </span><a href="globals.html#pathlike" class="tsd-signature-type">PathLike</a>, options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> | </span><a href="globals.html#bufferencoding" class="tsd-signature-type">BufferEncoding</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">readdir<span class="tsd-signature-symbol">(</span>path<span class="tsd-signature-symbol">: </span><a href="globals.html#pathlike" class="tsd-signature-type">PathLike</a>, options<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"buffer"</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Buffer</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/15e6500/src/fs.ts#L174">fs.ts:174</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/03560dd/src/fs.ts#L174">fs.ts:174</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2175,7 +2379,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>path: <span class="tsd-signature-type">PathLike</span></h5>
+									<h5>path: <a href="globals.html#pathlike" class="tsd-signature-type">PathLike</a></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>A path to a file. If a URL is provided, it must use the <code>file:</code> protocol.</p>
 									</div>
@@ -2192,13 +2396,13 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/15e6500/src/fs.ts#L175">fs.ts:175</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/03560dd/src/fs.ts#L175">fs.ts:175</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>path: <span class="tsd-signature-type">PathLike</span></h5>
+									<h5>path: <a href="globals.html#pathlike" class="tsd-signature-type">PathLike</a></h5>
 								</li>
 								<li>
 									<h5>options: <span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"buffer"</span></h5>
@@ -2212,14 +2416,14 @@
 					<a name="readlink" class="tsd-anchor"></a>
 					<h3>readlink</h3>
 					<ul class="tsd-signatures tsd-kind-function">
-						<li class="tsd-signature tsd-kind-icon">readlink<span class="tsd-signature-symbol">(</span>path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">PathLike</span>, options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> | </span><a href="globals.html#bufferencoding" class="tsd-signature-type">BufferEncoding</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
-						<li class="tsd-signature tsd-kind-icon">readlink<span class="tsd-signature-symbol">(</span>path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">PathLike</span>, options<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"buffer"</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Buffer</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">readlink<span class="tsd-signature-symbol">(</span>path<span class="tsd-signature-symbol">: </span><a href="globals.html#pathlike" class="tsd-signature-type">PathLike</a>, options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> | </span><a href="globals.html#bufferencoding" class="tsd-signature-type">BufferEncoding</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">readlink<span class="tsd-signature-symbol">(</span>path<span class="tsd-signature-symbol">: </span><a href="globals.html#pathlike" class="tsd-signature-type">PathLike</a>, options<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"buffer"</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Buffer</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/15e6500/src/fs.ts#L185">fs.ts:185</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/03560dd/src/fs.ts#L185">fs.ts:185</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2230,7 +2434,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>path: <span class="tsd-signature-type">PathLike</span></h5>
+									<h5>path: <a href="globals.html#pathlike" class="tsd-signature-type">PathLike</a></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>A path to a file. If a URL is provided, it must use the <code>file:</code> protocol.</p>
 									</div>
@@ -2247,13 +2451,13 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/15e6500/src/fs.ts#L186">fs.ts:186</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/03560dd/src/fs.ts#L186">fs.ts:186</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>path: <span class="tsd-signature-type">PathLike</span></h5>
+									<h5>path: <a href="globals.html#pathlike" class="tsd-signature-type">PathLike</a></h5>
 								</li>
 								<li>
 									<h5>options: <span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"buffer"</span></h5>
@@ -2267,14 +2471,14 @@
 					<a name="realpath" class="tsd-anchor"></a>
 					<h3>realpath</h3>
 					<ul class="tsd-signatures tsd-kind-function">
-						<li class="tsd-signature tsd-kind-icon">realpath<span class="tsd-signature-symbol">(</span>path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">PathLike</span>, options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> | </span><a href="globals.html#bufferencoding" class="tsd-signature-type">BufferEncoding</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
-						<li class="tsd-signature tsd-kind-icon">realpath<span class="tsd-signature-symbol">(</span>path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">PathLike</span>, options<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"buffer"</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Buffer</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">realpath<span class="tsd-signature-symbol">(</span>path<span class="tsd-signature-symbol">: </span><a href="globals.html#pathlike" class="tsd-signature-type">PathLike</a>, options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> | </span><a href="globals.html#bufferencoding" class="tsd-signature-type">BufferEncoding</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">realpath<span class="tsd-signature-symbol">(</span>path<span class="tsd-signature-symbol">: </span><a href="globals.html#pathlike" class="tsd-signature-type">PathLike</a>, options<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"buffer"</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Buffer</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/15e6500/src/fs.ts#L319">fs.ts:319</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/03560dd/src/fs.ts#L319">fs.ts:319</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2285,7 +2489,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>path: <span class="tsd-signature-type">PathLike</span></h5>
+									<h5>path: <a href="globals.html#pathlike" class="tsd-signature-type">PathLike</a></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>A path to a file. If a URL is provided, it must use the <code>file:</code> protocol.</p>
 									</div>
@@ -2302,13 +2506,13 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/15e6500/src/fs.ts#L320">fs.ts:320</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/03560dd/src/fs.ts#L320">fs.ts:320</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>path: <span class="tsd-signature-type">PathLike</span></h5>
+									<h5>path: <a href="globals.html#pathlike" class="tsd-signature-type">PathLike</a></h5>
 								</li>
 								<li>
 									<h5>options: <span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"buffer"</span></h5>
@@ -2328,7 +2532,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/15e6500/src/nextra/remove.ts#L22">nextra/remove.ts:22</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/03560dd/src/nextra/remove.ts#L22">nextra/remove.ts:22</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2364,16 +2568,45 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-function">
-					<a name="rename" class="tsd-anchor"></a>
-					<h3>rename</h3>
+					<a name="removedir" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> remove<wbr>Dir</h3>
 					<ul class="tsd-signatures tsd-kind-function">
-						<li class="tsd-signature tsd-kind-icon">rename<span class="tsd-signature-symbol">(</span>oldPath<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">PathLike</span>, newPath<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">PathLike</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">remove<wbr>Dir<span class="tsd-signature-symbol">(</span>myPath<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, options<span class="tsd-signature-symbol">: </span><a href="interfaces/removeoptions.html" class="tsd-signature-type">RemoveOptions</a>, originalEr<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/15e6500/src/fs.ts#L113">fs.ts:113</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/03560dd/src/nextra/remove.ts#L69">nextra/remove.ts:69</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>myPath: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>options: <a href="interfaces/removeoptions.html" class="tsd-signature-type">RemoveOptions</a></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> originalEr: <span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> =&nbsp;null</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function">
+					<a name="rename" class="tsd-anchor"></a>
+					<h3>rename</h3>
+					<ul class="tsd-signatures tsd-kind-function">
+						<li class="tsd-signature tsd-kind-icon">rename<span class="tsd-signature-symbol">(</span>oldPath<span class="tsd-signature-symbol">: </span><a href="globals.html#pathlike" class="tsd-signature-type">PathLike</a>, newPath<span class="tsd-signature-symbol">: </span><a href="globals.html#pathlike" class="tsd-signature-type">PathLike</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/03560dd/src/fs.ts#L113">fs.ts:113</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2384,14 +2617,14 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>oldPath: <span class="tsd-signature-type">PathLike</span></h5>
+									<h5>oldPath: <a href="globals.html#pathlike" class="tsd-signature-type">PathLike</a></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>A path to a file. If a URL is provided, it must use the <code>file:</code> protocol.
 										URL support is <em>experimental</em>.</p>
 									</div>
 								</li>
 								<li>
-									<h5>newPath: <span class="tsd-signature-type">PathLike</span></h5>
+									<h5>newPath: <a href="globals.html#pathlike" class="tsd-signature-type">PathLike</a></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>A path to a file. If a URL is provided, it must use the <code>file:</code> protocol.
 										URL support is <em>experimental</em>.</p>
@@ -2403,16 +2636,94 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-function">
-					<a name="rmdir" class="tsd-anchor"></a>
-					<h3>rmdir</h3>
+					<a name="resolvecopyoptions" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> resolve<wbr>Copy<wbr>Options</h3>
 					<ul class="tsd-signatures tsd-kind-function">
-						<li class="tsd-signature tsd-kind-icon">rmdir<span class="tsd-signature-symbol">(</span>path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">PathLike</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">resolve<wbr>Copy<wbr>Options<span class="tsd-signature-symbol">(</span>source<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, destination<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, options<span class="tsd-signature-symbol">: </span><a href="interfaces/copyoptions.html" class="tsd-signature-type">CopyOptions</a><span class="tsd-signature-symbol"> | </span><a href="globals.html#copyfilter" class="tsd-signature-type">CopyFilter</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="interfaces/copydata.html" class="tsd-signature-type">CopyData</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/15e6500/src/fs.ts#L139">fs.ts:139</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/03560dd/src/nextra/copy.ts#L55">nextra/copy.ts:55</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>source: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>destination: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>options: <a href="interfaces/copyoptions.html" class="tsd-signature-type">CopyOptions</a><span class="tsd-signature-symbol"> | </span><a href="globals.html#copyfilter" class="tsd-signature-type">CopyFilter</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="interfaces/copydata.html" class="tsd-signature-type">CopyData</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function">
+					<a name="resolveoptions" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> resolve<wbr>Options</h3>
+					<ul class="tsd-signatures tsd-kind-function">
+						<li class="tsd-signature tsd-kind-icon">resolve<wbr>Options<span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">?: </span><a href="interfaces/mkdirsoptions.html" class="tsd-signature-type">MkdirsOptions</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="interfaces/mkdirsoptions.html" class="tsd-signature-type">MkdirsOptions</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/03560dd/src/nextra/mkdirs.ts#L64">nextra/mkdirs.ts:64</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> options: <a href="interfaces/mkdirsoptions.html" class="tsd-signature-type">MkdirsOptions</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;{}</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="interfaces/mkdirsoptions.html" class="tsd-signature-type">MkdirsOptions</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function">
+					<a name="rimraf" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> rimraf</h3>
+					<ul class="tsd-signatures tsd-kind-function">
+						<li class="tsd-signature tsd-kind-icon">rimraf<span class="tsd-signature-symbol">(</span>myPath<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, options<span class="tsd-signature-symbol">: </span><a href="interfaces/removeoptions.html" class="tsd-signature-type">RemoveOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/03560dd/src/nextra/remove.ts#L42">nextra/remove.ts:42</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>myPath: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>options: <a href="interfaces/removeoptions.html" class="tsd-signature-type">RemoveOptions</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function">
+					<a name="rmdir" class="tsd-anchor"></a>
+					<h3>rmdir</h3>
+					<ul class="tsd-signatures tsd-kind-function">
+						<li class="tsd-signature tsd-kind-icon">rmdir<span class="tsd-signature-symbol">(</span>path<span class="tsd-signature-symbol">: </span><a href="globals.html#pathlike" class="tsd-signature-type">PathLike</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/03560dd/src/fs.ts#L139">fs.ts:139</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2423,10 +2734,36 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>path: <span class="tsd-signature-type">PathLike</span></h5>
+									<h5>path: <a href="globals.html#pathlike" class="tsd-signature-type">PathLike</a></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>A path to a file. If a URL is provided, it must use the <code>file:</code> protocol.</p>
 									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function">
+					<a name="rmkids" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> rmkids</h3>
+					<ul class="tsd-signatures tsd-kind-function">
+						<li class="tsd-signature tsd-kind-icon">rmkids<span class="tsd-signature-symbol">(</span>myPath<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, options<span class="tsd-signature-symbol">: </span><a href="interfaces/removeoptions.html" class="tsd-signature-type">RemoveOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/03560dd/src/nextra/remove.ts#L80">nextra/remove.ts:80</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>myPath: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>options: <a href="interfaces/removeoptions.html" class="tsd-signature-type">RemoveOptions</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -2443,7 +2780,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/15e6500/src/nextra/scan.ts#L31">nextra/scan.ts:31</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/03560dd/src/nextra/scan.ts#L31">nextra/scan.ts:31</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2479,16 +2816,74 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-function">
-					<a name="stat" class="tsd-anchor"></a>
-					<h3>stat</h3>
+					<a name="scandeep" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> scan<wbr>Deep</h3>
 					<ul class="tsd-signatures tsd-kind-function">
-						<li class="tsd-signature tsd-kind-icon">stat<span class="tsd-signature-symbol">(</span>path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">PathLike</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Stats</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">scan<wbr>Deep<span class="tsd-signature-symbol">(</span>dir<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, results<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Stats</span><span class="tsd-signature-symbol">&gt;</span>, level<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, options<span class="tsd-signature-symbol">: </span><a href="interfaces/scanoptions.html" class="tsd-signature-type">ScanOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Stats</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/15e6500/src/fs.ts#L222">fs.ts:222</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/03560dd/src/nextra/scan.ts#L15">nextra/scan.ts:15</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>dir: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>results: <span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Stats</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>level: <span class="tsd-signature-type">number</span></h5>
+								</li>
+								<li>
+									<h5>options: <a href="interfaces/scanoptions.html" class="tsd-signature-type">ScanOptions</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Stats</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function">
+					<a name="startcopy" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> start<wbr>Copy</h3>
+					<ul class="tsd-signatures tsd-kind-function">
+						<li class="tsd-signature tsd-kind-icon">start<wbr>Copy<span class="tsd-signature-symbol">(</span>mySource<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, options<span class="tsd-signature-symbol">: </span><a href="interfaces/copydata.html" class="tsd-signature-type">CopyData</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/03560dd/src/nextra/copy.ts#L77">nextra/copy.ts:77</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>mySource: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>options: <a href="interfaces/copydata.html" class="tsd-signature-type">CopyData</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function">
+					<a name="stat" class="tsd-anchor"></a>
+					<h3>stat</h3>
+					<ul class="tsd-signatures tsd-kind-function">
+						<li class="tsd-signature tsd-kind-icon">stat<span class="tsd-signature-symbol">(</span>path<span class="tsd-signature-symbol">: </span><a href="globals.html#pathlike" class="tsd-signature-type">PathLike</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Stats</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/03560dd/src/fs.ts#L222">fs.ts:222</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2499,7 +2894,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>path: <span class="tsd-signature-type">PathLike</span></h5>
+									<h5>path: <a href="globals.html#pathlike" class="tsd-signature-type">PathLike</a></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>A path to a file. If a URL is provided, it must use the <code>file:</code> protocol.</p>
 									</div>
@@ -2510,16 +2905,39 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-function">
-					<a name="symlink" class="tsd-anchor"></a>
-					<h3>symlink</h3>
+					<a name="stripbom" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> strip<wbr>Bom</h3>
 					<ul class="tsd-signatures tsd-kind-function">
-						<li class="tsd-signature tsd-kind-icon">symlink<span class="tsd-signature-symbol">(</span>target<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">PathLike</span>, path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">PathLike</span>, type<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">strip<wbr>Bom<span class="tsd-signature-symbol">(</span>content<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Buffer</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/15e6500/src/fs.ts#L198">fs.ts:198</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/03560dd/src/nextra/readJSON.ts#L39">nextra/readJSON.ts:39</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>content: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Buffer</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function">
+					<a name="symlink" class="tsd-anchor"></a>
+					<h3>symlink</h3>
+					<ul class="tsd-signatures tsd-kind-function">
+						<li class="tsd-signature tsd-kind-icon">symlink<span class="tsd-signature-symbol">(</span>target<span class="tsd-signature-symbol">: </span><a href="globals.html#pathlike" class="tsd-signature-type">PathLike</a>, path<span class="tsd-signature-symbol">: </span><a href="globals.html#pathlike" class="tsd-signature-type">PathLike</a>, type<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/03560dd/src/fs.ts#L198">fs.ts:198</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2530,13 +2948,13 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>target: <span class="tsd-signature-type">PathLike</span></h5>
+									<h5>target: <a href="globals.html#pathlike" class="tsd-signature-type">PathLike</a></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>A path to an existing file. If a URL is provided, it must use the <code>file:</code> protocol.</p>
 									</div>
 								</li>
 								<li>
-									<h5>path: <span class="tsd-signature-type">PathLike</span></h5>
+									<h5>path: <a href="globals.html#pathlike" class="tsd-signature-type">PathLike</a></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>A path to the new symlink. If a URL is provided, it must use the <code>file:</code> protocol.</p>
 									</div>
@@ -2563,7 +2981,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/15e6500/src/nextra/symlinkAtomic.ts#L15">nextra/symlinkAtomic.ts:15</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/03560dd/src/nextra/symlinkAtomic.ts#L15">nextra/symlinkAtomic.ts:15</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2605,6 +3023,55 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-function">
+					<a name="symlinkpaths" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> symlink<wbr>Paths</h3>
+					<ul class="tsd-signatures tsd-kind-function">
+						<li class="tsd-signature tsd-kind-icon">symlink<wbr>Paths<span class="tsd-signature-symbol">(</span>srcpath<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, dstPath<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="interfaces/symlinkpaths.html" class="tsd-signature-type">SymLinkPaths</a><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/03560dd/src/nextra/createSymlink.ts#L55">nextra/createSymlink.ts:55</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>srcpath: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>dstPath: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="interfaces/symlinkpaths.html" class="tsd-signature-type">SymLinkPaths</a><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function">
+					<a name="symlinktype" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> symlink<wbr>Type</h3>
+					<ul class="tsd-signatures tsd-kind-function">
+						<li class="tsd-signature tsd-kind-icon">symlink<wbr>Type<span class="tsd-signature-symbol">(</span>srcpath<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="globals.html#symlinktype" class="tsd-signature-type">SymLinkType</a><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/03560dd/src/nextra/createSymlink.ts#L68">nextra/createSymlink.ts:68</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>srcpath: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="globals.html#symlinktype" class="tsd-signature-type">SymLinkType</a><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function">
 					<a name="targz" class="tsd-anchor"></a>
 					<h3>targz</h3>
 					<ul class="tsd-signatures tsd-kind-function">
@@ -2614,7 +3081,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/15e6500/src/nextra/targz.ts#L19">nextra/targz.ts:19</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/03560dd/src/nextra/targz.ts#L19">nextra/targz.ts:19</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2662,7 +3129,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/15e6500/src/nextra/targzAtomic.ts#L12">nextra/targzAtomic.ts:12</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/03560dd/src/nextra/targzAtomic.ts#L12">nextra/targzAtomic.ts:12</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2701,13 +3168,13 @@
 					<a name="truncate" class="tsd-anchor"></a>
 					<h3>truncate</h3>
 					<ul class="tsd-signatures tsd-kind-function">
-						<li class="tsd-signature tsd-kind-icon">truncate<span class="tsd-signature-symbol">(</span>path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">PathLike</span>, len<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">truncate<span class="tsd-signature-symbol">(</span>path<span class="tsd-signature-symbol">: </span><a href="globals.html#pathlike" class="tsd-signature-type">PathLike</a>, len<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/15e6500/src/fs.ts#L122">fs.ts:122</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/03560dd/src/fs.ts#L122">fs.ts:122</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2718,7 +3185,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>path: <span class="tsd-signature-type">PathLike</span></h5>
+									<h5>path: <a href="globals.html#pathlike" class="tsd-signature-type">PathLike</a></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>A path to a file. If a URL is provided, it must use the <code>file:</code> protocol.</p>
 									</div>
@@ -2744,7 +3211,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/15e6500/src/nextra/unTargz.ts#L18">nextra/unTargz.ts:18</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/03560dd/src/nextra/unTargz.ts#L18">nextra/unTargz.ts:18</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2795,7 +3262,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/15e6500/src/nextra/unTargzAtomic.ts#L12">nextra/unTargzAtomic.ts:12</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/03560dd/src/nextra/unTargzAtomic.ts#L12">nextra/unTargzAtomic.ts:12</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2834,13 +3301,13 @@
 					<a name="unlink" class="tsd-anchor"></a>
 					<h3>unlink</h3>
 					<ul class="tsd-signatures tsd-kind-function">
-						<li class="tsd-signature tsd-kind-icon">unlink<span class="tsd-signature-symbol">(</span>path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">PathLike</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">unlink<span class="tsd-signature-symbol">(</span>path<span class="tsd-signature-symbol">: </span><a href="globals.html#pathlike" class="tsd-signature-type">PathLike</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/15e6500/src/fs.ts#L239">fs.ts:239</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/03560dd/src/fs.ts#L239">fs.ts:239</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2851,7 +3318,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>path: <span class="tsd-signature-type">PathLike</span></h5>
+									<h5>path: <a href="globals.html#pathlike" class="tsd-signature-type">PathLike</a></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>A path to a file. If a URL is provided, it must use the <code>file:</code> protocol.</p>
 									</div>
@@ -2865,13 +3332,13 @@
 					<a name="utimes" class="tsd-anchor"></a>
 					<h3>utimes</h3>
 					<ul class="tsd-signatures tsd-kind-function">
-						<li class="tsd-signature tsd-kind-icon">utimes<span class="tsd-signature-symbol">(</span>path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">PathLike</span>, atime<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Date</span>, mtime<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Date</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">utimes<span class="tsd-signature-symbol">(</span>path<span class="tsd-signature-symbol">: </span><a href="globals.html#pathlike" class="tsd-signature-type">PathLike</a>, atime<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Date</span>, mtime<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Date</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/15e6500/src/fs.ts#L300">fs.ts:300</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/03560dd/src/fs.ts#L300">fs.ts:300</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2882,7 +3349,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>path: <span class="tsd-signature-type">PathLike</span></h5>
+									<h5>path: <a href="globals.html#pathlike" class="tsd-signature-type">PathLike</a></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>A path to a file. If a URL is provided, it must use the <code>file:</code> protocol.</p>
 									</div>
@@ -2915,7 +3382,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/15e6500/src/fs.ts#L83">fs.ts:83</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/03560dd/src/fs.ts#L83">fs.ts:83</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2969,7 +3436,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/15e6500/src/fs.ts#L100">fs.ts:100</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/03560dd/src/fs.ts#L100">fs.ts:100</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3014,13 +3481,13 @@
 					<a name="writefile" class="tsd-anchor"></a>
 					<h3>write<wbr>File</h3>
 					<ul class="tsd-signatures tsd-kind-function">
-						<li class="tsd-signature tsd-kind-icon">write<wbr>File<span class="tsd-signature-symbol">(</span>path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">PathLike</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">FileHandle</span>, data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">write<wbr>File<span class="tsd-signature-symbol">(</span>path<span class="tsd-signature-symbol">: </span><a href="globals.html#pathlike" class="tsd-signature-type">PathLike</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">FileHandle</span>, data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/15e6500/src/fs.ts#L349">fs.ts:349</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/03560dd/src/fs.ts#L349">fs.ts:349</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3032,7 +3499,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>path: <span class="tsd-signature-type">PathLike</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">FileHandle</span></h5>
+									<h5>path: <a href="globals.html#pathlike" class="tsd-signature-type">PathLike</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">FileHandle</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>A path to a file. If a URL is provided, it must use the <code>file:</code> protocol.
 											URL support is <em>experimental</em>.
@@ -3070,7 +3537,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/15e6500/src/nextra/writeFileAtomic.ts#L26">nextra/writeFileAtomic.ts:26</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/03560dd/src/nextra/writeFileAtomic.ts#L26">nextra/writeFileAtomic.ts:26</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3119,7 +3586,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/15e6500/src/nextra/writeJSON.ts#L42">nextra/writeJSON.ts:42</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/03560dd/src/nextra/writeJSON.ts#L42">nextra/writeJSON.ts:42</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3158,7 +3625,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/15e6500/src/nextra/writeJSON.ts#L43">nextra/writeJSON.ts:43</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/03560dd/src/nextra/writeJSON.ts#L43">nextra/writeJSON.ts:43</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -3190,7 +3657,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/15e6500/src/nextra/writeJSONAtomic.ts#L19">nextra/writeJSONAtomic.ts:19</a></li>
+									<li>Defined in <a href="https://github.com/bdistin/fs-nextra/blob/03560dd/src/nextra/writeJSONAtomic.ts#L19">nextra/writeJSONAtomic.ts:19</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3244,6 +3711,9 @@
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 					<li class=" tsd-kind-interface">
+						<a href="interfaces/copydata.html" class="tsd-kind-icon">Copy<wbr>Data</a>
+					</li>
+					<li class=" tsd-kind-interface">
 						<a href="interfaces/copyoptions.html" class="tsd-kind-icon">Copy<wbr>Options</a>
 					</li>
 					<li class=" tsd-kind-interface">
@@ -3268,10 +3738,19 @@
 						<a href="interfaces/scanoptions.html" class="tsd-kind-icon">Scan<wbr>Options</a>
 					</li>
 					<li class=" tsd-kind-interface">
+						<a href="interfaces/symlinkpaths.html" class="tsd-kind-icon">Sym<wbr>Link<wbr>Paths</a>
+					</li>
+					<li class=" tsd-kind-interface">
 						<a href="interfaces/writeoptions.html" class="tsd-kind-icon">Write<wbr>Options</a>
 					</li>
 					<li class=" tsd-kind-type-alias">
 						<a href="globals.html#bufferencoding" class="tsd-kind-icon">Buffer<wbr>Encoding</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="globals.html#copyfilter" class="tsd-kind-icon">Copy<wbr>Filter</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="globals.html#pathlike" class="tsd-kind-icon">Path<wbr>Like</a>
 					</li>
 					<li class=" tsd-kind-type-alias">
 						<a href="globals.html#symlinktype" class="tsd-kind-icon">Sym<wbr>Link<wbr>Type</a>
@@ -3292,10 +3771,16 @@
 						<a href="globals.html#copy" class="tsd-kind-icon">copy</a>
 					</li>
 					<li class=" tsd-kind-function">
+						<a href="globals.html#copydirectory" class="tsd-kind-icon">copy<wbr>Directory</a>
+					</li>
+					<li class=" tsd-kind-function">
 						<a href="globals.html#copyfile" class="tsd-kind-icon">copy<wbr>File</a>
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="globals.html#copyfileatomic" class="tsd-kind-icon">copy<wbr>File<wbr>Atomic</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#copyother" class="tsd-kind-icon">copy<wbr>Other</a>
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="globals.html#createfile" class="tsd-kind-icon">create<wbr>File</a>
@@ -3334,6 +3819,9 @@
 						<a href="globals.html#fdatasync" class="tsd-kind-icon">fdatasync</a>
 					</li>
 					<li class=" tsd-kind-function">
+						<a href="globals.html#fixwineperm" class="tsd-kind-icon">fix<wbr>WinEPERM</a>
+					</li>
+					<li class=" tsd-kind-function">
 						<a href="globals.html#fstat" class="tsd-kind-icon">fstat</a>
 					</li>
 					<li class=" tsd-kind-function">
@@ -3350,6 +3838,12 @@
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="globals.html#gzipatomic" class="tsd-kind-icon">gzip<wbr>Atomic</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#invalidwin32path" class="tsd-kind-icon">invalid<wbr>Win32<wbr>Path</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#iswritable" class="tsd-kind-icon">is<wbr>Writable</a>
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="globals.html#lchmod" class="tsd-kind-icon">lchmod</a>
@@ -3418,22 +3912,52 @@
 						<a href="globals.html#remove" class="tsd-kind-icon">remove</a>
 					</li>
 					<li class=" tsd-kind-function">
+						<a href="globals.html#removedir" class="tsd-kind-icon">remove<wbr>Dir</a>
+					</li>
+					<li class=" tsd-kind-function">
 						<a href="globals.html#rename" class="tsd-kind-icon">rename</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#resolvecopyoptions" class="tsd-kind-icon">resolve<wbr>Copy<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#resolveoptions" class="tsd-kind-icon">resolve<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#rimraf" class="tsd-kind-icon">rimraf</a>
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="globals.html#rmdir" class="tsd-kind-icon">rmdir</a>
 					</li>
 					<li class=" tsd-kind-function">
+						<a href="globals.html#rmkids" class="tsd-kind-icon">rmkids</a>
+					</li>
+					<li class=" tsd-kind-function">
 						<a href="globals.html#scan" class="tsd-kind-icon">scan</a>
 					</li>
 					<li class=" tsd-kind-function">
+						<a href="globals.html#scandeep" class="tsd-kind-icon">scan<wbr>Deep</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#startcopy" class="tsd-kind-icon">start<wbr>Copy</a>
+					</li>
+					<li class=" tsd-kind-function">
 						<a href="globals.html#stat" class="tsd-kind-icon">stat</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#stripbom" class="tsd-kind-icon">strip<wbr>Bom</a>
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="globals.html#symlink" class="tsd-kind-icon">symlink</a>
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="globals.html#symlinkatomic" class="tsd-kind-icon">symlink<wbr>Atomic</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#symlinkpaths" class="tsd-kind-icon">symlink<wbr>Paths</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#symlinktype" class="tsd-kind-icon">symlink<wbr>Type</a>
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="globals.html#targz" class="tsd-kind-icon">targz</a>
