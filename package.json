@@ -51,7 +51,7 @@
     "source-map-support": "^0.5.16",
     "tap-xunit": "^2.4.1",
     "ts-node": "^8.6.2",
-    "typedoc": "^0.16.5",
+    "typedoc": "^0.16.6",
     "typescript": "^3.7.4"
   },
   "repository": {
