@@ -59,7 +59,6 @@
     "url": "https://github.com/bdistin/fs-nextra"
   },
   "ava": {
-    "compileEnhancements": false,
     "extensions": [
       "ts"
     ],
