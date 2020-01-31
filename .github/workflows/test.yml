@@ -95,7 +95,7 @@ jobs:
         name: Linux-13
         path: .nyc_output
     - name: check files
-      run: dir *.* /w /s
+      run: dir/b/a-d .nyc_output | find /v /c "::"
     - name: Report
       run: yarn coverage:report
     - uses: actions/upload-artifact@v1
