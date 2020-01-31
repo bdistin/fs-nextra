@@ -66,8 +66,8 @@ jobs:
     - uses: actions/download-artifact@v1
       name: Download Windows-12 Coverage Data
       with:
-          name: Windows-12
-          path: .nyc_output
+        name: Windows-12
+        path: .nyc_output
     - uses: actions/download-artifact@v1
       name: Download Windows-13 Coverage Data
       with:
