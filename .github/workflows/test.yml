@@ -35,6 +35,7 @@ jobs:
     - name: Test
       run: yarn coverage
     - uses: actions/upload-artifact@v1
+      name: Upload Coverage Data
       with:
         name: ${{ runner.os }}-${{ matrix.node_version }}
         path: .nyc_output
@@ -57,36 +58,43 @@ jobs:
         key: ${{ runner.os }}-${{ matrix.node_version }}-${{ hashFiles(matrix.os == 'windows-latest' && '**\yarn.lock' || '**/yarn.lock') }}
     - name: Install Dependencies
       run: yarn
-    - name: Build Project
-      run: yarn build
     - uses: actions/download-artifact@v1
       with:
         name: Windows-10
+        path: .nyc_output
     - uses: actions/download-artifact@v1
       with:
         name: Windows-12
+        path: .nyc_output
     - uses: actions/download-artifact@v1
       with:
         name: Windows-13
+        path: .nyc_output
     - uses: actions/download-artifact@v1
       with:
         name: macOS-10
+        path: .nyc_output
     - uses: actions/download-artifact@v1
       with:
         name: macOS-12
+        path: .nyc_output
     - uses: actions/download-artifact@v1
       with:
         name: macOS-13
+        path: .nyc_output
     - uses: actions/download-artifact@v1
       with:
         name: Linux-10
+        path: .nyc_output
     - uses: actions/download-artifact@v1
       with:
         name: Linux-12
+        path: .nyc_output
     - uses: actions/download-artifact@v1
       with:
         name: Linux-13
-    - name: Test
+        path: .nyc_output
+    - name: Report
       run: yarn coverage:report
     - uses: actions/upload-artifact@v1
       with:
