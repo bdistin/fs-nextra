@@ -44,6 +44,7 @@ const rimraf = async (myPath: string, options: RemoveOptions): Promise<void> => 
 		const stats = await lstat(myPath);
 		if (stats.isDirectory()) return removeDir(myPath, options);
 	} catch (err) {
+		/* istanbul ignore next: Windows */
 		if (isWindows && err.code === 'EPERM') return fixWinEPERM(myPath, options);
 		throw err;
 	}
@@ -59,6 +60,7 @@ const rimraf = async (myPath: string, options: RemoveOptions): Promise<void> => 
 	}
 };
 
+/* istanbul ignore next: Windows */
 const fixWinEPERM = async (myPath: string, options: RemoveOptions): Promise<void> => {
 	await chmod(myPath, 0o666);
 	return rimraf(myPath, options);
