@@ -33,4 +33,80 @@ jobs:
     - name: Build Project
       run: yarn build
     - name: Test
-      run: yarn test
+      run: yarn coverage
+    - uses: actions/upload-artifact@v1
+      name: Upload Coverage Data
+      with:
+        name: ${{ runner.os }}-${{ matrix.node_version }}
+        path: .nyc_output
+  report:
+    needs: test
+    name: Generate Report
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout Project
+      uses: actions/checkout@v1
+    - name: Use Node.js 10
+      uses: actions/setup-node@v1
+      with:
+        node-version: 10
+    - name: Restore CI Cache
+      uses: actions/cache@v1
+      with:
+        path: node_modules
+        key: Windows-10-${{ hashFiles('**\yarn.lock') }}
+    - name: Install Dependencies
+      run: yarn
+    - uses: actions/download-artifact@v1
+      name: Download Windows-10 Coverage Data
+      with:
+        name: Windows-10
+        path: .nyc_output
+    - uses: actions/download-artifact@v1
+      name: Download Windows-12 Coverage Data
+      with:
+        name: Windows-12
+        path: .nyc_output
+    - uses: actions/download-artifact@v1
+      name: Download Windows-13 Coverage Data
+      with:
+        name: Windows-13
+        path: .nyc_output
+    - uses: actions/download-artifact@v1
+      name: Download macOS-10 Coverage Data
+      with:
+        name: macOS-10
+        path: .nyc_output
+    - uses: actions/download-artifact@v1
+      name: Download macOS-12 Coverage Data
+      with:
+        name: macOS-12
+        path: .nyc_output
+    - uses: actions/download-artifact@v1
+      name: Download macOS-13 Coverage Data
+      with:
+        name: macOS-13
+        path: .nyc_output
+    - uses: actions/download-artifact@v1
+      name: Download Linux-10 Coverage Data
+      with:
+        name: Linux-10
+        path: .nyc_output
+    - uses: actions/download-artifact@v1
+      name: Download Linux-12 Coverage Data
+      with:
+        name: Linux-12
+        path: .nyc_output
+    - uses: actions/download-artifact@v1
+      name: Download Linux-13 Coverage Data
+      with:
+        name: Linux-13
+        path: .nyc_output
+    - name: Report
+      run: yarn coverage:report
+    - uses: actions/upload-artifact@v1
+      name: Upload Report
+      with:
+        name: report
+        path: coverage

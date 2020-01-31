@@ -36,7 +36,6 @@ export interface MkdirsOptions {
 export default async function mkdirs(path: string, options?: MkdirsOptions | number): Promise<void> {
 	const dirOptions = resolveOptions(options);
 
-	/* istanbul ignore next: Windows */
 	if (isWindows && invalidWin32Path(path)) {
 		const errInval = new Error(`FS-NEXTRA: ${path} contains invalid WIN32 path characters.`);
 		// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
@@ -66,8 +65,7 @@ const resolveOptions = (options: MkdirsOptions | number = {}): MkdirsOptions => 
 	mode: typeof options === 'number' ? options : options.mode || 0o0777 & ~process.umask()
 });
 
-/* istanbul ignore next: Windows */
 const invalidWin32Path = (myPath: string): boolean => {
 	const root = normalize(resolve(myPath)).split(sep);
-	return /[<>:"|?*]/.test(root.length ? myPath.replace(root[0], '') : myPath);
+	return /[<>:"|?*]/.test(myPath.replace(root[0], ''));
 };

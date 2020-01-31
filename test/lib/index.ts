@@ -3,6 +3,8 @@ import { randomBytes } from 'crypto';
 import { join } from 'path';
 import * as fs from 'fs';
 
+export const isWindows: boolean = process.platform === 'win32';
+
 export const uuid = (): string => {
 	const id = randomBytes(32).toString('hex');
 	return (Array(32).join('0') + id).slice(-32).replace(/^.{8}|.{4}(?!$)/g, '$&-');

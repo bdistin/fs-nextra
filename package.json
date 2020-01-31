@@ -10,7 +10,7 @@
     "test:lint": "eslint --ext ts src test",
     "test:coverage": "yarn coverage && nyc check-coverage --lines 90 --functions 90 --branches 90",
     "coverage": "npx nyc --require ts-node/register --require source-map-support/register npm test",
-    "coverage:azure": "npx nyc report --reporter=cobertura",
+    "coverage:report": "npx nyc report --reporter=html",
     "docs": "typedoc --excludeNotExported --exclude ./src/utils/**/*.ts --mode file --out ./dist/ ./src/",
     "lint": "eslint --fix --ext ts src test"
   },
@@ -49,7 +49,6 @@
     "eslint-config-klasa": "dirigeants/klasa-lint",
     "nyc": "^15.0.0",
     "source-map-support": "^0.5.16",
-    "tap-xunit": "^2.4.1",
     "ts-node": "^8.6.2",
     "typedoc": "^0.16.9",
     "typescript": "^3.7.5"
