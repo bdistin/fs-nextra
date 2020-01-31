@@ -67,5 +67,5 @@ const resolveOptions = (options: MkdirsOptions | number = {}): MkdirsOptions => 
 
 const invalidWin32Path = (myPath: string): boolean => {
 	const root = normalize(resolve(myPath)).split(sep);
-	return /[<>:"|?*]/.test(root.length ? myPath.replace(root[0], '') : myPath);
+	return /[<>:"|?*]/.test(myPath.replace(root[0], ''));
 };
