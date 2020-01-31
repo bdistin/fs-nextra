@@ -27,6 +27,7 @@ export default async function remove(path: string, options: RemoveOptions = {}):
 			await rimraf(path, options);
 			break;
 		} catch (err) {
+			/* istanbul ignore next: Windows */
 			if (isWindows && (err.code === 'EBUSY' || err.code === 'ENOTEMPTY' || err.code === 'EPERM')) {
 				await setTimeoutPromise(buysTries * 100);
 				continue;
@@ -50,6 +51,7 @@ const rimraf = async (myPath: string, options: RemoveOptions): Promise<void> => 
 	try {
 		return await unlink(myPath);
 	} catch (er) {
+		/* istanbul ignore next: Windows */
 		if (er.code === 'EPERM') return isWindows ? fixWinEPERM(myPath, options) : removeDir(myPath, options, er);
 		/* istanbul ignore next: Difficult to reproduce */
 		if (er.code === 'EISDIR') return removeDir(myPath, options, er);
@@ -57,6 +59,7 @@ const rimraf = async (myPath: string, options: RemoveOptions): Promise<void> => 
 	}
 };
 
+/* istanbul ignore next: Windows */
 const fixWinEPERM = async (myPath: string, options: RemoveOptions): Promise<void> => {
 	await chmod(myPath, 0o666);
 	return rimraf(myPath, options);
