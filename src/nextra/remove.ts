@@ -59,7 +59,6 @@ const rimraf = async (myPath: string, options: RemoveOptions): Promise<void> => 
 	}
 };
 
-/* istanbul ignore next: Windows */
 const fixWinEPERM = async (myPath: string, options: RemoveOptions): Promise<void> => {
 	await chmod(myPath, 0o666);
 	return rimraf(myPath, options);

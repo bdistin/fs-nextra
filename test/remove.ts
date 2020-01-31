@@ -13,6 +13,17 @@ ava('File', async (test): Promise<void> => {
 	await test.throwsAsync(fs.access(file));
 });
 
+ava('ReadOnly File', async (test): Promise<void> => {
+	test.plan(2);
+
+	const file = tempFile();
+	await fs.chmod(file, 0o444);
+	const retVal = await nextra.remove(file);
+
+	test.is(retVal, undefined);
+	await test.throwsAsync(fs.access(file));
+});
+
 ava('Empty Directory', async (test): Promise<void> => {
 	test.plan(2);
 
