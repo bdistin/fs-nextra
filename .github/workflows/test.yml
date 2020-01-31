@@ -42,7 +42,7 @@ jobs:
   report:
     needs: test
     name: Generate Report
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
     - name: Checkout Project
@@ -94,6 +94,8 @@ jobs:
       with:
         name: Linux-13
         path: .nyc_output
+    - name: check files
+      run: dir *.* /w /s
     - name: Report
       run: yarn coverage:report
     - uses: actions/upload-artifact@v1
