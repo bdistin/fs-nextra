@@ -23,7 +23,9 @@ export default class Untar extends Writable {
 
 		if (this.header) {
 			if (this.file.length >= this.header.size) {
-				this.send();
+				if (this.listenerCount('file')) this.emit('file', this.header, this.slice(this.header.size));
+				else this.queue.push({ header: this.header, file: this.slice(this.header.size) });
+				this.header = null;
 				return this._write(Buffer.alloc(0), encoding, next);
 			}
 			return breakSync(next);
@@ -49,13 +51,6 @@ export default class Untar extends Writable {
 		this.file = this.file.slice(length);
 		this.totalRead += length;
 		return buffer;
-	}
-
-	private send(): void {
-		if (!this.header) return;
-		if (this.listenerCount('file')) this.emit('file', this.header, this.slice(this.header.size));
-		else this.queue.push({ header: this.header, file: this.slice(this.header.size) });
-		this.header = null;
 	}
 
 	private next(): Promise<{ header: Header, file: Buffer }> {
