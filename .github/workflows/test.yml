@@ -38,3 +38,57 @@ jobs:
       with:
         name: ${{ runner.os }}-${{ matrix.node_version }}
         path: .nyc_output
+  report:
+    needs: test
+    name: Generate Report
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Project
+      uses: actions/checkout@v1
+    - name: Use Node.js ${{ matrix.node_version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node_version }}
+    - name: Restore CI Cache
+      uses: actions/cache@v1
+      with:
+        path: node_modules
+        key: ${{ runner.os }}-${{ matrix.node_version }}-${{ hashFiles(matrix.os == 'windows-latest' && '**\yarn.lock' || '**/yarn.lock') }}
+    - name: Install Dependencies
+      run: yarn
+    - name: Build Project
+      run: yarn build
+    - uses: actions/download-artifact@v1
+      with:
+        name: Windows-10
+    - uses: actions/download-artifact@v1
+      with:
+        name: Windows-12
+    - uses: actions/download-artifact@v1
+      with:
+        name: Windows-13
+    - uses: actions/download-artifact@v1
+      with:
+        name: macOS-10
+    - uses: actions/download-artifact@v1
+      with:
+        name: macOS-12
+    - uses: actions/download-artifact@v1
+      with:
+        name: macOS-13
+    - uses: actions/download-artifact@v1
+      with:
+        name: Linux-10
+    - uses: actions/download-artifact@v1
+      with:
+        name: Linux-12
+    - uses: actions/download-artifact@v1
+      with:
+        name: Linux-13
+    - name: Test
+      run: yarn coverage:report
+    - uses: actions/upload-artifact@v1
+      with:
+        name: report
+        path: coverage
