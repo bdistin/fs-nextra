@@ -37,6 +37,7 @@ export default class Header {
 	public constructor(data: HeaderFormat | Buffer) {
 		const headerData = Header.resolve(data);
 
+		/* istanbul ignore next: Requires a tar made by another program */
 		this.filename = headerData.filename || '';
 		this.mode = headerData.mode;
 		this.uid = headerData.uid;
@@ -45,6 +46,7 @@ export default class Header {
 		this.mtime = headerData.mtime;
 		this.type = headerData.type || 0;
 		this.linkName = headerData.linkName || '';
+		/* istanbul ignore next: Requires a tar made by another program */
 		this.ustar = headerData.ustar || '';
 		this.owner = headerData.owner || '';
 		this.group = headerData.group || '';
@@ -52,6 +54,7 @@ export default class Header {
 		this.minorNumber = headerData.minorNumber || 0;
 		this.filenamePrefix = headerData.filenamePrefix || '';
 
+		/* istanbul ignore next: Requires a bad tar file */
 		if (headerData.checksum && headerData.checksum !== this.checksum) throw new Error(`Checksum not equal: ${headerData.checksum} != ${this.checksum}`);
 	}
 
@@ -66,6 +69,7 @@ export default class Header {
 		// blank checksum
 		checksum += Header.checksum('        ');
 		checksum += Header.checksum(Header.pad(this.type, 0));
+		/* istanbul ignore next: Requires a tar made by another program */
 		if (!/ustar/.test(this.ustar)) return checksum;
 		checksum += Header.checksum(this.ustar);
 		checksum += Header.checksum(this.owner);
@@ -133,6 +137,7 @@ export default class Header {
 
 	private static readString(buffer: Buffer): string {
 		for (let i = 0, { length } = buffer; i < length; i++) if (buffer[i] === 0) return buffer.toString('utf8', 0, i);
+		/* istanbul ignore next: Probably wont happen */
 		return '';
 	}
 
