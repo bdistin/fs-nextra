@@ -95,7 +95,8 @@ jobs:
         name: Linux-13
         path: .nyc_output
     - name: check files
-      run: dir/b/a-d .nyc_output | find /v /c "::"
+      run: (Get-ChildItem -recurse .nyc_output).Count
+      shell: pwsh
     - name: Report
       run: yarn coverage:report
     - uses: actions/upload-artifact@v1
