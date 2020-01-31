@@ -62,3 +62,11 @@ ava('Bad filename Windows', async (test): Promise<void> => {
 	const dir = `${tempDirLoc()}?`;
 	await test.throwsAsync(nextra.ensureDir(dir));
 });
+
+ava('RootPath Windows', async (test): Promise<void> => {
+	if (!isWindows) {
+		test.pass();
+		return;
+	}
+	await test.throwsAsync(nextra.ensureDir('/'));
+});
