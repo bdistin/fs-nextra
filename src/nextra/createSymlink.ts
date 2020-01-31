@@ -70,7 +70,6 @@ const symlinkType = async (srcpath: string): Promise<SymLinkType> => {
 		const stats = await lstat(srcpath);
 		return stats.isDirectory() ? 'dir' : 'file';
 	} catch (err) {
-		/* istanbul ignore next: Windows */
 		return 'file';
 	}
 };
