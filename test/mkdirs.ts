@@ -1,6 +1,6 @@
 import ava from 'ava';
 import { promises as fs } from 'fs';
-import { tempDirLoc, tempDir, tempFile } from './lib';
+import { tempDirLoc, tempDir, tempFile, isWindows } from './lib';
 import * as nextra from '../dist';
 
 ava('Pre-Existing Directory', async (test): Promise<void> => {
@@ -51,5 +51,11 @@ ava('Recursive', async (test): Promise<void> => {
 
 ava('Pre-Existing File', async (test): Promise<void> => {
 	const dir = tempFile();
+	await test.throwsAsync(nextra.ensureDir(dir));
+});
+
+ava('Bad filename Windows', async (test): Promise<void> => {
+	if (!isWindows) test.pass();
+	const dir = `${tempDirLoc()}?`;
 	await test.throwsAsync(nextra.ensureDir(dir));
 });
