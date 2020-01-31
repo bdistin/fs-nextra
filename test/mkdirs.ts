@@ -68,5 +68,5 @@ ava('RootPath Windows', async (test): Promise<void> => {
 		test.pass();
 		return;
 	}
-	await test.throwsAsync(nextra.ensureDir('/'));
+	await test.notThrowsAsync(nextra.ensureDir('/'));
 });
