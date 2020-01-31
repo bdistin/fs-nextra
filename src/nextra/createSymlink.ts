@@ -66,10 +66,6 @@ const symlinkPaths = async (srcpath: string, dstPath: string): Promise<SymLinkPa
 };
 
 const symlinkType = async (srcpath: string): Promise<SymLinkType> => {
-	try {
-		const stats = await lstat(srcpath);
-		return stats.isDirectory() ? 'dir' : 'file';
-	} catch (err) {
-		return 'file';
-	}
+	const stats = await lstat(srcpath);
+	return stats.isDirectory() ? 'dir' : 'file';
 };
