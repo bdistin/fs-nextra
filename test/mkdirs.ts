@@ -55,7 +55,10 @@ ava('Pre-Existing File', async (test): Promise<void> => {
 });
 
 ava('Bad filename Windows', async (test): Promise<void> => {
-	if (!isWindows) return test.pass();
+	if (!isWindows) {
+		test.pass();
+		return;
+	}
 	const dir = `${tempDirLoc()}?`;
 	await test.throwsAsync(nextra.ensureDir(dir));
 });
