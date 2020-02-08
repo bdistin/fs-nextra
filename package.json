@@ -8,7 +8,7 @@
     "build": "tsc",
     "test": "ava",
     "test:lint": "eslint --ext ts src test",
-    "test:coverage": "yarn coverage && nyc check-coverage --lines 90 --functions 90 --branches 90",
+    "test:coverage": "npx nyc check-coverage --lines 90 --functions 90 --branches 90",
     "coverage": "npx nyc --require ts-node/register --require source-map-support/register npm test",
     "coverage:report": "npx nyc report --reporter=html",
     "docs": "typedoc --excludeNotExported --exclude ./src/utils/**/*.ts --mode file --out ./dist/ ./src/",

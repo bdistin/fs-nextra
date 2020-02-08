@@ -110,3 +110,5 @@ jobs:
       with:
         name: report
         path: coverage
+    - name: Test Cross Platform Coverage
+      run: yarn test:coverage
