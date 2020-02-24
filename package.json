@@ -6,7 +6,7 @@
   "scripts": {
     "prepublishOnly": "yarn build",
     "build": "tsc",
-    "test": "ava",
+    "test": "ava --timeout=20s",
     "test:lint": "eslint --ext ts src test",
     "test:coverage": "npx nyc check-coverage --lines 90 --functions 90 --branches 90",
     "coverage": "npx nyc --require ts-node/register --require source-map-support/register npm test",
