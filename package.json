@@ -6,7 +6,7 @@
   "scripts": {
     "prepublishOnly": "yarn build",
     "build": "tsc",
-    "test": "ava",
+    "test": "ava --timeout=20s",
     "test:lint": "eslint --ext ts src test",
     "test:coverage": "npx nyc check-coverage --lines 90 --functions 90 --branches 90",
     "coverage": "npx nyc --require ts-node/register --require source-map-support/register npm test",
@@ -51,7 +51,7 @@
     "source-map-support": "^0.5.16",
     "ts-node": "^8.6.2",
     "typedoc": "^0.16.10",
-    "typescript": "^3.7.5"
+    "typescript": "^3.8.2"
   },
   "repository": {
     "type": "git",
