@@ -379,5 +379,15 @@ export function readFile(path: PathLike | fs.promises.FileHandle, options?: { en
 	return fs.promises.readFile(path, options);
 }
 
+/**
+ * [fs.promises] Asynchronously reads a directory.
+ * @param path A path to a file.
+ * @param options An object that may contain an optional buffer size.
+ * If a buffer size is not provided, it defaults to `32`.
+ */
+export function opendir(path: string, options?: { encoding?: BufferEncoding, bufferSize?: number }): Promise<fs.Dir> {
+	return fs.promises.opendir(path, options);
+}
+
 
 /* eslint-enable max-len */
