@@ -117,7 +117,7 @@ export default class Header {
 			type: Header.readInt(data.slice(156, 157)),
 			linkName: Header.readString(data.slice(157, 257)),
 			ustar: Header.readString(data.slice(257, 265)),
-			owner: Header.readString(data.slice(256, 297)),
+			owner: Header.readString(data.slice(265, 297)),
 			group: Header.readString(data.slice(297, 329)),
 			majorNumber: Header.readInt(data.slice(329, 337)),
 			minorNumber: Header.readInt(data.slice(337, 345)),
