@@ -13,7 +13,7 @@ export interface RemoveOptions {
 }
 
 /**
- * Removes a single file or single directory with no children.
+ * Recursively deletes directories and files.
  * @function remove
  * @memberof fsn/nextra
  * @param path The path to remove
