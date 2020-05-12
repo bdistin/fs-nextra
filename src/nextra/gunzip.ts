@@ -1,8 +1,8 @@
 import { createGunzip } from 'zlib';
+import { createWriteStream, createReadStream } from 'fs';
 
-import { createWriteStream, createReadStream } from '../fs';
 import { pipelinePromise } from '../utils/util';
-import gunzipAtomic from './gunzipAtomic';
+import { gunzipAtomic } from './gunzipAtomic';
 
 /**
  * Un-Gzips a file
@@ -12,7 +12,7 @@ import gunzipAtomic from './gunzipAtomic';
  * @param inputFile The filepath of the archive
  * @param atomic If the unzip file should be created atomically
  */
-export default async function gzip(fileName: string, inputFile: string, atomic = false): Promise<void> {
+export async function gunzip(fileName: string, inputFile: string, atomic = false): Promise<void> {
 	if (atomic) return gunzipAtomic(fileName, inputFile);
 
 	return pipelinePromise(

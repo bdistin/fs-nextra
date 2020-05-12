@@ -1,4 +1,4 @@
-import { access } from '../fs';
+import { promises as fsp } from 'fs';
 
 /**
  * Checks if a path exists.
@@ -6,9 +6,9 @@ import { access } from '../fs';
  * @memberof fsn/nextra
  * @param path The path to check
  */
-export default async function pathExists(path: string): Promise<boolean> {
+export async function pathExists(path: string): Promise<boolean> {
 	try {
-		await access(path);
+		await fsp.access(path);
 		return true;
 	} catch (err) {
 		return false;

@@ -1,10 +1,9 @@
 import { dirname } from 'path';
+import { promises as fsp } from 'fs';
 
-import { writeFile } from '../fs';
-
-import writeFileAtomic from './writeFileAtomic';
-import mkdirs from './mkdirs';
-import pathExists from './pathExists';
+import { writeFileAtomic } from './writeFileAtomic';
+import { mkdirs } from './mkdirs';
+import { pathExists } from './pathExists';
 
 /**
  * Creates an empty file, making all folders required to satisfy the given file path.
@@ -20,11 +19,13 @@ import pathExists from './pathExists';
  * @param file Path of the file you want to create
  * @param atomic Whether the operation should run atomically
  */
-export default async function createFile(file: string, atomic = false): Promise<void> {
+export async function createFile(file: string, atomic = false): Promise<void> {
 	if (await pathExists(file)) return;
 
 	await mkdirs(dirname(file));
 
-	const writeMethod = atomic ? writeFileAtomic : writeFile;
+	const writeMethod = atomic ? writeFileAtomic : fsp.writeFile;
 	await writeMethod(file, '');
 }
+
+export const ensureFile = createFile;

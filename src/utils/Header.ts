@@ -17,7 +17,7 @@ export interface HeaderFormat {
 	padding?: any;
 }
 
-export default class Header {
+export class Header {
 
 	public filename: string;
 	public mode: number;

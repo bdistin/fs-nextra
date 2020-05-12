@@ -1,4 +1,4 @@
-import { default as writeJSON, JsonOptions } from './writeJSON';
+import { writeJSON, JsonOptions } from './writeJSON';
 
 /**
  * Writes a Javascript Object to file as JSON atomically.
@@ -16,6 +16,8 @@ import { default as writeJSON, JsonOptions } from './writeJSON';
  * @param object The javascript object you would like to write to file
  * @param options The options to pass JSON.stringify and writeFile
  */
-export default async function writeJSONAtomic(file: string, object: any, options: JsonOptions = {}): Promise<void> {
+export async function writeJSONAtomic(file: string, object: any, options: JsonOptions = {}): Promise<void> {
 	return writeJSON(file, object, options, true);
 }
+
+export const writeJsonAtomic = writeJSONAtomic;

@@ -1,7 +1,7 @@
-import { tempFile } from '../utils/util';
-import { writeFile } from '../fs';
+import { promises as fsp } from 'fs';
 
-import move from './move';
+import { tempFile } from '../utils/util';
+import { move } from './move';
 
 /**
  * @typedef {Object} WriteOptions
@@ -23,8 +23,8 @@ export interface WriteOptions {
  * @param data The data to write to file
  * @param options The write options or the encoding string.
  */
-export default async function writeFileAtomic(file: string, data: string | Buffer | Uint8Array, options?: WriteOptions | string): Promise<void> {
+export async function writeFileAtomic(file: string, data: string | Buffer | Uint8Array, options?: WriteOptions | string): Promise<void> {
 	const tempPath = tempFile();
-	await writeFile(tempPath, data, options);
+	await fsp.writeFile(tempPath, data, options);
 	await move(tempPath, file, { overwrite: true });
 }

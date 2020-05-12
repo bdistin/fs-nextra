@@ -2,27 +2,11 @@ import ava from 'ava';
 import { tempFile, tempFileLoc, tempDir, tempDirLoc } from './lib';
 import * as nextra from '../dist';
 
-ava('File', async (test): Promise<void> => {
-	test.plan(2);
-
-	const file = tempFile();
-	const map = await nextra.scan(file);
-	const stats = map.get(file);
-
-	test.is(map.size, 1);
-	test.true(stats && stats.isFile());
-});
-
-
 ava('Empty Directory', async (test): Promise<void> => {
-	test.plan(2);
-
 	const dir = tempDir();
 	const map = await nextra.scan(dir);
-	const stats = map.get(dir);
 
-	test.is(map.size, 1);
-	test.true(stats && stats.isDirectory());
+	test.is(map.size, 0);
 });
 
 ava('Full Directory', async (test): Promise<void> => {
@@ -30,7 +14,7 @@ ava('Full Directory', async (test): Promise<void> => {
 
 	const dir = tempDir();
 	const file = tempFile(dir);
-	const map = await nextra.scan(dir, { filter: (stats): boolean => stats.isFile() });
+	const map = await nextra.scan(dir, { filter: (dirent): boolean => dirent.isFile() });
 
 	test.is(map.size, 1);
 	test.true(map.has(file));
@@ -41,7 +25,7 @@ ava('Deep Directory', async (test): Promise<void> => {
 
 	const dir = tempDir();
 	const file = tempFile(tempDir(dir));
-	const map = await nextra.scan(dir, { filter: (stats): boolean => stats.isFile() });
+	const map = await nextra.scan(dir, { filter: (dirent): boolean => dirent.isFile() });
 
 	test.is(map.size, 1);
 	test.true(map.has(file));
@@ -53,7 +37,7 @@ ava('Multi Deep Directory', async (test): Promise<void> => {
 	const dir = tempDir();
 	const file1 = tempFile(tempDir(dir));
 	const file2 = tempFile(tempDir(dir));
-	const map = await nextra.scan(dir, { filter: (stats): boolean => stats.isFile() });
+	const map = await nextra.scan(dir, { filter: (dirent): boolean => dirent.isFile() });
 
 	test.is(map.size, 2);
 	test.true(map.has(file1));
@@ -65,7 +49,7 @@ ava('Deep Directory w/ Limit', async (test): Promise<void> => {
 
 	const dir = tempDir();
 	const file = tempFile(tempDir(dir));
-	const map = await nextra.scan(dir, { filter: (stats): boolean => stats.isFile(), depthLimit: 0 });
+	const map = await nextra.scan(dir, { filter: (dirent): boolean => dirent.isFile(), depthLimit: 0 });
 
 	test.is(map.size, 0);
 	test.false(map.has(file));
@@ -78,12 +62,16 @@ ava('Multi Deep Directory w/ Limit', async (test): Promise<void> => {
 	const file1 = tempFile(tempDir(dir));
 	const file2 = tempFile(tempDir(dir));
 	const file3 = tempFile(tempDir(tempDir(dir)));
-	const map = await nextra.scan(dir, { filter: (stats): boolean => stats.isFile(), depthLimit: 2 });
+	const map = await nextra.scan(dir, { filter: (dirent): boolean => dirent.isFile(), depthLimit: 1 });
 
 	test.is(map.size, 2);
 	test.true(map.has(file1));
 	test.true(map.has(file2));
 	test.false(map.has(file3));
+});
+
+ava('File', async (test): Promise<void> => {
+	await test.throwsAsync(nextra.scan(tempFile()));
 });
 
 ava('Non-Existent File', async (test): Promise<void> => {

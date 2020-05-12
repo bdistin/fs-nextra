@@ -1,4 +1,4 @@
-import createFileCopy from './createFileCopy';
+import { createFileCopy } from './createFileCopy';
 
 /**
  * Creates a file copy atomically, making all folders required to satisfy the given file path.
@@ -14,6 +14,8 @@ import createFileCopy from './createFileCopy';
  * @param source The path to the file you want to copy
  * @param destination The path to the file destination
  */
-export default async function createFileCopyAtomic(source: string, destination: string): Promise<void> {
+export async function createFileCopyAtomic(source: string, destination: string): Promise<void> {
 	return createFileCopy(source, destination, true);
 }
+
+export const ensureFileCopyAtomic = createFileCopyAtomic;

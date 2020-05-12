@@ -7,7 +7,7 @@ ava('File', async (test): Promise<void> => {
 	test.plan(2);
 
 	const file = tempFileLoc();
-	await nextra.writeFile(file, 'test', 'utf8');
+	await fs.writeFile(file, 'test', 'utf8');
 	const fileName = `${tempFileLoc()}.gz`;
 	const retVal = await nextra.gzip(fileName, file);
 	const stats = await fs.stat(fileName);
@@ -20,7 +20,7 @@ ava('File (Atomic Shortcut)', async (test): Promise<void> => {
 	test.plan(2);
 
 	const file = tempFileLoc();
-	await nextra.writeFile(file, 'test', 'utf8');
+	await fs.writeFile(file, 'test', 'utf8');
 	const fileName = `${tempFileLoc()}.gz`;
 	const retVal = await nextra.gzip(fileName, file, true);
 	const stats = await fs.stat(fileName);

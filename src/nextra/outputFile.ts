@@ -1,9 +1,8 @@
 import { dirname } from 'path';
+import { promises as fsp } from 'fs';
 
-import { writeFile } from '../fs';
-
-import { default as writeFileAtomic, WriteOptions } from './writeFileAtomic';
-import mkdirs from './mkdirs';
+import { writeFileAtomic, WriteOptions } from './writeFileAtomic';
+import { mkdirs } from './mkdirs';
 
 /**
  * Writes a file to disk, creating all directories needed to meet the filepath provided.
@@ -14,13 +13,13 @@ import mkdirs from './mkdirs';
  * @param options The write options or the encoding string.
  * @param atomic {description}
  */
-export default async function outputFile(file: string, data: string | Buffer | Uint8Array, atomic?: boolean): Promise<void>;
-export default async function outputFile(file: string, data: string | Buffer | Uint8Array, options?: WriteOptions | string, atomic?: boolean): Promise<void>;
-export default async function outputFile(file: string, data: string | Buffer | Uint8Array, options?: WriteOptions | string | boolean, atomic = false): Promise<void> {
+export async function outputFile(file: string, data: string | Buffer | Uint8Array, atomic?: boolean): Promise<void>;
+export async function outputFile(file: string, data: string | Buffer | Uint8Array, options?: WriteOptions | string, atomic?: boolean): Promise<void>;
+export async function outputFile(file: string, data: string | Buffer | Uint8Array, options?: WriteOptions | string | boolean, atomic = false): Promise<void> {
 	if (typeof options === 'boolean') [atomic, options] = [options, {}];
 
 	await mkdirs(dirname(file));
 
-	const writeMethod = atomic ? writeFileAtomic : writeFile;
+	const writeMethod = atomic ? writeFileAtomic : fsp.writeFile;
 	await writeMethod(file, data, options);
 }

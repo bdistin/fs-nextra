@@ -1,8 +1,8 @@
-import { tempFile } from '../utils/util';
-import { symlink } from '../fs';
-import { SymLinkType } from './createSymlink';
+import { promises as fsp } from 'fs';
 
-import move from './move';
+import { tempFile } from '../utils/util';
+import { SymLinkType } from './createSymlink';
+import { move } from './move';
 
 /**
  * Creates a soft file link atomically.
@@ -12,8 +12,8 @@ import move from './move';
  * @param destination The destination path of the file
  * @param type The type of symlink you are creating
  */
-export default async function symlinkAtomic(source: string, destination: string, type?: SymLinkType): Promise<void> {
+export async function symlinkAtomic(source: string, destination: string, type?: SymLinkType): Promise<void> {
 	const tempPath = tempFile();
-	await symlink(source, tempPath, type);
+	await fsp.symlink(source, tempPath, type);
 	await move(tempPath, destination, { overwrite: false });
 }

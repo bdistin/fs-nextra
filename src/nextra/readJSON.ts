@@ -1,4 +1,4 @@
-import { readFile } from '../fs';
+import { promises as fsp } from 'fs';
 
 export type BufferEncoding = 'ascii' | 'utf8' | 'utf16le' | 'ucs2' | 'base64' | 'latin1' | 'binary' | 'hex';
 
@@ -30,9 +30,9 @@ export interface ReadJSONOptions {
  * @param {ReadJSONOptions|string} [options = {}] The options for reading json or the encoding string
  * @returns {Promise<Object>}
  */
-export default async function readJSON(file: string, options: ReadJSONOptions | BufferEncoding = { flag: 'r' }): Promise<any> {
+export async function readJSON(file: string, options: ReadJSONOptions | BufferEncoding = { flag: 'r' }): Promise<any> {
 	if (typeof options === 'string') options = { encoding: options, flag: 'r' };
-	const content = await readFile(file, options);
+	const content = await fsp.readFile(file, options);
 	return JSON.parse(stripBom(content), options.reviver);
 }
 
@@ -40,3 +40,5 @@ const stripBom = (content: string | Buffer): string => {
 	if (Buffer.isBuffer(content)) content = content.toString('utf8');
 	return content.replace(/^\uFEFF/, '');
 };
+
+export const readJson = readJSON;

@@ -1,4 +1,4 @@
-import createLink from './createLink';
+import { createLink } from './createLink';
 
 /**
  * Creates a hard file link, making all folders required to satisfy the given file path atomically.
@@ -14,6 +14,8 @@ import createLink from './createLink';
  * @param source The source path of the file
  * @param destination The destination path of the file
  */
-export default function createLinkAtomic(source: string, destination: string): Promise<void> {
+export function createLinkAtomic(source: string, destination: string): Promise<void> {
 	return createLink(source, destination, true);
 }
+
+export const ensureLinkAtomic = createLinkAtomic;

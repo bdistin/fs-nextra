@@ -1,6 +1,6 @@
-import { writeFile } from '../fs';
+import { promises as fsp } from 'fs';
 
-import writeFileAtomic from './writeFileAtomic';
+import { writeFileAtomic } from './writeFileAtomic';
 
 /**
  * @typedef {Object} JsonOptions
@@ -39,11 +39,13 @@ export interface JsonOptions {
  * @param {boolean} [atomic = false] Whether the operation should run atomically
  * @returns {Promise<void>}
  */
-export default async function writeJSON(file: string, object: any, atomic?: boolean): Promise<void>;
-export default async function writeJSON(file: string, object: any, options?: JsonOptions, atomic?: boolean): Promise<void>;
-export default async function writeJSON(file: string, object: any, options: JsonOptions | boolean = {}, atomic = false): Promise<void> {
+export async function writeJSON(file: string, object: any, atomic?: boolean): Promise<void>;
+export async function writeJSON(file: string, object: any, options?: JsonOptions, atomic?: boolean): Promise<void>;
+export async function writeJSON(file: string, object: any, options: JsonOptions | boolean = {}, atomic = false): Promise<void> {
 	if (typeof options === 'boolean') [atomic, options] = [options, {}];
 
-	const writeMethod = atomic ? writeFileAtomic : writeFile;
+	const writeMethod = atomic ? writeFileAtomic : fsp.writeFile;
 	await writeMethod(file, `${JSON.stringify(object, options.replacer, options.spaces)}\n`, options);
 }
+
+export const writeJson = writeJSON;

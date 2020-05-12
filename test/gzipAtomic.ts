@@ -7,7 +7,7 @@ ava('File', async (test): Promise<void> => {
 	test.plan(2);
 
 	const file = tempFileLoc();
-	await nextra.writeFile(file, 'test', 'utf8');
+	await fs.writeFile(file, 'test', 'utf8');
 	const fileName = `${tempFileLoc()}.tar.gz`;
 	const retVal = await nextra.gzipAtomic(fileName, file);
 	const stats = await fs.stat(fileName);
