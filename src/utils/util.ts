@@ -1,10 +1,15 @@
-import { sep, resolve, join } from 'path';
+import { sep, resolve, join, normalize } from 'path';
 import { promisify } from 'util';
 import { randomBytes } from 'crypto';
 import { tmpdir } from 'os';
 import { pipeline } from 'stream';
 
 export const isWindows: boolean = process.platform === 'win32';
+
+export const invalidWin32Path = (myPath: string): boolean => {
+	const root = normalize(resolve(myPath)).split(sep);
+	return /[<>:"|?*]/.test(myPath.replace(root[0], ''));
+};
 
 export const setTimeoutPromise: typeof setTimeout.__promisify__ = promisify(setTimeout);
 
@@ -24,4 +29,3 @@ export const uuid = (): string => {
 };
 
 export const tempFile = (ext?: string): string => join(tmpdir(), uuid() + (ext || ''));
-

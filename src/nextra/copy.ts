@@ -51,7 +51,7 @@ export async function copy(source: string, destination: string, options: CopyOpt
 	}
 }
 
-const resolveCopyOptions = (source: string, destination: string, options: CopyOptions | CopyFilter): CopyData => {
+function resolveCopyOptions(source: string, destination: string, options: CopyOptions | CopyFilter): CopyData {
 	if (typeof options === 'function') options = { filter: options };
 
 	return {
@@ -62,27 +62,27 @@ const resolveCopyOptions = (source: string, destination: string, options: CopyOp
 		preserveTimestamps: Boolean(options.preserveTimestamps),
 		errorOnExist: Boolean(options.errorOnExist)
 	};
-};
+}
 
-const isWritable = async (myPath: string): Promise<boolean> => {
+async function isWritable(myPath: string): Promise<boolean> {
 	try {
 		await fsp.lstat(myPath);
 		return false;
 	} catch (err) {
 		return err.code === 'ENOENT';
 	}
-};
+}
 
-const startCopy = async (mySource: string, options: CopyData): Promise<void> => {
+async function startCopy(mySource: string, options: CopyData): Promise<void> {
 	if (!options.filter(mySource, options.targetPath)) return;
 	const stats = await fsp.lstat(mySource);
 	const target = mySource.replace(options.currentPath, replaceEsc(options.targetPath));
 
 	if (stats.isDirectory()) await copyDirectory(mySource, stats, target, options);
 	else await copyOther(mySource, stats, target, options);
-};
+}
 
-const copyDirectory = async (mySource: string, stats: Stats, target: string, options: CopyData): Promise<void> => {
+async function copyDirectory(mySource: string, stats: Stats, target: string, options: CopyData): Promise<void> {
 	if (isSrcKid(mySource, target)) throw new Error('FS-NEXTRA: Copying a parent directory into a child will result in an infinite loop.');
 	if (await isWritable(target)) {
 		await fsp.mkdir(target, stats.mode);
@@ -90,9 +90,9 @@ const copyDirectory = async (mySource: string, stats: Stats, target: string, opt
 	}
 	const items = await fsp.readdir(mySource);
 	await Promise.all(items.map((item): Promise<void> => startCopy(join(mySource, item), options)));
-};
+}
 
-const copyOther = async (mySource: string, stats: Stats, target: string, options: CopyData): Promise<void> => {
+async function copyOther(mySource: string, stats: Stats, target: string, options: CopyData): Promise<void> {
 	try {
 		const tstats = await fsp.stat(target);
 		if (tstats && tstats.isDirectory()) target = join(target, basename(mySource));
@@ -108,4 +108,4 @@ const copyOther = async (mySource: string, stats: Stats, target: string, options
 
 	if (stats.isSymbolicLink()) await fsp.symlink(await fsp.readlink(mySource), target);
 	else await fsp.copyFile(mySource, target);
-};
+}

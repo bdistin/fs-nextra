@@ -52,7 +52,7 @@ export async function createSymlink(source: string, destination: string, type?: 
 	await symlinkMethod(relativePath.toDst, resolve(destination), type as SymLinkType || await symlinkType(relativePath.toCwd));
 }
 
-const symlinkPaths = async (srcpath: string, dstPath: string): Promise<SymLinkPaths> => {
+async function symlinkPaths(srcpath: string, dstPath: string): Promise<SymLinkPaths> {
 	if (isAbsolute(srcpath)) {
 		await fsp.lstat(srcpath);
 		return { toCwd: srcpath, toDst: srcpath };
@@ -63,11 +63,11 @@ const symlinkPaths = async (srcpath: string, dstPath: string): Promise<SymLinkPa
 	if (await pathExists(relativeToDst)) return { toCwd: relativeToDst, toDst: srcpath };
 	await fsp.lstat(srcpath);
 	return { toCwd: srcpath, toDst: relative(dstDir, srcpath) };
-};
+}
 
-const symlinkType = async (srcpath: string): Promise<SymLinkType> => {
+async function symlinkType(srcpath: string): Promise<SymLinkType> {
 	const stats = await fsp.lstat(srcpath);
 	return stats.isDirectory() ? 'dir' : 'file';
-};
+}
 
 export const ensureSymlink = createSymlink;

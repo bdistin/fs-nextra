@@ -39,7 +39,7 @@ export async function remove(path: string, options: RemoveOptions = {}): Promise
 	}
 }
 
-const rimraf = async (myPath: string, options: RemoveOptions): Promise<void> => {
+async function rimraf(myPath: string, options: RemoveOptions): Promise<void> {
 	try {
 		const stats = await fsp.lstat(myPath);
 		if (stats.isDirectory()) return removeDir(myPath, options);
@@ -58,15 +58,15 @@ const rimraf = async (myPath: string, options: RemoveOptions): Promise<void> => 
 		if (er.code === 'EISDIR') return removeDir(myPath, options, er);
 		else throw er;
 	}
-};
+}
 
 /* istanbul ignore next: Windows */
-const fixWinEPERM = async (myPath: string, options: RemoveOptions): Promise<void> => {
+async function fixWinEPERM(myPath: string, options: RemoveOptions): Promise<void> {
 	await fsp.chmod(myPath, 0o666);
 	return rimraf(myPath, options);
-};
+}
 
-const removeDir = async (myPath: string, options: RemoveOptions, originalEr = null): Promise<void> => {
+async function removeDir(myPath: string, options: RemoveOptions, originalEr = null): Promise<void> {
 	try {
 		return await fsp.rmdir(myPath);
 	} catch (err) {
@@ -75,10 +75,10 @@ const removeDir = async (myPath: string, options: RemoveOptions, originalEr = nu
 		else if (err.code === 'ENOTDIR') throw originalEr;
 		else throw err;
 	}
-};
+}
 
-const rmkids = async (myPath: string, options: RemoveOptions): Promise<void> => {
+async function rmkids(myPath: string, options: RemoveOptions): Promise<void> {
 	const files = await fsp.readdir(myPath);
 	await Promise.all(files.map((file): Promise<void> => remove(join(myPath, file), options)));
 	return fsp.rmdir(myPath);
-};
+}

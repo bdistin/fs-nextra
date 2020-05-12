@@ -1,7 +1,7 @@
-import { resolve, dirname, normalize, sep } from 'path';
+import { resolve, dirname } from 'path';
 import { promises as fsp } from 'fs';
 
-import { isWindows } from '../utils/util';
+import { isWindows, invalidWin32Path } from '../utils/util';
 
 /**
  * @typedef {Object} MkdirsOptions
@@ -60,15 +60,12 @@ export async function mkdirs(path: string, options?: MkdirsOptions | number): Pr
 	}
 }
 
-const resolveOptions = (options: MkdirsOptions | number = {}): MkdirsOptions => ({
-	// eslint-disable-next-line no-bitwise
-	mode: typeof options === 'number' ? options : options.mode || 0o0777 & ~process.umask()
-});
-
-const invalidWin32Path = (myPath: string): boolean => {
-	const root = normalize(resolve(myPath)).split(sep);
-	return /[<>:"|?*]/.test(myPath.replace(root[0], ''));
-};
+function resolveOptions(options: MkdirsOptions | number = {}): MkdirsOptions {
+	return {
+		// eslint-disable-next-line no-bitwise
+		mode: typeof options === 'number' ? options : options.mode || 0o0777 & ~process.umask()
+	};
+}
 
 export const mkdirp = mkdirs;
 export const ensureDir = mkdirs;

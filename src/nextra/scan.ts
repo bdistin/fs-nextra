@@ -12,6 +12,17 @@ export interface ScanOptions {
 	depthLimit?: number;
 }
 
+/**
+ * Recursively scans a directory, returning a map of stats keyed on the full path to the item.
+ * @function scan
+ * @memberof fsn/nextra
+ * @param root The path to scan
+ * @param options The options for the scan
+ */
+export function scan(root: string, options: ScanOptions = {}): Promise<Map<string, Dirent>> {
+	return scanDeep(resolve(root), new Map(), 0, options);
+}
+
 async function scanDeep(path: string, results: Map<string, Dirent>, level: number, options: ScanOptions): Promise<Map<string, Dirent>> {
 	const dir = await fsp.opendir(path);
 
@@ -23,15 +34,4 @@ async function scanDeep(path: string, results: Map<string, Dirent>, level: numbe
 	}
 
 	return results;
-}
-
-/**
- * Recursively scans a directory, returning a map of stats keyed on the full path to the item.
- * @function scan
- * @memberof fsn/nextra
- * @param root The path to scan
- * @param options The options for the scan
- */
-export function scan(root: string, options: ScanOptions = {}): Promise<Map<string, Dirent>> {
-	return scanDeep(resolve(root), new Map(), 0, options);
 }

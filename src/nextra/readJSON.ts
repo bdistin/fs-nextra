@@ -36,9 +36,9 @@ export async function readJSON(file: string, options: ReadJSONOptions | BufferEn
 	return JSON.parse(stripBom(content), options.reviver);
 }
 
-const stripBom = (content: string | Buffer): string => {
+function stripBom(content: string | Buffer): string {
 	if (Buffer.isBuffer(content)) content = content.toString('utf8');
 	return content.replace(/^\uFEFF/, '');
-};
+}
 
 export const readJson = readJSON;
