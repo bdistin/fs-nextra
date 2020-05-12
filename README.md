@@ -19,7 +19,7 @@ Node.js V8 native fs.promises. Written in TypeScript, sans every sync method. *A
 Docs
 ------
 
-All `fs` methods which return a callback, return a promise instead. All `nextra` methods return a promise exclusively. No sync methods are included from either `fs` or `fs-nextra`. Requires minimum Node.js v10.1.0.
+All `fs` methods which return a callback, return a promise instead. All `nextra` methods return a promise exclusively. No sync methods are included from either `fs` or `fs-nextra`. Requires minimum Node.js v12.12.0.
 
 The full documentation can be found here: [fs-nextra.js.org](https://fs-nextra.js.org/).
 
