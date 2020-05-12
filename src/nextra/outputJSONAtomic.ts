@@ -1,4 +1,4 @@
-import outputJSON from './outputJSON';
+import { outputJSON } from './outputJSON';
 import { JsonOptions } from './writeJSON';
 
 /**
@@ -17,6 +17,8 @@ import { JsonOptions } from './writeJSON';
  * @param data The data to write to file
  * @param options The write options or the encoding string.
  */
-export default function outputJSONAtomic(file: string, data: any, options?: JsonOptions): Promise<void> {
+export function outputJSONAtomic(file: string, data: any, options?: JsonOptions): Promise<void> {
 	return outputJSON(file, data, options, true);
 }
+
+export const outputJsonAtomic = outputJSONAtomic;

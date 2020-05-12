@@ -1,9 +1,9 @@
 import { dirname, resolve } from 'path';
 
-import { access, copyFile } from '../fs';
+import { promises as fsp } from 'fs';
 
-import copyFileAtomic from './copyFileAtomic';
-import mkdirs from './mkdirs';
+import { copyFileAtomic } from './copyFileAtomic';
+import { mkdirs } from './mkdirs';
 
 /**
  * Creates an file copy, making all folders required to satisfy the given file path.
@@ -21,13 +21,15 @@ import mkdirs from './mkdirs';
  * @param destination The path to the file destination
  * @param atomic Whether the operation should run atomically
  */
-export default async function createFileCopy(source: string, destination: string, atomic = false): Promise<void> {
+export async function createFileCopy(source: string, destination: string, atomic = false): Promise<void> {
 	if (resolve(source) === resolve(destination)) {
-		await access(source);
+		await fsp.access(source);
 	} else {
 		await mkdirs(dirname(destination));
 
-		const copyMethod = atomic ? copyFileAtomic : copyFile;
+		const copyMethod = atomic ? copyFileAtomic : fsp.copyFile;
 		await copyMethod(source, destination);
 	}
 }
+
+export const ensureFileCopy = createFileCopy;

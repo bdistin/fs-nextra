@@ -1,7 +1,7 @@
-import { tempFile } from '../utils/util';
-import { link } from '../fs';
+import { promises as fsp } from 'fs';
 
-import move from './move';
+import { tempFile } from '../utils/util';
+import { move } from './move';
 
 /**
  * Creates a hard file link atomically.
@@ -10,8 +10,8 @@ import move from './move';
  * @param source The source path of the file
  * @param destination The destination path of the file
  */
-export default async function linkAtomic(source: string, destination: string): Promise<void> {
+export async function linkAtomic(source: string, destination: string): Promise<void> {
 	const tempPath = tempFile();
-	await link(source, tempPath);
+	await fsp.link(source, tempPath);
 	await move(tempPath, destination, { overwrite: true });
 }

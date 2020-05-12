@@ -1,4 +1,4 @@
-import { default as createSymlink, SymLinkType } from './createSymlink';
+import { createSymlink, SymLinkType } from './createSymlink';
 
 /**
  * Creates a soft file link, making all folders required to satisfy the given file path atomically.
@@ -18,6 +18,8 @@ import { default as createSymlink, SymLinkType } from './createSymlink';
  * @param {SymLinkType} type The type of symlink you are creating
  * @returns {Promise<void>}
  */
-export default function createSymlinkAtomic(source: string, destination: string, type?: SymLinkType): Promise<void> {
+export function createSymlinkAtomic(source: string, destination: string, type?: SymLinkType): Promise<void> {
 	return createSymlink(source, destination, type, true);
 }
+
+export const ensureSymlinkAtomic = createSymlinkAtomic;

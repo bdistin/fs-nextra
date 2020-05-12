@@ -1,7 +1,7 @@
-import { resolve, dirname, normalize, sep } from 'path';
+import { resolve, dirname } from 'path';
+import { promises as fsp } from 'fs';
 
-import { isWindows } from '../utils/util';
-import { stat, mkdir } from '../fs';
+import { isWindows, invalidWin32Path } from '../utils/util';
 
 /**
  * @typedef {Object} MkdirsOptions
@@ -33,7 +33,7 @@ export interface MkdirsOptions {
  * @param path The path you wish to make
  * @param options Options for making the directories
  */
-export default async function mkdirs(path: string, options?: MkdirsOptions | number): Promise<void> {
+export async function mkdirs(path: string, options?: MkdirsOptions | number): Promise<void> {
 	const dirOptions = resolveOptions(options);
 
 	if (isWindows && invalidWin32Path(path)) {
@@ -47,25 +47,25 @@ export default async function mkdirs(path: string, options?: MkdirsOptions | num
 	path = resolve(path);
 
 	try {
-		await mkdir(path, dirOptions.mode);
+		await fsp.mkdir(path, dirOptions.mode);
 	} catch (err) {
 		if (err.code === 'ENOENT') {
 			await mkdirs(dirname(path), dirOptions);
 			await mkdirs(path, dirOptions);
 			return;
 		}
-		const myStat = await stat(path);
+		const myStat = await fsp.stat(path);
 		if (myStat.isDirectory()) return;
 		throw err;
 	}
 }
 
-const resolveOptions = (options: MkdirsOptions | number = {}): MkdirsOptions => ({
-	// eslint-disable-next-line no-bitwise
-	mode: typeof options === 'number' ? options : options.mode || 0o0777 & ~process.umask()
-});
+function resolveOptions(options: MkdirsOptions | number = {}): MkdirsOptions {
+	return {
+		// eslint-disable-next-line no-bitwise
+		mode: typeof options === 'number' ? options : options.mode || 0o0777 & ~process.umask()
+	};
+}
 
-const invalidWin32Path = (myPath: string): boolean => {
-	const root = normalize(resolve(myPath)).split(sep);
-	return /[<>:"|?*]/.test(myPath.replace(root[0], ''));
-};
+export const mkdirp = mkdirs;
+export const ensureDir = mkdirs;

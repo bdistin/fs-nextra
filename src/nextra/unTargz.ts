@@ -1,10 +1,10 @@
 import { createGunzip } from 'zlib';
 import { resolve } from 'path';
+import { createReadStream } from 'fs';
 
-import { createReadStream } from '../fs';
-import Untar from '../utils/Untar';
-import outputFile from './outputFile';
-import outputFileAtomic from './outputFileAtomic';
+import { Untar } from '../utils/Untar';
+import { outputFile } from './outputFile';
+import { outputFileAtomic } from './outputFileAtomic';
 
 
 /**
@@ -15,7 +15,7 @@ import outputFileAtomic from './outputFileAtomic';
  * @param inputFile The archive file
  * @param atomic The if the writes should be atomic
  */
-export default async function unTargz(outputDirectory: string, inputFile: string, atomic = false): Promise<void> {
+export async function unTargz(outputDirectory: string, inputFile: string, atomic = false): Promise<void> {
 	const tar = createReadStream(inputFile).pipe(createGunzip()).pipe(new Untar());
 	const writeMethod = atomic ? outputFile : outputFileAtomic;
 

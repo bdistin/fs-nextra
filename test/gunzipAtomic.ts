@@ -7,7 +7,7 @@ ava('File', async (test): Promise<void> => {
 	test.plan(3);
 
 	const file = tempFileLoc();
-	await nextra.writeFile(file, 'test', 'utf8');
+	await fs.writeFile(file, 'test', 'utf8');
 	const fileName = `${tempFileLoc()}.gz`;
 	await nextra.gzip(fileName, file);
 	const output = tempFileLoc();
@@ -16,5 +16,5 @@ ava('File', async (test): Promise<void> => {
 
 	test.is(retVal, undefined);
 	test.true(stats.isFile());
-	test.is(await nextra.readFile(output, 'utf8'), 'test');
+	test.is(await fs.readFile(output, 'utf8'), 'test');
 });

@@ -1,12 +1,11 @@
 import { resolve, dirname } from 'path';
+import { promises as fsp } from 'fs';
 
 import { isSrcKid } from '../utils/util';
-import { access, rename, lstat } from '../fs';
-
-import remove from './remove';
-import mkdirs from './mkdirs';
-import pathExists from './pathExists';
-import copy from './copy';
+import { remove } from './remove';
+import { mkdirs } from './mkdirs';
+import { pathExists } from './pathExists';
+import { copy } from './copy';
 
 /**
  * @typedef {Object} MoveOptions
@@ -24,11 +23,11 @@ export interface MoveOptions {
  * @param destination The destination path of the file
  * @param options The options for the move
  */
-export default async function move(source: string, destination: string, options: MoveOptions = {}): Promise<void> {
+export async function move(source: string, destination: string, options: MoveOptions = {}): Promise<void> {
 	const overwrite = options.overwrite || false;
-	if (resolve(source) === resolve(destination)) return access(source);
+	if (resolve(source) === resolve(destination)) return fsp.access(source);
 
-	const myStat = await lstat(source);
+	const myStat = await fsp.lstat(source);
 	if (myStat.isDirectory() && isSrcKid(source, destination)) {
 		throw new Error('FS-NEXTRA: Moving a parent directory into a child will result in an infinite loop.');
 	}
@@ -42,7 +41,7 @@ export default async function move(source: string, destination: string, options:
 	}
 
 	try {
-		return await rename(source, destination);
+		return await fsp.rename(source, destination);
 	} catch (err) {
 		/* istanbul ignore next: Can't test via CI */
 		if (err.code === 'EXDEV') {

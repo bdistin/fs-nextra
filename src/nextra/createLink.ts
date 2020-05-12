@@ -1,10 +1,10 @@
 import { dirname } from 'path';
 
-import { lstat, link } from '../fs';
+import { promises as fsp } from 'fs';
 
-import linkAtomic from './linkAtomic';
-import mkdirs from './mkdirs';
-import pathExists from './pathExists';
+import { linkAtomic } from './linkAtomic';
+import { mkdirs } from './mkdirs';
+import { pathExists } from './pathExists';
 
 /**
  * Creates a hard file link, making all folders required to satisfy the given file path.
@@ -22,12 +22,14 @@ import pathExists from './pathExists';
  * @param destination The destination path of the file
  * @param atomic Whether the operation should run atomically
  */
-export default async function createLink(source: string, destination: string, atomic = false): Promise<void> {
+export async function createLink(source: string, destination: string, atomic = false): Promise<void> {
 	if (await pathExists(destination)) return;
-	await lstat(source);
+	await fsp.lstat(source);
 
 	await mkdirs(dirname(destination));
 
-	const linkMethod = atomic ? linkAtomic : link;
+	const linkMethod = atomic ? linkAtomic : fsp.link;
 	await linkMethod(source, destination);
 }
+
+export const ensureLink = createLink;

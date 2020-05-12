@@ -1,7 +1,7 @@
 import { dirname } from 'path';
 
-import { default as writeJSON, JsonOptions } from './writeJSON';
-import mkdirs from './mkdirs';
+import { writeJSON, JsonOptions } from './writeJSON';
+import { mkdirs } from './mkdirs';
 
 
 /**
@@ -22,12 +22,14 @@ import mkdirs from './mkdirs';
  * @param options The write options or the encoding string.
  * @param atomic If the operation should be done atomically
  */
-export default async function outputJSON(file: string, data: any, atomic?: boolean): Promise<void>;
-export default async function outputJSON(file: string, data: any, options?: JsonOptions, atomic?: boolean): Promise<void>;
-export default async function outputJSON(file: string, data: any, options?: JsonOptions | boolean, atomic = false): Promise<void> {
+export async function outputJSON(file: string, data: any, atomic?: boolean): Promise<void>;
+export async function outputJSON(file: string, data: any, options?: JsonOptions, atomic?: boolean): Promise<void>;
+export async function outputJSON(file: string, data: any, options?: JsonOptions | boolean, atomic = false): Promise<void> {
 	if (typeof options === 'boolean') [atomic, options] = [options, {}];
 
 	await mkdirs(dirname(file));
 
 	return writeJSON(file, data, options, atomic);
 }
+
+export const outputJson = outputJSON;

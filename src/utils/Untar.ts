@@ -1,12 +1,12 @@
-import Header from './Header';
-
 import { Writable } from 'stream';
+
+import { Header } from './Header';
 
 function breakSync(next: Function): void {
 	setImmediate((): void => next());
 }
 
-export default class Untar extends Writable {
+export class Untar extends Writable {
 
 	private header: Header | null = null;
 	private file: Buffer = Buffer.alloc(0);

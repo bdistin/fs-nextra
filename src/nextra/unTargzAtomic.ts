@@ -1,5 +1,4 @@
-import unTargz from './unTargz';
-
+import { unTargz } from './unTargz';
 
 /**
  * Extracts files from .tar.gz archives and writes them atomically.
@@ -9,6 +8,6 @@ import unTargz from './unTargz';
  * @param inputFile The archive file
  * @param atomic The if the writes should be atomic
  */
-export default async function unTargzAtomic(outputDirectory: string, inputFile: string): Promise<void> {
+export async function unTargzAtomic(outputDirectory: string, inputFile: string): Promise<void> {
 	return unTargz(outputDirectory, inputFile, true);
 }

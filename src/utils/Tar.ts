@@ -1,10 +1,10 @@
-import Header from './Header';
-
+import { createReadStream, Stats } from 'fs';
 import { relative } from 'path';
 import { Readable } from 'stream';
-import { createReadStream, Stats } from '../fs';
 
-export default class Tar extends Readable {
+import { Header } from './Header';
+
+export class Tar extends Readable {
 
 	private base: string;
 	private written = 0;
