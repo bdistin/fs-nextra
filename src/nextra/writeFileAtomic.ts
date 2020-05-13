@@ -11,7 +11,7 @@ import { move } from './move';
  * @property {string} [flag = 'w'] The flag
  */
 export interface WriteOptions {
-	encoding?: string;
+	encoding?: "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "latin1" | "binary" | "hex" | null | undefined;
 	mode?: number;
 	flag?: string;
 }
