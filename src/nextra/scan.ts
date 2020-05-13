@@ -27,7 +27,9 @@ async function scanDeep(path: string, results: Map<string, Dirent>, level: numbe
 	const dir = await fsp.opendir(path);
 
 	for await (const dirent of dir) {
-		if (!options.filter || options.filter(dirent, path)) results.set(join(path, dirent.name), dirent);
+		const fullPath = join(path, dirent.name);
+
+		if (!options.filter || options.filter(dirent, fullPath)) results.set(fullPath, dirent);
 		if (dirent.isDirectory() && (typeof options.depthLimit === 'undefined' || level < options.depthLimit)) {
 			await scanDeep(join(path, dirent.name), results, level + 1, options);
 		}
