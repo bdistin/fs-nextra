@@ -35,7 +35,7 @@ ava('Standard Usage with full permissions', async (test): Promise<void> => {
 	test.is(retVal, undefined);
 	test.true(stats.isDirectory());
 	// eslint-disable-next-line no-bitwise
-	test.is(stats.mode & 0o0777, 0o0666 & ~process.umask());
+	test.is(stats.mode & 0o0777, 0o0666);
 });
 
 ava('Recursive', async (test): Promise<void> => {
