@@ -4,6 +4,11 @@ import { randomBytes } from 'crypto';
 import { tmpdir } from 'os';
 import { pipeline } from 'stream';
 
+export const umask = process.umask(0o022);
+
+// Fix umask back to original value
+process.umask(umask);
+
 export const isWindows: boolean = process.platform === 'win32';
 
 export const invalidWin32Path = (myPath: string): boolean => {
