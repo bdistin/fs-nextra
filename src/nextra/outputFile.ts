@@ -1,7 +1,7 @@
 import { dirname } from 'path';
 import { promises as fsp } from 'fs';
 
-import { writeFileAtomic, WriteOptions } from './writeFileAtomic';
+import { writeFileAtomic, WriteOptions, BaseEncodingOptions } from './writeFileAtomic';
 import { mkdirs } from './mkdirs';
 
 /**
@@ -14,8 +14,8 @@ import { mkdirs } from './mkdirs';
  * @param atomic {description}
  */
 export async function outputFile(file: string, data: string | Buffer | Uint8Array, atomic?: boolean): Promise<void>;
-export async function outputFile(file: string, data: string | Buffer | Uint8Array, options?: WriteOptions | string, atomic?: boolean): Promise<void>;
-export async function outputFile(file: string, data: string | Buffer | Uint8Array, options?: WriteOptions | string | boolean, atomic = false): Promise<void> {
+export async function outputFile(file: string, data: string | Buffer | Uint8Array, options?: WriteOptions | BaseEncodingOptions, atomic?: boolean): Promise<void>;
+export async function outputFile(file: string, data: string | Buffer | Uint8Array, options?: WriteOptions | BaseEncodingOptions | boolean, atomic = false): Promise<void> {
 	if (typeof options === 'boolean') [atomic, options] = [options, {}];
 
 	await mkdirs(dirname(file));

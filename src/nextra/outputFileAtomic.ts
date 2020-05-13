@@ -1,5 +1,5 @@
 import { outputFile } from './outputFile';
-import { WriteOptions } from './writeFileAtomic';
+import { WriteOptions, BaseEncodingOptions } from './writeFileAtomic';
 
 /**
  * Writes a file to disk, creating all directories needed to meet the filepath provided atomically.
@@ -10,6 +10,6 @@ import { WriteOptions } from './writeFileAtomic';
  * @param options The write options or the encoding string.
  * @returns {Promise<void>}
  */
-export function outputFileAtomic(file: string, data: string | Buffer | Uint8Array, options?: WriteOptions | string): Promise<void> {
+export function outputFileAtomic(file: string, data: string | Buffer | Uint8Array, options?: WriteOptions | BaseEncodingOptions): Promise<void> {
 	return outputFile(file, data, options, true);
 }
