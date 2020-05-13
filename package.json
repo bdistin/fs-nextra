@@ -1,6 +1,6 @@
 {
   "name": "fs-nextra",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "Node.js fs next-gen extra (nextra) methods.",
   "main": "dist/index.js",
   "scripts": {
