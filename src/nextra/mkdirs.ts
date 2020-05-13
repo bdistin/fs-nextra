@@ -63,7 +63,7 @@ export async function mkdirs(path: string, options?: MkdirsOptions | number): Pr
 function resolveOptions(options: MkdirsOptions | number = {}): MkdirsOptions {
 	return {
 		// eslint-disable-next-line no-bitwise
-		mode: typeof options === 'number' ? options : options.mode || 0o0777 & ~process.umask()
+		mode: typeof options === 'number' ? options : options.mode || 0o0777
 	};
 }
 
