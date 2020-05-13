@@ -1,7 +1,7 @@
 import { resolve, dirname } from 'path';
 import { promises as fsp } from 'fs';
 
-import { isWindows, invalidWin32Path } from '../utils/util';
+import { isWindows, invalidWin32Path, umask } from '../utils/util';
 
 /**
  * @typedef {Object} MkdirsOptions
@@ -63,7 +63,7 @@ export async function mkdirs(path: string, options?: MkdirsOptions | number): Pr
 function resolveOptions(options: MkdirsOptions | number = {}): MkdirsOptions {
 	return {
 		// eslint-disable-next-line no-bitwise
-		mode: typeof options === 'number' ? options : options.mode || 0o0777
+		mode: typeof options === 'number' ? options : options.mode || 0o0777 & ~umask
 	};
 }
 

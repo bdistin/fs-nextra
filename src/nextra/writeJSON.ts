@@ -1,6 +1,6 @@
 import { promises as fsp } from 'fs';
 
-import { writeFileAtomic } from './writeFileAtomic';
+import { writeFileAtomic, BaseEncodingOptions } from './writeFileAtomic';
 
 /**
  * @typedef {Object} JsonOptions
@@ -14,7 +14,7 @@ import { writeFileAtomic } from './writeFileAtomic';
 export interface JsonOptions {
 	replacer?: (key: string, value: any) => any;
 	spaces?: string | number;
-	encoding?: string;
+	encoding?: BaseEncodingOptions;
 	mode?: number;
 	flag?: string;
 }

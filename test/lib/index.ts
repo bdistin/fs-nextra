@@ -3,6 +3,11 @@ import { randomBytes } from 'crypto';
 import { join } from 'path';
 import * as fs from 'fs';
 
+export const umask = process.umask(0o022);
+
+// Fix umask back to original value
+process.umask(umask);
+
 export const isWindows: boolean = process.platform === 'win32';
 
 export const uuid = (): string => {
