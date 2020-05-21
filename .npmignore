@@ -20,3 +20,4 @@ azure-pipelines.yml
 test-results.xml
 .nycrc.json
 .github/
+dist/test/

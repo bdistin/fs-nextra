@@ -1,7 +1,7 @@
 import ava from 'ava';
 import { promises as fs } from 'fs';
 import { tempFileLoc, tempDirLoc, tempFile, tempDir } from './lib';
-import * as nextra from '../dist';
+import * as nextra from '../src';
 
 // #region Success
 

@@ -1,7 +1,7 @@
 import ava from 'ava';
 import { promises as fs } from 'fs';
 import { tempDirLoc, tempDir, tempFile, isWindows, umask } from './lib';
-import * as nextra from '../dist';
+import * as nextra from '../src';
 
 ava('Pre-Existing Directory', async (test): Promise<void> => {
 	test.plan(2);

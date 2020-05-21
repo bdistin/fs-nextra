@@ -1,6 +1,6 @@
 import ava from 'ava';
 import { tempFile, tempFileLoc, tempDir, tempDirLoc } from './lib';
-import * as nextra from '../dist';
+import * as nextra from '../src';
 
 ava('File Exists', async (test): Promise<void> => {
 	test.true(await nextra.pathExists(tempFile()));

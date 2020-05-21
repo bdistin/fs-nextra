@@ -2,7 +2,7 @@ import ava from 'ava';
 import { promises as fs } from 'fs';
 import { basename, resolve, relative } from 'path';
 import { tempFileLoc, tempDir, dir } from './lib';
-import * as nextra from '../dist';
+import * as nextra from '../src';
 
 ava('File', async (test): Promise<void> => {
 	test.plan(3);

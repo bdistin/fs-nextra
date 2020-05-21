@@ -1,6 +1,6 @@
 import ava from 'ava';
 import { tempFile, tempFileLoc, tempDir, tempDirLoc } from './lib';
-import * as nextra from '../dist';
+import * as nextra from '../src';
 
 ava('Empty Directory', async (test): Promise<void> => {
 	const dir = tempDir();

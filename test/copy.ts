@@ -2,7 +2,7 @@ import ava from 'ava';
 import { join, basename } from 'path';
 import { promises as fs } from 'fs';
 import { tempFile, tempFileLoc, tempDir, tempDirLoc, tempSymlink } from './lib';
-import * as nextra from '../dist';
+import * as nextra from '../src';
 
 // #region Success
 

@@ -2,14 +2,14 @@
   "name": "fs-nextra",
   "version": "0.5.1",
   "description": "Node.js fs next-gen extra (nextra) methods.",
-  "main": "dist/index.js",
+  "main": "dist/src/index.js",
   "scripts": {
     "prepublishOnly": "yarn build",
     "build": "tsc",
     "test": "ava --timeout=20s",
     "test:lint": "eslint --ext ts src test",
     "test:coverage": "npx nyc check-coverage --lines 90 --functions 90 --branches 90",
-    "coverage": "npx nyc --require ts-node/register --require source-map-support/register npm test",
+    "coverage": "npx nyc --require source-map-support/register npm test",
     "coverage:report": "npx nyc report --reporter=html",
     "docs": "typedoc --excludeNotExported --exclude ./src/utils/**/*.ts --mode file --out ./dist/ ./src/",
     "lint": "eslint --fix --ext ts src test"
@@ -40,7 +40,7 @@
     "node": ">=12.12.0"
   },
   "devDependencies": {
-    "@istanbuljs/nyc-config-typescript": "^1.0.1",
+    "@ava/typescript": "^1.1.1",
     "@types/node": "^14.0.4",
     "@typescript-eslint/eslint-plugin": "^2.34.0",
     "@typescript-eslint/parser": "^2.34.0",
@@ -49,7 +49,6 @@
     "eslint-config-klasa": "dirigeants/klasa-lint",
     "nyc": "^15.0.1",
     "source-map-support": "^0.5.19",
-    "ts-node": "^8.10.1",
     "typedoc": "^0.17.7",
     "typescript": "^3.9.3"
   },
@@ -58,16 +57,17 @@
     "url": "https://github.com/bdistin/fs-nextra"
   },
   "ava": {
-    "extensions": [
-      "ts"
-    ],
     "files": [
       "test/**/*.ts",
       "!test/lib"
     ],
-    "require": [
-      "ts-node/register",
-      "source-map-support/register"
-    ]
+    "typescript": {
+      "extensions": [
+        "ts"
+      ],
+      "rewritePaths": {
+        "test/": "dist/test/"
+      }
+    }
   }
 }
