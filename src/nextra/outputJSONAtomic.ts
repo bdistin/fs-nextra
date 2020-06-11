@@ -1,5 +1,6 @@
 import { outputJSON } from './outputJSON';
-import { JsonOptions } from './writeJSON';
+
+import type { JsonOptions } from './writeJSON';
 
 /**
  * Writes a json file to disk, creating all directories needed to meet the filepath provided atomically.

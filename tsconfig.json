@@ -12,7 +12,8 @@
         "declaration": true,
         "noUnusedLocals": true,
         "removeComments": false,
-        "target": "esnext"
+		"importsNotUsedAsValues": "error",
+		"target": "esnext"
 	},
 	"exclude": [
 		"node_modules",

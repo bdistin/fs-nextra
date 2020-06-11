@@ -1,5 +1,6 @@
 import { outputFile } from './outputFile';
-import { WriteOptions, BaseEncodingOptions } from './writeFileAtomic';
+
+import type { WriteOptions, BaseEncodingOptions } from './writeFileAtomic';
 
 /**
  * Writes a file to disk, creating all directories needed to meet the filepath provided atomically.

@@ -1,8 +1,9 @@
 import { promises as fsp } from 'fs';
 
 import { tempFile } from '../utils/util';
-import { SymLinkType } from './createSymlink';
 import { move } from './move';
+
+import type { SymLinkType } from './createSymlink';
 
 /**
  * Creates a soft file link atomically.
