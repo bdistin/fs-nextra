@@ -13,7 +13,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        node_version: [12, 14]
+        node_version: [14]
         os: [ubuntu-latest, windows-latest, macOS-latest]
 
     steps:
@@ -47,41 +47,26 @@ jobs:
     steps:
     - name: Checkout Project
       uses: actions/checkout@v1
-    - name: Use Node.js 12
+    - name: Use Node.js 14
       uses: actions/setup-node@v1
       with:
-        node-version: 12
+        node-version: 14
     - name: Restore CI Cache
       uses: actions/cache@v1
       with:
         path: node_modules
-        key: Windows-12-${{ hashFiles('**\yarn.lock') }}
+        key: Windows-14-${{ hashFiles('**\yarn.lock') }}
     - name: Install Dependencies
       run: yarn
-    - uses: actions/download-artifact@v1
-      name: Download Windows-12 Coverage Data
-      with:
-        name: Windows-12
-        path: .nyc_output
     - uses: actions/download-artifact@v1
       name: Download Windows-14 Coverage Data
       with:
         name: Windows-14
         path: .nyc_output
     - uses: actions/download-artifact@v1
-      name: Download macOS-12 Coverage Data
-      with:
-        name: macOS-12
-        path: .nyc_output
-    - uses: actions/download-artifact@v1
       name: Download macOS-14 Coverage Data
       with:
         name: macOS-14
-        path: .nyc_output
-    - uses: actions/download-artifact@v1
-      name: Download Linux-12 Coverage Data
-      with:
-        name: Linux-12
         path: .nyc_output
     - uses: actions/download-artifact@v1
       name: Download Linux-14 Coverage Data
