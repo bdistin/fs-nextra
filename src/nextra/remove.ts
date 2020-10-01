@@ -1,5 +1,5 @@
 import { join } from 'path';
-import { promises as fsp } from 'fs';
+import { lstat, unlink, chmod, rmdir, readdir } from 'fs/promises';
 
 import { isWindows, setTimeoutPromise } from '../utils/util';
 
@@ -41,7 +41,7 @@ export async function remove(path: string, options: RemoveOptions = {}): Promise
 
 async function rimraf(myPath: string, options: RemoveOptions): Promise<void> {
 	try {
-		const stats = await fsp.lstat(myPath);
+		const stats = await lstat(myPath);
 		if (stats.isDirectory()) return removeDir(myPath, options);
 	} catch (err) {
 		/* istanbul ignore next: Windows */
@@ -50,7 +50,7 @@ async function rimraf(myPath: string, options: RemoveOptions): Promise<void> {
 	}
 
 	try {
-		return await fsp.unlink(myPath);
+		return await unlink(myPath);
 	} catch (er) {
 		/* istanbul ignore next: Windows */
 		if (er.code === 'EPERM') return isWindows ? fixWinEPERM(myPath, options) : removeDir(myPath, options, er);
@@ -62,13 +62,13 @@ async function rimraf(myPath: string, options: RemoveOptions): Promise<void> {
 
 /* istanbul ignore next: Windows */
 async function fixWinEPERM(myPath: string, options: RemoveOptions): Promise<void> {
-	await fsp.chmod(myPath, 0o666);
+	await chmod(myPath, 0o666);
 	return rimraf(myPath, options);
 }
 
 async function removeDir(myPath: string, options: RemoveOptions, originalEr = null): Promise<void> {
 	try {
-		return await fsp.rmdir(myPath);
+		return await rmdir(myPath);
 	} catch (err) {
 		/* istanbul ignore else: Difficult to reproduce */
 		if (['ENOTEMPTY', 'EEXIST', 'EPERM'].includes(err.code)) return rmkids(myPath, options);
@@ -78,7 +78,7 @@ async function removeDir(myPath: string, options: RemoveOptions, originalEr = nu
 }
 
 async function rmkids(myPath: string, options: RemoveOptions): Promise<void> {
-	const files = await fsp.readdir(myPath);
+	const files = await readdir(myPath);
 	await Promise.all(files.map((file): Promise<void> => remove(join(myPath, file), options)));
-	return fsp.rmdir(myPath);
+	return rmdir(myPath);
 }

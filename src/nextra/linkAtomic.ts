@@ -1,4 +1,4 @@
-import { promises as fsp } from 'fs';
+import { link } from 'fs/promises';
 
 import { tempFile } from '../utils/util';
 import { move } from './move';
@@ -12,6 +12,6 @@ import { move } from './move';
  */
 export async function linkAtomic(source: string, destination: string): Promise<void> {
 	const tempPath = tempFile();
-	await fsp.link(source, tempPath);
+	await link(source, tempPath);
 	await move(tempPath, destination, { overwrite: true });
 }

@@ -1,4 +1,4 @@
-import { promises as fsp } from 'fs';
+import { readFile } from 'fs/promises';
 
 export type BufferEncoding = 'ascii' | 'utf8' | 'utf16le' | 'ucs2' | 'base64' | 'latin1' | 'binary' | 'hex';
 
@@ -32,7 +32,7 @@ export interface ReadJSONOptions {
  */
 export async function readJSON(file: string, options: ReadJSONOptions | BufferEncoding = { flag: 'r' }): Promise<any> {
 	if (typeof options === 'string') options = { encoding: options, flag: 'r' };
-	const content = await fsp.readFile(file, options);
+	const content = await readFile(file, options);
 	return JSON.parse(stripBom(content), options.reviver);
 }
 

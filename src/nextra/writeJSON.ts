@@ -1,4 +1,4 @@
-import { promises as fsp } from 'fs';
+import { writeFile } from 'fs/promises';
 
 import { writeFileAtomic, BaseEncodingOptions } from './writeFileAtomic';
 
@@ -44,7 +44,7 @@ export async function writeJSON(file: string, object: any, options?: JsonOptions
 export async function writeJSON(file: string, object: any, options: JsonOptions | boolean = {}, atomic = false): Promise<void> {
 	if (typeof options === 'boolean') [atomic, options] = [options, {}];
 
-	const writeMethod = atomic ? writeFileAtomic : fsp.writeFile;
+	const writeMethod = atomic ? writeFileAtomic : writeFile;
 	await writeMethod(file, `${JSON.stringify(object, options.replacer, options.spaces)}\n`, options);
 }
 

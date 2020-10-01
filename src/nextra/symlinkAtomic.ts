@@ -1,4 +1,4 @@
-import { promises as fsp } from 'fs';
+import { symlink } from 'fs/promises';
 
 import { tempFile } from '../utils/util';
 import { move } from './move';
@@ -15,6 +15,6 @@ import type { SymLinkType } from './createSymlink';
  */
 export async function symlinkAtomic(source: string, destination: string, type?: SymLinkType): Promise<void> {
 	const tempPath = tempFile();
-	await fsp.symlink(source, tempPath, type);
+	await symlink(source, tempPath, type);
 	await move(tempPath, destination, { overwrite: false });
 }

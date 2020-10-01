@@ -1,5 +1,5 @@
 import { dirname } from 'path';
-import { promises as fsp } from 'fs';
+import { writeFile } from 'fs/promises';
 
 import { writeFileAtomic } from './writeFileAtomic';
 import { mkdirs } from './mkdirs';
@@ -24,7 +24,7 @@ export async function createFile(file: string, atomic = false): Promise<void> {
 
 	await mkdirs(dirname(file));
 
-	const writeMethod = atomic ? writeFileAtomic : fsp.writeFile;
+	const writeMethod = atomic ? writeFileAtomic : writeFile;
 	await writeMethod(file, '');
 }
 

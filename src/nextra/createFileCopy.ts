@@ -1,6 +1,5 @@
 import { dirname, resolve } from 'path';
-
-import { promises as fsp } from 'fs';
+import { access, copyFile } from 'fs/promises';
 
 import { copyFileAtomic } from './copyFileAtomic';
 import { mkdirs } from './mkdirs';
@@ -23,11 +22,11 @@ import { mkdirs } from './mkdirs';
  */
 export async function createFileCopy(source: string, destination: string, atomic = false): Promise<void> {
 	if (resolve(source) === resolve(destination)) {
-		await fsp.access(source);
+		await access(source);
 	} else {
 		await mkdirs(dirname(destination));
 
-		const copyMethod = atomic ? copyFileAtomic : fsp.copyFile;
+		const copyMethod = atomic ? copyFileAtomic : copyFile;
 		await copyMethod(source, destination);
 	}
 }

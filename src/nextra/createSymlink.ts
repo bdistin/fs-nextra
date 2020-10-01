@@ -1,5 +1,5 @@
 import { dirname, join, isAbsolute, relative, resolve } from 'path';
-import { promises as fsp } from 'fs';
+import { symlink, lstat } from 'fs/promises';
 
 import { pathExists } from './pathExists';
 import { mkdirs } from './mkdirs';
@@ -48,25 +48,25 @@ export async function createSymlink(source: string, destination: string, type?: 
 	await mkdirs(dirname(destination));
 	const relativePath = await symlinkPaths(source, destination);
 
-	const symlinkMethod = atomic ? symlinkAtomic : fsp.symlink;
+	const symlinkMethod = atomic ? symlinkAtomic : symlink;
 	await symlinkMethod(relativePath.toDst, resolve(destination), type as SymLinkType || await symlinkType(relativePath.toCwd));
 }
 
 async function symlinkPaths(srcpath: string, dstPath: string): Promise<SymLinkPaths> {
 	if (isAbsolute(srcpath)) {
-		await fsp.lstat(srcpath);
+		await lstat(srcpath);
 		return { toCwd: srcpath, toDst: srcpath };
 	}
 	const dstDir = dirname(dstPath);
 	const relativeToDst = join(dstDir, srcpath);
 	/* istanbul ignore next: Doesn't get tested on all OSs */
 	if (await pathExists(relativeToDst)) return { toCwd: relativeToDst, toDst: srcpath };
-	await fsp.lstat(srcpath);
+	await lstat(srcpath);
 	return { toCwd: srcpath, toDst: relative(dstDir, srcpath) };
 }
 
 async function symlinkType(srcpath: string): Promise<SymLinkType> {
-	const stats = await fsp.lstat(srcpath);
+	const stats = await lstat(srcpath);
 	return stats.isDirectory() ? 'dir' : 'file';
 }
 
