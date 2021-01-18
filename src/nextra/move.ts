@@ -25,7 +25,9 @@ export interface MoveOptions {
  */
 export async function move(source: string, destination: string, options: MoveOptions = {}): Promise<void> {
 	const overwrite = options.overwrite || false;
-	if (resolve(source) === resolve(destination)) return fsp.access(source);
+	source = resolve(source)
+	destination = resolve(destination)
+	if (source === destination) return fsp.access(source);
 
 	const myStat = await fsp.lstat(source);
 	if (myStat.isDirectory() && isSrcKid(source, destination)) {
