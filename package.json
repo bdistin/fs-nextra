@@ -11,7 +11,7 @@
     "test:coverage": "npx nyc check-coverage --lines 90 --functions 90 --branches 90",
     "coverage": "npx nyc --require source-map-support/register npm test",
     "coverage:report": "npx nyc report --reporter=html",
-    "docs": "typedoc --excludeNotExported --exclude ./src/utils/**/*.ts --mode file --out ./dist/ ./src/",
+    "docs": "typedoc --exclude ./src/utils/**/*.ts --out ./dist/ ./src/",
     "lint": "eslint --fix --ext ts src test"
   },
   "keywords": [
