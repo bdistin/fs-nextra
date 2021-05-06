@@ -11,7 +11,7 @@
     "test:coverage": "npx nyc check-coverage --lines 90 --functions 90 --branches 90",
     "coverage": "npx nyc --require source-map-support/register npm test",
     "coverage:report": "npx nyc report --reporter=html",
-    "docs": "typedoc --excludeNotExported --exclude ./src/utils/**/*.ts --mode file --out ./dist/ ./src/",
+    "docs": "typedoc --exclude ./src/utils/**/*.ts --out ./dist/ ./src/",
     "lint": "eslint --fix --ext ts src test"
   },
   "keywords": [
@@ -49,7 +49,7 @@
     "eslint-config-klasa": "dirigeants/klasa-lint",
     "nyc": "^15.1.0",
     "source-map-support": "^0.5.19",
-    "typedoc": "^0.19.2",
+    "typedoc": "^0.20.36",
     "typescript": "^4.0.7"
   },
   "repository": {
