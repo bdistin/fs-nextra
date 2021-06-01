@@ -1,5 +1,5 @@
 import { join } from 'path';
-import { promises as fsp } from 'fs';
+import { readdir } from 'fs/promises';
 
 import { mkdirs } from './mkdirs';
 import { remove } from './remove';
@@ -18,7 +18,7 @@ import { remove } from './remove';
  */
 export async function emptyDir(dir: string): Promise<void> {
 	try {
-		const items = await fsp.readdir(dir);
+		const items = await readdir(dir);
 		await Promise.all(items.map((item): Promise<void> => remove(join(dir, item))));
 	} catch (err) {
 		await mkdirs(dir);

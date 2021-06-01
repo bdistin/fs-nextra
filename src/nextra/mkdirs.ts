@@ -1,5 +1,5 @@
 import { resolve, dirname } from 'path';
-import { promises as fsp } from 'fs';
+import { mkdir, stat } from 'fs/promises';
 
 import { isWindows, invalidWin32Path, umask } from '../utils/util';
 
@@ -47,14 +47,14 @@ export async function mkdirs(path: string, options?: MkdirsOptions | number): Pr
 	path = resolve(path);
 
 	try {
-		await fsp.mkdir(path, dirOptions.mode);
+		await mkdir(path, dirOptions.mode);
 	} catch (err) {
 		if (err.code === 'ENOENT') {
 			await mkdirs(dirname(path), dirOptions);
 			await mkdirs(path, dirOptions);
 			return;
 		}
-		const myStat = await fsp.stat(path);
+		const myStat = await stat(path);
 		if (myStat.isDirectory()) return;
 		throw err;
 	}

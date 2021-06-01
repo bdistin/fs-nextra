@@ -1,4 +1,4 @@
-import { promises as fsp } from 'fs';
+import { access } from 'fs/promises';
 
 /**
  * Checks if a path exists.
@@ -8,7 +8,7 @@ import { promises as fsp } from 'fs';
  */
 export async function pathExists(path: string): Promise<boolean> {
 	try {
-		await fsp.access(path);
+		await access(path);
 		return true;
 	} catch (err) {
 		return false;

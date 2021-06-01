@@ -1,6 +1,5 @@
 import { dirname } from 'path';
-
-import { promises as fsp } from 'fs';
+import { lstat, link } from 'fs/promises';
 
 import { linkAtomic } from './linkAtomic';
 import { mkdirs } from './mkdirs';
@@ -24,11 +23,11 @@ import { pathExists } from './pathExists';
  */
 export async function createLink(source: string, destination: string, atomic = false): Promise<void> {
 	if (await pathExists(destination)) return;
-	await fsp.lstat(source);
+	await lstat(source);
 
 	await mkdirs(dirname(destination));
 
-	const linkMethod = atomic ? linkAtomic : fsp.link;
+	const linkMethod = atomic ? linkAtomic : link;
 	await linkMethod(source, destination);
 }
 

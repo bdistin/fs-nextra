@@ -1,5 +1,7 @@
 import { resolve, dirname, join, basename } from 'path';
-import { promises as fsp, Stats } from 'fs';
+import { access, mkdir, lstat, chmod, readdir, stat, symlink, readlink, copyFile } from 'fs/promises';
+
+import type { Stats } from 'fs';
 
 import { replaceEsc, isSrcKid } from '../utils/util';
 import { mkdirs } from './mkdirs';
@@ -44,7 +46,7 @@ export async function copy(source: string, destination: string, options: CopyOpt
 
 	if (resolve(source) === resolve(destination)) {
 		if (copyOptions.errorOnExist) throw new Error('FS-NEXTRA: Source and destination must not be the same.');
-		await fsp.access(source);
+		await access(source);
 	} else {
 		await mkdirs(dirname(destination));
 		await startCopy(source, copyOptions);
@@ -66,7 +68,7 @@ function resolveCopyOptions(source: string, destination: string, options: CopyOp
 
 async function isWritable(myPath: string): Promise<boolean> {
 	try {
-		await fsp.lstat(myPath);
+		await lstat(myPath);
 		return false;
 	} catch (err) {
 		return err.code === 'ENOENT';
@@ -75,7 +77,7 @@ async function isWritable(myPath: string): Promise<boolean> {
 
 async function startCopy(mySource: string, options: CopyData): Promise<void> {
 	if (!options.filter(mySource, options.targetPath)) return;
-	const stats = await fsp.lstat(mySource);
+	const stats = await lstat(mySource);
 	const target = mySource.replace(options.currentPath, replaceEsc(options.targetPath));
 
 	if (stats.isDirectory()) await copyDirectory(mySource, stats, target, options);
@@ -85,16 +87,16 @@ async function startCopy(mySource: string, options: CopyData): Promise<void> {
 async function copyDirectory(mySource: string, stats: Stats, target: string, options: CopyData): Promise<void> {
 	if (isSrcKid(mySource, target)) throw new Error('FS-NEXTRA: Copying a parent directory into a child will result in an infinite loop.');
 	if (await isWritable(target)) {
-		await fsp.mkdir(target, stats.mode);
-		await fsp.chmod(target, stats.mode);
+		await mkdir(target, stats.mode);
+		await chmod(target, stats.mode);
 	}
-	const items = await fsp.readdir(mySource);
+	const items = await readdir(mySource);
 	await Promise.all(items.map((item): Promise<void> => startCopy(join(mySource, item), options)));
 }
 
 async function copyOther(mySource: string, stats: Stats, target: string, options: CopyData): Promise<void> {
 	try {
-		const tstats = await fsp.stat(target);
+		const tstats = await stat(target);
 		if (tstats && tstats.isDirectory()) target = join(target, basename(mySource));
 	} catch (err) {
 		// noop
@@ -106,6 +108,6 @@ async function copyOther(mySource: string, stats: Stats, target: string, options
 		await remove(target);
 	}
 
-	if (stats.isSymbolicLink()) await fsp.symlink(await fsp.readlink(mySource), target);
-	else await fsp.copyFile(mySource, target);
+	if (stats.isSymbolicLink()) await symlink(await readlink(mySource), target);
+	else await copyFile(mySource, target);
 }

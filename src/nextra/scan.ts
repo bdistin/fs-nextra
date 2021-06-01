@@ -1,5 +1,8 @@
 import { resolve, join } from 'path';
-import { promises as fsp, Dirent } from 'fs';
+import { opendir } from 'fs/promises';
+
+import type { Dirent } from 'fs';
+
 
 /**
  * @typedef {Object} ScanOptions
@@ -24,7 +27,7 @@ export function scan(root: string, options: ScanOptions = {}): Promise<Map<strin
 }
 
 async function scanDeep(path: string, results: Map<string, Dirent>, level: number, options: ScanOptions): Promise<Map<string, Dirent>> {
-	const dir = await fsp.opendir(path);
+	const dir = await opendir(path);
 
 	for await (const dirent of dir) {
 		const fullPath = join(path, dirent.name);
